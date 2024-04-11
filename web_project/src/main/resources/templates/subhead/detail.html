@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subheadings</title>
+</head>
+<body>
+    <!-- 홈으로 돌아가는 로고 이미지-->
+    <div class="logo">
+        <a th:href="@{/}">HSCZ</a>
+    </div>
+
+    <div class="content">
+        <table border="1">
+            <thead>
+                <tr>
+                    <th rowspan="2" colspan="3">품목번호</th>
+                    <th colspan="2">품명</th>
+                </tr>
+                <tr>
+                    <th>한글</th>
+                    <th>영문</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="subhead : ${list}">
+                    <td th:text="${hs4digit}"></td>
+                    <td th:text="${subhead.hs6digit}"></td>
+                    <td>
+                        <a href="#" th:text="${subhead.hs10digit}"></a>
+                    </td>
+                    <td th:text="${subhead.koDescription}"></td>
+                    <td th:text="${subhead.engDescription}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div> <!--content 끝-->
+
+
+</body>
+</html>
