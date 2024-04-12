@@ -8,7 +8,9 @@
 <body>
     <!-- 홈으로 돌아가는 로고 이미지-->
     <div class="logo">
-        <a th:href="@{/}">HSCZ</a>
+        <h1>
+            <a th:href="@{/}">HSCZ</a>
+        </h1>
     </div>
 
     <div class="content">
@@ -27,9 +29,15 @@
                 <tr th:each="subhead : ${list}">
                     <td th:text="${hs4digit}"></td>
                     <td th:text="${subhead.hs6digit}"></td>
-                    <td>
-                        <a href="#" th:text="${subhead.hs10digit}"></a>
+
+                    <!-- 조건문 시작 -->
+                    <!-- 마지막 네자리가 null이 아니고 길이가 4이면 하이퍼링크 걸기-->
+                    <td th:if="!${#strings.isEmpty(subhead.hs10digit)} and ${#strings.length(subhead.hs10digit) == 4}">
+                        <a th:href="@{/subhead/info(hsAll=${subhead.hsAll})}" th:text="${subhead.hs10digit}"></a>
                     </td>
+                    <td th:unless="!${#strings.isEmpty(subhead.hs10digit)} and ${#strings.length(subhead.hs10digit) == 4}" th:text="${subhead.hs10digit}"></td>
+                    <!-- 조건문 끝 -->
+
                     <td th:text="${subhead.koDescription}"></td>
                     <td th:text="${subhead.engDescription}"></td>
                 </tr>

@@ -37,6 +37,9 @@ public class SubheadingEntity {
     @Column(name = "hs_10digit")
     private String hs10digit;
 
+    @Column(name = "hs_all")
+    private String hsAll;
+
     @Column(name = "ko_description")
     private String koDescription;
 
@@ -53,6 +56,7 @@ public class SubheadingEntity {
                 .subheadSeq(subheadingDTO.getSubheadSeq())
                 .hs6digit(subheadingDTO.getHs6digit())
                 .hs10digit(subheadingDTO.getHs10digit())
+                .hsAll(subheadingDTO.getHsAll())
                 .koDescription(subheadingDTO.getKoDescription())
                 .engDescription(subheadingDTO.getEngDescription())
                 .headingEntity(headingEntity)

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail Info</title>
+</head>
+<body>
+    <!-- 홈으로 돌아가는 로고 이미지-->
+    <div class="logo">
+        <h1>
+            <a th:href="@{/}">HSCZ</a>
+        </h1>
+    </div>
+
+    <!-- 10자리 코드의 기본 정보 -->
+    <div class="info">
+        <table border="1">
+            <tr>
+                <th>품목번호</th>
+                <td th:text="${hsCode}"></td>
+                <th>단위(중량/수량)</th>
+                <td th:text="|${wght}/${qty}|"></td>
+            </tr>
+            <tr>
+                <th>품명</th>
+                <td th:text="${koDescription}" colspan="3"></td>
+            </tr>
+        </table>
+    </div>
+
+    <br>
+    <br>
+
+    <!-- 10자리 코드의 세율 정보 -->
+    <h3>[ 세율 ]</h3>
+    <div class="tax-info">
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>구분기호</th>
+                    <th>2024</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="tax : ${list}">
+                    <td th:text="${tax.txtpSgn}"></td>
+                    <td th:text="${tax.txrt}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

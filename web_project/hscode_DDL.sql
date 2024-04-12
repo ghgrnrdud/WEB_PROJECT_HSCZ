@@ -18,6 +18,7 @@ CREATE TABLE subheadings
     , hs_4digit VARCHAR2(10) REFERENCES headings(hs_4digit) ON DELETE CASCADE   -- hscode 앞4자리
     , hs_6digit VARCHAR2(10)    -- hs code 가운데 2자리(6자리중 뒤2자리)
     , hs_10digit VARCHAR2(10)   -- hs code 마지막 4자리(10자리중 뒤4자리)
+    , hs_all VARCHAR2(20)       -- hs code 전체 10자리
     , ko_description VARCHAR2(2000) NOT NULL    -- 한글 설명
     , eng_description VARCHAR2(2000) NOT NULL   -- 영문 설명
 );

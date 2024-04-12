@@ -20,6 +20,7 @@ public class SubheadingDTO {
     private String hs4digit;
     private String hs6digit;
     private String hs10digit;
+    private String hsAll;
     private String koDescription;
     private String engDescription;
     
@@ -29,6 +30,7 @@ public class SubheadingDTO {
                 .hs4digit(hs4digit)
                 .hs6digit(subheadingEntity.getHs6digit())
                 .hs10digit(subheadingEntity.getHs10digit())
+                .hsAll(subheadingEntity.getHsAll())
                 .koDescription(subheadingEntity.getKoDescription())
                 .engDescription(subheadingEntity.getEngDescription())
                 .build();
