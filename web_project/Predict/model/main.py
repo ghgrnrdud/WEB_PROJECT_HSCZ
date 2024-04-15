@@ -11,6 +11,7 @@ import numpy as np
 from fastapi import Body
 import googletrans
 from googletrans import Translator
+# pip install googletrans==4.0.0rc1 로 install
 
 
 # NLTK 리소스 다운로드
