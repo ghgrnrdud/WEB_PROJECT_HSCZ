@@ -20,7 +20,7 @@
                 <th>품목번호</th>
                 <td th:text="${hsCode}"></td>
                 <th>단위(중량/수량)</th>
-                <td th:text="|${wght}/${qty}|"></td>
+                <td>[[ ${wght} ]] / [[ ${qty} ]]</td>
             </tr>
             <tr>
                 <th>품명</th>
@@ -34,6 +34,7 @@
 
     <!-- 10자리 코드의 세율 정보 -->
     <h3>[ 세율 ]</h3>
+    <input type="button" id="tax-priority" value="세율적용 우선순위">
     <div class="tax-info">
         <table border="1">
             <thead>
@@ -50,5 +51,34 @@
             </tbody>
         </table>
     </div>
+
+    <!-- 세율 외 부가 정보들 -->
+    <div>
+        전략물자 확인하기 ▷
+        <input type="button" id="strategic-mat" value="전략물자 확인하기">
+    </div>
+
+    <!-- 관세사 상담 연결 버튼 -->
+    <div>
+        More Info?
+        <a href="#">
+            <input type="button" value="관세사 리스트 확인하기">
+        </a>
+        <a href="#">
+            <input type="button" value="관세사와 상담하기">
+        </a>
+    </div>
+
+    <script>
+        document.getElementById('tax-priority').addEventListener('click', function() {
+            let options = "width=900, height=700, top=200, left=300"
+
+            window.open("/subhead/popup", "_blank", options)
+        })
+
+        document.getElementById('strategic-mat').addEventListener("click", function() {
+            window.open("https://www.yestrade.go.kr/search/search.do?method=intro", "_self")
+        })
+    </script>
 </body>
 </html>

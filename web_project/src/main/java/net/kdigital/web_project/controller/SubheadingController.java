@@ -59,4 +59,8 @@ public class SubheadingController {
         return "subhead/info";
     }
 
+    @GetMapping("/popup")
+    public String makePopup() {
+        return "subhead/popup";
+    }
 }
