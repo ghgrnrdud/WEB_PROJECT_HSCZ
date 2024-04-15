@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TOP3 RECOMMENDATION</title>
+
+    <script th:src="@{/script/jquery-3.7.1.min.js}"></script>
+    <script>
+    </script>
+</head>
+<body>
+    <h1>HSCZ</h1>
+    <hr>
+    <br>
+
+    <div class="content">
+            <div th:each="item : ${result}">
+                <div>
+                    <span><a href="#" th:text="${item}"></a></span>
+                    <div class="info">
+                    </div>
+                </div>
+            </div>
+        </div>
+</body>
+</html>
