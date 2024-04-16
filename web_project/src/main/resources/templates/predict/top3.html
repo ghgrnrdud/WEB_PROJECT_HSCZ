@@ -3,25 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TOP3 RECOMMENDATION</title>
+    <title>TOP3</title>
 
     <script th:src="@{/script/jquery-3.7.1.min.js}"></script>
     <script>
+        $(function(){
+            init()
+        });
+
+        function init() {
+            $(".hs4digit").each(function() {
+                let hs4digit = $(this).text();
+                $.ajax({
+                    url: "/heading/heading_des",
+                    method: "POST",
+                    data: {"hs4digit" : hs4digit},
+                    success: function(resp) {
+                        console.log(resp);
+                        let receivedData = `
+                            <tr>
+                                <td>${resp["koDescription"]}</td>
+                                <td>${resp["engDescription"]}</td>
+                            </tr>
+                        `;
+                        $("#info" + resp["hs4digit"]).append(receivedData);
+                    } 
+                });
+            });
+        }
     </script>
 </head>
 <body>
-    <h1>HSCZ</h1>
+    <div class="logo">
+        <h1>
+            <a th:href="@{/}">HSCZ</a>
+        </h1>
+    </div>
     <hr>
     <br>
 
     <div class="content">
-            <div th:each="item : ${result}">
-                <div>
-                    <span><a href="#" th:text="${item}"></a></span>
-                    <div class="info">
-                    </div>
-                </div>
+        <div th:each="item : ${result}">
+            <div>
+                <span><a th:href="@{/subhead/detail(hs4digit=${item})}" th:text="${item}" class="hs4digit"></a></span>
+                <table border="1" th:id="|info${item}|">
+                    <tr>
+                        <th>한글</th>
+                        <th>영문</th>
+                    </tr>
+                </table>
             </div>
         </div>
+    </div>
 </body>
 </html>

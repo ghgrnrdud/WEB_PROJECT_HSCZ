@@ -3,13 +3,18 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>HSCODE RECOMMENDATION</title>
+	<title>HSCODE ZOOM</title>
 </head>
 <body>
 	<form th:action="@{/predict}" method="post">
 		<h2>제품 상세 입력</h2>
 		<input type="text" id="description" name="description" placeholder="제품 설명 입력">
 		<input type="submit" value="찾기">
+		<hr>
+		<br>
+		<span>
+		<a th:href="@{/news}" text="무역뉴스">무역뉴스</a>
+		</span>
 	</form>
 </body>
 </html>
