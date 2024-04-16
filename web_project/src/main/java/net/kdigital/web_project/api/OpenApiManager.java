@@ -17,6 +17,7 @@ import org.w3c.dom.NodeList;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import net.kdigital.web_project.dto.TaxDTO;
+import net.kdigital.web_project.dto.YearChartDTO;
 
 @Component
 public class OpenApiManager {
@@ -57,6 +58,7 @@ public class OpenApiManager {
 
             for (int temp = 0; temp < nList.getLength(); temp++) {
                 Map<String, String> map = new HashMap<>();
+
                 Node nNode = nList.item(temp);
                 if (nNode.getNodeType() == Node.ELEMENT_NODE) {
                     Element eElement = (Element) nNode;
@@ -198,4 +200,5 @@ public class OpenApiManager {
             return null;
         }
     }
+    
 }

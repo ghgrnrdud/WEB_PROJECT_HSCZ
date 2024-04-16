@@ -41,3 +41,17 @@ CREATE TABLE country_top5
 );
 CREATE SEQUENCE top5_seq;
 select * from country_top5;
+
+
+/*품목별 통계 테이블 - 5년간 수출입 통계*/
+DROP TABLE year_imex5;
+DROP SEQUENCE year_seq;
+
+CREATE TABLE year_imex5
+(
+    year_seq NUMBER PRIMARY KEY
+    , hs_4digit VARCHAR2(10)
+    , imex_year VARCHAR2(10)
+    , export_amount NUMBER
+    , import_amount NUMBER
+);

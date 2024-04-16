@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import net.kdigital.web_project.api.OpenApiManager;
 import net.kdigital.web_project.dto.CountryChartDTO;
+import net.kdigital.web_project.dto.YearChartDTO;
 import net.kdigital.web_project.service.ChartService;
 
 @Controller
@@ -20,6 +22,18 @@ import net.kdigital.web_project.service.ChartService;
 public class ChartController {
 
     private final ChartService chartService;
+
+    @GetMapping("/imexXYChart")
+    @ResponseBody
+    public List<YearChartDTO> imexXYChart(
+        @RequestParam(name = "hs4digit") String hs4digit
+    ) {
+        log.info("======hscode: {}", hs4digit);
+        List<YearChartDTO> yearImexList = chartService.selectYearImex(hs4digit);
+
+        log.info("======yearImexList: {}", yearImexList);
+        return yearImexList;
+    }
     
     @GetMapping("/exPieChart")
     @ResponseBody

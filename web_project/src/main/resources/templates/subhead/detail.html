@@ -36,9 +36,32 @@
     <script defer th:src="@{/script/imexChart.js}"></script>
     <script>
         $(function(){
+            showXYChart();
             showExPieCharts();
             showImPieCharts();
         });
+
+        function showXYChart() {
+            let hscode = $("#getHs4digit").val();
+            $.ajax({
+                url : "/chart/imexXYChart"
+                , method : "GET"
+                , data : {"hs4digit" : hscode}
+                , success : function(resp){
+                    console.log(resp);
+                    let exYearAmountList = [];
+                    let imYearAmountList = [];
+
+                    $.each(resp, function(index, item){
+                        exYearAmountList.push(item["exportAmount"]);
+                        imYearAmountList.push(item["importAmount"])
+                    });
+
+                    imexXYChart(exYearAmountList, imYearAmountList);
+                    console.log("차트 그려짐");
+                }
+            });
+        }
 
         function showExPieCharts(){
             let hscode = $("#getHs4digit").val();
