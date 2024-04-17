@@ -16,6 +16,7 @@ import net.kdigital.web_project.entity.XyclusterEntity;
 @Builder
 public class XyclusterDTO {
 	private Long seq1;
+	private String importexport;
 	private Long dateYear;
 	private String hs4digit;
 	private String productName;
@@ -25,6 +26,7 @@ public class XyclusterDTO {
 	public static XyclusterDTO toDTO(XyclusterEntity xyclusterEntity) {
 		return XyclusterDTO.builder()
 				.seq1(xyclusterEntity.getSeq1())
+				.importexport(xyclusterEntity.getImportexport())
 				.dateYear(xyclusterEntity.getDateYear())
 				.hs4digit(xyclusterEntity.getHs4digit())
 				.productName(xyclusterEntity.getProductName())

@@ -52,7 +52,7 @@ public class DataController {
 	        
 	        dto.setProductName(refinedProduct.toString().trim());
 	    }
-	    log.info("새로바뀐 dto {}", dtoList);
+	    log.info("새로바뀐 dto {}", dtoList.size());
 	    return dtoList;
 	}
 }

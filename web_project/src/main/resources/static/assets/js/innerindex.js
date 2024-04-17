@@ -525,11 +525,13 @@ am5plugins_json.JsonParser.new(root).parse({
 // =============================== xyclusterChart =====================================
 // =======================================================================================
 $(function(){
-  init(2019);
+  init(2019, "수입");
   $("#replyBtn").on('click', function() {
     let selectedyear = $("#dropdown").val();
+    let selectedport = $("#importdd").val();
     console.log(selectedyear);
-    init(selectedyear);
+    console.log(selectedport);
+    init(selectedyear, selectedport);
   });
 })                                          
 
@@ -537,14 +539,16 @@ var respData = [];  // 전역 변수로 resp 데이터를 저장할 배열 선�
 var data = [];      // 각 연도의 데이터가 담길 것.
 
 //가장 처음으로 실행되는 함수(전체 데이터 받아옴)
-function init(selectedyear) {
+function init(selectedyear, selectedport) {
+  console.log("Selected Year:", selectedyear);
+  console.log("Selected Port:", selectedport);
   $.ajax({
     method: 'POST'
     , url : '/'
     , async : false
     , success : function(resp){
       respData = resp; // resp 데이터를 전역 변수에 저장
-      createxycluster(resp, selectedyear);
+      createxycluster(resp, selectedyear, selectedport);
     },
     error: function(err) {
       console.error('Error fetching data:', err);
@@ -562,9 +566,11 @@ function maybeDisposeRoot(divId) {
 }
 
 // 막대차트 그리는 함수
-function createxycluster(resp, selectedyear) {
+function createxycluster(resp, selectedyear, selectedport) {
   var space = document.getElementById("chart6");
-  console.log(space);
+  console.log(resp);
+  console.log(selectedyear);
+  console.log(selectedport);
   var root;
   //만약 그래프 영역이 비어있다면 새로 생성
   if(space == null){
@@ -595,7 +601,7 @@ function createxycluster(resp, selectedyear) {
           });
       }
     }
-  }
+  };
   var dropdown = document.createElement('select');
   dropdown.id = 'dropdown';  // 선택 사항: id 설정
 
@@ -605,11 +611,11 @@ function createxycluster(resp, selectedyear) {
   // dropdown 요소를 chart6 div 안에 추가
   chart6Div.prepend(dropdown);
 
-  var dropdata = '[{"id":2020,"name":"2020"},{"id":2021,"name":"2021"},{"id":2022,"name":"2022"},{"id":2023,"name":"2023"}]';
+  var dropdata = '[{"id":2019,"name":"2019"}, {"id":2020,"name":"2020"},{"id":2021,"name":"2021"},{"id":2022,"name":"2022"},{"id":2023,"name":"2023"}]';
   helpers.buildDropdown(
     jQuery.parseJSON(dropdata),
     $('#dropdown'),
-    '2019'
+    '년도'
   );
 
   // 조회버튼 만들기
@@ -617,71 +623,40 @@ function createxycluster(resp, selectedyear) {
   input.id = 'replyBtn';
   input.type = 'button';
   input.value = '조회';
-
   var dropdown1 = document.getElementById('dropdown');
   dropdown1.after(input);
-  }
+  
+  // 수출/수입 선택하는 드롭박스
+  var importdd = document.createElement('select');
+  importdd.id = 'importdd';  // 선택 사항: id 설정
+
+  //var chart6Div = document.getElementById('chart6');
+  chart6Div.prepend(importdd);
+
+  var dropdata = '[{"id":"수출","name":"수출"}, {"id":"수입","name":"수입"}]';
+  helpers.buildDropdown(
+    jQuery.parseJSON(dropdata),
+    $('#importdd'),
+    '수출/수입'
+  );
+}//end if
+
   //그렇지 않다면 기존 그래프 지우는 함수 사용. 새로 만듦
   else{
     maybeDisposeRoot("chart6");
     root = am5.Root.new(space);
     console.log(newspace);
-  }
-
-  // $("#dropdown").remove();
-  // $("#replyBtn").remove();
+  }//end else
 
   root.setThemes([
     am5themes_Animated.new(root)
   ]);
 
-  // // 드롭박스 만들어보자
-  // // 새로운 select 요소 생성
-  // var helpers = {
-  //   buildDropdown: function(result, dropdown, emptyMessage) {
-  //     // Remove current options
-  //     dropdown.html('');
-
-  //     // Add the empty option with the empty message
-  //     dropdown.append('<option value="">' + emptyMessage + '</option>');
-
-  //     // Check result isnt empty
-  //     if(result != '')
-  //     {
-  //         // Loop through each of the results and append the option to the dropdown
-  //         $.each(result, function(k, v) {
-  //             dropdown.append('<option value="' + v.id + '">' + v.name + '</option>');
-  //         });
-  //     }
-  //   }
-  // }
-  // var dropdown = document.createElement('select');
-  // dropdown.id = 'dropdown';  // 선택 사항: id 설정
-
-  // // chart6 div 가져오기
-  // var chart6Div = document.getElementById('chart6');
-
-  // // dropdown 요소를 chart6 div 안에 추가
-  // chart6Div.appendChild(dropdown);
-
-  // var dropdata = '[{"id":2020,"name":"2020"},{"id":2021,"name":"2021"},{"id":2022,"name":"2022"},{"id":2023,"name":"2023"}]';
-  // helpers.buildDropdown(
-  //   jQuery.parseJSON(dropdata),
-  //   $('#dropdown'),
-  //   '2019'
-  // );
-
-  // // 조회버튼 만들기
-  // var input = document.createElement('input');
-  // input.id = 'replyBtn';
-  // input.type = 'button';
-  // input.value = '조회';
-  // chart6Div.appendChild(input);
-
   //기본 뿌려주는거
   data = [];
   let count = 0;
     $.each(resp, function(index, item) {
+      if(item.importexport == selectedport){
         if(item.dateYear == selectedyear) {
           // alert(item)
           data.push({
@@ -691,30 +666,12 @@ function createxycluster(resp, selectedyear) {
           })
           count ++;
         }//end if
+      }
       if (count >= 5) {  // data 길이가 5개 이상이면 반복문 종료
         return false;
       }
     });//end each
     console.log(data);
-
-  //드롭다운 value값 가져와서 그 값에 따라 데이터 넣어주기
-    // let selectedyear = $("#dropdown").val();
-    // let count1 = 0;
-
-    // $.each(respData, function(index, item) {
-    //     if(item.dateYear == selectedyear) {
-    //       data.push({
-    //         "hscode": item.hs4digit,
-    //         "product" : item.productName,
-    //         "price": item.price
-    //       })
-    //       count1 ++;
-    //     }//end if
-    //   if (count1 >= 5) {  // data 길이가 5개 이상이면 반복문 종료
-    //     return false;
-    //   }
-    // });//end each
-    // console.log(data);
 
 // Create chart
 // https://www.amcharts.com/docs/v5/charts/xy-chart/
@@ -784,6 +741,8 @@ var yAxis = chart.yAxes.push(am5xy.ValueAxis.new(root, {
 chart.appear(1000, 100);
 //data = [];
 console.log(data);
+console.log(selectedyear);
+console.log(selectedport);
 }
 
 // =============================== barChart ==============================================
