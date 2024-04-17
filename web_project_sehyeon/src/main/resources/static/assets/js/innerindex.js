@@ -1000,6 +1000,7 @@ function createString(id, div, country) {
 
 function createRealString(id, div, resp) {
   var space = document.getElementById("chart5");
+  console.log("======space 확인======")
   console.log(space);
   var root;
   if(space == null) {
@@ -1007,6 +1008,7 @@ function createRealString(id, div, resp) {
     newspace.style.display = "inline-block";
     root = am5.Root.new(newspace);
     div.after(newspace);
+    console.log("======newSpace 생성======")
     console.log(newspace);
   }
   else{
