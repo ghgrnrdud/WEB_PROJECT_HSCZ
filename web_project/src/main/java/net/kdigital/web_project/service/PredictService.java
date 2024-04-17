@@ -20,7 +20,7 @@ import net.kdigital.web_project.dto.PredictDTO;
 @Slf4j
 public class PredictService {
 	
-	@Value("${hscode.predict.server}")
+	@Value("${hscode.predict.server}")                        
 	String url;
 	
 	private final RestTemplate restTemplate;
@@ -36,7 +36,7 @@ public class PredictService {
 			
 			ResponseEntity<Map> response = restTemplate.postForEntity(url, predictDTO, Map.class);
 			result = response.getBody();
-			log.info("{}", result);
+//			log.info("{}", result);
 			
 			
 		} catch(Exception e) {
