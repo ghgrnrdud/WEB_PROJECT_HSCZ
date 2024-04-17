@@ -556,14 +556,14 @@ function init(selectedyear, selectedport) {
   });
 }
 
-// 막대차트 지우는 함수 (나중에 삭제할 것)
-function maybeDisposeRoot(divId) {
-  am5.array.each(am5.registry.rootElements, function(root) {
-    if (root.dom.id === divId) {
-      root.dispose();
-    }
-  });
-}
+// // 막대차트 지우는 함수 (나중에 삭제할 것)
+// function maybeDisposeRoot(divId) {
+//   am5.array.each(am5.registry.rootElements, function(root) {
+//     if (root.dom.id === divId) {
+//       root.dispose();
+//     }
+//   });
+// }
 
 // 막대차트 그리는 함수
 function createxycluster(resp, selectedyear, selectedport) {
@@ -744,7 +744,15 @@ console.log(data);
 console.log(selectedyear);
 console.log(selectedport);
 }
-
+// 막대차트 지우는 함수 (나중에 삭제할 것)
+function maybeDisposeRoot(divId) {
+  am5.array.each(am5.registry.rootElements, function(root) {
+    if (root.dom.id === divId) {
+      console.log(root.dom)
+      root.dispose();
+    }
+  });
+}
 // =============================== barChart ==============================================
 // =======================================================================================
 function createBar() {
