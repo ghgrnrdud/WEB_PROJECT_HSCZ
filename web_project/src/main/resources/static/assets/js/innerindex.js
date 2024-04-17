@@ -1,15 +1,9 @@
-<<<<<<< HEAD
 function init(id, div) {
 
   // const id = 0;
   // const div = document.getElementById("chartdiv");
 // Create root element
 // https://www.amcharts.com/docs/v5/getting-started/#Root_element
-=======
-// Create root element
-// https://www.amcharts.com/docs/v5/getting-started/#Root_element
-
->>>>>>> b1085de9f4423e528772ad6ba898ab564c242caf
 var root = am5.Root.new("chartdiv");
 
 
@@ -44,7 +38,6 @@ polygonSeries.mapPolygons.template.setAll({
   ,templateField: "polygonSettings"
 });
 
-<<<<<<< HEAD
 
 // polygonSeries.mapPolygons.template.events.on("click", function(ev) {
 //   console.log("Clicked on", ev.target.dataItem.get("id"));
@@ -59,219 +52,137 @@ polygonSeries.mapPolygons.template.events.on("click", function(ev, id, div) {
       // createAknown(id, div, country);
       // createPie(id, div, country);
       createString(id, div, country);}
-
-      // if(url) {
-      //   $.ajax({
-      //     method: 'GET'
-      //     , url: url
-      //     , data : sendData
-      //     , success : function(resp) {
-      //       createBar(id, div, resp);
-      //       createAknown(id, div, resp);
-      //       createPie(id, div, resp);
-      //       createString(id, div, resp);
-      //     }
-      //   });
-        // url = url + `?country=${id}`
-        // console.log("Clicked on",id, url);
-        // window.location.href = url;
       });
 
-=======
->>>>>>> b1085de9f4423e528772ad6ba898ab564c242caf
 polygonSeries.mapPolygons.template.states.create("hover", {
   fill: am5.color("#B0B2B5")
 });
 
 polygonSeries.data.setAll([{
-<<<<<<< HEAD
   id: "CN",
   url: "/trade/statShow",
-=======
-  id: "CA",
->>>>>>> b1085de9f4423e528772ad6ba898ab564c242caf
   polygonSettings: {
     fill: am5.color("#025EEC")
   }
 }, {
   id: "US",
-<<<<<<< HEAD
   url: "/trade/statShow",
-=======
->>>>>>> b1085de9f4423e528772ad6ba898ab564c242caf
   polygonSettings: {
     fill: am5.color("#0963EE")
   }
 }, {
   id: "VN",
-<<<<<<< HEAD
   url: "/trade/statShow",
-=======
->>>>>>> b1085de9f4423e528772ad6ba898ab564c242caf
   polygonSettings: {
     fill: am5.color("#146AEF")
   }
 }, {
   id: "JP",
-<<<<<<< HEAD
   url: "/trade/statShow",
-=======
->>>>>>> b1085de9f4423e528772ad6ba898ab564c242caf
   polygonSettings: {
     fill: am5.color("#1D70EF")
   }
 }, {
   id: "HK",
-<<<<<<< HEAD
   url: "/trade/statShow",
-=======
->>>>>>> b1085de9f4423e528772ad6ba898ab564c242caf
   polygonSettings: {
     fill: am5.color("#2676F0")
   }
 }, {
   id: "TW",
-<<<<<<< HEAD
   url: "/trade/statShow",
-=======
->>>>>>> b1085de9f4423e528772ad6ba898ab564c242caf
   polygonSettings: {
     fill: am5.color("#2C7AF2")
   }
 }, {
   id: "SG",
-<<<<<<< HEAD
   url: "/trade/statShow",
-=======
->>>>>>> b1085de9f4423e528772ad6ba898ab564c242caf
   polygonSettings: {
     fill: am5.color("#347FF3")
   }
 }, {
   id: "IN",
-<<<<<<< HEAD
   url: "/trade/statShow",
-=======
->>>>>>> b1085de9f4423e528772ad6ba898ab564c242caf
   polygonSettings: {
     fill: am5.color("#3C84F5")
   }
 }, {
   id: "AU",
-<<<<<<< HEAD
   url: "/trade/statShow",
-=======
->>>>>>> b1085de9f4423e528772ad6ba898ab564c242caf
   polygonSettings: {
     fill: am5.color("#4589F5")
   }
 }, {
   id: "MX",
-<<<<<<< HEAD
   url: "/trade/statShow",
-=======
->>>>>>> b1085de9f4423e528772ad6ba898ab564c242caf
   polygonSettings: {
     fill: am5.color("#4E8FF7")
   }
 }, {
   id: "DE",
-<<<<<<< HEAD
   url: "/trade/statShow",
-=======
->>>>>>> b1085de9f4423e528772ad6ba898ab564c242caf
   polygonSettings: {
-    fill: am5.color("#5695F8")
+    fill: am5.color("#4E8FF7")
   }
 }, {
   id: "MY",
-<<<<<<< HEAD
   url: "/trade/statShow",
-=======
->>>>>>> b1085de9f4423e528772ad6ba898ab564c242caf
   polygonSettings: {
     fill: am5.color("#609BF8")
   }
 }, {
   id: "ID",
-<<<<<<< HEAD
   url: "/trade/statShow",
-=======
->>>>>>> b1085de9f4423e528772ad6ba898ab564c242caf
   polygonSettings: {
     fill: am5.color("#68A0F8")
   }
 }, {
   id: "PL",
-<<<<<<< HEAD
   url: "/trade/statShow",
-=======
->>>>>>> b1085de9f4423e528772ad6ba898ab564c242caf
   polygonSettings: {
     fill: am5.color("#70A4F6")
   }
 }, {
   id: "PH",
-<<<<<<< HEAD
   url: "/trade/statShow",
-=======
->>>>>>> b1085de9f4423e528772ad6ba898ab564c242caf
   polygonSettings: {
     fill: am5.color("#7BAAF5")
   }
 }, {
   id: "TR",
-<<<<<<< HEAD
   url: "/trade/statShow",
-=======
->>>>>>> b1085de9f4423e528772ad6ba898ab564c242caf
   polygonSettings: {
     fill: am5.color("#83AFF5")
   }
 },
 {
   id: "CA",
-<<<<<<< HEAD
   url: "/trade/statShow",
-=======
->>>>>>> b1085de9f4423e528772ad6ba898ab564c242caf
   polygonSettings: {
     fill: am5.color("#8CB5F6")
   }
 }, {
   id: "TH",
-<<<<<<< HEAD
   url: "/trade/statShow",
-=======
->>>>>>> b1085de9f4423e528772ad6ba898ab564c242caf
   polygonSettings: {
     fill: am5.color("#94BAF6")
   }
 }, {
   id: "NL",
-<<<<<<< HEAD
   url: "/trade/statShow",
-=======
->>>>>>> b1085de9f4423e528772ad6ba898ab564c242caf
   polygonSettings: {
     fill: am5.color("#9FBFF2")
   }
 }, {
   id: "HU",
-<<<<<<< HEAD
   url: "/trade/statShow",
-=======
->>>>>>> b1085de9f4423e528772ad6ba898ab564c242caf
   polygonSettings: {
     fill: am5.color("#A2C1F2")
   }
 }]);
 
-<<<<<<< HEAD
 
 
-=======
->>>>>>> b1085de9f4423e528772ad6ba898ab564c242caf
 // polygonSeries.mapPolygons.template.states.create("hover", {
 //   fill: root.interfaceColors.get("primaryButtonHover")
 // });
@@ -308,84 +219,43 @@ chart.chartContainer.get("background").events.on("click", function () {
 })
 
 
+
 // Make stuff animate on load
 chart.appear(1000, 100);
-<<<<<<< HEAD
 };
-
-// // click event 추가
-// function clickEvent() {
-//   polygonSeries.mapPolygons.template.events.on("click", function(ev) {
-//     var url = ev.target.dataItem.dataContext.url;
-//     var id = ev.target.dataItem.get("id");
-//     var sendData = {"country" : id};
-//     if(url) {
-//       $.ajax({
-//         method: 'GET'
-//         , url: url
-//         , data : sendData
-//         , success : function(resp) {
-//           alert(resp)
-//         }
-//       });
-//       // url = url + `?country=${id}`
-//       // console.log("Clicked on",id, url);
-//       // window.location.href = url;
-//     }
-//   });
-// };
 
 // ======= createDiv =======
 // var id = 0;
 // var div = document.getElementById("chartdiv");
 
 function createDiv(id, div) {
-  var container = document.createElement("div");
-  container.id = "chart" + id;
-  container.style.width = "450px";
-  container.style.height = "450px";
-=======
-
-
-
-// ======= createDiv =======
-var id = 0;
-var div = document.getElementById("chartdiv");
-
-function createDiv() {
   id++;
   var container = document.createElement("div");
   container.id = "chart" + id;
   container.style.width = "350px";
   container.style.height = "350px";
->>>>>>> b1085de9f4423e528772ad6ba898ab564c242caf
   // container.style.float = "left";
   container.style.margin = "10px";
   container.style.border = "1px solid #eee";
   return container;
 }
 
-<<<<<<< HEAD
-// === 함수 실행 ===
-// createBullet();
-// createFunnel();
-// createBar();
-// createAknown();
-// createPie();
-// createString();
+function maybeDisposeRoot(divId) {
+  // console.log(root.dom.id);
+  // console.log(divId);
+  am5.array.each(am5.registry.rootElements, function(root) {
+    // console.log(root.dom.id);
+    if (root && root.dom && root.dom.id === divId) {
+      root.dispose();
+    }
+  });
+}
 
 // ================================== bulletChart ========================================
 // =======================================================================================
 
 function createBullet(id, div) {
   var newspace = createDiv(id, div);
-=======
-// ================================== bulletChart ========================================
-// =======================================================================================
-
-function createBullet() {
-  var newspace = createDiv();
->>>>>>> b1085de9f4423e528772ad6ba898ab564c242caf
   newspace.style.display = "inline-block";
   div.before(newspace);
   var root = am5.Root.new(newspace);
@@ -400,14 +270,10 @@ var chart = root.container.children.push(am5xy.XYChart.new(root, {
   panX: true,
   panY: true,
   wheelX: "panX",
-<<<<<<< HEAD
   wheelY: "zoomX",
     width: am5.percent(100),  //
     height: am5.percent(100), //
     layout: root.verticalLayout //
-=======
-  wheelY: "zoomX"
->>>>>>> b1085de9f4423e528772ad6ba898ab564c242caf
 }));
 
 chart.get("colors").set("step", 3);
@@ -417,10 +283,6 @@ chart.get("colors").set("step", 3);
 // https://www.amcharts.com/docs/v5/charts/xy-chart/cursor/
 var cursor = chart.set("cursor", am5xy.XYCursor.new(root, {}));
 cursor.lineY.set("visible", false);
-<<<<<<< HEAD
-=======
-// chart.options.responsive
->>>>>>> b1085de9f4423e528772ad6ba898ab564c242caf
 
 
 // Create axes
@@ -428,11 +290,7 @@ cursor.lineY.set("visible", false);
 var xAxis = chart.xAxes.push(am5xy.DateAxis.new(root, {
   maxDeviation: 0.3,
   baseInterval: {
-<<<<<<< HEAD
     timeUnit: "month",
-=======
-    timeUnit: "day",
->>>>>>> b1085de9f4423e528772ad6ba898ab564c242caf
     count: 1
   },
   renderer: am5xy.AxisRendererX.new(root, {
@@ -450,21 +308,13 @@ var yAxis = chart.yAxes.push(am5xy.ValueAxis.new(root, {
 // Add series
 // https://www.amcharts.com/docs/v5/charts/xy-chart/series/
 var series = chart.series.push(am5xy.LineSeries.new(root, {
-<<<<<<< HEAD
   name: "수출(백만$)",
-=======
-  name: "Series 1",
->>>>>>> b1085de9f4423e528772ad6ba898ab564c242caf
   xAxis: xAxis,
   yAxis: yAxis,
   valueYField: "value1",
   valueXField: "date",
   tooltip: am5.Tooltip.new(root, {
-<<<<<<< HEAD
     labelText: "수출: {valueY}\n수입: {value2}"
-=======
-    labelText: "{valueX}: {valueY}\n{previousDate}: {value2}"
->>>>>>> b1085de9f4423e528772ad6ba898ab564c242caf
   })
 }));
 
@@ -475,11 +325,7 @@ series.strokes.template.setAll({
 series.get("tooltip").get("background").set("fillOpacity", 0.5);
 
 var series2 = chart.series.push(am5xy.LineSeries.new(root, {
-<<<<<<< HEAD
   name: "수입(10억$)",
-=======
-  name: "Series 2",
->>>>>>> b1085de9f4423e528772ad6ba898ab564c242caf
   xAxis: xAxis,
   yAxis: yAxis,
   valueYField: "value2",
@@ -496,17 +342,10 @@ series.bullets.push(function() {
   var container = am5.Container.new(root, {
     templateField: "bulletSettings"
   });
-<<<<<<< HEAD
   // var circle0 = container.children.push(am5.Circle.new(root, {
   //   radius: 5,
   //   fill: am5.color(0xff0000)
   // }));
-=======
-  var circle0 = container.children.push(am5.Circle.new(root, {
-    radius: 5,
-    fill: am5.color(0xff0000)
-  }));
->>>>>>> b1085de9f4423e528772ad6ba898ab564c242caf
   var circle1 = container.children.push(am5.Circle.new(root, {
     radius: 5,
     fill: am5.color(0xff0000)
@@ -539,17 +378,10 @@ series2.bullets.push(function() {
   var container = am5.Container.new(root, {
     templateField: "bulletSettings"
   });
-<<<<<<< HEAD
   // var circle0 = container.children.push(am5.Circle.new(root, {
   //   radius: 5,
   //   fill: am5.color(0xff0000)
   // }));
-=======
-  var circle0 = container.children.push(am5.Circle.new(root, {
-    radius: 5,
-    fill: am5.color(0xff0000)
-  }));
->>>>>>> b1085de9f4423e528772ad6ba898ab564c242caf
   var circle1 = container.children.push(am5.Circle.new(root, {
     radius: 5,
     fill: am5.color(0xff0000)
@@ -587,91 +419,48 @@ root.dateFormatter.setAll({
 
 // Set data
 var data = [{
-<<<<<<< HEAD
   date: new Date(2023, 1, 1).getTime(),
   value1: 46339, // 46339145,
   value2: 59037, // 59037259
-=======
-  date: new Date(2019, 5, 12).getTime(),
-  value1: 50,
-  value2: 48,
-  previousDate: new Date(2019, 5, 5),
->>>>>>> b1085de9f4423e528772ad6ba898ab564c242caf
   bulletSettings: {
     visible: false
   }
 }, {
-<<<<<<< HEAD
   date: new Date(2023, 2, 1).getTime(),
   value1: 49994, //49994593
   value2: 55370, //55370498
-=======
-  date: new Date(2019, 5, 13).getTime(),
-  value1: 53,
-  value2: 51,
-  previousDate: "2019-05-06",
->>>>>>> b1085de9f4423e528772ad6ba898ab564c242caf
   bulletSettings: {
     visible: false
   }
 }, {
-<<<<<<< HEAD
   date: new Date(2023, 3, 1).getTime(),
   value1: 54882, //54882484
   value2: 59635, //59635920
-=======
-  date: new Date(2019, 5, 14).getTime(),
-  value1: 56,
-  value2: 58,
-  previousDate: "2019-05-07",
->>>>>>> b1085de9f4423e528772ad6ba898ab564c242caf
   bulletSettings: {
     visible: false
   }
 }, {
-<<<<<<< HEAD
   date: new Date(2023, 4, 1).getTime(),
   value1: 49430, //49430879
   value2: 51940, //51940137
-=======
-  date: new Date(2019, 5, 15).getTime(),
-  value1: 52,
-  value2: 53,
-  previousDate: "2019-05-08",
->>>>>>> b1085de9f4423e528772ad6ba898ab564c242caf
   bulletSettings: {
     visible: false
   }
 }, {
-<<<<<<< HEAD
   date: new Date(2023, 5, 1).getTime(),
   value1: 52054, //52054195
   value2: 54251, //54251194
-=======
-  date: new Date(2019, 5, 16).getTime(),
-  value1: 48,
-  value2: 44,
-  previousDate: "2019-05-09",
->>>>>>> b1085de9f4423e528772ad6ba898ab564c242caf
   bulletSettings: {
     visible: false
   }
 }, {
-<<<<<<< HEAD
   date: new Date(2023, 6, 1).getTime(),
   value1: 54297, //54297754
   value2: 53055, //53055480
-=======
-  date: new Date(2019, 5, 17).getTime(),
-  value1: 47,
-  value2: 42,
-  previousDate: "2019-05-10",
->>>>>>> b1085de9f4423e528772ad6ba898ab564c242caf
   bulletSettings: {
     visible: false
   }
 }, {
-<<<<<<< HEAD
   date: new Date(2023, 7, 1).getTime(),
   value1: 50457, //50457776
   value2: 48738, //48738114
@@ -715,21 +504,10 @@ var data = [{
   }
 }
 ]
-=======
-  date: new Date(2019, 5, 18).getTime(),
-  value1: 59,
-  value2: 55,
-  previousDate: "2019-05-11",
-  bulletSettings: {
-    visible: true
-  }
-}]
->>>>>>> b1085de9f4423e528772ad6ba898ab564c242caf
 
 series.data.setAll(data);
 series2.data.setAll(data);
 
-<<<<<<< HEAD
 series.set("selectedDataItem", series.dataItems[0]);
 
 // Add legend
@@ -767,8 +545,6 @@ legend.data.setAll(chart.series.values);
 
 
 
-=======
->>>>>>> b1085de9f4423e528772ad6ba898ab564c242caf
 
 // Make stuff animate on load
 // https://www.amcharts.com/docs/v5/concepts/animations/
@@ -779,13 +555,8 @@ chart.appear(1000, 100);
 
 // ====================================== pieChart =======================================
 // =======================================================================================
-<<<<<<< HEAD
 function createPie(id, div) {
   var newspace = createDiv(id, div);
-=======
-function createPie() {
-  var newspace = createDiv();
->>>>>>> b1085de9f4423e528772ad6ba898ab564c242caf
   newspace.style.display = "inline-block";
   newspace.style.float = "right";
   // newspace.style.width = "500px";
@@ -807,10 +578,6 @@ function createPie() {
 
   // Parse chart config
 // https://www.amcharts.com/docs/v5/concepts/serializing/
-<<<<<<< HEAD
-=======
-
->>>>>>> b1085de9f4423e528772ad6ba898ab564c242caf
 am5plugins_json.JsonParser.new(root).parse({
   refs: [{
     data: [{
@@ -874,42 +641,50 @@ am5plugins_json.JsonParser.new(root).parse({
 });
 }
 
-<<<<<<< HEAD
-// =============================== slicedFunnelChart =====================================
-// =======================================================================================
-function createFunnel(id, div) {
-  var newspace = createDiv(id, div);
-  newspace.style.display = "inline-block";
-  newspace.style.float = "right";
-  div.before(newspace);
-=======
 // =============================== xyclusterChart =====================================
 // =======================================================================================
-$(function(){
-  init(2019, "수입");
-  $("#replyBtn").on('click', function() {
-    let selectedyear = $("#dropdown").val();
-    let selectedport = $("#importdd").val();
-    console.log(selectedyear);
-    console.log(selectedport);
-    init(selectedyear, selectedport);
-  });
-})                                          
+// $(function(){
+//   console.log("=======ajax 진입");
+    // init();
+
+    //   createBullet(id, div);
+
+    //   // createFunnel();
+    //   createxycluster(id, div, 2019, "수입");
+
+    //   createBar(id, div, "CN");
+
+    //   createAknown(id, div);
+
+    //   createPie();
+
+    //   createString("CN");
+      
+  // $("#replyBtn").on('click', function() {
+  //   let selectedyear = $("#dropdown").val();
+  //   let selectedport = $("#importdd").val();
+  //   console.log(selectedyear);
+  //   console.log(selectedport);
+  //   createxycluster(selectedyear, selectedport);
+  // });
+// })                                          
+
 
 var respData = [];  // 전역 변수로 resp 데이터를 저장할 배열 선언
 var data = [];      // 각 연도의 데이터가 담길 것.
 
 //가장 처음으로 실행되는 함수(전체 데이터 받아옴)
-function init(selectedyear, selectedport) {
+function createxycluster(id, div, selectedyear, selectedport) {
   console.log("Selected Year:", selectedyear);
   console.log("Selected Port:", selectedport);
+  
   $.ajax({
-    method: 'POST'
-    , url : '/'
+    method: 'GET'
+    , url : '/trade/xyCluster'
     , async : false
     , success : function(resp){
       respData = resp; // resp 데이터를 전역 변수에 저장
-      createxycluster(resp, selectedyear, selectedport);
+      createRealxycluster(id, div, resp, selectedyear, selectedport);
     },
     error: function(err) {
       console.error('Error fetching data:', err);
@@ -918,24 +693,24 @@ function init(selectedyear, selectedport) {
 }
 
 // 막대차트 지우는 함수 (나중에 삭제할 것)
-function maybeDisposeRoot(divId) {
-  am5.array.each(am5.registry.rootElements, function(root) {
-    if (root.dom.id === divId) {
-      root.dispose();
-    }
-  });
-}
+// function maybeDisposeRoot(divId) {
+//   am5.array.each(am5.registry.rootElements, function(root) {
+//     if (root.dom.id === divId) {
+//       root.dispose();
+//     }
+//   });
+// }
 
 // 막대차트 그리는 함수
-function createxycluster(resp, selectedyear, selectedport) {
-  var space = document.getElementById("chart6");
+function createRealxycluster(id, div, resp, selectedyear, selectedport) {
+  var space = document.getElementById("chart3");
   console.log(resp);
   console.log(selectedyear);
   console.log(selectedport);
   var root;
   //만약 그래프 영역이 비어있다면 새로 생성
   if(space == null){
-    var newspace = createDiv();
+    var newspace = createDiv(id, div);
     newspace.style.width = "500px";
     newspace.style.display = "inline-block";
     newspace.style.float = "right";
@@ -967,7 +742,7 @@ function createxycluster(resp, selectedyear, selectedport) {
   dropdown.id = 'dropdown';  // 선택 사항: id 설정
 
   // chart6 div 가져오기
-  var chart6Div = document.getElementById('chart6');
+  var chart6Div = document.getElementById('chart3');
 
   // dropdown 요소를 chart6 div 안에 추가
   chart6Div.prepend(dropdown);
@@ -1004,7 +779,7 @@ function createxycluster(resp, selectedyear, selectedport) {
 
   //그렇지 않다면 기존 그래프 지우는 함수 사용. 새로 만듦
   else{
-    maybeDisposeRoot("chart6");
+    maybeDisposeRoot("chart3");
     root = am5.Root.new(space);
     console.log(newspace);
   }//end else
@@ -1104,74 +879,74 @@ chart.appear(1000, 100);
 console.log(data);
 console.log(selectedyear);
 console.log(selectedport);
+
+
 }
 
-// =============================== barChart ==============================================
-// =======================================================================================
-function createBar() {
-  var newspace = createDiv();
-  newspace.style.display = "inline-block";
-  newspace.style.float = "right";  
-  div.after(newspace);
->>>>>>> b1085de9f4423e528772ad6ba898ab564c242caf
-  var root = am5.Root.new(newspace);
+// // =============================== barChart ==============================================
+// // =======================================================================================
+// function createBar() {
+//   var newspace = createDiv();
+//   newspace.style.display = "inline-block";
+//   newspace.style.float = "right";  
+//   div.after(newspace);
+//   var root = am5.Root.new(newspace);
 
-  root.setThemes([
-    am5themes_Animated.new(root)
-  ]);
+//   root.setThemes([
+//     am5themes_Animated.new(root)
+//   ]);
 
-  // Create chart
-<<<<<<< HEAD
-// https://www.amcharts.com/docs/v5/charts/percent-charts/sliced-chart/
-var chart = root.container.children.push(am5percent.SlicedChart.new(root, {
-  layout: root.verticalLayout
-}));
-
-
-// Create series
-// https://www.amcharts.com/docs/v5/charts/percent-charts/sliced-chart/#Series
-var series = chart.series.push(am5percent.FunnelSeries.new(root, {
-  alignLabels: false,
-  orientation: "vertical",
-  valueField: "value",
-  categoryField: "category"
-}));
-
-
-// Set data
-// https://www.amcharts.com/docs/v5/charts/percent-charts/sliced-chart/#Setting_data
-series.data.setAll([
-  { value: 10, category: "One" },
-  { value: 9, category: "Two" },
-  { value: 6, category: "Three" },
-  { value: 5, category: "Four" },
-  { value: 4, category: "Five" },
-  { value: 3, category: "Six" },
-  { value: 1, category: "Seven" }
-]);
-
-
-// Play initial series animation
-// https://www.amcharts.com/docs/v5/concepts/animations/#Animation_of_series
-series.appear();
-
-
-// Create legend
-// https://www.amcharts.com/docs/v5/charts/percent-charts/legend-percent-series/
-// var legend = chart.children.push(am5.Legend.new(root, {
-//   centerX: am5.p50,
-//   x: am5.p50,
-//   marginTop: 15,
-//   marginBottom: 15
+//   // Create chart
+// // https://www.amcharts.com/docs/v5/charts/percent-charts/sliced-chart/
+// var chart = root.container.children.push(am5percent.SlicedChart.new(root, {
+//   layout: root.verticalLayout
 // }));
 
-// legend.data.setAll(series.dataItems);
+
+// // Create series
+// // https://www.amcharts.com/docs/v5/charts/percent-charts/sliced-chart/#Series
+// var series = chart.series.push(am5percent.FunnelSeries.new(root, {
+//   alignLabels: false,
+//   orientation: "vertical",
+//   valueField: "value",
+//   categoryField: "category"
+// }));
 
 
-// Make stuff animate on load
-// https://www.amcharts.com/docs/v5/concepts/animations/#Forcing_appearance_animation
-chart.appear(1000, 100);
-};
+// // Set data
+// // https://www.amcharts.com/docs/v5/charts/percent-charts/sliced-chart/#Setting_data
+// series.data.setAll([
+//   { value: 10, category: "One" },
+//   { value: 9, category: "Two" },
+//   { value: 6, category: "Three" },
+//   { value: 5, category: "Four" },
+//   { value: 4, category: "Five" },
+//   { value: 3, category: "Six" },
+//   { value: 1, category: "Seven" }
+// ]);
+
+
+// // Play initial series animation
+// // https://www.amcharts.com/docs/v5/concepts/animations/#Animation_of_series
+// series.appear();
+
+
+// // Create legend
+// // https://www.amcharts.com/docs/v5/charts/percent-charts/legend-percent-series/
+// // var legend = chart.children.push(am5.Legend.new(root, {
+// //   centerX: am5.p50,
+// //   x: am5.p50,
+// //   marginTop: 15,
+// //   marginBottom: 15
+// // }));
+
+// // legend.data.setAll(series.dataItems);
+
+
+// // Make stuff animate on load
+// // https://www.amcharts.com/docs/v5/concepts/animations/#Forcing_appearance_animation
+// chart.appear(1000, 100);
+// };
 
 
 // =============================== barChart ==============================================
@@ -1216,8 +991,6 @@ function createBar(id, div, country) {
     console.log(data);
 
   // Create chart
-=======
->>>>>>> b1085de9f4423e528772ad6ba898ab564c242caf
 // https://www.amcharts.com/docs/v5/charts/xy-chart/
 var chart = root.container.children.push(am5xy.XYChart.new(root, {
   panX: true,
@@ -1298,7 +1071,6 @@ series.bullets.push(function () {
 
 
 // Set data
-<<<<<<< HEAD
 // var data = [{
 //   "country": "USA",
 //   "value": 2025
@@ -1336,45 +1108,6 @@ series.bullets.push(function () {
 //   "country": "Canada",
 //   "value": 441
 // }];
-=======
-var data = [{
-  "country": "USA",
-  "value": 2025
-}, {
-  "country": "China",
-  "value": 1882
-}, {
-  "country": "Japan",
-  "value": 1809
-}, {
-  "country": "Germany",
-  "value": 1322
-}, {
-  "country": "UK",
-  "value": 1122
-}, {
-  "country": "France",
-  "value": 1114
-}, {
-  "country": "India",
-  "value": 984
-}, {
-  "country": "Spain",
-  "value": 711
-}, {
-  "country": "Netherlands",
-  "value": 665
-}, {
-  "country": "Russia",
-  "value": 580
-}, {
-  "country": "South Korea",
-  "value": 443
-}, {
-  "country": "Canada",
-  "value": 441
-}];
->>>>>>> b1085de9f4423e528772ad6ba898ab564c242caf
 
 xAxis.data.setAll(data);
 series.data.setAll(data);
@@ -1461,7 +1194,6 @@ function sortCategoryAxis() {
 // https://www.amcharts.com/docs/v5/concepts/animations/
 series.appear(1000);
 chart.appear(1000, 100);
-<<<<<<< HEAD
   };
 
 // =============================== StringChart ==============================================
@@ -1490,23 +1222,10 @@ function createRealString(id, div, resp) {
     maybeDisposeRoot("chart5");
     root = am5.Root.new(space);
     }
-=======
-}
-
-// =============================== StringChart ==============================================
-// ==========================================================================================\
-function createString() {
-  var newspace = createDiv();
-  newspace.style.display = "inline-block";
-  // newspace.style.float = "right";
-  div.after(newspace);
-  var root = am5.Root.new(newspace);
->>>>>>> b1085de9f4423e528772ad6ba898ab564c242caf
 
   root.setThemes([
     am5themes_Animated.new(root)
   ]);
-<<<<<<< HEAD
   console.log(typeof(resp));
   var data = [];
   $.each(resp, function(index, item) {
@@ -1521,20 +1240,13 @@ function createString() {
   console.log(data);
 
 // Create chart
-=======
-
-  // Create chart
->>>>>>> b1085de9f4423e528772ad6ba898ab564c242caf
 // https://www.amcharts.com/docs/v5/charts/xy-chart/
 var chart = root.container.children.push(am5xy.XYChart.new(root, {
   panX: true,
   panY: true,
   wheelX: "panX",
   wheelY: "zoomX"
-<<<<<<< HEAD
   , layout: root.verticalLayout
-=======
->>>>>>> b1085de9f4423e528772ad6ba898ab564c242caf
 }));
 
 chart.get("colors").set("step", 3);
@@ -1551,11 +1263,7 @@ cursor.lineY.set("visible", false);
 var xAxis = chart.xAxes.push(am5xy.DateAxis.new(root, {
   maxDeviation: 0.3,
   baseInterval: {
-<<<<<<< HEAD
     timeUnit: "month",
-=======
-    timeUnit: "day",
->>>>>>> b1085de9f4423e528772ad6ba898ab564c242caf
     count: 1
   },
   renderer: am5xy.AxisRendererX.new(root, {
@@ -1573,11 +1281,7 @@ var yAxis = chart.yAxes.push(am5xy.ValueAxis.new(root, {
 // Add series
 // https://www.amcharts.com/docs/v5/charts/xy-chart/series/
 var series = chart.series.push(am5xy.LineSeries.new(root, {
-<<<<<<< HEAD
   name: "수출액",
-=======
-  name: "Series 1",
->>>>>>> b1085de9f4423e528772ad6ba898ab564c242caf
   xAxis: xAxis,
   yAxis: yAxis,
   valueYField: "value1",
@@ -1594,11 +1298,7 @@ series.strokes.template.setAll({
 series.get("tooltip").get("background").set("fillOpacity", 0.5);
 
 var series2 = chart.series.push(am5xy.LineSeries.new(root, {
-<<<<<<< HEAD
   name: "수출액",
-=======
-  name: "Series 2",
->>>>>>> b1085de9f4423e528772ad6ba898ab564c242caf
   xAxis: xAxis,
   yAxis: yAxis,
   valueYField: "value2",
@@ -1616,53 +1316,10 @@ root.dateFormatter.setAll({
   dateFields: ["valueX"]
 });
 
-<<<<<<< HEAD
-=======
-
-// Set data
-var data = [{
-  date: new Date(2019, 5, 12).getTime(),
-  value1: 50,
-  value2: 48,
-  previousDate: new Date(2019, 5, 5)
-}, {
-  date: new Date(2019, 5, 13).getTime(),
-  value1: 53,
-  value2: 51,
-  previousDate: "2019-05-06"
-}, {
-  date: new Date(2019, 5, 14).getTime(),
-  value1: 56,
-  value2: 58,
-  previousDate: "2019-05-07"
-}, {
-  date: new Date(2019, 5, 15).getTime(),
-  value1: 52,
-  value2: 53,
-  previousDate: "2019-05-08"
-}, {
-  date: new Date(2019, 5, 16).getTime(),
-  value1: 48,
-  value2: 44,
-  previousDate: "2019-05-09"
-}, {
-  date: new Date(2019, 5, 17).getTime(),
-  value1: 47,
-  value2: 42,
-  previousDate: "2019-05-10"
-}, {
-  date: new Date(2019, 5, 18).getTime(),
-  value1: 59,
-  value2: 55,
-  previousDate: "2019-05-11"
-}]
-
->>>>>>> b1085de9f4423e528772ad6ba898ab564c242caf
 series.data.setAll(data);
 series2.data.setAll(data);
 
 
-<<<<<<< HEAD
 series.set("selectedDataItem", series.dataItems[0]);
 
 // Add legend
@@ -1684,8 +1341,6 @@ var legend = chart.children.push(
 );
 legend.data.setAll(chart.series.values);
 
-=======
->>>>>>> b1085de9f4423e528772ad6ba898ab564c242caf
 // Make stuff animate on load
 // https://www.amcharts.com/docs/v5/concepts/animations/
 series.appear(1000);
@@ -1693,26 +1348,19 @@ series2.appear(1000);
 chart.appear(1000, 100);
 };
 
-<<<<<<< HEAD
-function maybeDisposeRoot(divId) {
-  am5.array.each(am5.registry.rootElements, function(root) {
-    if (root.dom.id === divId) {
-      root.dispose();
-    }
-  });
-}
+// function maybeDisposeRoot(divId) {
+//   am5.array.each(am5.registry.rootElements, function(root) {
+//     if (root.dom.id === divId) {
+//       root.dispose();
+//     }
+//   });
+// }
 
 
 // ====================================== 미정 그래프 =======================================
 // =========================================================================================
 function createAknown(id, div) {
   var newspace = createDiv(id, div);
-=======
-// ====================================== 미정 그래프 =======================================
-// =========================================================================================
-function createAknown() {
-  var newspace = createDiv();
->>>>>>> b1085de9f4423e528772ad6ba898ab564c242caf
   newspace.style.display = "inline-block";
   // newspace.style.float = "right";
   div.after(newspace);
@@ -1723,17 +1371,14 @@ function createAknown() {
 };
 
 
-<<<<<<< HEAD
 
-=======
 // === 함수 실행 ===
-createBullet();
-//createxycluster();
-createBar();
-createAknown();
-createPie();
-createString();
->>>>>>> b1085de9f4423e528772ad6ba898ab564c242caf
+// createBullet();
+// //createxycluster();
+// createBar();
+// createAknown();
+// createPie();
+// createString();
 
 
 
