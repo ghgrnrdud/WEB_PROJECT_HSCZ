@@ -145,7 +145,7 @@
                     <!-- 조건문 시작 -->
                     <!-- 마지막 네자리가 null이 아니고 길이가 4이면 하이퍼링크 걸기-->
                     <td th:if="!${#strings.isEmpty(subhead.hs10digit)} and ${#strings.length(subhead.hs10digit) == 4}">
-                        <a th:href="@{/subhead/info(hsAll=${subhead.hsAll})}" th:text="${subhead.hs10digit}"></a>
+                        <a th:href="@{/subhead/info(hsAll=${subhead.hsAll},hs4digit=${subhead.hs4digit})}" th:text="${subhead.hs10digit}"></a>
                     </td>
                     <td th:unless="!${#strings.isEmpty(subhead.hs10digit)} and ${#strings.length(subhead.hs10digit) == 4}" th:text="${subhead.hs10digit}"></td>
                     <!-- 조건문 끝 -->

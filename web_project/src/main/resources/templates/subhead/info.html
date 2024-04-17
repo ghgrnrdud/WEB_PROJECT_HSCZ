@@ -34,6 +34,14 @@
                     </span>
                 </td>
             </tr>
+            <tr>
+                <th>원산지</th>
+                <td colspan="3">
+                    <span th:if="${isOrigin}">
+                        원산지표시대상 ( Y )
+                    </span>
+                </td>
+            </tr>
         </table>
     </div>
 
@@ -63,14 +71,14 @@
     <h3>[ 수출입요건 ]</h3>
     <div class="check-list">
         <h3>수출</h3>
-        <div th:unless="${exCheckList[0] == null or exCheckList[1] == null}">
+        <div th:unless="${exCheckList[0] == null and exCheckList[1] == null}">
             <ul th:each="exCheck : ${exCheckList}">
                 <li th:text="${exCheck}"></li> 
             </ul>
         </div>
 
         <h3>수입</h3>
-        <div th:unless="${exCheckList[0] == null or exCheckList[1] == null}">
+        <div th:unless="${imCheckList[0] == null and imCheckList[1] == null}">
             <ul th:each="imCheck : ${imCheckList}">
                 <li th:text="${imCheck}"></li> 
             </ul>
