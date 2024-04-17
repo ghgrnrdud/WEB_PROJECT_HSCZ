@@ -50,12 +50,22 @@ public class SubheadingController {
     ) {
         log.info("=============subheadInfo");
         List<TaxDTO> dtoList = openApiManager.taxOpenApi(hsAll);
+        String refundsWon = openApiManager.refundsOpenApi(hsAll);
+        List<String> exCheckList = openApiManager.exOpenApi(hsAll);
+        List<String> imCheckList = openApiManager.imOpenApi(hsAll);
+
+        log.info("=====exCheckList: {}", exCheckList);
+        log.info("=====imCheckList: {}", imCheckList);
 
         model.addAttribute("hsCode", hsAll);
         model.addAttribute("wght", dtoList.get(0).getWghtUt());
         model.addAttribute("qty", dtoList.get(0).getQtyUt());
         model.addAttribute("koDescription", dtoList.get(0).getKorePrnm());
         model.addAttribute("list", dtoList);
+        model.addAttribute("refundsWon", refundsWon);
+        model.addAttribute("exCheckList", exCheckList);
+        model.addAttribute("imCheckList", imCheckList);
+
         return "subhead/info";
     }
 

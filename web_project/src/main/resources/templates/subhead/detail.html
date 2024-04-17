@@ -4,6 +4,113 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Subheadings</title>
+    <style>
+        #chartdiv1 {
+            display: inline-block;
+            width: 500px;
+            height: 300px;
+            margin: 0 auto;
+            margin-right: 50px;
+        }
+
+        #chartdiv2 {
+            display: inline-block;
+            width: 350px;
+            height: 300px;
+            margin: 0 auto;
+        }
+
+        #chartdiv3 {
+            display: inline-block;
+            width: 350px;
+            height: 300px;
+            margin: 0 auto;
+        }
+    </style>
+    <!-- Resources -->
+    <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/percent.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+    <script th:src="@{/script/jquery-3.7.1.min.js}"></script>
+    <script defer th:src="@{/script/imexChart.js}"></script>
+    <script>
+        $(function(){
+            showXYChart();
+            showExPieCharts();
+            showImPieCharts();
+        });
+
+        function showXYChart() {
+            let hscode = $("#getHs4digit").val();
+            $.ajax({
+                url : "/chart/imexXYChart"
+                , method : "GET"
+                , data : {"hs4digit" : hscode}
+                , success : function(resp){
+                    console.log(resp);
+                    let exYearAmountList = [];
+                    let imYearAmountList = [];
+
+                    $.each(resp, function(index, item){
+                        exYearAmountList.push(item["exportAmount"]);
+                        imYearAmountList.push(item["importAmount"])
+                    });
+
+                    imexXYChart(exYearAmountList, imYearAmountList);
+                    console.log("차트 그려짐");
+                }
+            });
+        }
+
+        function showExPieCharts(){
+            let hscode = $("#getHs4digit").val();
+            $.ajax({
+                url : "/chart/exPieChart"
+                , method : "GET"
+                , data : {"hs4digit" : hscode}
+                , success : function(resp){
+                    console.log(resp);
+                    let countryList = [];
+                    let exRankingList = [];
+                    let exAmountList = [];
+
+                    $.each(resp, function(index, item){
+                        countryList.push(item["countryName"]);
+                        exRankingList.push(item["exportRanking"]);
+                        exAmountList.push(item["exportAmount"])
+                    });
+
+                    exportPieChart(countryList, exRankingList, exAmountList);
+                    console.log("차트 그려짐");
+                }
+            });
+        }
+
+        function showImPieCharts() {
+            let hscode = $("#getHs4digit").val();
+            $.ajax({
+                url : "/chart/imPieChart"
+                , method : "GET"
+                , data : {"hs4digit" : hscode}
+                , success : function(resp){
+                    console.log(resp);
+                    let countryList = [];
+                    let imRankingList = [];
+                    let imAmountList = [];
+
+                    $.each(resp, function(index, item){
+                        countryList.push(item["countryName"]);
+                        imRankingList.push(item["importRanking"]);
+                        imAmountList.push(item["importAmount"])
+                    });
+
+                    importPieChart(countryList, imRankingList, imAmountList);
+                    console.log("차트 그려짐");
+                }
+            });
+        };
+    </script>
 </head>
 <body>
     <!-- 홈으로 돌아가는 로고 이미지-->
@@ -13,6 +120,11 @@
         </h1>
     </div>
 
+    <div id="chartdiv1"></div>
+    <div id="chartdiv2"></div>
+    <div id="chartdiv3"></div>
+
+    <input type="hidden" th:value="${hs4digit}" id="getHs4digit">
     <div class="content">
         <table border="1">
             <thead>

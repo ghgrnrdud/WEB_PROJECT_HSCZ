@@ -26,6 +26,14 @@
                 <th>품명</th>
                 <td th:text="${koDescription}" colspan="3"></td>
             </tr>
+            <tr>
+                <th>간이정액환급</th>
+                <td colspan="3">
+                    <span th:unless="${#strings.isEmpty(refundsWon)}">
+                    [[ ${refundsWon} ]] 원 (2024-01-01 ~ )(10,000원당 환급액)
+                    </span>
+                </td>
+            </tr>
         </table>
     </div>
 
@@ -50,6 +58,23 @@
                 </tr>
             </tbody>
         </table>
+    </div>
+
+    <h3>[ 수출입요건 ]</h3>
+    <div class="check-list">
+        <h3>수출</h3>
+        <div th:unless="${exCheckList[0] == null or exCheckList[1] == null}">
+            <ul th:each="exCheck : ${exCheckList}">
+                <li th:text="${exCheck}"></li> 
+            </ul>
+        </div>
+
+        <h3>수입</h3>
+        <div th:unless="${exCheckList[0] == null or exCheckList[1] == null}">
+            <ul th:each="imCheck : ${imCheckList}">
+                <li th:text="${imCheck}"></li> 
+            </ul>
+        </div>
     </div>
 
     <!-- 세율 외 부가 정보들 -->

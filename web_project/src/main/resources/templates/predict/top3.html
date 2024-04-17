@@ -17,7 +17,7 @@
     <div class="content">
             <div th:each="item : ${result}">
                 <div>
-                    <span><a href="#" th:text="${item}"></a></span>
+                    <span><a th:href="@{/subhead/detail(hs4digit=${item})}" th:text="${item}"></a></span>
                     <div class="info">
                     </div>
                 </div>
