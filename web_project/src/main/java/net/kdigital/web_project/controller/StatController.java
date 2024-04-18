@@ -38,7 +38,7 @@ public class StatController {
 		List<BycounImExPriceDTO> list = imexService.bycounImExPrice(country);
 //		log.info("==========={}", list.toString());
 		return list;
-	}
+	}//end stringChart
 	
 	@GetMapping("/barChart")
 	@ResponseBody
@@ -50,7 +50,7 @@ public class StatController {
 		List<BycounImMarketDTO> list = marketService.bycounImMarketRanking(country);
 		log.info("{}", list);
 		return list;
-	}
+	}//end barChart
 
 	/**
 	 * 한국 top10품목 
@@ -64,7 +64,7 @@ public class StatController {
 		log.info("한국 top10품목 데이터 요청");
 		
 		List<XyclusterDTO> dtoList = xyclusterService.selectAll();
-		log.info("dtolist는 어떻게 와요? : {}", dtoList);
+		//log.info("dtolist는 어떻게 와요? : {}", dtoList);
 		
 		
 		for (XyclusterDTO dto : dtoList) {
@@ -82,10 +82,22 @@ public class StatController {
 	        
 	        dto.setProductName(refinedProduct.toString().trim());
 	    }
-	    log.info("새로바뀐 dto {}", dtoList.size());
+	    //log.info("새로바뀐 dto {}", dtoList.size());
 	    return dtoList;
-	}
+	}//end xyCluster
+	
+//	@GetMapping("/pieChart")
+//	@ResponseBody
+//	public List<BycounImMartketDTO> pieChart(
+//			@RequestParam(name="country", defaultValue="CN") String country,
+//			Model model
+//			) {
+//		log.info("파이차트 나라 : {}", country);
+//		List<BycounImMartketDTO> list = imexService.bycounImExPrice(country);
+////		log.info("==========={}", list.toString());
+//		return list;
+//	}//end stringChart
 
 
-}
+}//end class
 

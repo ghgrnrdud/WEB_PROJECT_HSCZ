@@ -42,17 +42,19 @@
       init(id, div);
 
       id++;
-      createBullet(id, div);
+      createBullet(id, div); //1
       id++;
-      createxycluster(id, div, 2019, "수입");
+      createxycluster(id, div, 2019, "수입"); //2
       id++;
-      createBar(id, div, "CN");
+      createStackCluster(id, div);//3
       id++;
-      createAknown(id, div);
+      createString(id, div, "CN");//4
+      id++;
+      //createBar(id, div, "CN");
       id++;
       createPie(id, div);
-      id++;
-      createString(id, div, "CN");
+      
+      
 
       $("#replyBtn").on('click', function(id, div) {
     let selectedyear = $("#dropdown").val();

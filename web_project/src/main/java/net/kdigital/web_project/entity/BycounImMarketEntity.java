@@ -11,7 +11,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import net.kdigital.web_project.dto.BycounImMarketDTO;
-import net.kdigital.web_project.entity.BycounImMarketEntity;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -40,7 +39,7 @@ public class BycounImMarketEntity {
 	private String importMarket;
 	
 	@Column(name="price")
-	private int price;
+	private Long price;
 	
 	@Column(name="percentile")
 	private String percentile;
