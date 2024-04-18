@@ -16,13 +16,14 @@ import net.kdigital.web_project.repository.XyclusterRepository;
 @Slf4j
 @RequiredArgsConstructor
 public class XyclusterService {
-	private final XyclusterRepository xyclusterRepository;
+	public final XyclusterRepository xyclusterRepository;
 	
 	/**
 	 * 한국 10대 수입품목 가져옴
 	 * @return
 	 */
 	public List<XyclusterDTO> selectAll(){
+		log.info("서비스 도착");
 		List<XyclusterEntity> entityList = xyclusterRepository.findAll(Sort.by(Sort.Direction.ASC, "seq1"));
 		List<XyclusterDTO> dtoList = new ArrayList<>();	
 		

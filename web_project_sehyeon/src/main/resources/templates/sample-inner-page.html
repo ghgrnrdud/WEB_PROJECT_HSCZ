@@ -37,41 +37,22 @@
   <script th:src="@{/script/jquery-3.7.1.min.js}"></script>
   <script th:inline="javascript">
     $(function () {
+      
       var id = 0;
       const div = document.getElementById("chartdiv");
       init(id, div);
 
-      id++;
       createBullet(id, div);
       id++;
-      createxycluster(id, div, 2019, "수입");
-      id++;
-      createAknown(id, div);
+      createFunnel(id, div);
       id++;
       createBar(id, div, "CN");
       id++;
-      createString(id, div, "CN");
+      createAknown(id, div);
       id++;
-      createPie(id, div, "CN");
-      
-      
-      
-
-      $("#replyBtn").on('click', function(id, div) {
-    let selectedyear = $("#dropdown").val();
-    let selectedport = $("#importdd").val();
-    console.log(selectedyear);
-    console.log(selectedport);
-    createxycluster(id, div, selectedyear, selectedport);
-  });
-
-//   function maybeDisposeRoot(divId) {
-//   am5.array.each(am5.registry.rootElements, function(root) {
-//     if (root.dom.id === divId) {
-//       root.dispose();
-//     }
-//   });
-// }
+      createPie(id, div);
+      id++;
+      createString(id, div, "CN");
     })
   </script>
   <!-- =======================================================
@@ -133,7 +114,7 @@
 
     <!-- ======= Breadcrumbs ======= -->
     <div class="breadcrumbs">
-      <div class="page-header d-flex align-items-center" style="background-image: url('assets/img/page-header.jpg');">
+      <div class="page-header d-flex align-items-center" style="background-image: url('../static/assets/assets/img/page-header.jpg');">
         <div class="container position-relative">
           <div class="row d-flex justify-content-center">
             <div class="col-lg-6 text-center">
@@ -158,10 +139,9 @@
         <p>
           한국의 수출입 현황
         </p>
-        <div class="temp" style="width: 1000px; margin: 0 auto;">
+        <div style="width: 1000px; margin: 0 auto;">
           <div id="chartdiv"></div>
-        </div>
-
+          </div>
           <script src="assets/js/index.js"></script>
           <script src="assets/js/map.js"></script>
           <script src="assets/js/worldLow.js"></script>
