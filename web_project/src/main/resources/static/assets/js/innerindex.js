@@ -124,8 +124,7 @@ polygonSeries.data.setAll([{
   id: "DE",
   url: "/trade/statShow",
   polygonSettings: {
-    fill: am5.color("#5695F8")
-    fill: am5.color("#4E8FF7")
+    fill: am5.color("#4E8FF")
   }
 }, {
   id: "MY",
@@ -230,13 +229,10 @@ chart.appear(1000, 100);
 };
 
 // ======= createDiv =======
-var id = 0;
-var div = document.getElementById("chartdiv");
+
 // var id = 0;
 // var div = document.getElementById("chartdiv");
 
-function createDiv() {
-  id++;
 function createDiv(id, div) {
   var container = document.createElement("div");
   container.id = "chart" + id;
@@ -282,7 +278,6 @@ var chart = root.container.children.push(am5xy.XYChart.new(root, {
   panX: true,
   panY: true,
   wheelX: "panX",
-  wheelY: "zoomX"
   wheelY: "zoomX",
     width: am5.percent(100),  //
     height: am5.percent(100), //
@@ -330,7 +325,6 @@ var series = chart.series.push(am5xy.LineSeries.new(root, {
   valueYField: "value1",
   valueXField: "date",
   tooltip: am5.Tooltip.new(root, {
-    labelText: "{valueX}: {valueY}\n{previousDate}: {value2}"
     labelText: "수출: {valueY}\n수입: {value2}"
   })
 }));
@@ -542,7 +536,7 @@ var data = [{
   }
 }]
 }
-]
+
 
 series.data.setAll(data);
 series2.data.setAll(data);
@@ -827,11 +821,7 @@ function createxycluster(id, div, selectedyear, selectedport) {
   });
 }
 
-<<<<<<< HEAD
 // // 막대차트 지우는 함수 (나중에 삭제할 것)
-=======
-// 막대차트 지우는 함수 (나중에 삭제할 것)
->>>>>>> origin/feature/stat_sehyeon
 // function maybeDisposeRoot(divId) {
 //   am5.array.each(am5.registry.rootElements, function(root) {
 //     if (root.dom.id === divId) {
@@ -1021,7 +1011,6 @@ console.log(selectedport);
 
 
 }
-<<<<<<< HEAD
 // 막대차트 지우는 함수 (나중에 삭제할 것)
 function maybeDisposeRoot(divId) {
   am5.array.each(am5.registry.rootElements, function(root) {
@@ -1031,75 +1020,6 @@ function maybeDisposeRoot(divId) {
     }
   });
 }
-=======
-
-// // =============================== barChart ==============================================
-// // =======================================================================================
-// function createBar() {
-//   var newspace = createDiv();
-//   newspace.style.display = "inline-block";
-//   newspace.style.float = "right";  
-//   div.after(newspace);
-//   var root = am5.Root.new(newspace);
-
-//   root.setThemes([
-//     am5themes_Animated.new(root)
-//   ]);
-
-//   // Create chart
-// // https://www.amcharts.com/docs/v5/charts/percent-charts/sliced-chart/
-// var chart = root.container.children.push(am5percent.SlicedChart.new(root, {
-//   layout: root.verticalLayout
-// }));
-
-
-// // Create series
-// // https://www.amcharts.com/docs/v5/charts/percent-charts/sliced-chart/#Series
-// var series = chart.series.push(am5percent.FunnelSeries.new(root, {
-//   alignLabels: false,
-//   orientation: "vertical",
-//   valueField: "value",
-//   categoryField: "category"
-// }));
-
-
-// // Set data
-// // https://www.amcharts.com/docs/v5/charts/percent-charts/sliced-chart/#Setting_data
-// series.data.setAll([
-//   { value: 10, category: "One" },
-//   { value: 9, category: "Two" },
-//   { value: 6, category: "Three" },
-//   { value: 5, category: "Four" },
-//   { value: 4, category: "Five" },
-//   { value: 3, category: "Six" },
-//   { value: 1, category: "Seven" }
-// ]);
-
-
-// // Play initial series animation
-// // https://www.amcharts.com/docs/v5/concepts/animations/#Animation_of_series
-// series.appear();
-
-
-// // Create legend
-// // https://www.amcharts.com/docs/v5/charts/percent-charts/legend-percent-series/
-// // var legend = chart.children.push(am5.Legend.new(root, {
-// //   centerX: am5.p50,
-// //   x: am5.p50,
-// //   marginTop: 15,
-// //   marginBottom: 15
-// // }));
-
-// // legend.data.setAll(series.dataItems);
-
-
-// // Make stuff animate on load
-// // https://www.amcharts.com/docs/v5/concepts/animations/#Forcing_appearance_animation
-// chart.appear(1000, 100);
-// };
-
-
->>>>>>> origin/feature/stat_sehyeon
 // =============================== barChart ==============================================
 // =======================================================================================
 function createBar(id, div, country) {
