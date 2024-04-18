@@ -16,7 +16,7 @@ import net.kdigital.web_project.repository.XyclusterRepository;
 @Slf4j
 @RequiredArgsConstructor
 public class XyclusterService {
-	private final XyclusterRepository xyclusterRepository;
+	public final XyclusterRepository xyclusterRepository;
 	
 	/**
 	 * 한국 10대 수입품목 가져옴

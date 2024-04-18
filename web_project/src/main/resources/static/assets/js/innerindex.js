@@ -50,7 +50,7 @@ polygonSeries.mapPolygons.template.events.on("click", function(ev, id, div) {
       if(url) {
       createBar(id, div, country);
       // createAknown(id, div, country);
-      // createPie(id, div, country);
+      createPie(id, div, country);
       createString(id, div, country);}
       });
 
@@ -229,7 +229,6 @@ chart.appear(1000, 100);
 // var div = document.getElementById("chartdiv");
 
 function createDiv(id, div) {
-  id++;
   var container = document.createElement("div");
   container.id = "chart" + id;
   container.style.width = "350px";
@@ -255,7 +254,9 @@ function maybeDisposeRoot(divId) {
 // =======================================================================================
 
 function createBullet(id, div) {
+  console.log("============createBullet도착");
   var newspace = createDiv(id, div);
+  
   newspace.style.display = "inline-block";
   div.before(newspace);
   var root = am5.Root.new(newspace);
@@ -555,20 +556,51 @@ chart.appear(1000, 100);
 
 // ====================================== pieChart =======================================
 // =======================================================================================
-function createPie(id, div) {
-  var newspace = createDiv(id, div);
-  newspace.style.display = "inline-block";
-  newspace.style.float = "right";
-  // newspace.style.width = "500px";
-  div.after(newspace);
-  var root = am5.Root.new(newspace
-    // , {tooltipContainerBounds: {
-    //   top: 50,
-    //   right: 500,
-    //   bottom: 50,
-    //   left: 500
-    // }}
-  );
+function createPie(id, div, country) {
+
+  $.ajax({
+    url: "/trade/barChart"
+    ,method: "GET"
+    ,async: false
+    ,data: {"country":country}
+    , success: function(resp) {createRealPie(id, div, resp)}
+  })}
+
+  function createRealPie(id, div, resp) {
+    console.log(typeof(resp));
+    var space = document.getElementById("chart6");
+    // console.log(space);
+    var root;
+    if(space == null) {
+      var newspace = createDiv(id, div);
+      newspace.style.display = "inline-block";
+      root = am5.Root.new(newspace);
+      div.after(newspace);
+      console.log(newspace);
+    }
+    else{
+      maybeDisposeRoot("chart6");
+      root = am5.Root.new(space);
+      }
+
+  root.setThemes([
+    am5themes_Animated.new(root)
+  ]);
+
+  // data
+  var data = [];
+  var count = 0;
+  $.each(resp, function(index, item) {
+    if(item.importMarket!="총계"&&item.dateYear==2019){
+      count += 1;
+    data.push({
+      "country": item.importMarket,
+      "price": item.price
+    })}
+    });
+    console.log(count);
+    console.log(data);
+
 
   // root.resize();
 
@@ -576,70 +608,121 @@ function createPie(id, div) {
     am5themes_Animated.new(root)
   ]);
 
+    // Create chart
+    // https://www.amcharts.com/docs/v5/charts/percent-charts/pie-chart/
+    var chart = root.container.children.push(
+      am5percent.PieChart.new(root, {
+        endAngle: 270
+      })
+    );
+    
+    // Create series
+    // https://www.amcharts.com/docs/v5/charts/percent-charts/pie-chart/#Series
+    var series = chart.series.push(
+      am5percent.PieSeries.new(root, {
+        valueField: "price",
+        categoryField: "country",
+        endAngle: 270
+      })
+    );
+    
+    series.states.create("hidden", {
+      endAngle: -90
+    });
+    
+    series.data.setAll(data);
+    // Set data
+    // https://www.amcharts.com/docs/v5/charts/percent-charts/pie-chart/#Setting_data
+    // series.data.setAll([{
+    //   country: "Lithuania",
+    //   price: 501.9
+    // }, {
+    //   country: "Czechia",
+    //   value: 301.9
+    // }, {
+    //   category: "Ireland",
+    //   value: 201.1
+    // }, {
+    //   category: "Germany",
+    //   value: 165.8
+    // }, {
+    //   category: "Australia",
+    //   value: 139.9
+    // }, {
+    //   category: "Austria",
+    //   value: 128.3
+    // }, {
+    //   category: "UK",
+    //   value: 99
+    // }]);
+    
+    series.appear(1000, 100);
+    
+    }; // end am5.ready()
   // Parse chart config
 // https://www.amcharts.com/docs/v5/concepts/serializing/
-am5plugins_json.JsonParser.new(root).parse({
-  refs: [{
-    data: [{
-      country: "France",
-      sales: 100000
-    }, {
-      country: "Spain",
-      sales: 160000
-    }, {
-      country: "United Kingdom",
-      sales: 80000
-    }],
-  }, {
-    series: {
-      type: "PieSeries",
-      settings: {
-        name: "Series",
-        valueField: "sales",
-        categoryField: "country"
-      },
-      properties: {
-        data: "#data"
-      }
-    },
-  }],
-  type: "PieChart",
-  options: {
-    responsive: false},
-  settings: {
-    layout: "vertical",
-  },
-  properties: {
-    series: [
-      "#series"
-    ]
-  },
-  children: [{
-    type: "Legend",
-    settings: {
-      centerX: {
-        type: "Percent",
-        value: 50
-      },
-      x: {
-        type: "Percent",
-        value: 50
-      },
-      layout: "horizontal"
-    },
-    properties: {
-      data: "#series.dataItems"
-    }
-  }]
-}, {
-  parent: root.container
-}).then(function (chart) {
-  // Make stuff animate on load
-  // https://www.amcharts.com/docs/v5/concepts/animations/#Forcing_appearance_animation
-  chart.series.getIndex(0).appear(1000);
-  chart.appear(1000, 100);
-});
-}
+// am5plugins_json.JsonParser.new(root).parse({
+//   refs: [{
+//     data: [{
+//       country: "France",
+//       sales: 100000
+//     }, {
+//       country: "Spain",
+//       sales: 160000
+//     }, {
+//       country: "United Kingdom",
+//       sales: 80000
+//     }],
+//   }, {
+//     series: {
+//       type: "PieSeries",
+//       settings: {
+//         name: "Series",
+//         valueField: "sales",
+//         categoryField: "country"
+//       },
+//       properties: {
+//         data: "#data"
+//       }
+//     },
+//   }],
+//   type: "PieChart",
+//   options: {
+//     responsive: false},
+//   settings: {
+//     layout: "vertical",
+//   },
+//   properties: {
+//     series: [
+//       "#series"
+//     ]
+//   },
+//   children: [{
+//     type: "Legend",
+//     settings: {
+//       centerX: {
+//         type: "Percent",
+//         value: 50
+//       },
+//       x: {
+//         type: "Percent",
+//         value: 50
+//       },
+//       layout: "horizontal"
+//     },
+//     properties: {
+//       data: "#series.dataItems"
+//     }
+//   }]
+// }, {
+//   parent: root.container
+// }).then(function (chart) {
+//   // Make stuff animate on load
+//   // https://www.amcharts.com/docs/v5/concepts/animations/#Forcing_appearance_animation
+//   chart.series.getIndex(0).appear(1000);
+//   chart.appear(1000, 100);
+// });
+
 
 // =============================== xyclusterChart =====================================
 // =======================================================================================
@@ -703,7 +786,7 @@ function createxycluster(id, div, selectedyear, selectedport) {
 
 // 막대차트 그리는 함수
 function createRealxycluster(id, div, resp, selectedyear, selectedport) {
-  var space = document.getElementById("chart3");
+  var space = document.getElementById("chart2");
   console.log(resp);
   console.log(selectedyear);
   console.log(selectedport);
@@ -715,7 +798,7 @@ function createRealxycluster(id, div, resp, selectedyear, selectedport) {
     newspace.style.display = "inline-block";
     newspace.style.float = "right";
     div.before(newspace);
-    console.log(newspace);
+    console.log(newspace.id);
     root = am5.Root.new(newspace);
 
   // 드롭박스 만들어보자
@@ -742,7 +825,7 @@ function createRealxycluster(id, div, resp, selectedyear, selectedport) {
   dropdown.id = 'dropdown';  // 선택 사항: id 설정
 
   // chart6 div 가져오기
-  var chart6Div = document.getElementById('chart3');
+  var chart6Div = document.getElementById('chart2');
 
   // dropdown 요소를 chart6 div 안에 추가
   chart6Div.prepend(dropdown);
@@ -779,7 +862,7 @@ function createRealxycluster(id, div, resp, selectedyear, selectedport) {
 
   //그렇지 않다면 기존 그래프 지우는 함수 사용. 새로 만듦
   else{
-    maybeDisposeRoot("chart3");
+    maybeDisposeRoot("chart2");
     root = am5.Root.new(space);
     console.log(newspace);
   }//end else
@@ -955,14 +1038,15 @@ function createBar(id, div, country) {
   $.ajax({
     url: "/trade/barChart"
     ,method: "GET"
+    ,async: false
     ,data: {"country":country}
     , success: function(resp) {createRealBar(id, div, resp)}
   })}
 
   function createRealBar(id, div, resp) {
     console.log(typeof(resp));
-    var space = document.getElementById("chart2");
-    console.log(space);
+    var space = document.getElementById("chart4");
+    // console.log(space);
     var root;
     if(space == null) {
       var newspace = createDiv(id, div);
@@ -972,7 +1056,7 @@ function createBar(id, div, country) {
       console.log(newspace);
     }
     else{
-      maybeDisposeRoot("chart2");
+      maybeDisposeRoot("chart4");
       root = am5.Root.new(space);
       }
 
@@ -982,12 +1066,16 @@ function createBar(id, div, country) {
 
   // data
   var data = [];
+  var count = 0;
   $.each(resp, function(index, item) {
+    if(item.importMarket!="총계"&&item.dateYear==2019){
+      count += 1;
     data.push({
       "country": item.importMarket,
       "value": item.price
-    })
+    })}
     });
+    console.log(count);
     console.log(data);
 
   // Create chart
@@ -1203,13 +1291,14 @@ function createString(id, div, country) {
   $.ajax({
     url: "/trade/stringChart"
     ,method: "GET"
+    ,async: false
     ,data: {"country":country}
     , success: function(resp) {createRealString(id, div, resp)}
   })}
 
 function createRealString(id, div, resp) {
   var space = document.getElementById("chart5");
-  console.log(space);
+  // console.log(space);
   var root;
   if(space == null) {
     var newspace = createDiv(id, div);
