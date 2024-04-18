@@ -20,7 +20,7 @@ public class BycounImMarketDTO {
 	private int dateYear;
 	private int ranking;
 	private String importMarket;
-	private int price;
+	private Long price;
 	private String percentile;
 	
 	public static BycounImMarketDTO toDTO(BycounImMarketEntity bycounImMarketEntity) {

@@ -40,7 +40,7 @@ public class BycounImMarketEntity {
 	private String importMarket;
 	
 	@Column(name="price")
-	private int price;
+	private Long price;
 	
 	@Column(name="percentile")
 	private String percentile;
