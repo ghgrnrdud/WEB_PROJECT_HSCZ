@@ -11,4 +11,9 @@ public class MainController {
 		
 		return "index";
 	}
+
+	@GetMapping("/layout")
+	public String layout() {
+		return "layout";
+	}
 }

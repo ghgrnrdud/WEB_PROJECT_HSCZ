@@ -46,6 +46,7 @@ public class SubheadingController {
     @GetMapping("/info")
     public String subheadInfo(
         @RequestParam(name = "hsAll") String hsAll
+        , @RequestParam(name = "hs4digit") String hs4digit
         , Model model
     ) {
         log.info("=============subheadInfo");
@@ -53,6 +54,7 @@ public class SubheadingController {
         String refundsWon = openApiManager.refundsOpenApi(hsAll);
         List<String> exCheckList = openApiManager.exOpenApi(hsAll);
         List<String> imCheckList = openApiManager.imOpenApi(hsAll);
+        boolean isOrigin = subheadingService.checkOrigin(hs4digit);
 
         log.info("=====exCheckList: {}", exCheckList);
         log.info("=====imCheckList: {}", imCheckList);
@@ -65,6 +67,7 @@ public class SubheadingController {
         model.addAttribute("refundsWon", refundsWon);
         model.addAttribute("exCheckList", exCheckList);
         model.addAttribute("imCheckList", imCheckList);
+        model.addAttribute("isOrigin", isOrigin);
 
         return "subhead/info";
     }

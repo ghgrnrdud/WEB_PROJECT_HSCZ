@@ -17,7 +17,6 @@ import org.w3c.dom.NodeList;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import net.kdigital.web_project.dto.TaxDTO;
-import net.kdigital.web_project.dto.YearChartDTO;
 
 @Component
 public class OpenApiManager {
@@ -51,10 +50,8 @@ public class OpenApiManager {
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             Document doc = dBuilder.parse(url);
             doc.getDocumentElement().normalize();
-            System.out.println("Root element : " + doc.getDocumentElement().getNodeName());
 
             NodeList nList = doc.getElementsByTagName("hsSgnSrchRsltVo");
-            System.out.println("파싱할 리스트 수 : " + nList.getLength());
 
             for (int temp = 0; temp < nList.getLength(); temp++) {
                 Map<String, String> map = new HashMap<>();
@@ -102,10 +99,8 @@ public class OpenApiManager {
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             Document doc = dBuilder.parse(url);
             doc.getDocumentElement().normalize();
-            System.out.println("Root element : " + doc.getDocumentElement().getNodeName());
 
             NodeList nList = doc.getElementsByTagName("simlXamrttXtrnUserQryRsltVo");
-            System.out.println("파싱할 리스트 수 : " + nList.getLength());
 
             if (nList.getLength() > 0) {
                 Node nNode = nList.item(0);
@@ -139,10 +134,8 @@ public class OpenApiManager {
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             Document doc = dBuilder.parse(url);
             doc.getDocumentElement().normalize();
-            System.out.println("Root element : " + doc.getDocumentElement().getNodeName());
 
             NodeList nList = doc.getElementsByTagName("ccctLworCdQryRtnVo");
-            System.out.println("파싱할 리스트 수 : " + nList.getLength());
 
             if (nList.getLength() > 0) {
                 Node nNode = nList.item(0);
@@ -177,10 +170,8 @@ public class OpenApiManager {
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             Document doc = dBuilder.parse(url);
             doc.getDocumentElement().normalize();
-            System.out.println("Root element : " + doc.getDocumentElement().getNodeName());
 
             NodeList nList = doc.getElementsByTagName("ccctLworCdQryRtnVo");
-            System.out.println("파싱할 리스트 수 : " + nList.getLength());
 
             if (nList.getLength() > 0) {
                 Node nNode = nList.item(0);

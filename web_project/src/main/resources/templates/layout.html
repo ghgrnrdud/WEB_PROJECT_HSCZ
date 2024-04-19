@@ -20,34 +20,6 @@
     <script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
     <script src="https://cdn.amcharts.com/lib/5/percent.js"></script>
     <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
-
-    <script th:src="@{/script/jquery-3.7.1.min.js}"></script>
-    <script>
-        $(function(){
-            init()
-        });
-
-        function init() {
-            $(".hs4digit").each(function() {
-                let hs4digit = $(this).text();
-                $.ajax({
-                    url: "/heading/heading_des",
-                    method: "POST",
-                    data: {"hs4digit" : hs4digit},
-                    success: function(resp) {
-                        console.log(resp);
-                        let receivedData = `
-                            <tr>
-                                <td>${resp["koDescription"]}</td>
-                                <td>${resp["engDescription"]}</td>
-                            </tr>
-                        `;
-                        $("#info" + resp["hs4digit"]).append(receivedData);
-                    } 
-                });
-            });
-        }
-    </script>
 </head>
 <body class="index-page sidebar-collapse">
     <!-- Navbar -->
@@ -123,8 +95,8 @@
         <div class="content-center">
             <div class="container">
                 <div class="title-brand">
-                    <h1 class="presentation-title">TOP3</h1>
-                    <h3 class="presentation-subtitle">입력한 정보에 대한 예측 품목번호입니다 </h3>
+                    <h1 class="presentation-title">페이지 제목</h1>
+                    <h3 class="presentation-subtitle">문장 넣기</h3>
                 </div>
             </div> <!--div.content-center-->
         </div>
@@ -138,21 +110,34 @@
             <ul>
                 <li class="menu-img">
                     <i class="fa fa-solid fa-bars fa-lg"></i>
+                    <span class="nav-text">Menu</span>
                 </li> 
                 <li>                                 
-                    <a href="http://startific.com">
-                        <i class="fa fa-lg"></i>
-                        <span class="nav-text">Menu1</span>
+                    <a href="#">
+                        <i class="fa fa-user fa-lg"></i>
+                        <span class="nav-text">Login</span>
+                    </a>
+                </li>
+                <li>                                 
+                    <a href="#">
+                        <i class="fa fa-user fa-lg"></i>
+                        <span class="nav-text">My Page</span>
                     </a>
                 </li>   
                 <li>                                 
-                    <a href="http://startific.com">
+                    <a href="#">
+                        <i class="fa fa-lg"></i>
+                        <span class="nav-text">Menu1</span>
+                    </a>
+                </li>
+                <li>                                 
+                    <a href="#">
                         <i class="fa fa-lg"></i>
                         <span class="nav-text">Menu2</span>
                     </a>
                 </li>
                 <li>                                 
-                    <a href="http://startific.com">
+                    <a href="#">
                         <i class="fa fa-lg"></i>
                         <span class="nav-text">Menu3</span>
                     </a>
@@ -160,21 +145,6 @@
             </ul>
         </div>    
     </nav>
-
-    <div class="content">
-        <div th:each="item : ${result}">
-            <div>
-                <span><a th:href="@{/subhead/detail(hs4digit=${item})}" th:text="${item}" class="hs4digit"></a></span>
-                <table border="1" th:id="|info${item}|">
-                    <tr>
-                        <th>한글</th>
-                        <th>영문</th>
-                    </tr>
-                </table>
-            </div>
-        </div>
-    </div>
-
 
 
     <!--script-->

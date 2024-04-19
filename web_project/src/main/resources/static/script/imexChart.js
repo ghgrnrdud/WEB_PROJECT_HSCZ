@@ -21,7 +21,8 @@ function imexXYChart(exYearAmountList, imYearAmountList) {
             panY: true,
             wheelX: "panX",
             wheelY: "zoomX",
-            pinchZoomX:true
+            pinchZoomX:true,
+            layout: root.verticalLayout
         }));
         
         chart.get("colors").set("step", 5);
@@ -31,7 +32,6 @@ function imexXYChart(exYearAmountList, imYearAmountList) {
         // https://www.amcharts.com/docs/v5/charts/xy-chart/cursor/
         var cursor = chart.set("cursor", am5xy.XYCursor.new(root, {}));
         cursor.lineY.set("visible", false);
-        
         
         // Create axes
         // https://www.amcharts.com/docs/v5/charts/xy-chart/axes/
@@ -58,13 +58,16 @@ function imexXYChart(exYearAmountList, imYearAmountList) {
         // Add series
         // https://www.amcharts.com/docs/v5/charts/xy-chart/series/
         var series = chart.series.push(am5xy.LineSeries.new(root, {
-            name: "Series 1",
+            name: "Export",
             xAxis: xAxis,
             yAxis: yAxis,
-            valueYField: "value1",
+            valueYField: "export",
             valueXField: "date",
+            categoryXField: "category",
+            legendLabelText: "{name}: {categoryX}",
+            legendRangeLabelText: "{name}($)",
             tooltip: am5.Tooltip.new(root, {
-                labelText: "수출: {value1} \n수입: {value2}"
+                labelText: "수출: {export} \n수입: {import}"
             })
         }));
         
@@ -75,11 +78,14 @@ function imexXYChart(exYearAmountList, imYearAmountList) {
         series.get("tooltip").get("background").set("fillOpacity", 0.5);
         
         var series2 = chart.series.push(am5xy.LineSeries.new(root, {
-            name: "Series 2",
+            name: "Import",
             xAxis: xAxis,
             yAxis: yAxis,
-            valueYField: "value2",
-            valueXField: "date"
+            valueYField: "import",
+            valueXField: "date",
+            categoryXField: "category",
+            legendLabelText: "{name}: {categoryX}",
+            legendRangeLabelText: "{name}($)"
         }));
         series2.strokes.template.setAll({
             strokeDasharray: [2, 2],
@@ -98,30 +104,35 @@ function imexXYChart(exYearAmountList, imYearAmountList) {
         // Set data
         var data = [{
             date: new Date(2019, 11, 31).getTime(),
-            value1: exYearAmountList[4],
-            value2: imYearAmountList[4]
+            export: exYearAmountList[4],
+            import: imYearAmountList[4]
         }, {
             date: new Date(2020, 11, 31).getTime(),
-            value1: exYearAmountList[3],
-            value2: imYearAmountList[3]
+            export: exYearAmountList[3],
+            import: imYearAmountList[3]
         }, {
             date: new Date(2021, 11, 31).getTime(),
-            value1: exYearAmountList[2],
-            value2: imYearAmountList[2]
+            export: exYearAmountList[2],
+            import: imYearAmountList[2]
         }, {
             date: new Date(2022, 11, 31).getTime(),
-            value1: exYearAmountList[1],
-            value2: imYearAmountList[1]
+            export: exYearAmountList[1],
+            import: imYearAmountList[1]
         }, {
             date: new Date(2023, 11, 31).getTime(),
-            value1: exYearAmountList[0],
-            value2: imYearAmountList[0]
+            export: exYearAmountList[0],
+            import: imYearAmountList[0]
         }]
         
         series.data.setAll(data);
         series2.data.setAll(data);
         
         
+        // Add legend
+        var legend = chart.children.push(am5.Legend.new(root, {}));
+        legend.data.setAll(chart.series.values);
+        legend.data.setAll(chart.series2.values);
+
         // Make stuff animate on load
         // https://www.amcharts.com/docs/v5/concepts/animations/
         series.appear(1000);
