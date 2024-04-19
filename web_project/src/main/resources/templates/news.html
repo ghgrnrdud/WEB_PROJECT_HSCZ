@@ -6,9 +6,17 @@
     <title>Trade news</title>
 </head>
 <body>
+    <div class="logo">
+        <h1>
+            <a th:href="@{/}">HSCZ</a>
+        </h1>
+    </div>
+
+    <hr>
+    <h1>무역뉴스</h1>
     <table border="1" th:each="news : ${list}">
     <tr>
-        <td><a th:href="${news.link}" th:text="${news.title}"></a></td>
+        <td><a th:href="${news.link}" th:utext="${news.title}"></a></td>
         <td th:text="${news.pubDate}"></td>
     </tr>
     <tr>
