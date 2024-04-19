@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>관세사 연락처 목록</title>
+    
+    <link rel="stylesheet" th:href="@{/css/list.css}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script th:src="@{/script/jquery-3.7.1.min.js}"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <a th:href="@{/}"><img th:src="@{/images/logo.png}" alt="logo"></a>
+            <h2>관세사 연락처 목록</h2>
+        </div>
+    </div> <!-- .container 끝 -->
+
+    <!-- Hidden input for storing current search conditions -->
+    <input type="hidden" id="currentSearchType" th:value="${searchBy}" />
+    <input type="hidden" id="currentSearchItem" th:value="${searchItem}" />
+
+    <!-- 게시글 전체 목록 출력 -->
+    <div class="content">
+        <p th:if="${#lists.isEmpty(ccaList)}">해당 관세사는 존재하지 않습니다.</p>
+        <div class="head">
+            <div class="count">
+                <p>검색된 총 관세사: [[${ccaList.totalElements}]]명</p>
+            </div>
+            <div class="search">
+                <form id="searchForm" th:action="@{/cca/ccaList}" method="GET">
+                    <input type="hidden" name="page" id="requestPage" th:value="${page}">
+                    <select id="search-type" name="searchBy">
+                        <option value="companyRegion" th:selected="${searchBy == 'companyRegion'}">지역별로 검색하기</option>
+                        <option value="productCategory" th:selected="${searchBy == 'productCategory'}">품목별로 검색하기</option>
+                    </select>
+                    <select id="search-item" name="searchItem">
+                        <!-- Options will be dynamically populated by the script below -->
+                    </select>
+                    <input type="submit" value="관세사 검색" id="ccaSearchBtn" class="btn btn-info">
+                </form>
+            </div>
+        </div>
+        <div>
+            <table border="1">
+                <tr>
+                    <th class="no">연번</th>
+                    <th class="ccaName">관세사명</th>
+                    <th class="companyName">관세사무소</th>
+                    <th class="phone">연락처</th>
+                    <th class="companyRegion">관세사무소 주소</th>
+                    <th class="ccaEmail">이메일</th>
+                </tr>
+                <tr th:each="cca, status : ${ccaList}">
+                    <td th:text="${(ccaList.number * ccaList.size) + status.count}"></td>
+                    <td th:text="${cca.ccaName}">홍길동</td>
+                    <td th:text="${cca.companyName}">관세사무소 이름</td>
+                    <td th:text="${cca.phone}">연락처</td>
+                    <td th:text="${cca.companyRegion}">관세사무소 주소</td>
+                    <td th:text="${cca.ccaEmail}">관세사 이메일</td>
+                </tr>
+            </table>
+        </div>
+        <nav class="pagination">
+            <a th:if="${navi.startPageGroup > 1}"
+               th:href="@{|/cca/ccaList?page=${navi.startPageGroup - 10}&searchBy=${searchBy}&searchItem=${searchItem}|}"
+               class="btn">&laquo; Previous</a>
+            <span th:each="count : ${#numbers.sequence(navi.startPageGroup, navi.endPageGroup)}">
+                <span th:if="${count == navi.page}">
+                    <b class="page-no current" th:text="${count}"></b>
+                </span>
+                <span th:unless="${count == navi.page}">
+                    <a class="page-no" th:href="@{|/cca/ccaList?page=${count}&searchBy=${searchBy}&searchItem=${searchItem}|}" th:text="${count}"></a>
+                </span>
+            </span>
+            <a th:if="${navi.endPageGroup < navi.totalPages}"
+               th:href="@{|/cca/ccaList?page=${navi.endPageGroup + 1}&searchBy=${searchBy}&searchItem=${searchItem}|}"
+               class="btn">Next &raquo;</a>
+        </nav>
+    </div>
+
+    <script>
+    $(document).ready(function() {
+        $('#search-type').change(function() {
+            itemChange(false);
+        });
+        itemChange(true); // Initialize on page load
+    });
+
+    function itemChange(isInitialLoad) {
+        var companyRegion = ["전체", "서울", "경기", "대전", "충남", "충북", "부산", "경남", "울산", "강원", "인천", "전남", "전북", "광주", "제주", "세종", "대구", "경북"];
+        var productCategory = ["전체", "의류", "무기류", "농산품", "광물", "화학품", "완구류", "예술품", "가구류", "악기류", "선박", "시계", "항공기", "기계류", "금속류", "비금속류", "플라스틱류", "목재류", "의료용품", "화장품", "곡물류", "화약류", "고무제품류", "가죽제품류", "인쇄물류", "케이블류", "면제품류", "견직류", "섬유제품류", "도자기류", "식기류", "철도부품", "원자로"];
+        var currentSearchType = $('#search-type').val();
+        var options = currentSearchType === "companyRegion" ? companyRegion : productCategory;
+
+        var selectedOption = '';
+        if (isInitialLoad) {
+            // 페이지 로딩 시 서버로부터 받은 선택된 searchItem 값을 사용
+            selectedOption = $('#currentSearchItem').val();
+            $('#search-type').val($('#currentSearchType').val());
+        }
+
+        $('#search-item').empty();
+        options.forEach(function(item) {
+            var isSelected = item === selectedOption;
+            $('#search-item').append($("<option>").text(item).val(item === "전체" ? "" : item).prop('selected', isSelected));
+        });
+    }
+    </script>
+</body>
+</html>
+
+

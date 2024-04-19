@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>관세 간편 상담 게시판</title>
+	<script th:src="@{/script/jquery-3.7.1.min.js}"></script>
+	<script th:inline="javascript" th:src="@{/script/detail.js}"></script>
+    <link rel="stylesheet" th:href="@{/css/list.css}">
+</head>
+
+<body>
+    <div class="container">
+        <div class="logo">
+            <a th:href="@{/}"><img th:src="@{/images/logo.png}" alt="logo"></a>
+            <h2>게시글 목록</h2>
+        </div>
+    </div> <!-- .container 끝 -->
+    
+	<!-- 게시글 전체 목록 출력  -->
+    <div class="content">
+    	<p th:if="${#lists.isEmpty(consultList)}">목록이 없습니다.</p>
+    	<div class="head">
+	        <!-- 전체 글개수 출력 -->
+	        <div class="count">
+	            <p>총 건수: [[${consultList.totalElements}]]</p>
+	        </div>
+	        <!-- 검색 창 -->
+	        <div class="search">
+	            <form id="searchForm" th:action="@{/cca/boardList}" method="GET">
+	                <input type="hidden" name="page" id="requestPage" th:value="${page}">
+					<input type="hidden" id="contextPath" th:value="${contextPath}">
+	                <select name="searchBy">
+	                    <option value="productCategory" th:selected="${searchBy == 'productCategory'}">품목검색</option>
+	                </select>
+					<select name="searchItem">
+					    <option value="">전체</option>
+					    <option value="의류" th:selected="${searchItem == '의류'}">의류</option>
+					    <option value="무기류" th:selected="${searchItem == '무기류'}">무기류</option>
+					    <option value="농산품" th:selected="${searchItem == '농산품'}">농산품</option>
+					    <option value="광물" th:selected="${searchItem == '광물'}">광물</option>
+					    <option value="화학품" th:selected="${searchItem == '화학품'}">화학품</option>
+					    <option value="완구류" th:selected="${searchItem == '완구류'}">완구류</option>
+					    <option value="예술품" th:selected="${searchItem == '예술품'}">예술품</option>
+					    <option value="가구류" th:selected="${searchItem == '가구류'}">가구류</option>
+					    <option value="악기류" th:selected="${searchItem == '악기류'}">악기류</option>
+					    <option value="선박" th:selected="${searchItem == '선박'}">선박</option>
+					    <option value="시계" th:selected="${searchItem == '시계'}">시계</option>
+					    <option value="항공기" th:selected="${searchItem == '항공기'}">항공기</option>
+					    <option value="기계류" th:selected="${searchItem == '기계류'}">기계류</option>
+					    <option value="금속류" th:selected="${searchItem == '금속류'}">금속류</option>
+					    <option value="비금속류" th:selected="${searchItem == '비금속류'}">비금속류</option>
+					    <option value="플라스틱류" th:selected="${searchItem == '플라스틱류'}">플라스틱류</option>
+					    <option value="목재류" th:selected="${searchItem == '목재류'}">목재류</option>
+					    <option value="의료용품" th:selected="${searchItem == '의료용품'}">의료용품</option>
+					    <option value="화장품" th:selected="${searchItem == '화장품'}">화장품</option>
+					    <option value="곡물류" th:selected="${searchItem == '곡물류'}">곡물류</option>
+					    <option value="화약류" th:selected="${searchItem == '화약류'}">화약류</option>
+					    <option value="고무제품류" th:selected="${searchItem == '고무제품류'}">고무제품류</option>
+					    <option value="가죽제품류" th:selected="${searchItem == '가죽제품류'}">가죽제품류</option>
+					    <option value="인쇄물류" th:selected="${searchItem == '인쇄물류'}">인쇄물류</option>
+					    <option value="케이블류" th:selected="${searchItem == '케이블류'}">케이블류</option>
+					    <option value="면제품류" th:selected="${searchItem == '면제품류'}">면제품류</option>
+					    <option value="견직류" th:selected="${searchItem == '견직류'}">견직류</option>
+					    <option value="섬유제품류" th:selected="${searchItem == '섬유제품류'}">섬유제품류</option>
+					    <option value="도자기류" th:selected="${searchItem == '도자기류'}">도자기류</option>
+					    <option value="식기류" th:selected="${searchItem == '식기류'}">식기류</option>
+					    <option value="철도부품" th:selected="${searchItem == '철도부품'}">철도부품</option>
+					    <option value="원자로" th:selected="${searchItem == '원자로'}">원자로</option>
+					</select>
+
+
+	                <input type="submit" id="categorySearchBtn" value="검색" class="btn btn-info">
+	            </form>
+	        </div>
+		</div>
+        <!-- 게시글 목록 -->
+        <div>
+            <table border="1">
+                <tr>
+                    <th class="no">글번호</th>
+                    <th>글제목</th>
+                    <th class="consultWriter">작성자</th>
+                    <th class="productCategory">품목</th>
+                    <th class="consultDate">작성일</th>
+                </tr>
+                <!--  반복 구간  -->
+                <tr th:each="board, status : ${consultList}">
+                    <td th:text="${(consultList.number * consultList.size) + status.count}"></td>
+                    <td>
+						<a th:href="@{/cca/detail(consultNum=${board.consultNum}, searchBy=${searchBy}, searchItem=${searchItem})}" th:text="${board.consultTitle}">오늘은 화요일.</a>
+
+                    </td>
+                    <td th:text="${board.consultWriter}">홍길동</td>
+                    <td th:text="${board.productCategory}">22</td>
+                    <td th:text="*{#temporals.format(board.consultDate, 'yyyy-MM-dd hh:mm:ss')}">2024-03-12</td>
+                </tr>
+            </table>
+        </div> <!-- .content 끝 -->
+
+        <!-- 글쓰기 버튼 -->
+        <div class="write">
+            <a th:href="@{/cca/ccaWrite}" class="btn btn-primary">상담글 작성하기</a>
+        </div>
+
+		<!-- Page Navigation -->
+		<nav class="pagination">
+		    <!-- 이전 10페이지 버튼 -->
+		    <a th:if="${navi.startPageGroup > 1}"
+		       th:href="@{|/cca/boardList?page=${navi.startPageGroup - 10}&searchBy=${searchBy}&searchItem=${searchItem}|}"
+		       class="btn">&laquo; 이전 10페이지</a>
+		
+		    <!-- 페이지 번호 출력 -->
+		    <span th:each="count : ${#numbers.sequence(navi.startPageGroup, navi.endPageGroup)}">
+		        <!-- 보고있는 페이지가 요청한 페이지와 같을 때는 링크 안 생김 -->
+		        <span th:if="${count == navi.page}">
+		            <b class="page-no current" th:text="${count}"></b>
+		        </span>
+		        
+		        <!-- 보고있는 페이지가 요청한 페이지와 다를 때는 링크 생김 -->
+		        <span th:unless="${count == navi.page}">
+		            <a class="page-no" th:href="@{|/cca/boardList?page=${count}&searchBy=${searchBy}&searchItem=${searchItem}|}" th:text="${count}"></a>
+		        </span>
+		    </span>
+		
+		    <!-- 다음 10페이지 버튼 -->
+		    <a th:if="${navi.endPageGroup < navi.totalPages}"
+		       th:href="@{|/cca/boardList?page=${navi.endPageGroup + 1}&searchBy=${searchBy}&searchItem=${searchItem}|}"
+		       class="btn">다음 10페이지 &raquo;</a>
+		</nav>
+
+    </div>
+   <div>
+	<span id="information">	☎ 문의전화 : 02)547-9714 (내선 251)</span>
+   </div>
+    <script>
+    	function pageFormSubmit(page) {
+    		document.getElementById("requestPage").value = page;
+            // 선택한 검색 옵션과 검색어를 폼에 추가하여 서브밋
+            var searchBy = document.getElementById("searchBy").value;
+            var searchItem = document.getElementById("searchItem").value;
+            document.getElementById("searchBy").setAttribute("name", "searchBy");
+            document.getElementById("searchItem").setAttribute("name", "searchItem");
+    		document.getElementById("searchForm").submit();
+    	}
+    </script>
+</body>
+
+</html>
+

@@ -1,10 +1,37 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th= "http://www.thymeleaf.org"
+	  >
+
 <head>
-<meta charset="UTF-8">
-<title>index</title>
+    <meta charset="UTF-8">
+    <title>게시판</title>
+
+	<!-- CSS 설정 -->
+	<link rel="stylesheet" th:href="@{/css/main.css}">
+	
 </head>
+
 <body>
-	<span>되나?</span>
+    <div class="container">
+        <div class="logo">
+            <img th:src="@{/images/logo.png}" alt="logo">
+            <h2>회원 전용 게시판</h2>
+        </div>
+
+	    <div class="gnb">
+	        <ul>
+	          
+	
+	           
+	            <!-- 인증과 관계없음 -->
+	            <li><a th:href="@{/cca/boardList}">관세사 상담문의게시판</a></li>
+	            <li><a th:href="@{/cca/ccaList}">관세사 연락처 게시판</a></li>
+	        </ul>
+	    </div>
+					    
+    </div> <!-- .container 끝 -->
 </body>
+
 </html>
+
+
