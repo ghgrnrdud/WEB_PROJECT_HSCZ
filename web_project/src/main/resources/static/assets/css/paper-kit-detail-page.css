@@ -25,6 +25,10 @@
  * http://www.apache.org/licenses/LICENSE-2.0
  */
 
+body {
+  font-family: 'Spoqa Han Sans Neo', 'sans-serif';
+}
+
 .bootstrap-switch {
   display: inline-block;
   direction: ltr;
@@ -2515,7 +2519,7 @@ textarea.form-control {
 }
 
 .form-check .form-check-sign::after {
-  font-family: 'FontAwesome';
+  /* font-family: 'FontAwesome'; */
   content: "\f00c";
   top: -1px;
   text-align: center;
@@ -2568,7 +2572,7 @@ textarea.form-control {
 }
 
 .form-check-radio .form-check-sign::before {
-  font-family: 'FontAwesome';
+  /* font-family: 'FontAwesome'; */
   content: "\f10c";
   font-size: 22px;
   -webkit-font-smoothing: antialiased;
@@ -2597,7 +2601,7 @@ textarea.form-control {
 }
 
 .form-check-radio input[type="radio"]:checked+.form-check-sign::after {
-  font-family: 'FontAwesome';
+  /* font-family: 'FontAwesome'; */
   content: "\f192";
   top: -5px;
   position: absolute;
@@ -3064,7 +3068,7 @@ select,
 textarea {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
-  font-family: "Montserrat", "Helvetica", Arial, sans-serif;
+  /* font-family: "Montserrat", "Helvetica", Arial, sans-serif; */
   font-weight: 300;
 }
 
@@ -3166,7 +3170,7 @@ h3 .small {
 .footer-big h5,
 .footer-big h4,
 .media .media-heading {
-  font-family: "Montserrat", "Helvetica", Arial, sans-serif;
+  /* font-family: "Montserrat", "Helvetica", Arial, sans-serif; */
 }
 
 .title,
@@ -3292,7 +3296,7 @@ body {
   color: #66615b;
   font-size: 14px;
   font-weight: 300;
-  font-family: 'Montserrat', "Helvetica", Arial, sans-serif;
+  /* font-family: 'Montserrat', "Helvetica", Arial, sans-serif; */
 }
 
 a {
@@ -3338,8 +3342,8 @@ input[type="file"]>input[type="button"]::-moz-focus-inner {
 .form-control,
 .input-group-addon,
 .tagsinput,
-.navbar,
-.navbar .alert,
+/* .navbar,
+.navbar .alert, */
 .carousel-control.right,
 .carousel-control.left {
   -webkit-transition: all 300ms linear;
@@ -4460,14 +4464,17 @@ License - nucleoapp.com/license/
   background-color: transparent;
 }
 
+
 .navbar {
+  position: absolute; /* 4/19에 추가 */
+  top: 0;
   border: 0;
   font-size: 14px;
-  transition: all 0.4s;
-  -webkit-transition: all 0.4s;
+  /* transition: all 0.4s;
+  -webkit-transition: all 0.4s; */
   padding: 0;
-  background: #FFFFFF;
-  box-shadow: 0 6px 10px -4px rgba(0, 0, 0, 0.15);
+  /* background: #FFFFFF; */
+  /* box-shadow: 0 6px 10px -4px rgba(0, 0, 0, 0.15); */
 }
 
 .navbar .navbar-brand {
@@ -4903,7 +4910,7 @@ License - nucleoapp.com/license/
 
 .dropdown-menu.dropdown-info .dropdown-item:hover,
 .dropdown-menu.dropdown-info .dropdown-item:focus {
-  background-color: #6ec7e0;
+  background-color: #07142a;
 }
 
 .dropdown-menu.dropdown-success .dropdown-item:hover,
@@ -6613,12 +6620,14 @@ License - nucleoapp.com/license/
 .page-header {
   background-color: #B2AFAB;
   background-position: center center;
+  background-position: 50%;
+  background-size: cover;
   min-height: 40vh;
   /*max-height: 999px;*/
   overflow: hidden;
-  /*position: relative;*/
+  position: relative;
   width: 100%;
-  /* z-index: 1; */
+  z-index: -1;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -6803,10 +6812,12 @@ License - nucleoapp.com/license/
 }
 
 .presentation-title {
+  position: relative;
   font-size: 4em;
   font-weight: 700;
   margin: 0;
   color: #FFFFFF;
+  z-index: 3;
   /* background: #fbf8ec;
   background: -moz-linear-gradient(top, #FFFFFF 35%, #4e6773 100%);
   background: -webkit-linear-gradient(top, #FFFFFF 35%, #4e6773 100%);
@@ -6817,9 +6828,11 @@ License - nucleoapp.com/license/
 }
 
 .presentation-subtitle {
+  position: relative;
   font-size: 1.3em;
   font-weight: 600;
   color: #FFFFFF;
+  z-index: 3;
 }
 
 .category-absolute {
@@ -6860,17 +6873,6 @@ License - nucleoapp.com/license/
 
 .page-header .content-center {
   margin-top: 85px;
-}
-
-.moving-clouds {
-  position: absolute;
-  z-index: 1;
-  bottom: 0;
-  left: 0;
-  width: 250.625em;
-  height: 43.75em;
-  -webkit-animation: cloudLoop 80s linear infinite;
-  animation: cloudLoop 80s linear infinite;
 }
 
 @keyframes cloudLoop {
