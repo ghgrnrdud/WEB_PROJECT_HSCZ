@@ -10,7 +10,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-import net.kdigital.web_project.dto.BycounExProductDTO;
+import net.kdigital.web_project.dto.BycounImProductDTO;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -19,12 +19,11 @@ import net.kdigital.web_project.dto.BycounExProductDTO;
 @ToString
 @Builder
 @Entity
-@Table(name="bycoun_export_product_top10")
-public class BycounExProductEntity {
-	
+@Table(name="BYCOUN_IMPORT_PRODUCT_TOP10")
+public class BycounImProductEntity {
 	@Id
-	@Column(name="seq4")
-	private Long seq4;
+	@Column(name="seq3")
+	private Long seq3;
 	
 	@Column(name="date_year")
 	private int dateYear;
@@ -44,15 +43,15 @@ public class BycounExProductEntity {
 	@Column(name="price")
 	private Long price;
 	
-	public static BycounExProductEntity toEntity(BycounExProductDTO bycounExProductDTO) {
-		return BycounExProductEntity.builder()
-				.seq4(bycounExProductDTO.getSeq4())
-				.dateYear(bycounExProductDTO.getDateYear())
-				.country(bycounExProductDTO.getCountry())
-				.ranking(bycounExProductDTO.getRanking())
-				.hscode(bycounExProductDTO.getHscode())
-				.productName(bycounExProductDTO.getProductName())
-				.price(bycounExProductDTO.getPrice())
+	public static BycounImProductEntity toEntity(BycounImProductDTO bycounImProductDTO) {
+		return BycounImProductEntity.builder()
+				.seq3(bycounImProductDTO.getSeq3())
+				.dateYear(bycounImProductDTO.getDateYear())
+				.country(bycounImProductDTO.getCountry())
+				.ranking(bycounImProductDTO.getRanking())
+				.hscode(bycounImProductDTO.getHscode())
+				.productName(bycounImProductDTO.getProductName())
+				.price(bycounImProductDTO.getPrice())
 				.build();
 	}
 }

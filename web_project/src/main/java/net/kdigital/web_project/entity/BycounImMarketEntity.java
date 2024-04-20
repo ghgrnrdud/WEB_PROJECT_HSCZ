@@ -11,7 +11,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import net.kdigital.web_project.dto.BycounImMarketDTO;
-import net.kdigital.web_project.entity.BycounImMarketEntity;
 
 @AllArgsConstructor
 @NoArgsConstructor

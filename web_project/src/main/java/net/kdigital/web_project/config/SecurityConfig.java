@@ -31,6 +31,9 @@ public class SecurityConfig {
 				, "/trage/stringChart"
 				, "/trade/pieChart"
 				, "/trade/xyCluster"
+				, "/trade/StackCluster"
+				, "/trade/Exbarchart"
+				, "/trade/Ixbarchart"
 				).permitAll()
 				.requestMatchers("/admin/**").hasRole("ADMIN")
 				.requestMatchers("/my/**").hasAnyRole("ADMIN", "USER", "CCA") // *********** 이게 맞나????

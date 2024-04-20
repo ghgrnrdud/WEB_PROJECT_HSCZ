@@ -22,9 +22,9 @@ public class BycounExProductDTO {
 	private int ranking;
 	private String hscode;
 	private String productName;
-	private int price;
+	private Long price;
 	
-	public static BycounExProductDTO toDTO(BycounExProductEntity bycounExProductEntity, Long seq4) {
+	public static BycounExProductDTO toDTO(BycounExProductEntity bycounExProductEntity) {
 		return BycounExProductDTO.builder()
 				.seq4(bycounExProductEntity.getSeq4())
 				.dateYear(bycounExProductEntity.getDateYear())

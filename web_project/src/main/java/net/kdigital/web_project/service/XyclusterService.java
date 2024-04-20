@@ -23,7 +23,7 @@ public class XyclusterService {
 	 * @return
 	 */
 	public List<XyclusterDTO> selectAll(){
-		log.info("서비스 도착");
+		//log.info("서비스 도착");
 		List<XyclusterEntity> entityList = xyclusterRepository.findAll(Sort.by(Sort.Direction.ASC, "seq1"));
 		List<XyclusterDTO> dtoList = new ArrayList<>();	
 		

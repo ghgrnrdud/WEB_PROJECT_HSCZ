@@ -22,7 +22,6 @@ public class BycounImMarketDTO {
 	private String importMarket;
 	private Long price;
 	private String percentile;
-	
 	public static BycounImMarketDTO toDTO(BycounImMarketEntity bycounImMarketEntity) {
 		return BycounImMarketDTO.builder()
 				.seq5(bycounImMarketEntity.getSeq5())
