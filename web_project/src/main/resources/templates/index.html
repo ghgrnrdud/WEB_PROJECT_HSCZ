@@ -1,10 +1,47 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 <meta charset="UTF-8">
+<script th:src="@{/script/jquery-3.7.1.min.js}"></script>
+    <script>
+    </script>
 <title>index</title>
 </head>
 <body>
 	<span>안녕하쇼</span>
+	<li sec:authorize="isAnonymous()">
+	<a th:href="@{/user/join}">회원가입</a>
+	</li>
+	<li sec:authorize="isAnonymous()">
+	<a th:href="@{/user/login}">로그인</a>
+	</li>
+	<li sec:authorize="isAuthenticated()">
+                <a th:href="@{/user/logout}">로그아웃</a>
+            </li>
+
+	<li>
+		<a th:href="@{/trade/showStat}">무역통계</a>
+	</li>
+            
+        <!-- ROLE_ADMIN 계정을 가지고 있으면 아래 내용 출력-->
+	<h2 sec:authorize="hasRole('ROLE_ADMIN')">관리자</h2>
+
+	<!-- ROLE_USER 계정을 가지고 있으면 아래 내용 출력-->
+	<h2 sec:authorize="hasRole('ROLE_USER')">일반 사용자</h2>
+	
+	<!-- ROLE_USER 계정을 가지고 있으면 아래 내용 출력-->
+	<h2 sec:authorize="hasRole('ROLE_CCA')">관세사</h2>
+
+	<!-- ROLE_ANANYMOUS 계정을 가지고 있으면 아래 내용 출력-->
+	<h2 sec:authorize="hasRole('ANANYMOUS')">낯선 사람</h2>
+
+	<!-- 어느 권한이건 상관없이 인증이 되었다면 !!!-->
+	<h2 sec:authorize="isAuthenticated()">인증 완료됨</h2>
+
+	<!-- 어느 권한이건 상관없이 인증이 안되었다면 !!!-->
+	<h2 sec:authorize="isAnonymous()">인증 안됨</h2>
+
+	<!-- 인증시 사용된 UserName -->
+	Name: <h2 sec:authentication="name"></h2>
 </body>
 </html>

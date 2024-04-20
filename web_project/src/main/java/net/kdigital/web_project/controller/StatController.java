@@ -28,6 +28,11 @@ public class StatController {
 	private final BycounImMarketService marketService;
 	private final XyclusterService xyclusterService;
 	
+	@GetMapping("/showStat")
+	public String statShow() {
+		return "sample-inner-page";
+	}
+	
 	@GetMapping("/stringChart")
 	@ResponseBody
 	public List<BycounImExPriceDTO> stringChart(
@@ -40,7 +45,7 @@ public class StatController {
 		return list;
 	}
 	
-	@GetMapping("/barChart")
+	@GetMapping("/pieChart")
 	@ResponseBody
 	public List<BycounImMarketDTO> barChart(
 			@RequestParam(name="country", defaultValue="CN") String country,

@@ -530,7 +530,7 @@ var data = [{
     visible: true
   }
 }]
-}
+
 
 
 series.data.setAll(data);
@@ -579,14 +579,14 @@ legend.data.setAll(chart.series.values);
 series.appear(1000);
 series2.appear(1000);
 chart.appear(1000, 100);
-}
+};
 
 // ====================================== pieChart =======================================
 // =======================================================================================
 function createPie(id, div, country) {
 
   $.ajax({
-    url: "/trade/barChart"
+    url: "/trade/pieChart"
     ,method: "GET"
     ,async: false
     ,data: {"country":country}
@@ -600,6 +600,7 @@ function createPie(id, div, country) {
     var root;
     if(space == null) {
       var newspace = createDiv(id, div);
+      newspace.style.width = "500px";
       newspace.style.display = "inline-block";
       root = am5.Root.new(newspace);
       div.after(newspace);
@@ -995,7 +996,7 @@ console.log(selectedport);
 // 막대차트 지우는 함수 (나중에 삭제할 것)
 function maybeDisposeRoot(divId) {
   am5.array.each(am5.registry.rootElements, function(root) {
-    if (root.dom.id === divId) {
+    if (root&&root.dom&&root.dom.id === divId) {
       console.log(root.dom)
       root.dispose();
     }

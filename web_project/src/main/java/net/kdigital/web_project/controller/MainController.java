@@ -10,6 +10,6 @@ public class MainController {
 	@GetMapping({"/",""})
 	public String sample(){
 		
-		return "sample-inner-page";
+		return "index";
 	}
 }

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script th:src="@{/script/jquery-3.7.1.min.js}"></script>
+    <script>
+
+
+    </script>
+    <title>join</title>
+</head>
+<body>
+    <h2>회원가입</h2>
+    <div class="content">
+        <form th:action="@{/user/joinProc}" method="POST">
+            <ul>
+                <li>
+                    * <input type="text" name="userId" id="userId" placeholder="ID">
+                    <span id="checkId"></span>
+                </li>
+                <li>
+                    * <input type="password" name="userPwd" id="userPwd" placeholder="Password">
+                    <span id="checkPwd"></span>
+                </li>
+                <li>
+                    * <input type="text" name="userName" id="userName" placeholder="Name">
+                    <span id="checkName"></span>
+                </li>
+                <li>
+                    * <input type="radio" name="userRole" value="ROLE_USER"> user
+                    <input type="radio" name="userRole" value="ROLE_CCA"> cca
+                    <input type="radio" name="userRole" value="ROLE_ADMIN"> admin
+                </li>
+                <li>
+                    *<input type="tel" name="phone" id="phone" placeholder="Phone">
+                    <span id="checkPhone"></span>
+                </li>
+                <li>
+                    * <input type="text" name="email" id="email" placeholder="Email">
+                    <span id="checkEmail"></span>
+                </li>
+                <li>
+                    <input type="text" name="companyName" id="companyName" placeholder="회사명">
+                    <span id="checkCompanyName"></span>
+                </li>
+                <li>
+                    <select id="companyRegion">
+                        <option value="서울">서울</option>
+                        <option value="경기">경기</option>
+                        <option value="대전">대전</option>
+                        <option value="충남">충남</option>
+                        <option value="충북">충북</option>
+                        <option value="부산">부산</option>
+                        <option value="경남">경남</option>
+                        <option value="울산">울산</option>
+                        <option value="강원">강원</option>
+                        <option value="인천">인천</option>
+                        <option value="전남">전남</option>
+                        <option value="전북">전북</option>
+                        <option value="광주">광주</option>
+                        <option value="제주">제주</option>
+                        <option value="세종">세종</option>
+                        <option value="대구">대구</option>
+                        <option value="경북">경북</option>
+                    </select>
+                    <span id="checkcompanyRegion"></span>
+                </li>
+                <li>
+                    <input type="text" name="ccaNum1" id="ccaNum1" placeholder="자격번호">
+                    <input type="text" name="ccaNum2" id="ccaNum2" placeholder="등록번호">
+                    <span id="checkCcaNum"></span>
+                </li>
+                <li>
+                    <input type="text" name="selfInfo" id="selfInfo" placeholder="자기소개">
+                </li>
+            </ul>
+            <div class="btns">
+                <input type="submit" id="submitBtn" value="회원가입">
+                <input type="reset" id="resetBtn" value="초기화">
+            </div>
+        </form>
+    </div>
+</body>
+</html>
