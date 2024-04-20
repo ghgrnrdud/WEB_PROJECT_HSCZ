@@ -1,0 +1,21 @@
+@import "without-sidebar.css";
+
+
+
+section {
+    width: 1000px;
+    margin: 0 auto;
+}
+
+.top3-code {
+    display: inline-block;
+    text-align: center;
+    width: 250px;
+    height: auto;
+    margin: 30px 20px;
+    border: 1px solid #51BCDA;
+}
+
+.top3-code h2 {
+    /* margin-top: ;  */
+}
