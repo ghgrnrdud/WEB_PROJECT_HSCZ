@@ -4,6 +4,7 @@ function init(id, div) {
   // const div = document.getElementById("chartdiv");
 // Create root element
 // https://www.amcharts.com/docs/v5/getting-started/#Root_element
+
 var root = am5.Root.new("chartdiv");
 
 
@@ -18,8 +19,7 @@ root.setThemes([
 // https://www.amcharts.com/docs/v5/charts/map-chart/
 var chart = root.container.children.push(am5map.MapChart.new(root, {
   // panX: "translateX",
-  // panY: "translateY",
-  rotationX: -160,
+  // panY: "translateY",Fgtuy67=\  rotationX: -160,
   projection: am5map.geoEqualEarth()
 }));
 
@@ -43,22 +43,27 @@ polygonSeries.mapPolygons.template.setAll({
 //   console.log("Clicked on", ev.target.dataItem.get("id"));
 // });
 
-polygonSeries.mapPolygons.template.events.on("click", function(ev, id, div) {
+polygonSeries.mapPolygons.template.events.on("click", function(ev, id, div, type) {
       var url = ev.target.dataItem.dataContext.url;
       var country = ev.target.dataItem.get("id");
       
       if(url) {
-      createBar(id, div, country);
-      // createStackCluster(id, div, country);
-      // createPie(id, div, country);
+      createBar(id, div, country, 2019, type);
+      createStackCluster(id, div, country);
+      createPie(id, div, country, 2019);
       createString(id, div, country);}
+
+      // HTML 요소에 국가 이름 설정
+      document.getElementById("countryName").innerHTML = country;
       });
+
 
 polygonSeries.mapPolygons.template.states.create("hover", {
   fill: am5.color("#B0B2B5")
 });
 
 polygonSeries.data.setAll([{
+  id: "CA",
   id: "CN",
   url: "/trade/statShow",
   polygonSettings: {
@@ -225,8 +230,10 @@ chart.appear(1000, 100);
 };
 
 // ======= createDiv =======
+
 // var id = 0;
 // var div = document.getElementById("chartdiv");
+
 
 function createDiv(id, div) {
   var container = document.createElement("div");
@@ -239,6 +246,7 @@ function createDiv(id, div) {
   return container;
 }
 
+//지우는 함수
 function maybeDisposeRoot(divId) {
   // console.log(root.dom.id);
   // console.log(divId);
@@ -254,7 +262,9 @@ function maybeDisposeRoot(divId) {
 // =======================================================================================
 
 function createBullet(id, div) {
+  console.log("============createBullet도착");
   var newspace = createDiv(id, div);
+  
   newspace.style.display = "inline-block";
   div.before(newspace);
   var root = am5.Root.new(newspace);
@@ -282,6 +292,7 @@ chart.get("colors").set("step", 3);
 // https://www.amcharts.com/docs/v5/charts/xy-chart/cursor/
 var cursor = chart.set("cursor", am5xy.XYCursor.new(root, {}));
 cursor.lineY.set("visible", false);
+// chart.options.responsive
 
 
 // Create axes
@@ -289,6 +300,7 @@ cursor.lineY.set("visible", false);
 var xAxis = chart.xAxes.push(am5xy.DateAxis.new(root, {
   maxDeviation: 0.3,
   baseInterval: {
+    timeUnit: "day",
     timeUnit: "month",
     count: 1
   },
@@ -307,6 +319,7 @@ var yAxis = chart.yAxes.push(am5xy.ValueAxis.new(root, {
 // Add series
 // https://www.amcharts.com/docs/v5/charts/xy-chart/series/
 var series = chart.series.push(am5xy.LineSeries.new(root, {
+  name: "Series 1",
   name: "수출(백만$)",
   xAxis: xAxis,
   yAxis: yAxis,
@@ -324,6 +337,7 @@ series.strokes.template.setAll({
 series.get("tooltip").get("background").set("fillOpacity", 0.5);
 
 var series2 = chart.series.push(am5xy.LineSeries.new(root, {
+  name: "Series 2",
   name: "수입(10억$)",
   xAxis: xAxis,
   yAxis: yAxis,
@@ -341,10 +355,6 @@ series.bullets.push(function() {
   var container = am5.Container.new(root, {
     templateField: "bulletSettings"
   });
-  // var circle0 = container.children.push(am5.Circle.new(root, {
-  //   radius: 5,
-  //   fill: am5.color(0xff0000)
-  // }));
   var circle1 = container.children.push(am5.Circle.new(root, {
     radius: 5,
     fill: am5.color(0xff0000)
@@ -377,10 +387,6 @@ series2.bullets.push(function() {
   var container = am5.Container.new(root, {
     templateField: "bulletSettings"
   });
-  // var circle0 = container.children.push(am5.Circle.new(root, {
-  //   radius: 5,
-  //   fill: am5.color(0xff0000)
-  // }));
   var circle1 = container.children.push(am5.Circle.new(root, {
     radius: 5,
     fill: am5.color(0xff0000)
@@ -418,6 +424,10 @@ root.dateFormatter.setAll({
 
 // Set data
 var data = [{
+  date: new Date(2019, 5, 12).getTime(),
+  value1: 50,
+  value2: 48,
+  previousDate: new Date(2019, 5, 5),
   date: new Date(2023, 1, 1).getTime(),
   value1: 46339, // 46339145,
   value2: 59037, // 59037259
@@ -460,6 +470,10 @@ var data = [{
     visible: false
   }
 }, {
+  date: new Date(2019, 5, 13).getTime(),
+  value1: 53,
+  value2: 51,
+  previousDate: "2019-05-06",
   date: new Date(2023, 7, 1).getTime(),
   value1: 50457, //50457776
   value2: 48738, //48738114
@@ -467,6 +481,10 @@ var data = [{
     visible: false
   }
 }, {
+  date: new Date(2019, 5, 14).getTime(),
+  value1: 56,
+  value2: 58,
+  previousDate: "2019-05-07",
   date: new Date(2023, 8, 1).getTime(),
   value1: 51994, //51994074
   value2: 51009, //51009758
@@ -474,6 +492,10 @@ var data = [{
     visible: false
   }
 }, {
+  date: new Date(2019, 5, 15).getTime(),
+  value1: 52,
+  value2: 53,
+  previousDate: "2019-05-08",
   date: new Date(2023, 9, 1).getTime(),
   value1: 54650, //54650691
   value2: 50972, //50972525
@@ -481,6 +503,10 @@ var data = [{
     visible: false
   }
 }, {
+  date: new Date(2019, 5, 16).getTime(),
+  value1: 48,
+  value2: 44,
+  previousDate: "2019-05-09",
   date: new Date(2023, 10, 1).getTime(),
   value1: 54989, //54989950
   value2: 53440, //53440582
@@ -488,6 +514,10 @@ var data = [{
     visible: false
   }
 }, {
+  date: new Date(2019, 5, 17).getTime(),
+  value1: 47,
+  value2: 42,
+  previousDate: "2019-05-10",
   date: new Date(2023, 11, 1).getTime(),
   value1: 55561, //55561090
   value2: 51997, //51997805
@@ -495,14 +525,17 @@ var data = [{
     visible: false
   }
 }, {
+  date: new Date(2019, 5, 18).getTime(),
+  value1: 59,
+  value2: 55,
+  previousDate: "2019-05-11",
   date: new Date(2023, 12, 1).getTime(),
   value1: 57573, //57573193
   value2: 53122, //53122854
   bulletSettings: {
     visible: true
   }
-}
-]
+}]
 
 series.data.setAll(data);
 series2.data.setAll(data);
@@ -550,106 +583,149 @@ legend.data.setAll(chart.series.values);
 series.appear(1000);
 series2.appear(1000);
 chart.appear(1000, 100);
-}
+};
 
 // ====================================== pieChart =======================================
 // =======================================================================================
 // 첫 화면 시작 시 먼저 실행
-function createString(id, div, country) {
+function createPie(id, div, country, year) {
   $.ajax({
     url: "/trade/pieChart"
     ,method: "GET"
+    ,async: false
     ,data: {"country":country}
-    , success: function(resp) {createRealString(id, div, resp)}
+    , success: function(resp) {createRealPie(id, div, resp, country, year)}
   })}
 
+  function createRealPie(id, div, resp, country, year) {
+    console.log("createPie 데이터 : ", resp);
+    var space = document.getElementById("chart6");
+    var root;
 
-// 첫 화면 시작 시 파이차트 그릴 곳 생성
-function createPie(id, div) {
-  var newspace = createDiv(id, div);
-  newspace.style.display = "inline-block";
-  newspace.style.float = "right";
-  newspace.style.width = "520px";
-  div.after(newspace);
-  var root = am5.Root.new(newspace
-    // , {tooltipContainerBounds: {
-    //   top: 100,
-    //   right: 500,
-    //   bottom: 50,
-    //   left: 500
-    // }}
-  );
+    if(space == null) {
+      var newspace = createDiv(id, div);
+      newspace.style.width = "450px";
+      newspace.style.display = "inline-block";
+      newspace.style.float = "right";
+      root = am5.Root.new(newspace);
+      div.after(newspace);
+      
+      // 드롭박스 만들어보자
+      // 새로운 select 요소 생성
+      var helpers = {
+        buildDropdown: function(result, dropdown, emptyMessage) {
+          // Remove current options
+          dropdown.html('');
 
-  // root.resize();
+          // Add the empty option with the empty message
+          dropdown.append('<option value="">' + emptyMessage + '</option>');
+
+          // Check result isnt empty
+          if(result != '')
+          {
+              // Loop through each of the results and append the option to the dropdown
+              $.each(result, function(k, v) {
+                  dropdown.append('<option value="' + v.id + '">' + v.name + '</option>');
+              });
+          }
+        }
+      };//end helpers
+
+      var dropdown = document.createElement('select');
+      dropdown.id = 'dropdownpie';  // 선택 사항: id 설정
+
+      // chart6 div 가져오기
+      var chart6Div = document.getElementById('chart6');
+      //var chart6Div = document.getElementById('chart4');
+
+      // dropdown 요소를 chart6 div 안에 추가
+      chart6Div.prepend(dropdown);
+
+      var dropdata = '[{"id":2019,"name":"2019"}, {"id":2020,"name":"2020"},{"id":2021,"name":"2021"},{"id":2022,"name":"2022"},{"id":2023,"name":"2023"}]';
+      helpers.buildDropdown(
+        jQuery.parseJSON(dropdata),
+        $('#dropdownpie'),
+        '년도'
+      );
+
+      // 조회버튼 만들기
+      var input = document.createElement('input');
+      input.id = 'replyBtnpie';
+      input.type = 'button';
+      input.value = '조회';
+
+      //var dropdown1 = document.getElementById('dropdown');
+      dropdown.after(input);
+      
+      // // 수출/수입 선택하는 드롭박스
+      // var importpie = document.createElement('select');
+      // importpie.id = 'importpie';  // 선택 사항: id 설정
+
+      // //var chart6Div = document.getElementById('chart6');
+      // chart6Div.prepend(importpie);
+
+      // var dropdata = '[{"id":"수출","name":"수출"}, {"id":"수입","name":"수입"}]';
+      // helpers.buildDropdown(
+      //   jQuery.parseJSON(dropdata),
+      //   $('#importpie'),
+      //   '수출/수입'
+      // );
+    }//end if
+
+    else{
+      maybeDisposeRoot("chart6");
+      root = am5.Root.new(space);
+    }//end else
 
   root.setThemes([
     am5themes_Animated.new(root)
   ]);
 
-  // Parse chart config
-// https://www.amcharts.com/docs/v5/concepts/serializing/
-am5plugins_json.JsonParser.new(root).parse({
-  refs: [{
-    data: [{
-      country: "France",
-      sales: 100000
-    }, {
-      country: "Spain",
-      sales: 160000
-    }, {
-      country: "United Kingdom",
-      sales: 80000
-    }],
-  }, {
-    series: {
-      type: "PieSeries",
-      settings: {
-        name: "Series",
-        valueField: "sales",
-        categoryField: "country"
-      },
-      properties: {
-        data: "#data"
-      }
-    },
-  }],
-  type: "PieChart",
-  options: {
-    responsive: false},
-  settings: {
-    layout: "vertical",
-  },
-  properties: {
-    series: [
-      "#series"
-    ]
-  },
-  children: [{
-    type: "Legend",
-    settings: {
-      centerX: {
-        type: "Percent",
-        value: 50
-      },
-      x: {
-        type: "Percent",
-        value: 50
-      },
-      layout: "horizontal"
-    },
-    properties: {
-      data: "#series.dataItems"
-    }
-  }]
-}, {
-  parent: root.container
-}).then(function (chart) {
-  // Make stuff animate on load
-  // https://www.amcharts.com/docs/v5/concepts/animations/#Forcing_appearance_animation
-  chart.series.getIndex(0).appear(1000);
-  chart.appear(1000, 100);
-});
-}
+  // data
+  var data = [];
+  console.log(resp);
+  $.each(resp, function(index, item) {
+    if(item.importMarket != "총계" && item.dateYear == year && item.country == country){
+      console.log(item);
+      var percentile = parseFloat(item.percentile.replace('%', '')); // '%' 문자 제거 후 실수로 변환
+      data.push({
+        "country": item.importMarket,
+        "percentile": percentile
+      })}//end if
+    });//end each
+    console.log(data);
+
+  root.setThemes([
+    am5themes_Animated.new(root)
+  ]);
+
+    // Create chart
+    // https://www.amcharts.com/docs/v5/charts/percent-charts/pie-chart/
+    var chart = root.container.children.push(
+      am5percent.PieChart.new(root, {
+        endAngle: 270
+      })
+    );
+    
+    // Create series
+    // https://www.amcharts.com/docs/v5/charts/percent-charts/pie-chart/#Series
+    var series = chart.series.push(
+      am5percent.PieSeries.new(root, {
+        valueField: "percentile",
+        categoryField: "country",
+        endAngle: 270
+      })
+    );
+    
+    series.states.create("hidden", {
+      endAngle: -90
+    });
+    
+    series.data.setAll(data);   
+    series.appear(1000, 100);
+    
+};//end createRealPie
+
 
 // =============================== xyclusterChart =====================================
 // =======================================================================================
@@ -658,6 +734,7 @@ var data = [];      // 각 연도의 데이터가 담길 것.
 
 //가장 처음으로 실행되는 함수(전체 데이터 받아옴)
 function createxycluster(id, div, selectedyear, selectedport) {
+  console.log("==========createxycluster 도착")
   console.log("Selected Year:", selectedyear);
   console.log("Selected Port:", selectedport);
   
@@ -675,7 +752,7 @@ function createxycluster(id, div, selectedyear, selectedport) {
   });
 }
 
-// 막대차트 지우는 함수 (나중에 삭제할 것)
+// // 막대차트 지우는 함수 (나중에 삭제할 것)
 // function maybeDisposeRoot(divId) {
 //   am5.array.each(am5.registry.rootElements, function(root) {
 //     if (root.dom.id === divId) {
@@ -699,7 +776,7 @@ function createRealxycluster(id, div, resp, selectedyear, selectedport) {
     newspace.style.display = "inline-block";
     newspace.style.float = "right";
     div.before(newspace);
-    console.log(newspace);
+    console.log(newspace.id);
     root = am5.Root.new(newspace);
 
   // 드롭박스 만들어보자
@@ -726,6 +803,7 @@ function createRealxycluster(id, div, resp, selectedyear, selectedport) {
   dropdown.id = 'dropdown';  // 선택 사항: id 설정
 
   // chart6 div 가져오기
+  var chart6Div = document.getElementById('chart2');
   var chart6Div = document.getElementById('chart2');
 
   // dropdown 요소를 chart6 div 안에 추가
@@ -764,6 +842,7 @@ function createRealxycluster(id, div, resp, selectedyear, selectedport) {
   //그렇지 않다면 기존 그래프 지우는 함수 사용. 새로 만듦
   else{
     maybeDisposeRoot("chart2");
+    //maybeDisposeRoot("chart2");
     root = am5.Root.new(space);
     console.log(newspace);
   }//end else
@@ -863,323 +942,224 @@ chart.appear(1000, 100);
 console.log(data);
 console.log(selectedyear);
 console.log(selectedport);
-
-
 }
 
-// // =============================== barChart ==============================================
-// // =======================================================================================
-// function createBar() {
-//   var newspace = createDiv();
-//   newspace.style.display = "inline-block";
-//   newspace.style.float = "right";  
-//   div.after(newspace);
-//   var root = am5.Root.new(newspace);
-
-//   root.setThemes([
-//     am5themes_Animated.new(root)
-//   ]);
-
-//   // Create chart
-// // https://www.amcharts.com/docs/v5/charts/percent-charts/sliced-chart/
-// var chart = root.container.children.push(am5percent.SlicedChart.new(root, {
-//   layout: root.verticalLayout
-// }));
-
-
-// // Create series
-// // https://www.amcharts.com/docs/v5/charts/percent-charts/sliced-chart/#Series
-// var series = chart.series.push(am5percent.FunnelSeries.new(root, {
-//   alignLabels: false,
-//   orientation: "vertical",
-//   valueField: "value",
-//   categoryField: "category"
-// }));
-
-
-// // Set data
-// // https://www.amcharts.com/docs/v5/charts/percent-charts/sliced-chart/#Setting_data
-// series.data.setAll([
-//   { value: 10, category: "One" },
-//   { value: 9, category: "Two" },
-//   { value: 6, category: "Three" },
-//   { value: 5, category: "Four" },
-//   { value: 4, category: "Five" },
-//   { value: 3, category: "Six" },
-//   { value: 1, category: "Seven" }
-// ]);
-
-
-// // Play initial series animation
-// // https://www.amcharts.com/docs/v5/concepts/animations/#Animation_of_series
-// series.appear();
-
-
-// // Create legend
-// // https://www.amcharts.com/docs/v5/charts/percent-charts/legend-percent-series/
-// // var legend = chart.children.push(am5.Legend.new(root, {
-// //   centerX: am5.p50,
-// //   x: am5.p50,
-// //   marginTop: 15,
-// //   marginBottom: 15
-// // }));
-
-// // legend.data.setAll(series.dataItems);
-
-
-// // Make stuff animate on load
-// // https://www.amcharts.com/docs/v5/concepts/animations/#Forcing_appearance_animation
-// chart.appear(1000, 100);
-// };
-
-
-// =============================== barChart ==============================================
+// =============================== barChart(국가별 10대 수출입품목)==============================================
 // =======================================================================================
-// function createBar(id, div, country) {
-//   $.ajax({
-//     url: "/trade/barChart"
-//     ,method: "GET"
-//     ,data: {"country":country}
-//     , success: function(resp) {createRealBar(id, div, resp)}
-//   })}
 
-//   function createRealBar(id, div, resp) {
-//     console.log(typeof(resp));
-//     var space = document.getElementById("chart2");
-//     console.log(space);
-//     var root;
-//     if(space == null) {
-//       var newspace = createDiv(id, div);
-//       newspace.style.display = "inline-block";
-//       root = am5.Root.new(newspace);
-//       div.after(newspace);
-//       console.log(newspace);
-//     }
-//     else{
-//       maybeDisposeRoot("chart2");
-//       root = am5.Root.new(space);
-//       }
+// if~else로 사용자가 수출을 눌렀는지 수입을 눌렀는지에 따라 가져오는 데이터 달라짐. 기본은 수출 2019
+function createBar(id, div, country, year, type) {
+  if(type == 'export') {
+    $.ajax({
+      url: "/trade/Exbarchart"
+      ,method: "GET"
+      ,async: false
+      ,data: {"country":country}
+      , success: function(resp) {createRealBar(id, div, resp, country, year)}
+    })
+  }//end if
+  else {
+    $.ajax({
+      url: "/trade/Ixbarchart"
+      ,method: "GET"
+      ,async: false
+      ,data: {"country":country}
+      , success: function(resp) {createRealBar(id, div, resp, country, year)}
+    });
+  };//end else
+};// end createBar
 
-//   root.setThemes([
-//     am5themes_Animated.new(root)
-//   ]);
+  function createRealBar(id, div, resp, country, year) {
+    console.log(resp);
+    var space = document.getElementById("chart4");
+    var root;
 
-//   // data
-//   var data = [];
-//   $.each(resp, function(index, item) {
-//     data.push({
-//       "country": item.importMarket,
-//       "value": item.price
-//     })
-//     });
-//     console.log(data);
+    if(space == null) {
+      var newspace = createDiv(id, div);
+      newspace.style.width = "450px";
+      newspace.style.display = "inline-block";
+      root = am5.Root.new(newspace);
+      div.after(newspace);
+      console.log(resp);
 
-//   // Create chart
-// // https://www.amcharts.com/docs/v5/charts/xy-chart/
-// var chart = root.container.children.push(am5xy.XYChart.new(root, {
-//   panX: true,
-//   panY: true,
-//   wheelX: "none",
-//   wheelY: "none",
-//   responsive: false
-// }));
+    // 드롭박스 만들어보자
+    // 새로운 select 요소 생성
+    var helpers = {
+      buildDropdown: function(result, dropdown, emptyMessage) {
+        // Remove current options
+        dropdown.html('');
 
-// // We don't want zoom-out button to appear while animating, so we hide it
-// chart.zoomOutButton.set("forceHidden", true);
+        // Add the empty option with the empty message
+        dropdown.append('<option value="">' + emptyMessage + '</option>');
 
+        // Check result isnt empty
+        if(result != '')
+        {
+            // Loop through each of the results and append the option to the dropdown
+            $.each(result, function(k, v) {
+                dropdown.append('<option value="' + v.id + '">' + v.name + '</option>');
+            });
+        }
+      }
+    };//end helpers
 
-// // Create axes
-// // https://www.amcharts.com/docs/v5/charts/xy-chart/axes/
-// var xRenderer = am5xy.AxisRendererX.new(root, {
-//   minGridDistance: 30
-// });
-// xRenderer.labels.template.setAll({
-//   rotation: -90,
-//   centerY: am5.p50,
-//   centerX: 0,
-//   paddingRight: 15
-// });
-// xRenderer.grid.template.set("visible", false);
+    var dropdown = document.createElement('select');
+    dropdown.id = 'dropdownbar';  // 선택 사항: id 설정
 
-// var xAxis = chart.xAxes.push(am5xy.CategoryAxis.new(root, {
-//   maxDeviation: 0.3,
-//   categoryField: "country",
-//   renderer: xRenderer
-// }));
+    // chart6 div 가져오기
+    var chart6Div = document.getElementById('chart4');
+    //var chart6Div = document.getElementById('chart4');
 
-// var yAxis = chart.yAxes.push(am5xy.ValueAxis.new(root, {
-//   maxDeviation: 0.3,
-//   min: 0,
-//   renderer: am5xy.AxisRendererY.new(root, {})
-// }));
+    // dropdown 요소를 chart6 div 안에 추가
+    chart6Div.prepend(dropdown);
 
+    var dropdata = '[{"id":2019,"name":"2019"}, {"id":2020,"name":"2020"},{"id":2021,"name":"2021"},{"id":2022,"name":"2022"},{"id":2023,"name":"2023"}]';
+    helpers.buildDropdown(
+      jQuery.parseJSON(dropdata),
+      $('#dropdownbar'),
+      '년도'
+    );
 
-// // Add series
-// // https://www.amcharts.com/docs/v5/charts/xy-chart/series/
-// var series = chart.series.push(am5xy.ColumnSeries.new(root, {
-//   name: "Series 1",
-//   xAxis: xAxis,
-//   yAxis: yAxis,
-//   valueYField: "value",
-//   categoryXField: "country"
-// }));
+    // 조회버튼 만들기
+    var input = document.createElement('input');
+    input.id = 'replyBtnbar';
+    input.type = 'button';
+    input.value = '조회';
 
-// // Rounded corners for columns
-// series.columns.template.setAll({
-//   cornerRadiusTL: 5,
-//   cornerRadiusTR: 5
-// });
+    //var dropdown1 = document.getElementById('dropdown');
+    dropdown.after(input);
+    
+    // 수출/수입 선택하는 드롭박스
+    var importbar = document.createElement('select');
+    importbar.id = 'importbar';  // 선택 사항: id 설정
 
-// // Make each column to be of a different color
-// series.columns.template.adapters.add("fill", function (fill, target) {
-//   return chart.get("colors").getIndex(series.columns.indexOf(target ));
-// });
-                                                                                                                                                                      
-// series.columns.template.adapters.add("stroke", function (stroke, target) {
-//   return chart.get("colors").getIndex(series.columns.indexOf(target ));
-// });
+    //var chart6Div = document.getElementById('chart6');
+    chart6Div.prepend(importbar);
 
-// // Add Label bullet
-// series.bullets.push(function () {
-//   return am5.Bullet.new(root, {
-//     locationY: 1,
-//     sprite: am5.Label.new(root, {
-//       text: "{valueYWorking.formatNumber('#.')}",
-//       fill: root.interfaceColors.get("alternativeText"),
-//       centerY: 0,
-//       centerX: am5.p50,
-//       populateText: true
-//     })
-//   });
-// });                                   
+    var dropdata = '[{"id":"수출","name":"수출"}, {"id":"수입","name":"수입"}]';
+    helpers.buildDropdown(
+      jQuery.parseJSON(dropdata),
+      $('#importbar'),
+      '수출/수입'
+    );
+  }//end if
+    else{
+      maybeDisposeRoot("chart4");
+      root = am5.Root.new(space);
+    }//end else
 
+    var myTheme = am5.Theme.new(root);
+    
+    myTheme.rule("Grid", ["base"]).setAll({
+      strokeOpacity: 0.1
+    });
+    // Set themes
+    // https://www.amcharts.com/docs/v5/concepts/themes/
+    root.setThemes([
+      am5themes_Animated.new(root),
+      myTheme
+    ]);
+  
+  // data
+  var data = [];
+  $.each(resp, function(index, item) {
+    // console.log(item);
+    if(item.country == country && item.dateYear == year){
+        // console.log(item);
+        data.push({
+          "hscode": item.hscode,
+          "country" : item.country,
+          "productName" : item.productName,
+          "price" : item.price
+        })
+    }//end if
+  });//end each
+    console.log("barchartDATA : ", data);
 
-// // Set data
-// // var data = [{
-// //   "country": "USA",
-// //   "value": 2025
-// // }, {
-// //   "country": "China",
-// //   "value": 1882
-// // }, {
-// //   "country": "Japan",
-// //   "value": 1809
-// // }, {
-// //   "country": "Germany",
-// //   "value": 1322
-// // }, {
-// //   "country": "UK",
-// //   "value": 1122
-// // }, {
-// //   "country": "France",
-// //   "value": 1114
-// // }, {
-// //   "country": "India",
-// //   "value": 984
-// // }, {
-// //   "country": "Spain",
-// //   "value": 711
-// // }, {
-// //   "country": "Netherlands",
-// //   "value": 665
-// // }, {
-// //   "country": "Russia",
-// //   "value": 580
-// // }, {
-// //   "country": "South Korea",
-// //   "value": 443
-// // }, {
-// //   "country": "Canada",
-// //   "value": 441
-// // }];
+  // Create chart
+  // https://www.amcharts.com/docs/v5/charts/xy-chart/
+  var chart = root.container.children.push(
+    am5xy.XYChart.new(root, {
+      panX: false,
+      panY: false,
+      wheelX: "none",
+      wheelY: "none",
+      paddingLeft: 0
+    })
+  );
 
-// xAxis.data.setAll(data);
-// series.data.setAll(data);
+  // Create axes
+  // https://www.amcharts.com/docs/v5/charts/xy-chart/axes/
+  var yRenderer = am5xy.AxisRendererY.new(root, {
+    minGridDistance: 30,
+    minorGridEnabled: true
+  });//end yRenderer
+  yRenderer.grid.template.set("location", 1);
+    
+  var yAxis = chart.yAxes.push(
+    am5xy.CategoryAxis.new(root, {
+      maxDeviation: 0,
+      categoryField: "hscode",
+      renderer: yRenderer
+    })
+  );//end yAxis
+    
+  var xAxis = chart.xAxes.push(
+    am5xy.ValueAxis.new(root, {
+      maxDeviation: 0,
+      min: 0,
+      renderer: am5xy.AxisRendererX.new(root, {
+        visible: true,
+        strokeOpacity: 0.1,
+        minGridDistance: 80
+      })
+    })
+  );//end xAxis
 
-// // update data with random values each 1.5 sec
-// // setInterval(function () {
-// //   updateData();
-// // }, 1500)
+  // Create series
+    // https://www.amcharts.com/docs/v5/charts/xy-chart/series/
+    var series = chart.series.push(
+      am5xy.ColumnSeries.new(root, {
+        name: "Series 1",
+        xAxis: xAxis,
+        yAxis: yAxis,
+        valueXField: "price",
+        sequencedInterpolation: true,
+        categoryYField: "hscode"    //여기도 "hscode"라고 바꿔줘야 그래프 그려짐
+      })
+    );//end series
 
-// function updateData() {
-//   am5.array.each(series.dataItems, function (dataItem) {
-//     var value = dataItem.get("valueY") + Math.round(Math.random() * 300 - 150);
-//     if (value < 0) {
-//       value = 10;
-//     }
-//     // both valueY and workingValueY should be changed, we only animate workingValueY
-//     dataItem.set("valueY", value);
-//     dataItem.animate({
-//       key: "valueYWorking",
-//       to: value,
-//       duration: 600,
-//       easing: am5.ease.out(am5.ease.cubic)
-//     });
-//   })
+    var columnTemplate = series.columns.template;
+    
+    columnTemplate.setAll({
+      draggable: false, //그래프 드래그하는거 못하게 해놓음
+      cursorOverStyle: "pointer",
+      tooltipText: "{productName}\n${price}",  //productName도 써주기
+      cornerRadiusBR: 10,
+      cornerRadiusTR: 10,
+      strokeOpacity: 0
+    });
+    columnTemplate.adapters.add("fill", (fill, target) => {
+      return chart.get("colors").getIndex(series.columns.indexOf(target));
+    });
+    
+    columnTemplate.adapters.add("stroke", (stroke, target) => {
+      return chart.get("colors").getIndex(series.columns.indexOf(target));
+    });
+    
+    columnTemplate.events.on("dragstop", () => {
+      sortCategoryAxis();
+    });
 
-//   sortCategoryAxis();
-// }
-
-
-// // Get series item by category
-// function getSeriesItem(category) {
-//   for (var i = 0; i < series.dataItems.length; i++) {
-//     var dataItem = series.dataItems[i];
-//     if (dataItem.get("categoryX") == category) {
-//       return dataItem;
-//     }
-//   }
-// }
-
-
-// // Axis sorting
-// function sortCategoryAxis() {
-
-//   // Sort by value
-//   series.dataItems.sort(function (x, y) {
-//     return y.get("valueY") - x.get("valueY"); // descending
-//     //return y.get("valueY") - x.get("valueY"); // ascending
-//   })
-
-//   // Go through each axis item
-//   am5.array.each(xAxis.dataItems, function (dataItem) {
-//     // get corresponding series item
-//     var seriesDataItem = getSeriesItem(dataItem.get("category"));
-
-//     if (seriesDataItem) {
-//       // get index of series data item
-//       var index = series.dataItems.indexOf(seriesDataItem);
-//       // calculate delta position
-//       var deltaPosition = (index - dataItem.get("index", 0)) / series.dataItems.length;
-//       // set index to be the same as series data item index
-//       dataItem.set("index", index);
-//       // set deltaPosition instanlty
-//       dataItem.set("deltaPosition", -deltaPosition);
-//       // animate delta position to 0
-//       dataItem.animate({
-//         key: "deltaPosition",
-//         to: 0,
-//         duration: 1000,
-//         easing: am5.ease.out(am5.ease.cubic)
-//       })
-//     }
-//   });
-
-//   // Sort axis items by index.
-//   // This changes the order instantly, but as deltaPosition is set,
-//   // they keep in the same places and then animate to true positions.
-//   xAxis.dataItems.sort(function (x, y) {
-//     return x.get("index") - y.get("index");
-//   });
-// }
-
-
-// // Make stuff animate on load
-// // https://www.amcharts.com/docs/v5/concepts/animations/
-// series.appear(1000);
-// chart.appear(1000, 100);
-//   };
-
+    yAxis.data.setAll(data);
+    // xAxis.data.setAll(data);
+    series.data.setAll(data);
+    
+    // Make stuff animate on load
+    // https://www.amcharts.com/docs/v5/concepts/animations/
+    series.appear(1000);
+    chart.appear(1000, 100);
+};//end createRealBar
 // =============================== StringChart ==============================================
 // ==========================================================================================\
 function createString(id, div, country) {
@@ -1187,29 +1167,33 @@ function createString(id, div, country) {
   $.ajax({
     url: "/trade/stringChart"
     ,method: "GET"
+    ,async: false
     ,data: {"country":country}
     , success: function(resp) {createRealString(id, div, resp)}
   })}
 
 function createRealString(id, div, resp) {
-  var space = document.getElementById("chart4");
-  console.log(space);
+  console.log(resp);
+  var space = document.getElementById("chart5");
   var root;
   if(space == null) {
     var newspace = createDiv(id, div);
+    newspace.style.width = "500px";
     newspace.style.display = "inline-block";
-    root = am5.Root.new(newspace);
+    newspace.style.float = "right";
     div.after(newspace);
-    console.log(newspace);
+    root = am5.Root.new(newspace);
   }
+
   else{
-    maybeDisposeRoot("chart4");
+    maybeDisposeRoot("chart5");
     root = am5.Root.new(space);
     }
 
   root.setThemes([
     am5themes_Animated.new(root)
   ]);
+  
   console.log(typeof(resp));
   var data = [];
   $.each(resp, function(index, item) {
@@ -1303,7 +1287,6 @@ root.dateFormatter.setAll({
 series.data.setAll(data);
 series2.data.setAll(data);
 
-
 series.set("selectedDataItem", series.dataItems[0]);
 
 // Add legend
@@ -1330,46 +1313,149 @@ legend.data.setAll(chart.series.values);
 series.appear(1000);
 series2.appear(1000);
 chart.appear(1000, 100);
-};
-
-// function maybeDisposeRoot(divId) {
-//   am5.array.each(am5.registry.rootElements, function(root) {
-//     if (root.dom.id === divId) {
-//       root.dispose();
-//     }
-//   });
-// }
-
+};//end StringChart
 
 // ====================================== StackCluster =======================================
 // =========================================================================================
-// 첫 화면에 시작되는 
-function createStackCluster(id, div) {
+// // 첫 화면에 시작되는 
+function createStackCluster(id, div, country) {
   $.ajax({
     url: "/trade/StackCluster"
     , method: "GET"
-    //,data: {"country":country}
-    , success: function(resp) {createRealStackCluster(id, div, resp)}
+    , data: {"country":country}
+    , success: function(resp) {createRealStackCluster(id, div, resp, country)}
 })};
-// var newspace = createDiv(id, div);
-//   newspace.style.display = "inline-block";
-//   // newspace.style.float = "right";
-//   div.after(newspace);
-//   var root = am5.Root.new(newspace);
 
-function createRealStackCluster(id, div, resp) {
-  var space = document.getElementById("chart4");
-  console.log(space);
+function createRealStackCluster(id, div, resp, country) {
+  console.log("======StackCluster 시작")
+  console.log("StackCluster의 데이터 : ", resp)
+  var space = document.getElementById("chart3");
   var root;
+
+  //만약 첫 화면이라면 
   if(space == null) {
     var newspace = createDiv(id, div);
+    newspace.style.width = "450px";
     newspace.style.display = "inline-block";
     root = am5.Root.new(newspace);
     div.after(newspace);
     console.log(newspace);
-  }
+  }//end if
+
+  //그렇지 않다면 기존 그래프 지우는 함수 사용. 새로 만듦
   else{
-    maybeDisposeRoot("chart4");
+    maybeDisposeRoot("chart3");
     root = am5.Root.new(space);
-  }
+  }//end else
+
+  root.setThemes([
+    am5themes_Animated.new(root)
+  ]);
+  
+  //기본 뿌려주는거
+  var data = [];
+  //let count = 0;
+    $.each(resp, function(index, item) {
+      if(item.country == country){
+          data.push({
+            "hscode": item.hscode,
+            "country" : item.country,
+            "productName" : item.productName,
+            "importrate": item.importrate,
+            "exportrate": item.exportrate
+          //count ++;
+        })
+      }//end if
+    });//end each
+    console.log(data);
+
+// Create chart
+// https://www.amcharts.com/docs/v5/charts/xy-chart/
+// 마우스로 줌인아웃 하는거 설정
+var chart = root.container.children.push(am5xy.XYChart.new(root, {
+  panX: false,
+  panY: false,
+  wheelX: "panX",
+  wheelY: "zoomX",
+  layout: root.verticalLayout
+}));
+
+// Add legend
+// https://www.amcharts.com/docs/v5/charts/xy-chart/legend-xy-series/
+var legend = chart.children.push(am5.Legend.new(root, {
+  centerX: am5.p50,
+  x: am5.p50
+}));
+
+// Create axes
+// https://www.amcharts.com/docs/v5/charts/xy-chart/axes/
+var xAxis = chart.xAxes.push(am5xy.CategoryAxis.new(root, {
+  categoryField: "hscode",
+  renderer: am5xy.AxisRendererX.new(root, {
+    cellStartLocation: 0.1,
+    cellEndLocation: 0.9,
+    minGridDistance: 30,
+    minorGridEnabled: false,
+  }),
+  tooltip: am5.Tooltip.new(root, {})
+}));
+
+xAxis.data.setAll(data);
+
+var yAxis = chart.yAxes.push(am5xy.ValueAxis.new(root, {
+  baseValue: 0,
+  min: -5,
+  numberFormat: "#.0'%'",
+  renderer: am5xy.AxisRendererY.new(root, {})
+}));
+
+function makeSeries(name, fieldName, stacked, port) {
+  var series = chart.series.push(am5xy.ColumnSeries.new(root, {
+    stacked: stacked,
+    name: port,
+    xAxis: xAxis,
+    yAxis: yAxis,
+    valueYField: fieldName,
+    categoryXField: "hscode" 
+  }));
+
+  series.columns.template.setAll({
+    tooltipText: "{productName}",
+    width: am5.percent(90),
+    tooltipY: am5.percent(10)
+  });
+
+  series.data.setAll(data);
+
+  // Make stuff animate on load
+  // https://www.amcharts.com/docs/v5/concepts/animations/
+  series.appear();
+
+  series.bullets.push(function () {
+    return am5.Bullet.new(root, {
+      locationY: 0.5,
+      sprite: am5.Label.new(root, {
+        text: "{valueY}%",
+        fill: root.interfaceColors.get("alternativeText"),
+        centerY: am5.percent(50),
+        centerX: am5.percent(50),
+        populateText: true,
+        fontSize: 10,
+        location: 0.5
+      })
+    });
+  });
+
+  legend.data.push(series);
+
+}//end makeSeries
+
+for(let i = 0; i<1; i++){
+  makeSeries(data[i].productName + " 수출", "exportrate", false, "수출");
+  makeSeries(data[i].productName + " 수입", "importrate", false, "수입");
 }
+
+// Make stuff animate on load
+// https://www.amcharts.com/docs/v5/concepts/animations/
+chart.appear(1000, 100);
+};//end StackCluster
