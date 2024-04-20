@@ -258,8 +258,6 @@ function maybeDisposeRoot(divId) {
 // ================================== bulletChart ========================================
 // =======================================================================================
 
-function createBullet() {
-  var newspace = createDiv();
 function createBullet(id, div) {
   console.log("============createBullet도착");
   var newspace = createDiv(id, div);
@@ -299,7 +297,6 @@ cursor.lineY.set("visible", false);
 var xAxis = chart.xAxes.push(am5xy.DateAxis.new(root, {
   maxDeviation: 0.3,
   baseInterval: {
-    timeUnit: "day",
     timeUnit: "month",
     count: 1
   },
@@ -318,7 +315,6 @@ var yAxis = chart.yAxes.push(am5xy.ValueAxis.new(root, {
 // Add series
 // https://www.amcharts.com/docs/v5/charts/xy-chart/series/
 var series = chart.series.push(am5xy.LineSeries.new(root, {
-  name: "Series 1",
   name: "수출(백만$)",
   xAxis: xAxis,
   yAxis: yAxis,
@@ -336,7 +332,6 @@ series.strokes.template.setAll({
 series.get("tooltip").get("background").set("fillOpacity", 0.5);
 
 var series2 = chart.series.push(am5xy.LineSeries.new(root, {
-  name: "Series 2",
   name: "수입(10억$)",
   xAxis: xAxis,
   yAxis: yAxis,
@@ -588,20 +583,6 @@ chart.appear(1000, 100);
 
 // ====================================== pieChart =======================================
 // =======================================================================================
-function createPie() {
-  var newspace = createDiv();
-  newspace.style.display = "inline-block";
-  newspace.style.float = "right";
-  // newspace.style.width = "500px";
-  div.after(newspace);
-  var root = am5.Root.new(newspace
-    // , {tooltipContainerBounds: {
-    //   top: 50,
-    //   right: 500,
-    //   bottom: 50,
-    //   left: 500
-    // }}
-  );
 function createPie(id, div, country) {
 
   $.ajax({
