@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시글 수정화면</title>
+
+    <link rel="stylesheet" th:href="@{/css/write.css}">
+</head>
+
+<body>
+    <div class="container">
+        <div class="logo">
+            <a th:href="@{/}"><img th:src="@{/images/logo.png}" alt="logo"></a>
+            <h2>게시글 수정</h2>
+        </div>
+    </div> <!-- .container 끝 -->
+
+    <!-- 글 수정 -->
+    <div class="content">
+        <form th:action="@{/cca/update}" method="POST" enctype="multipart/form-data">
+        	<input type="hidden" name="consultNum" th:value="${consult.consultNum}">
+        	<input type="hidden" name="searchBy" th:value="${searchBy}">
+        	<input type="hidden" name="searchItem" th:value="${searchItem}">
+            <table border="1">
+                <tr>
+                    <th>작성자</th>
+                    <td><input id="consultWriter" type="text" name="consultWriter" ></td>
+                </tr>
+                <tr>
+                    <th>글제목</th>
+                    <td><input id="consultTitle" type="text" name="consultTitle" th:value="${consult.consultTitle}"  required></td>
+                </tr>
+                <tr>
+                    <th>글내용</th>
+                    <td>
+                        <textarea name="consultContent" id="boardContent" cols="30" rows="10" required>[[ ${consult.consultContent }]]</textarea>
+                    </td>
+                </tr>
+				<tr>
+								    <th>품목</th>
+								    <td>
+								        <select id="productCategory" name="productCategory" required>
+											<option value="의류">의류</option>
+											<option value="무기류">무기류</option>
+											<option value="농산품">농산품</option>
+											<option value="광물">광물</option>
+											<option value="화학품">화학품</option>
+											<option value="완구류">완구류</option>
+											<option value="예술품">예술품</option>
+											<option value="가구류">가구류</option>
+											<option value="악기류">악기류</option>
+											<option value="선박">선박</option>
+											<option value="시계">시계</option>
+											<option value="항공기">항공기</option>
+											<option value="기계류">기계류</option>
+											<option value="금속류">금속류</option>
+											<option value="비금속류">비금속류</option>
+											<option value="플라스틱류">플라스틱류</option>
+											<option value="목재류">목재류</option>
+											<option value="의료용품">의료용품</option>
+											 <option value="화장품">화장품</option>
+											<option value="곡물류">곡물류</option>
+											<option value="화약류">화약류</option>
+											<option value="고무제품류">고무제품류</option>
+											<option value="가죽제품류">가죽제품류</option>
+											<option value="인쇄물류">인쇄물류</option>
+											<option value="케이블류">케이블류</option>
+											<option value="면제품류">면제품류</option>
+											<option value="견직류">견직류</option>
+											<option value="섬유제품류">섬유제품류</option>
+											<option value="도자기류">도자기류</option>
+											<option value="식기류">식기류</option>
+											<option value="철도부품">철도부품</option>
+											<option value="원자로">원자로</option>
+								        </select>
+								    </td>
+								</tr>
+
+                <tr>
+                    <th colspan="2">
+
+                        <input type="submit" value="글수정" class="btn btn-primary"> &nbsp;
+                        <a th:href="@{/cca/boardList(searchItem=${searchItem}, searchWord=${searchWord})}" class="btn btn-info">목록</a>
+                    </th>
+
+                </tr>
+            </table>
+        </form>
+    </div>
+</body>
+
+</html>
+
+
+
+
+
