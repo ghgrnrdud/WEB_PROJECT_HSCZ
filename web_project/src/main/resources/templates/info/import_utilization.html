@@ -5,8 +5,14 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<script th:src="@{/script/jquery-3.7.1.min.js}"></script>
+	<link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css' rel='stylesheet' type='text/css'>
+
 	<title>수입활용</title>
 	<style>
+		body {
+			font-family: 'Spoqa Han Sans Neo', 'sans-serif';
+		}
+
 		.nav_menu {
 			list-style-type: none;
 			margin: 0;
@@ -71,14 +77,14 @@
 
 <body>
 	<nav class="navbar">
-		<ul class="nav_menu">
+		<ol class="nav_menu">
 			<li class="nav_menu_li"><a th:href="@{/info/infoList}">FTA정보</a></li>
 			<li class="nav_menu_li"><a th:href="@{/info/origin}">원산지결정기준</a></li>
 			<li class="nav_menu_li"><a th:href="@{/info/country}">FTA협정국</a></li>
 			<li class="nav_menu_li"><a th:href="@{/info/tarrifrate}">세율정보</a></li>
 			<li class="nav_menu_li"><a th:href="@{/info/export_utilization}">수출활용정보</a></li>
 			<li class="nav_menu_li active"><a th:href="@{/info/import_utilization}">수입활용정보</a></li>
-		</ul>
+		</ol>
 	</nav>
 
 	<div id="cntntsView">

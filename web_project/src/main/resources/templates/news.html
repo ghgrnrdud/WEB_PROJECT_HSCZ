@@ -1,27 +1,195 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trade news</title>
-</head>
-<body>
-    <div class="logo">
-        <h1>
-            <a th:href="@{/}">HSCZ</a>
-        </h1>
-    </div>
+    <title>무역뉴스</title>
+    <!--font-->
+    <link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css' rel='stylesheet' type='text/css'>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
 
-    <hr>
-    <h1>무역뉴스</h1>
-    <table border="1" th:each="news : ${list}">
-    <tr>
-        <td><a th:href="${news.link}" th:utext="${news.title}"></a></td>
-        <td th:text="${news.pubDate}"></td>
-    </tr>
-    <tr>
-        <td th:utext="${news.description}" colspan="2"></td>
-    </tr>
-    </table>
+    <!--css-->
+    <link th:href="@{/assets/css/bootstrap.min.css}" rel="stylesheet" />
+    <link th:href="@{/assets/css/with-sidebar.css}" rel="stylesheet" />
+
+    <link th:href="@{/assets/demo/demo.css}" rel="stylesheet" />
+
+    <!-- Resources -->
+    <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/percent.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+</head>
+<style>
+    .news-player {
+        width: 1080px;
+        margin: 0 auto;
+    }
+
+    .content {
+        width: 1080px;
+        margin: 0 auto;
+    }
+</style>
+
+<body class="index-page sidebar-collapse">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top navbar-transparent " color-on-scroll="300">
+        <div class="container">
+            <div class="navbar-translate">
+                <a class="navbar-brand" th:href="@{/}" rel="tooltip" title="HSCode Zoom" data-placement="bottom"
+                    target="_self">
+                    <img th:src="@{/images/web-logo9.png}" alt="로고">
+                </a>
+                <button class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navigation" aria-controls="navigation-index" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-bar bar1"></span>
+                    <span class="navbar-toggler-bar bar2"></span>
+                    <span class="navbar-toggler-bar bar3"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse justify-content-end" id="navigation">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" rel="tooltip" data-placement="bottom"
+                            href="https://demos.creative-tim.com/paper-kit/index.html" target="_blank">
+                            무역뉴스
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" rel="tooltip" data-placement="bottom" th:href="@{/info/infoList}"
+                            target="_blank">
+                            FTA정보
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" rel="tooltip" data-placement="bottom"
+                            href="https://demos.creative-tim.com/paper-kit/index.html" target="_blank">
+                            무역통계
+                        </a>
+                    </li>
+
+                    <!-- <li class="nav-item">
+						<a class="nav-link" rel="tooltip" data-placement="bottom"
+							href="https://demos.creative-tim.com/paper-kit/index.html" target="_blank">
+							관세사 Matching
+						</a>
+					</li> -->
+
+                    <div class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" id="dropdownMenuButton" href="#pk"
+                            role="button" aria-haspopup="true" aria-expanded="false">관세사상담</a>
+                        <ul class="dropdown-menu dropdown-info" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="#pk">관세사목록</a>
+                            <a class="dropdown-item" href="#pk">상담목록</a>
+                            <a class="dropdown-item" href="#pk">상담하기</a>
+                        </ul>
+                    </div>
+
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- End Navbar -->
+
+    <!-- page-header 시작-->
+    <div class="page-header section-dark" th:style="'background-image: url(\'' + @{/images/cover-img1.jpg} + '\')'">
+        <div class="filter"></div>
+        <div class="content-center">
+            <div class="container">
+                <div class="title-brand">
+                    <h1 class="presentation-title">무역뉴스</h1>
+                    <h3 class="presentation-subtitle"></h3>
+                </div>
+            </div> <!--div.content-center-->
+        </div>
+    </div>
+    <!-- End page-header -->
+    <!-- side-bar 시작-->
+    <nav class="main-menu">
+        <div class="settings"></div>
+        <div class="scrollbar" id="style-1">
+            <ul>
+                <li class="menu-img">
+                    <a href="#">
+                        <i class="fa fa-solid fa-bars fa-lg"></i>
+                        <span class="nav-text">Menu</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-solid fa-newspaper fa-lg"></i>
+                        <span class="nav-text">무역뉴스</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-solid fa-book fa-lg"></i>
+                        <span class="nav-text">FTA정보</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-solid fa-chart-simple fa-lg"></i>
+                        <span class="nav-text">무역통계</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-solid fa-handshake fa-lg"></i>
+                        <span class="nav-text">관세사상담</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-regular fa-user fa-lg"></i>
+                        <span class="nav-text">로그인</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-user fa-lg"></i>
+                        <span class="nav-text">로그아웃</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-solid fa-house-user fa-lg"></i>
+                        <span class="nav-text">마이페이지</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <br>
+    <div class="news-player">
+        <iframe width="500" height="250"
+            src="https://www.youtube.com/embed/PjW0NBh0Htw?si=r-EaC6jBHpMkpMcA&amp;controls=0"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+        <iframe width="500" height="250"
+            src="https://www.youtube.com/embed/k4_dtRoaoE4?si=dtawycdoDoY05tGG&amp;controls=0"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+    <br>
+    <div class="content">
+        <table border="1" th:each="news : ${list}">
+            <tr>
+                <td><a th:href="${news.link}" th:utext="${news.title}"></a></td>
+                <td th:text="${news.pubDate}"></td>
+            </tr>
+            <tr>
+                <td th:utext="${news.description}" colspan="2"></td>
+            </tr>
+        </table>
+    </div>
 </body>
+
 </html>

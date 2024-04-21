@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Subheadings</title>
-    
+
     <!--font-->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
@@ -23,7 +24,7 @@
     <script th:src="@{/script/jquery-3.7.1.min.js}"></script>
     <script defer th:src="@{/script/imexChart.js}"></script>
     <script>
-        $(function(){
+        $(function () {
             showXYChart();
             showExPieCharts();
             showImPieCharts();
@@ -32,15 +33,15 @@
         function showXYChart() {
             let hscode = $("#getHs4digit").val();
             $.ajax({
-                url : "/chart/imexXYChart"
-                , method : "GET"
-                , data : {"hs4digit" : hscode}
-                , success : function(resp){
+                url: "/chart/imexXYChart"
+                , method: "GET"
+                , data: { "hs4digit": hscode }
+                , success: function (resp) {
                     console.log(resp);
                     let exYearAmountList = [];
                     let imYearAmountList = [];
 
-                    $.each(resp, function(index, item){
+                    $.each(resp, function (index, item) {
                         exYearAmountList.push(item["exportAmount"]);
                         imYearAmountList.push(item["importAmount"])
                     });
@@ -51,19 +52,19 @@
             });
         }
 
-        function showExPieCharts(){
+        function showExPieCharts() {
             let hscode = $("#getHs4digit").val();
             $.ajax({
-                url : "/chart/exPieChart"
-                , method : "GET"
-                , data : {"hs4digit" : hscode}
-                , success : function(resp){
+                url: "/chart/exPieChart"
+                , method: "GET"
+                , data: { "hs4digit": hscode }
+                , success: function (resp) {
                     console.log(resp);
                     let countryList = [];
                     let exRankingList = [];
                     let exAmountList = [];
 
-                    $.each(resp, function(index, item){
+                    $.each(resp, function (index, item) {
                         countryList.push(item["countryName"]);
                         exRankingList.push(item["exportRanking"]);
                         exAmountList.push(item["exportAmount"])
@@ -78,16 +79,16 @@
         function showImPieCharts() {
             let hscode = $("#getHs4digit").val();
             $.ajax({
-                url : "/chart/imPieChart"
-                , method : "GET"
-                , data : {"hs4digit" : hscode}
-                , success : function(resp){
+                url: "/chart/imPieChart"
+                , method: "GET"
+                , data: { "hs4digit": hscode }
+                , success: function (resp) {
                     console.log(resp);
                     let countryList = [];
                     let imRankingList = [];
                     let imAmountList = [];
 
-                    $.each(resp, function(index, item){
+                    $.each(resp, function (index, item) {
                         countryList.push(item["countryName"]);
                         imRankingList.push(item["importRanking"]);
                         imAmountList.push(item["importAmount"])
@@ -105,11 +106,13 @@
             width: 400px;
             height: 300px;
         }
+
         #chartdiv2 {
             display: inline-block;
             width: 400px;
             height: 300px;
         }
+
         #chartdiv3 {
             display: inline-block;
             width: 400px;
@@ -117,10 +120,9 @@
         }
     </style>
 </head>
+
 <body class="index-page sidebar-collapse">
 
-    <!-- 상세페이지 레이아웃 페이지로 이동-->
-    <a th:href="@{/layout}">layout</a>
 
     <!--========= main 내용 시작 ==========-->
     <div class="main-contents-container">
@@ -144,10 +146,14 @@
 
                         <!-- 조건문 시작 -->
                         <!-- 마지막 네자리가 null이 아니고 길이가 4이면 하이퍼링크 걸기-->
-                        <td rowspan="2" th:if="!${#strings.isEmpty(subhead.hs10digit)} and ${#strings.length(subhead.hs10digit) == 4}">
-                            <a th:href="@{/subhead/info(hsAll=${subhead.hsAll},hs4digit=${subhead.hs4digit})}" th:text="${subhead.hs10digit}"></a>
+                        <td rowspan="2"
+                            th:if="!${#strings.isEmpty(subhead.hs10digit)} and ${#strings.length(subhead.hs10digit) == 4}">
+                            <a th:href="@{/subhead/info(hsAll=${subhead.hsAll},hs4digit=${subhead.hs4digit})}"
+                                th:text="${subhead.hs10digit}"></a>
                         </td>
-                        <td rowspan="2" th:unless="!${#strings.isEmpty(subhead.hs10digit)} and ${#strings.length(subhead.hs10digit) == 4}" th:text="${subhead.hs10digit}"></td>
+                        <td rowspan="2"
+                            th:unless="!${#strings.isEmpty(subhead.hs10digit)} and ${#strings.length(subhead.hs10digit) == 4}"
+                            th:text="${subhead.hs10digit}"></td>
                         <!-- 조건문 끝 -->
 
                         <td th:text="${subhead.koDescription}"></td>
@@ -174,7 +180,9 @@
     <script th:src="@{/assets/js/plugins/bootstrap-datepicker.js}" type="text/javascript"></script>
 
     <script th:src="@{/assets/js/paper-kit.min.js?v=2.2.0}" type="text/javascript"></script>
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTTfWur0PDbZWPr7Pmq8K3jiDp0_xUziI"></script>
+    <script type="text/javascript"
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTTfWur0PDbZWPr7Pmq8K3jiDp0_xUziI"></script>
 
 </body>
+
 </html>
