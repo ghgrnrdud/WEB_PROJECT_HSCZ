@@ -36,7 +36,7 @@ public class NewsController {
 	            .queryParam("query","무역거래")
 	            .queryParam("query","무역협정")
 	            .queryParam("query","수출입")
-	            .queryParam("display",20)
+	            .queryParam("display",10)
 	            .queryParam("start",1)
 	            .queryParam("sort", "date")
 	            .encode(Charset.forName("UTF-8"))

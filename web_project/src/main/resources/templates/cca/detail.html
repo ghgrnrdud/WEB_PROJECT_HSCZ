@@ -1,123 +1,129 @@
 <!DOCTYPE html>
-<html xmlns:th= "http://www.thymeleaf.org"
-	  >
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>게시글 보기 화면</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>게시글 보기 화면</title>
 
-    <link rel="stylesheet" th:href="@{/css/detail.css}">
-    
-    <script th:src="@{/script/jquery-3.7.1.min.js}"></script>
-    <script th:inline="javascript" th:src="@{/script/detail.js}"></script>
+	<link rel="stylesheet" th:href="@{/css/detail.css}">
+
+	<script th:src="@{/script/jquery-3.7.1.min.js}"></script>
+	<script th:inline="javascript" th:src="@{/script/detail.js}"></script>
 </head>
 
 <body>
-    <div class="container">
-    	<!-- Ajax 전송 시 필요  -->
-    	<input type="hidden" id="consultNum" th:value="${consult.consultNum}">
-        
-    	<input type="hidden" id="contextPath" th:value="${contextPath}">
-    	
-        <div class="logo">
-            <a th:href="@{/}"><img th:src="@{/images/logo.png}" alt="logo"></a>
-            <h2>게시글 보기</h2>
-        </div>
-    </div> <!-- .container 끝 -->
+	<div class="container">
+		<!-- Ajax 전송 시 필요  -->
+		<input type="hidden" id="consultNum" th:value="${consult.consultNum}">
 
-    <!-- 글보기 -->
-    <div class="content">
-            <table border="1">
-                <tr>
-                    <th>작성자</th>
-                    <td>
-                    	<span th:text="${consult.consultWriter}">작성자</span>
-                    </td>
-                </tr>
-                <tr>
-                    <th>글제목</th>
-                    <td>
-                    	<span th:text="${consult.consultTitle}">글제목</span>
-                    </td>
-                </tr>
-                <tr>
-                    <th>작성일</th>
-                    <td>
-                    	<span th:text="${#temporals.format(consult.consultDate, 'yyyy-MM-dd hh:mm:ss')}">작성일</span>
-                    </td>
-                </tr>
-                              
-				<tr>
-				                  <th>글내용</th>
-				                  <td>
-				                      <textarea>[[ ${consult.consultContent} ]]</textarea>
-				                  </td>
-				              </tr>
-                <tr>
-                    <th>품목</th>
-                    <td>
-						<span th:text="${consult.productCategory}">품목</span>
-                    </td>
-                </tr>
-                <tr>
-                    <th colspan="2">
-                    	<!-- 글 삭제와 수정은 글쓴 사람과 로그인한 사람과 동일한 경우에만 나타나야 함 -->
-						<!-- hong == hong( -->
-						                   	
-                        <a th:href="@{/cca/update(consultNum=${consult.consultNum}, searchBy=${searchBy}, searchItem=${searchItem})}" class="btn btn-primary">상담글 수정</a>
-                        <a th:href="@{/cca/delete(consultNum=${consult.consultNum},searchBy=${searchBy}, searchItem=${searchItem})}" class="btn btn-danger">상담글 삭제</a>
-						<a th:href="@{/cca/replyWrite(consultNum=${consult.consultNum}, searchBy=${searchBy}, searchItem=${searchItem})}" class="btn btn-danger">답변달기</a>
+		<input type="hidden" id="contextPath" th:value="${contextPath}">
 
-                       
+		<div class="logo">
+			<a th:href="@{/}"><img th:src="@{/images/logo.png}" alt="logo"></a>
+			<h2>게시글 보기</h2>
+		</div>
+	</div> <!-- .container 끝 -->
 
-                        <a th:href="@{/cca/boardList(searchBy=${searchBy}, searchItem=${searchItem})}" class="btn btn-info">목록</a>
-                    </th>
+	<!-- 글보기 -->
+	<div class="content">
+		<table border="1">
+			<tr>
+				<th>작성자</th>
+				<td>
+					<span th:text="${consult.consultWriter}">작성자</span>
+				</td>
+			</tr>
+			<tr>
+				<th>글제목</th>
+				<td>
+					<span th:text="${consult.consultTitle}">글제목</span>
+				</td>
+			</tr>
+			<tr>
+				<th>작성일</th>
+				<td>
+					<span th:text="${#temporals.format(consult.consultDate, 'yyyy-MM-dd hh:mm:ss')}">작성일</span>
+				</td>
+			</tr>
 
-                </tr>
-            </table>
-			<input type="button" 
-			<!-- 댓글 목록 부분 -->
-			<div id="answer-list" th:if="${#lists.size(replyList) > 0}">
-			    <h2>[관세사 답변 목록]</h2>
-			    <p th:if="${#lists.size(replyList) > 0}" th:text="'총 ' + ${#lists.size(replyList)} + '개의 답변이 있습니다.'"></p>
-			
-			    <!-- 각 답변 정보를 담는 테이블 -->
-			    <div th:each="reply, status : ${replyList}">
-			        <table border="1">
-						<input type="hidden" id="replyNum" th:value="${reply.replyNum}">
-			            <tr>
-			                <th>작성자</th>
-			                <td th:text="${reply.replyWriter}">답변자</td>
-			            </tr>
-			            <tr>
-			                <th>답변 작성일</th>
-							<td>
-							                   	<span th:text="${#temporals.format(reply.replyDate, 'yyyy-MM-dd hh:mm:ss')}">작성일</span>
-							                   </td>
-			            </tr>
-						
-			            <tr>
-			                <th>내용</th>
-			                <td><textarea th:text="${reply.replyContent}">답변내용</textarea></td>
-			            </tr>
-			            <tr>
-			                <td colspan="2">
-			                    <!-- 답변 채택 버튼 -->
-			                    <input type="button" class="chooseAnswerBtn" value="답변 채택" data-reply-num="${reply.replyNum}">
-			                    
-			                    <!-- 답변 수정 버튼 -->
-								<a th:href="@{/cca/replyUpdate(replyNum=${reply.replyNum},consultNum=${consult.consultNum}, searchBy=${searchBy}, searchItem=${searchItem})}" class="btn btn-primary">답변 수정</a>
-					            <a th:href="@{/cca/replyDelete(replyNum=${reply.replyNum},consultNum=${consult.consultNum},searchBy=${searchBy},searchItem=${searchItem})}" class="btn btn-primary">답변 삭제</a>
-										                    
-						        
-			                </td>
-			            </tr>
-			        </table>
-			    </div>
+			<tr>
+				<th>글내용</th>
+				<td>
+					<textarea>[[ ${consult.consultContent} ]]</textarea>
+				</td>
+			</tr>
+			<tr>
+				<th>품목</th>
+				<td>
+					<span th:text="${consult.productCategory}">품목</span>
+				</td>
+			</tr>
+			<tr>
+				<th colspan="2">
+					<!-- 글 삭제와 수정은 글쓴 사람과 로그인한 사람과 동일한 경우에만 나타나야 함 -->
+					<!-- hong == hong( -->
+
+					<a th:href="@{/cca/update(consultNum=${consult.consultNum}, searchBy=${searchBy}, searchItem=${searchItem})}"
+						class="btn btn-primary">상담글 수정</a>
+					<a th:href="@{/cca/delete(consultNum=${consult.consultNum},searchBy=${searchBy}, searchItem=${searchItem})}"
+						class="btn btn-danger">상담글 삭제</a>
+					<a th:href="@{/cca/replyWrite(consultNum=${consult.consultNum}, searchBy=${searchBy}, searchItem=${searchItem})}"
+						class="btn btn-danger">답변달기</a>
+
+
+
+					<a th:href="@{/cca/boardList(searchBy=${searchBy}, searchItem=${searchItem})}"
+						class="btn btn-info">목록</a>
+				</th>
+
+			</tr>
+		</table>
+		<input type="button" <!-- 댓글 목록 부분 -->
+		<div id="answer-list" th:if="${#lists.size(replyList) > 0}">
+			<h2>[관세사 답변 목록]</h2>
+			<p th:if="${#lists.size(replyList) > 0}" th:text="'총 ' + ${#lists.size(replyList)} + '개의 답변이 있습니다.'"></p>
+
+			<!-- 각 답변 정보를 담는 테이블 -->
+			<div th:each="reply, status : ${replyList}">
+				<table border="1">
+					<input type="hidden" id="replyNum" th:value="${reply.replyNum}">
+					<tr>
+						<th>작성자</th>
+						<td th:text="${reply.replyWriter}">답변자</td>
+					</tr>
+					<tr>
+						<th>답변 작성일</th>
+						<td>
+							<span th:text="${#temporals.format(reply.replyDate, 'yyyy-MM-dd hh:mm:ss')}">작성일</span>
+						</td>
+					</tr>
+
+					<tr>
+						<th>내용</th>
+						<td><textarea th:text="${reply.replyContent}">답변내용</textarea></td>
+					</tr>
+					<tr>
+						<td colspan="2">
+							<!-- 답변 채택 버튼 -->
+							<input type="button" class="chooseAnswerBtn" value="답변 채택"
+								data-reply-num="${reply.replyNum}">
+
+							<!-- 답변 수정 버튼 -->
+							<a th:href="@{/cca/replyUpdate(replyNum=${reply.replyNum},consultNum=${consult.consultNum}, searchBy=${searchBy}, searchItem=${searchItem})}"
+								class="btn btn-primary">답변 수정</a>
+							<a th:href="@{/cca/replyDelete(replyNum=${reply.replyNum},consultNum=${consult.consultNum},searchBy=${searchBy},searchItem=${searchItem})}"
+								class="btn btn-primary">답변 삭제</a>
+
+
+						</td>
+					</tr>
+				</table>
 			</div>
+		</div>
 
 
 
 </body>
+
 </html>

@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detail Info</title>
 </head>
+
 <body>
     <!-- 홈으로 돌아가는 로고 이미지-->
     <div class="logo">
@@ -30,7 +32,7 @@
                 <th>간이정액환급</th>
                 <td colspan="3">
                     <span th:unless="${#strings.isEmpty(refundsWon)}">
-                    [[ ${refundsWon} ]] 원 (2024-01-01 ~ )(10,000원당 환급액)
+                        [[ ${refundsWon} ]] 원 (2024-01-01 ~ )(10,000원당 환급액)
                     </span>
                 </td>
             </tr>
@@ -78,7 +80,7 @@
                     <td th:if="${tax.txtpSgn} == 'FCECR1'">한ㆍ중미 FTA협정세율_코스타리카(선택1)</td>
                     <td th:if="${tax.txtpSgn} == 'FCEHN1'">한ㆍ중미 FTA협정세율_온두라스(선택1)</td>
                     <td th:if="${tax.txtpSgn} == 'FCENI1'">한ㆍ중미 FTA협정세율_니카라과(선택1)</td>
-                    <td th:if="${tax.txtpSgn} == 'FCEPA1'">	한ㆍ중미 FTA협정세율_파나마(선택1)</td>
+                    <td th:if="${tax.txtpSgn} == 'FCEPA1'"> 한ㆍ중미 FTA협정세율_파나마(선택1)</td>
                     <td th:if="${tax.txtpSgn} == 'FCESV1'">한ㆍ중미 FTA협정세율_엘살바도르(선택1)</td>
                     <td th:if="${tax.txtpSgn} == 'FCL1'">한ㆍ칠레FTA협정세율(선택1)</td>
                     <td th:if="${tax.txtpSgn} == 'FCN1'">한ㆍ중국 FTA협정세율(선택1)</td>
@@ -112,14 +114,14 @@
         <h3>수출</h3>
         <div th:unless="${exCheckList[0] == null and exCheckList[1] == null}">
             <ul th:each="exCheck : ${exCheckList}">
-                <li th:text="${exCheck}"></li> 
+                <li th:text="${exCheck}"></li>
             </ul>
         </div>
 
         <h3>수입</h3>
         <div th:unless="${imCheckList[0] == null and imCheckList[1] == null}">
             <ul th:each="imCheck : ${imCheckList}">
-                <li th:text="${imCheck}"></li> 
+                <li th:text="${imCheck}"></li>
             </ul>
         </div>
     </div>
@@ -133,24 +135,25 @@
     <!-- 관세사 상담 연결 버튼 -->
     <div>
         More Info?
-        <a href="#">
+        <a th:href="@{/cca/ccaList}">
             <input type="button" value="관세사 리스트 확인하기">
         </a>
-        <a href="#">
+        <a th:href="@{/cca/ccaWrite}">
             <input type="button" value="관세사와 상담하기">
         </a>
     </div>
 
     <script>
-        document.getElementById('tax-priority').addEventListener('click', function() {
+        document.getElementById('tax-priority').addEventListener('click', function () {
             let options = "width=900, height=700, top=200, left=300"
 
             window.open("/subhead/popup", "_blank", options)
         })
 
-        document.getElementById('strategic-mat').addEventListener("click", function() {
+        document.getElementById('strategic-mat').addEventListener("click", function () {
             window.open("https://www.yestrade.go.kr/search/search.do?method=intro", "_self")
         })
     </script>
 </body>
+
 </html>
