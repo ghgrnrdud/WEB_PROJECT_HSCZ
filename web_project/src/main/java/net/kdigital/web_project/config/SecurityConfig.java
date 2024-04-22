@@ -27,13 +27,14 @@ public class SecurityConfig {
 				, "user/login"
 				, "/user/joinProc"
 				, "user/loginProc"
-				, "/trade/statShow"
-				, "/trage/stringChart"
+				, "/trade/showStat"
+				, "/trade/stringChart"
 				, "/trade/pieChart"
 				, "/trade/xyCluster"
 				, "/trade/StackCluster"
 				, "/trade/Exbarchart"
 				, "/trade/Ixbarchart"
+				, "/assets/**"
 				).permitAll()
 				.requestMatchers("/admin/**").hasRole("ADMIN")
 				.requestMatchers("/my/**").hasAnyRole("ADMIN", "USER", "CCA") // *********** 이게 맞나????

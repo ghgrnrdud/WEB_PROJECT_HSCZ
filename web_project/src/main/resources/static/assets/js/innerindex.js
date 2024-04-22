@@ -682,7 +682,7 @@ function createPie(id, div, country, year) {
   console.log(resp);
   $.each(resp, function(index, item) {
     if(item.importMarket != "총계" && item.dateYear == year && item.country == country){
-      console.log(item);
+      // console.log(item);
       var percentile = parseFloat(item.percentile.replace('%', '')); // '%' 문자 제거 후 실수로 변환
       data.push({
         "country": item.importMarket,
@@ -966,7 +966,7 @@ function createBar(id, div, country, year, type) {
 };// end createBar
 
   function createRealBar(id, div, resp, country, year) {
-    console.log(resp);
+  console.log(resp);
     var space = document.getElementById("chart4");
     var root;
 
@@ -1159,7 +1159,6 @@ function createBar(id, div, country, year, type) {
 // =============================== StringChart ==============================================
 // ==========================================================================================\
 function createString(id, div, country) {
-
   $.ajax({
     url: "/trade/stringChart"
     ,method: "GET"

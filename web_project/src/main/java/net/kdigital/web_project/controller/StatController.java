@@ -53,9 +53,9 @@ public class StatController {
 			@RequestParam(name="country", defaultValue="CN") String country,
 			Model model
 			) {
-		log.info("{}", country);
+		log.info("stringChart : {}", country);
 		List<BycounImExPriceDTO> list = imexService.bycounImExPrice(country);
-//		log.info("==========={}", list.toString());
+		log.info("=========== stringChart : {}", list.toString());
 		return list;
 	}//end stringChart
 	
