@@ -24,7 +24,7 @@ public class SecurityConfig {
 		.authorizeHttpRequests((auth) -> auth.requestMatchers(
 				"/"	// ************************ 다시 설정 필요 
 				, "/user/join"
-				, "user/login"
+				, "/user/login"
 				, "/user/joinProc"
 				, "user/loginProc"
 				, "/trade/showStat"
