@@ -25,6 +25,10 @@
  * http://www.apache.org/licenses/LICENSE-2.0
  */
 
+body {
+  font-family: 'Spoqa Han Sans Neo', 'sans-serif';
+}
+
 .bootstrap-switch {
   display: inline-block;
   direction: ltr;
@@ -4475,8 +4479,7 @@ License - nucleoapp.com/license/
 
 
 .navbar {
-  position: absolute;
-  /* 4/19에 추가 */
+  position: absolute; /* 4/19에 추가 */
   top: 0;
   border: 0;
   font-size: 14px;
@@ -6823,7 +6826,7 @@ License - nucleoapp.com/license/
 
 .presentation-title {
   position: relative;
-  font-size: 4em;
+  font-size: 3em;
   font-weight: 700;
   margin: 0;
   color: #FFFFFF;
@@ -6839,7 +6842,7 @@ License - nucleoapp.com/license/
 
 .presentation-subtitle {
   position: relative;
-  font-size: 1.3em;
+  font-size: 1em;
   font-weight: 600;
   color: #FFFFFF;
   z-index: 3;

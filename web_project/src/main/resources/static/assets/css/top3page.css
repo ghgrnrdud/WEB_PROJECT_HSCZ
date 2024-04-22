@@ -1,0 +1,56 @@
+@import "without-sidebar.css";
+
+/* 4/21 대시보드 제작시 배경색과 섹션 색 지정 */
+/* body {
+    background-color: #eff3f5;
+} */
+
+/* .test-box {
+    width: 300px;
+    height: 300px;
+    background-color: white;
+} */
+
+.top3-section {
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap; /* 줄바꿈 허용 */
+    justify-content: space-evenly;
+}
+
+.top3-section > div {
+    display: inline-block; /* 또는 'flex'로 설정 */
+}
+
+table {
+    width: 300px;
+    height: 350px;
+    border: 2px solid #10538a;
+    border-radius: 5px;
+}
+
+.top3-code {
+    /* display: inline-block; */
+    text-align: center;
+    /* width: 300px; */
+    height: 70px;
+    margin-bottom: 0;
+    background-color: #10538a;
+    
+    padding-top: 10px;
+}
+
+.top3-code:hover {
+    background-color: #90a7cfc3;
+}
+
+.top3-code a h2{
+    color: white;
+    font-weight: bolder;
+}
+
+.top3-description {
+    /* width: 300px; */
+    border: 2px solid #10538a;
+    border-radius: 5px;
+}
