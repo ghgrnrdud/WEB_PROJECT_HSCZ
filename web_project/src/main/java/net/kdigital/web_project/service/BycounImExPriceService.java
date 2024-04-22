@@ -18,6 +18,7 @@ public class BycounImExPriceService {
 
 	private final BycounImExPriceRepository imexRepository;
 	public List<BycounImExPriceDTO> bycounImExPrice(String country) {
+		log.info("string나라{}", country);
 		List<BycounImExPriceEntity> entityList = imexRepository.findAllByCountryOrderBySeq6Desc(country);
 		log.info("string {}", entityList);
 		List<BycounImExPriceDTO> dtoList = new ArrayList<>();
