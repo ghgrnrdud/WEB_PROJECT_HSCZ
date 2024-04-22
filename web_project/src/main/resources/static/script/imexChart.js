@@ -162,7 +162,7 @@ function exportPieChart(countryList, exRankingList, exAmountList) {
         var chart = root.container.children.push(
             am5percent.PieChart.new(root, {
             endAngle: 270,
-            radius: am5.percent(40)
+            radius: am5.percent(60)
             })
         );
         
@@ -177,8 +177,7 @@ function exportPieChart(countryList, exRankingList, exAmountList) {
         );
 
         series.labels.template.setAll({
-            fontSize: 10,
-            fill: am5.color(0x550000),
+            fontSize: 14,
             text: "{category}"
         });
 
@@ -231,7 +230,7 @@ function importPieChart(countryList, imRankingList, imAmountList) {
         var chart = root.container.children.push(
             am5percent.PieChart.new(root, {
             endAngle: 270,
-            radius: am5.percent(40)
+            radius: am5.percent(60)
             })
         );
         
@@ -246,8 +245,7 @@ function importPieChart(countryList, imRankingList, imAmountList) {
         );
         
         series.labels.template.setAll({
-            fontSize: 10,
-            fill: am5.color(0x550000),
+            fontSize: 14,
             text: "{category}"
         });
 

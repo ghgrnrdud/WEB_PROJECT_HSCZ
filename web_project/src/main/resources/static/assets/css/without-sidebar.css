@@ -167,13 +167,142 @@ nav ul,nav li {
     src: local('Titillium WebLight'), local('TitilliumWeb-Light'), url(http://themes.googleusercontent.com/static/fonts/titilliumweb/v2/anMUvcNT0H1YN4FII8wpr24bNCNEoFTpS2BTjF6FB5E.woff) format('woff');
 }
 
-
+/* 레이아웃 설정 */
 .content {
     width: 1200px;
     padding-top: 40px;
-    margin-right: 55px;
+    /* margin-right: 55px;
+    margin: 0 auto; */
+    margin-left: calc((100% - 1200px - 55px) / 2);
+    margin-right: auto;
+    margin-bottom: 90px;
 }
 
 .navbar {
     margin-right: 55px;
+}
+
+/* Navbar 컨테이너 */
+.navbar {
+    display: flex; /* Flexbox를 활성화 */
+    flex-wrap: wrap; /* 요소들이 너비를 초과하면 다음 줄로 이동 */
+    align-items: center; /* 세로 축 중앙 정렬 */
+    justify-content: space-between; /* 요소들 사이에 공간을 균등하게 분배 */
+}
+
+/* Navbar 로고 또는 브랜드 */
+.navbar-brand {
+    flex-grow: 1; /* 나머지 공간을 채움 */
+}
+
+/* Navbar 메뉴 */
+.navbar-nav {
+    display: flex; /* Flexbox를 활성화 */
+    list-style: none; /* 리스트 스타일 제거 */
+    padding: 0; /* 패딩 제거 */
+}
+
+/* Navbar 메뉴 항목 */
+.nav-item {
+    padding: 0 15px; /* 좌우 패딩 설정 */
+}
+
+.footer-wave {
+    position: relative;
+    width: 100%;
+    background: #3586ff;
+    background-size: cover;
+    min-height: 25px;
+    padding: 20px 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 1400;
+}
+
+.footer-wave-menu {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0;
+    flex-wrap: wrap;
+}
+
+.menu__item {
+    list-style: none;
+}
+
+.menu__link {
+    font-size: 1.2rem;
+    color: #fff;
+    margin: 0 10px;
+    display: inline-block;
+    transition: 0.5s;
+    text-decoration: none;
+    opacity: 0.75;
+    font-weight: 300;
+}
+
+.menu__link:hover {
+    opacity: 1;
+}
+
+.wave {
+    position: absolute;
+    top: -50px;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    background: url("https://i.ibb.co/wQZVxxk/wave.png");
+    background-size: 1000px 50px;
+}
+
+.wave#wave1 {
+    z-index: 1000;
+    opacity: 1;
+    bottom: 0;
+    animation: animateWaves 4s linear infinite;
+}
+
+.wave#wave2 {
+    z-index: 999;
+    opacity: 0.5;
+    bottom: 5px;
+    animation: animate 4s linear infinite !important;
+}
+
+.wave#wave3 {
+    z-index: 1000;
+    opacity: 0.2;
+    bottom: 7.5px;
+    animation: animateWaves 3s linear infinite;
+}
+
+.wave#wave4 {
+    z-index: 999;
+    opacity: 0.7;
+    bottom: 10px;
+    animation: animate 3s linear infinite;
+}
+
+@keyframes animateWaves {
+    0% {
+        background-position-x: 1000px;
+    }
+
+    100% {
+        background-positon-x: 0px;
+    }
+}
+
+@keyframes animate {
+    0% {
+        background-position-x: -1000px;
+    }
+
+    100% {
+        background-positon-x: 0px;
+    }
 }
