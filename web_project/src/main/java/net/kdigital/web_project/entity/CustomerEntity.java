@@ -1,8 +1,15 @@
 package net.kdigital.web_project.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OrderBy;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -49,6 +56,17 @@ public class CustomerEntity {
 	
 	@Column(name="self_info")
 	private String selfInfo;
+	
+	/* item table과 관계설정
+	 * 
+	 */
+	@OneToMany(mappedBy = "customerEntity"
+			, cascade = CascadeType.REMOVE
+			, orphanRemoval = true
+			, fetch = FetchType.LAZY
+			)
+	@OrderBy("item_id asc")
+	private List<CustomerItemEntity> customerItemEntity = new ArrayList<>();
 	
 	public static CustomerEntity toEntity(CustomerDTO customerDTO) {
 		return CustomerEntity.builder()

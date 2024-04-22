@@ -5,12 +5,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.kdigital.web_project.dto.CustomerDTO;
+import net.kdigital.web_project.dto.CustomerItemDTO;
+import net.kdigital.web_project.service.CustomerItemService;
 import net.kdigital.web_project.service.CustomerService;
 
 @Controller
@@ -18,6 +19,7 @@ import net.kdigital.web_project.service.CustomerService;
 @RequiredArgsConstructor
 public class UserController {
 	public final CustomerService customerService;
+	public final CustomerItemService customerItemService;
 	
 	// 회원가입 화면 요청
 	@GetMapping("/user/join") 
@@ -27,9 +29,11 @@ public class UserController {
 
 	// 회원 저장
 	@PostMapping("/user/joinProc")
-	public String joinProc(@ModelAttribute CustomerDTO customerDTO) {
+	public String joinProc(@ModelAttribute CustomerDTO customerDTO
+			, @ModelAttribute CustomerItemDTO customerItemDTO) {
 		
 		customerService.joinProc(customerDTO);
+		customerItemService.insertItem(customerItemDTO);
 		return "redirect:/";
 	}
 	
