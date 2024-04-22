@@ -171,10 +171,9 @@ nav ul,nav li {
 .content {
     width: 1200px;
     padding-top: 40px;
-    margin: 0 auto;
+    margin-right: 55px;
 }
 
 .navbar {
-    margin-right: 55px; /* 변경 */
-    margin-left: 0; /* 기존의 값을 제거 */
+    margin-right: 55px;
 }
