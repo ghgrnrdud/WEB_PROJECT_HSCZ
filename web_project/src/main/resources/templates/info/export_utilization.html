@@ -4,56 +4,26 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>FTA 활용정보</title>
-	<script th:src="@{/script/jquery-3.7.1.min.js}"></script>
+	<title>수출활용정보</title>
+	<!--font-->
 	<link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css' rel='stylesheet' type='text/css'>
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+
+	<!--css-->
+	<link th:href="@{/assets/css/bootstrap.min.css}" rel="stylesheet" />
+	<link th:href="@{/assets/css/with-sidebar.css}" rel="stylesheet" />
+
+	<link th:href="@{/assets/demo/demo.css}" rel="stylesheet" />
+
+	<!-- Resources -->
+	<script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+	<script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
+	<script src="https://cdn.amcharts.com/lib/5/percent.js"></script>
+	<script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+	<script th:src="@{/script/jquery-3.7.1.min.js}"></script>
 
 
 	<style>
-		body {
-			font-family: 'Spoqa Han Sans Neo', 'sans-serif';
-		}
-
-		.nav_menu {
-			list-style-type: none;
-			margin: 0;
-			padding: 0;
-			width: 15%;
-			background-color: #07043b;
-			height: 100%;
-			position: fixed;
-			overflow: auto;
-		}
-
-		.nav_menu_li a {
-			display: block;
-			color: white;
-			padding: 8px 16px;
-			text-decoration: none;
-			text-align: center;
-			border-bottom: 1px solid white;
-		}
-
-		.nav_menu_li a:hover {
-			background-color: #ffffff;
-			color: darkblue;
-		}
-
-		.nav_menu_li:last-child {
-			border-bottom: none;
-		}
-
-		.active {
-			background-color: lightblue;
-			color: white;
-		}
-
-		#cntntsView {
-			margin-left: 15%;
-			padding: 1px 16px;
-			height: 1000px;
-		}
-
 		.box,
 		hr {
 			display: none;
@@ -77,18 +47,147 @@
 </head>
 
 <body>
-	<nav class="navbar">
-		<ul class="nav_menu">
-			<li class="nav_menu_li"><a th:href="@{/info/infoList}">FTA정보</a></li>
-			<li class="nav_menu_li"><a th:href="@{/info/origin}">원산지결정기준</a></li>
-			<li class="nav_menu_li"><a th:href="@{/info/country}">FTA협정국</a></li>
-			<li class="nav_menu_li"><a th:href="@{/info/tarrifrate}">세율정보</a></li>
-			<li class="nav_menu_li active"><a th:href="@{/info/export_utilization}">수출활용정보</a></li>
-			<li class="nav_menu_li"><a th:href="@{/info/import_utilization}">수입활용정보</a></li>
-		</ul>
+	<!-- Navbar -->
+	<nav class="navbar navbar-expand-lg fixed-top navbar-transparent " color-on-scroll="300">
+		<div class="container">
+			<div class="navbar-translate">
+				<a class="navbar-brand" th:href="@{/}" rel="tooltip" title="HSCode Zoom" data-placement="bottom"
+					target="_self">
+					<img th:src="@{/images/web-logo9.png}" alt="로고">
+				</a>
+				<button class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse"
+					data-target="#navigation" aria-controls="navigation-index" aria-expanded="false"
+					aria-label="Toggle navigation">
+					<span class="navbar-toggler-bar bar1"></span>
+					<span class="navbar-toggler-bar bar2"></span>
+					<span class="navbar-toggler-bar bar3"></span>
+				</button>
+			</div>
+			<div class="collapse navbar-collapse justify-content-end" id="navigation">
+				<ul class="navbar-nav">
+					<li class="nav-item">
+						<a class="nav-link" rel="tooltip" data-placement="bottom"
+							href="https://demos.creative-tim.com/paper-kit/index.html" target="_blank">
+							무역뉴스
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" rel="tooltip" data-placement="bottom"
+							href="https://demos.creative-tim.com/paper-kit/index.html" target="_blank">
+							FTA정보
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" rel="tooltip" data-placement="bottom"
+							href="https://demos.creative-tim.com/paper-kit/index.html" target="_blank">
+							무역통계
+						</a>
+					</li>
+
+					<div class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" data-toggle="dropdown" id="dropdownMenuButton" href="#pk"
+							role="button" aria-haspopup="true" aria-expanded="false">관세사상담</a>
+						<ul class="dropdown-menu dropdown-info" aria-labelledby="dropdownMenuButton">
+							<a class="dropdown-item" href="#pk">관세사목록</a>
+							<a class="dropdown-item" href="#pk">상담목록</a>
+							<a class="dropdown-item" href="#pk">상담하기</a>
+						</ul>
+					</div>
+
+
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<!-- End Navbar -->
+
+	<!-- page-header 시작-->
+	<div class="page-header section-dark" th:style="'background-image: url(\'' + @{/images/cover-img1.jpg} + '\')'">
+		<div class="filter"></div>
+		<div class="content-center">
+			<div class="container">
+				<div class="title-brand">
+					<h1 class="presentation-title">수출활용정보</h1>
+					<h3 class="presentation-subtitle"></h3>
+				</div>
+			</div> <!--div.content-center-->
+		</div>
+	</div>
+	<!-- End page-header -->
+
+	<!-- 왼쪽 사이드바 -->
+	<section id="menubar">
+		<div id="menubar-nav">
+			<ul>
+				<li><a th:href="@{/info/infoList}">FTA정보</a></li>
+				<li><a th:href="@{/info/origin}">원산지결정기준</a></li>
+				<li><a th:href="@{/info/country}">FTA협정국</a></li>
+				<li><a th:href="@{/info/tarrifrate}">세율정보</a></li>
+				<li class="active"><a th:href="@{/info/export_utilization}">수출활용정보</a></li>
+				<li><a th:href="@{/info/import_utilization}">수입활용정보</a></li>
+			</ul>
+		</div>
+	</section>
+	<!-- 왼쪽 사이드바 End-->
+
+	<!-- side-bar 시작-->
+	<nav class="main-menu">
+		<div class="settings"></div>
+		<div class="scrollbar" id="style-1">
+			<ul>
+				<li class="menu-img">
+					<a href="#">
+						<i class="fa fa-solid fa-bars fa-lg"></i>
+						<span class="nav-text">Menu</span>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<i class="fa fa-solid fa-newspaper fa-lg"></i>
+						<span class="nav-text">무역뉴스</span>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<i class="fa fa-solid fa-book fa-lg"></i>
+						<span class="nav-text">FTA정보</span>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<i class="fa fa-solid fa-chart-simple fa-lg"></i>
+						<span class="nav-text">무역통계</span>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<i class="fa fa-solid fa-handshake fa-lg"></i>
+						<span class="nav-text">관세사상담</span>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<i class="fa fa-regular fa-user fa-lg"></i>
+						<span class="nav-text">로그인</span>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<i class="fa fa-user fa-lg"></i>
+						<span class="nav-text">로그아웃</span>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						<i class="fa fa-solid fa-house-user fa-lg"></i>
+						<span class="nav-text">마이페이지</span>
+					</a>
+				</li>
+			</ul>
+		</div>
 	</nav>
 
-	<div id="cntntsView">
+	<div class="content">
 		<h2>수출활용</h2>
 
 		<p class="bu_atte mgb10">FTA 수출통관 제도를 이용하기 위해서는 다음과 같은 <span class="pc_red">순차적인 절차</span>가 필요합니다.</p>
@@ -525,6 +624,21 @@
 
 
 	</div>
+	<!--script-->
+	<script th:src="@{/assets/js/core/jquery.min.js}" type="text/javascript"></script>
+	<script th:src="@{/assets/js/core/popper.min.js}" type="text/javascript"></script>
+	<script th:src="@{/assets/js/core/bootstrap.min.js}" type="text/javascript"></script>
+
+	<script th:src="@{/assets/js/plugins/bootstrap-switch.js}"></script>
+
+	<script th:src="@{/assets/js/plugins/nouislider.min.js}" type="text/javascript"></script>
+
+	<script th:src="@{/assets/js/plugins/moment.min.js}"></script>
+	<script th:src="@{/assets/js/plugins/bootstrap-datepicker.js}" type="text/javascript"></script>
+
+	<script th:src="@{/assets/js/paper-kit.min.js?v=2.2.0}" type="text/javascript"></script>
+	<script type="text/javascript"
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTTfWur0PDbZWPr7Pmq8K3jiDp0_xUziI"></script>
 
 </body>
 
