@@ -4,23 +4,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="apple-touch-icon" sizes="76x76" th:href="@{/assets/img//apple-icon.png}">
-    <link rel="icon" type="image/png" th:href="@{/assets/img//favicon.png}">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
-        name='viewport' />
-    <!--     Fonts and icons     -->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet">
+    <title>FTA정보</title>
+    <!--font-->
+    <link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css' rel='stylesheet' type='text/css'>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
-    <!-- CSS Files -->
+
+    <!--css-->
     <link th:href="@{/assets/css/bootstrap.min.css}" rel="stylesheet" />
-    <link th:href="@{/assets/css/paper-kit.css?v=2.2.0}" rel="stylesheet" />
-    <!-- CSS Just for demo purpose, don't include it in your project -->
+    <link th:href="@{/assets/css/with-sidebar.css}" rel="stylesheet" />
+
     <link th:href="@{/assets/demo/demo.css}" rel="stylesheet" />
-    <title>FTA 정보</title>
+
+    <!-- Resources -->
+    <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/percent.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
     <style>
+        body {
+            font-family: 'Spoqa Han Sans Neo', 'sans-serif';
+        }
+
         .countryBtn {
-            background-color: #d5dddf;
+            background-color: #eef4ed;
             border: none;
             color: #000;
             padding: 5px 10px;
@@ -35,7 +41,7 @@
         }
 
         .countryBtn:hover {
-            background-color: #6b8e4e;
+            background-color: #092142;
             color: #fff;
         }
 
@@ -71,9 +77,9 @@
     <nav class="navbar navbar-expand-lg fixed-top navbar-transparent " color-on-scroll="300">
         <div class="container">
             <div class="navbar-translate">
-                <a class="navbar-brand" href="index.html" rel="tooltip" title="Coded by Creative Tim"
-                    data-placement="bottom" target="_blank">
-                    HSCZ
+                <a class="navbar-brand" th:href="@{/}" rel="tooltip" title="HSCode Zoom" data-placement="bottom"
+                    target="_self">
+                    <img th:src="@{/images/web-logo9.png}" alt="로고">
                 </a>
                 <button class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse"
                     data-target="#navigation" aria-controls="navigation-index" aria-expanded="false"
@@ -88,18 +94,12 @@
                     <li class="nav-item">
                         <a class="nav-link" rel="tooltip" data-placement="bottom"
                             href="https://demos.creative-tim.com/paper-kit/index.html" target="_blank">
-                            Home
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" rel="tooltip" data-placement="bottom"
-                            href="https://demos.creative-tim.com/paper-kit/index.html" target="_blank">
                             무역뉴스
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" rel="tooltip" data-placement="bottom"
-                            href="https://demos.creative-tim.com/paper-kit/index.html" target="_blank">
+                        <a class="nav-link" rel="tooltip" data-placement="bottom" th:href="@{/info/infoList}"
+                            target="_blank">
                             FTA정보
                         </a>
                     </li>
@@ -111,15 +111,15 @@
                     </li>
 
                     <!-- <li class="nav-item">
-                        <a class="nav-link" rel="tooltip" data-placement="bottom"
-                            href="https://demos.creative-tim.com/paper-kit/index.html" target="_blank">
-                            관세사 Matching
-                        </a>
-                    </li> -->
+						<a class="nav-link" rel="tooltip" data-placement="bottom"
+							href="https://demos.creative-tim.com/paper-kit/index.html" target="_blank">
+							관세사 Matching
+						</a>
+					</li> -->
 
                     <div class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" id="dropdownMenuButton" href="#pk"
-                            role="button" aria-haspopup="true" aria-expanded="false">관세사 Matching</a>
+                            role="button" aria-haspopup="true" aria-expanded="false">관세사상담</a>
                         <ul class="dropdown-menu dropdown-info" aria-labelledby="dropdownMenuButton">
                             <a class="dropdown-item" href="#pk">관세사목록</a>
                             <a class="dropdown-item" href="#pk">상담목록</a>
@@ -128,32 +128,25 @@
                     </div>
 
 
-                    <li class="nav-item">
-                        <a class="nav-link" rel="tooltip" data-placement="bottom"
-                            href="https://demos.creative-tim.com/paper-kit/index.html" target="_blank">
-                            로그인
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" rel="tooltip" data-placement="bottom"
-                            href="https://demos.creative-tim.com/paper-kit/index.html" target="_blank">
-                            로그아웃
-                        </a>
-                    </li>
                 </ul>
             </div>
         </div>
     </nav>
     <!-- End Navbar -->
-    <div class="page-header section-dark" style="background-color: #1b2727;">
+
+    <!-- page-header 시작-->
+    <div class="page-header section-dark" th:style="'background-image: url(\'' + @{/images/cover-img1.jpg} + '\')'">
+        <div class="filter"></div>
         <div class="content-center">
             <div class="container">
                 <div class="title-brand">
-                    <h1 class="presentation-title">FTA정보</h1>
+                    <h1 class="presentation-title">무역뉴스</h1>
+                    <h3 class="presentation-subtitle"></h3>
                 </div>
             </div> <!--div.content-center-->
         </div>
     </div>
+    <!-- End page-header -->
     <div id="worldMap">
         <h3 style="font-weight: bolder;">FTA 체결 현황</h3>
         <div id="changeBtns">

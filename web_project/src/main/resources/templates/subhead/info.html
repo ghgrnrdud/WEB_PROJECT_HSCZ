@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,6 +15,7 @@
 
     <link th:href="@{/assets/demo/demo.css}" rel="stylesheet" />
 </head>
+
 <body>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg fixed-top navbar-transparent " color-on-scroll="300">
@@ -137,7 +139,41 @@
         </div>    
     </nav>
 
+<<<<<<< HEAD
     <div class="content">
+=======
+    <!-- 10자리 코드의 기본 정보 -->
+    <div class="info">
+        <table border="1">
+            <tr>
+                <th>품목번호</th>
+                <td th:text="${hsCode}"></td>
+                <th>단위(중량/수량)</th>
+                <td>[[ ${wght} ]] / [[ ${qty} ]]</td>
+            </tr>
+            <tr>
+                <th>품명</th>
+                <td th:text="${koDescription}" colspan="3"></td>
+            </tr>
+            <tr>
+                <th>간이정액환급</th>
+                <td colspan="3">
+                    <span th:unless="${#strings.isEmpty(refundsWon)}">
+                        [[ ${refundsWon} ]] 원 (2024-01-01 ~ )(10,000원당 환급액)
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <th>원산지</th>
+                <td colspan="3">
+                    <span th:if="${isOrigin}">
+                        원산지표시대상 ( Y )
+                    </span>
+                </td>
+            </tr>
+        </table>
+    </div>
+>>>>>>> 18502565116ef29917f861afb1863956da52907a
 
         <!-- 10자리 코드의 기본 정보 -->
         <div class="info">
@@ -148,6 +184,7 @@
                     <th>단위(중량/수량)</th>
                     <td>[[ ${wght} ]] / [[ ${qty} ]]</td>
                 </tr>
+<<<<<<< HEAD
                 <tr>
                     <th>품명</th>
                     <td th:text="${koDescription}" colspan="3"></td>
@@ -231,6 +268,70 @@
                     </tr>
                 </tbody>
             </table>
+=======
+            </thead>
+            <tbody>
+                <tr th:each="tax : ${list}">
+                    <td th:text="${tax.txtpSgn}"></td>
+                    <td th:text="|${tax.txrt}%|"></td>
+                    <!--관세구분-->
+                    <td th:if="${tax.txtpSgn} == 'A'">기본세율</td>
+                    <td th:if="${tax.txtpSgn} == 'C'">WTO협정세율</td>
+                    <td th:if="${tax.txtpSgn} == 'E1'">아시아ㆍ태평양 협정세율(일반)</td>
+                    <td th:if="${tax.txtpSgn} == 'E2'">아시아ㆍ태평양 협정세율(방글라데시)</td>
+                    <td th:if="${tax.txtpSgn} == 'E3'">아시아ㆍ태평양 협정세율(라오스)</td>
+                    <td th:if="${tax.txtpSgn} == 'R'">최빈국특혜관세</td>
+                    <td th:if="${tax.txtpSgn} == 'U'">북한산</td>
+                    <td th:if="${tax.txtpSgn} == 'FAS1'">한ㆍ아세안 FTA협정세율(선택1)</td>
+                    <td th:if="${tax.txtpSgn} == 'FAU1'">한ㆍ호주 FTA협정세율(선택1)</td>
+                    <td th:if="${tax.txtpSgn} == 'FCA1'">한ㆍ캐나다 FTA협정세율(선택1)</td>
+                    <td th:if="${tax.txtpSgn} == 'FCECR1'">한ㆍ중미 FTA협정세율_코스타리카(선택1)</td>
+                    <td th:if="${tax.txtpSgn} == 'FCEHN1'">한ㆍ중미 FTA협정세율_온두라스(선택1)</td>
+                    <td th:if="${tax.txtpSgn} == 'FCENI1'">한ㆍ중미 FTA협정세율_니카라과(선택1)</td>
+                    <td th:if="${tax.txtpSgn} == 'FCEPA1'"> 한ㆍ중미 FTA협정세율_파나마(선택1)</td>
+                    <td th:if="${tax.txtpSgn} == 'FCESV1'">한ㆍ중미 FTA협정세율_엘살바도르(선택1)</td>
+                    <td th:if="${tax.txtpSgn} == 'FCL1'">한ㆍ칠레FTA협정세율(선택1)</td>
+                    <td th:if="${tax.txtpSgn} == 'FCN1'">한ㆍ중국 FTA협정세율(선택1)</td>
+                    <td th:if="${tax.txtpSgn} == 'FCO1'">한ㆍ콜롬비아FTA협정세율(선택1)</td>
+                    <td th:if="${tax.txtpSgn} == 'FEF1'">한ㆍEFTA FTA협정세율(선택1)</td>
+                    <td th:if="${tax.txtpSgn} == 'FEU1'">한ㆍEU FTA협정세율(선택1)</td>
+                    <td th:if="${tax.txtpSgn} == 'FGB1'">한ㆍ영국 FTA협정세율(선택1)</td>
+                    <td th:if="${tax.txtpSgn} == 'FID1'">한ㆍ인도네시아 CEPA(선택1)</td>
+                    <td th:if="${tax.txtpSgn} == 'FIL1'">한ㆍ이스라엘 FTA(선택1)</td>
+                    <td th:if="${tax.txtpSgn} == 'FIN1'">한ㆍ인도 FTA협정세율(선택1)</td>
+                    <td th:if="${tax.txtpSgn} == 'FKH1'">한ㆍ캄보디아 FTA(선택1)</td>
+                    <td th:if="${tax.txtpSgn} == 'FNZ1'">한ㆍ뉴질랜드 FTA협정세율(선택1)</td>
+                    <td th:if="${tax.txtpSgn} == 'FPE1'">한ㆍ페루 FTA협정세율(선택1)</td>
+                    <td th:if="${tax.txtpSgn} == 'FRCAS1'">RCEP협정세율_아세안(선택1)</td>
+                    <td th:if="${tax.txtpSgn} == 'FRCAU1'">RCEP협정세율_호주(선택1)</td>
+                    <td th:if="${tax.txtpSgn} == 'FRCCN1'">RCEP협정세율_중국(선택1)</td>
+                    <td th:if="${tax.txtpSgn} == 'FRCJP1'">RCEP협정세율_일본(선택1)</td>
+                    <td th:if="${tax.txtpSgn} == 'FRCNZ1'">RCEP협정세율_뉴질랜드(선택1)</td>
+                    <td th:if="${tax.txtpSgn} == 'FSG1'">한ㆍ싱가포르FTA협정세율(선택1)</td>
+                    <td th:if="${tax.txtpSgn} == 'FTR1'">한ㆍ터키 FTA협정세율(선택1)</td>
+                    <td th:if="${tax.txtpSgn} == 'FUS1'">한ㆍ미 FTA 협정세율(선택1)</td>
+                    <td th:if="${tax.txtpSgn} == 'FVN1'">한ㆍ베트남 FTA협정세율(선택1)</td>
+                    <!--관세구분 끝-->
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h3>[ 수출입요건 ]</h3>
+    <div class="check-list">
+        <h3>수출</h3>
+        <div th:unless="${exCheckList[0] == null and exCheckList[1] == null}">
+            <ul th:each="exCheck : ${exCheckList}">
+                <li th:text="${exCheck}"></li>
+            </ul>
+        </div>
+
+        <h3>수입</h3>
+        <div th:unless="${imCheckList[0] == null and imCheckList[1] == null}">
+            <ul th:each="imCheck : ${imCheckList}">
+                <li th:text="${imCheck}"></li>
+            </ul>
+>>>>>>> 18502565116ef29917f861afb1863956da52907a
         </div>
 
         <h3>[ 수출입요건 ]</h3>
@@ -242,6 +343,7 @@
                 </ul>
             </div>
 
+<<<<<<< HEAD
             <h3>수입</h3>
             <div th:unless="${imCheckList[0] == null and imCheckList[1] == null}">
                 <ul th:each="imCheck : ${imCheckList}">
@@ -249,6 +351,18 @@
                 </ul>
             </div>
         </div>
+=======
+    <!-- 관세사 상담 연결 버튼 -->
+    <div>
+        More Info?
+        <a th:href="@{/cca/ccaList}">
+            <input type="button" value="관세사 리스트 확인하기">
+        </a>
+        <a th:href="@{/cca/ccaWrite}">
+            <input type="button" value="관세사와 상담하기">
+        </a>
+    </div>
+>>>>>>> 18502565116ef29917f861afb1863956da52907a
 
         <!-- 세율 외 부가 정보들 -->
         <div>
@@ -271,12 +385,14 @@
     <!--script-->
     <script>
         document.getElementById('tax-priority').addEventListener('click', function() {
+        document.getElementById('tax-priority').addEventListener('click', function () {
             let options = "width=900, height=700, top=200, left=300"
 
             window.open("/subhead/popup", "_blank", options)
         })
 
         document.getElementById('strategic-mat').addEventListener("click", function() {
+        document.getElementById('strategic-mat').addEventListener("click", function () {
             window.open("https://www.yestrade.go.kr/search/search.do?method=intro", "_self")
         })
     </script>
@@ -296,4 +412,5 @@
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTTfWur0PDbZWPr7Pmq8K3jiDp0_xUziI"></script>
     
 </body>
+
 </html>
