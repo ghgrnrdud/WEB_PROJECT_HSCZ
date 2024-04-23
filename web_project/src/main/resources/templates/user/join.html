@@ -8,9 +8,91 @@
     <script th:src="@{/assets/js/jquery-3.7.1.min.js}"></script>
     <script>
         $(function() {
-            $("#ROLE_CCA").on('change', function() {
-                console.log("CCA 체크 확인");
+            $("input[type='radio']").on('change', function() {
+
+            if ($(this).val() === "") {
+                $("#checkRole").html("Role은 필수값입니다<br>");
+            }    
+            // 만약 선택된 라디오 버튼이 "ROLE_CCA"인 경우에 대해서만 처리합니다.
+            if ($(this).val() === 'ROLE_CCA') {
+            // 해당 라디오 버튼이 선택되었는지 확인합니다.
+            if ($(this).is(':checked')) {
+                // 선택되었다면 #ccaNum1과 #ccaNum2의 입력 유형을 텍스트로 변경합니다.
+                $("#ccaNum1").attr('type', 'text');
+                $("#ccaNum2").attr('type', 'text');
+            } else {
+                // 선택되지 않았다면 #ccaNum1과 #ccaNum2의 입력 유형을 숨깁니다.
+                $("#ccaNum1").attr('type', 'hidden');
+                $("#ccaNum2").attr('type', 'hidden');
+            }
+            } else {
+            // "ROLE_CCA" 라디오 버튼이 아닌 경우에는 항상 #ccaNum1과 #ccaNum2의 입력 유형을 숨깁니다.
+            $("#ccaNum1").attr('type', 'hidden');
+            $("#ccaNum2").attr('type', 'hidden');
+        }
+    });
+
+            // null값 방지 check
+            $("#userId").on('keyup', function(){
+                if($(this).val()==""){
+                $("#checkId").html("Id은 필수값입니다<br>");
+            } else {
+                $("#checkId").html(null);
+            }
             })
+
+            $("#userPwd").on('keyup', function(){
+                if($(this).val()==""){
+                $("#checkPwd").html("Pwd은 필수값입니다<br>");
+            } else {
+                $("#checkPwd").html(null);
+            }
+            })
+
+            $("#userName").on('keyup', function(){
+                if($(this).val()==""){
+                $("#checkName").html("Name은 필수값입니다<br>");
+            } else {
+                $("#checkName").html(null);
+            }
+            })
+
+            $("#phone").on('keyup', function(){
+                if($(this).val()==""){
+                $("#checkPhone").html("전화번호는 필수값입니다<br>");
+            } else {
+                $("#checkPhone").html(null);
+            }
+            })
+
+            $("#email").on('keyup', function(){
+                if($(this).val()==""){
+                $("#checkEmail").html("이메일은 필수값입니다<br>");
+            } else {
+                $("#checkEmail").html(null);
+            }
+            })
+
+            $("#ccaNum1").on('keyup', function(){
+                if($(this).val()==""){
+                $("#checkCcaNum").html("자격번호는 필수값입니다<br>");
+            } else {
+                $("#checkCcaNum").html(null);
+            }
+            })
+
+            $("#ccaNum2").on('keyup', function(){
+                if($(this).val()==""){
+                $("#checkCcaNum").html("등록번호는 필수값입니다<br>");
+            } else {
+                $("#checkCcaNum").html(null);
+            }
+            })
+
+            
+
+            
+            
         })
 
     </script>
@@ -20,37 +102,38 @@
     <h2>회원가입</h2>
     <div class="content">
         <form th:action="@{/user/joinProc}" method="POST">
-            <ul>
-                <li>
-                    * <input type="text" name="userId" id="userId" placeholder="ID">
+            <!-- <ul> -->
+                <!-- <li> -->
+                    * <input type="text" name="userId" id="userId" placeholder="ID"><br>
                     <span id="checkId"></span>
-                </li>
-                <li>
-                    * <input type="password" name="userPwd" id="userPwd" placeholder="Password">
+                <!-- </li> -->
+                <!-- <li> -->
+                    * <input type="password" name="userPwd" id="userPwd" placeholder="Password"><br>
                     <span id="checkPwd"></span>
-                </li>
-                <li>
-                    * <input type="text" name="userName" id="userName" placeholder="Name">
+                <!-- </li> -->
+                <!-- <li> -->
+                    * <input type="text" name="userName" id="userName" placeholder="Name"><br>
                     <span id="checkName"></span>
-                </li>
-                <li>
+                <!-- </li> -->
+                <!-- <li> -->
                     * <input type="radio" name="userRole" value="ROLE_USER" id="ROLE_USER"> user
                     <input type="radio" name="userRole" value="ROLE_CCA" id="ROLE_CCA"> cca
-                    <input type="radio" name="userRole" value="ROLE_ADMIN" id="ROLE_ADMIN"> admin
-                </li>
-                <li>
-                    *<input type="tel" name="phone" id="phone" placeholder="Phone">
+                    <input type="radio" name="userRole" value="ROLE_ADMIN" id="ROLE_ADMIN"> admin <br>
+                    <span id="checkRole"></span>
+                <!-- </li> -->
+                <!-- <li> -->
+                    *<input type="tel" name="phone" id="phone" placeholder="Phone"><br>
                     <span id="checkPhone"></span>
-                </li>
-                <li>
-                    * <input type="text" name="email" id="email" placeholder="Email">
+                <!-- </li> -->
+                <!-- <li> -->
+                    * <input type="text" name="email" id="email" placeholder="Email"><br>
                     <span id="checkEmail"></span>
-                </li>
-                <li>
-                    <input type="text" name="companyName" id="companyName" placeholder="회사명">
+                <!-- </li> -->
+                <!-- <li> -->
+                    <input type="text" name="companyName" id="companyName" placeholder="회사명"><br>
                     <span id="checkCompanyName"></span>
-                </li>
-                <li>
+                <!-- </li> -->
+                <!-- <li> --> 지역
                     <select id="companyRegion">
                         <option value="서울">서울</option>
                         <option value="경기">경기</option>
@@ -69,15 +152,16 @@
                         <option value="세종">세종</option>
                         <option value="대구">대구</option>
                         <option value="경북">경북</option>
-                    </select>
+                    </select><br>
                     <span id="checkcompanyRegion"></span>
-                </li>
-                <li>
+                <!-- </li> -->
+                <!-- <li> -->
                     <input type="hidden" name="ccaNum1" id="ccaNum1" placeholder="자격번호">
-                    <input type="hidden" name="ccaNum2" id="ccaNum2" placeholder="등록번호">
+                    <input type="hidden" name="ccaNum2" id="ccaNum2" placeholder="등록번호"><br>
                     <span id="checkCcaNum"></span>
-                </li>
-                <li>관심품목1
+                <!-- </li> -->
+                <!-- <li> -->
+                    관심품목1
                     <select name="firstItem" id="firstItem">
                         <option value="">전체</option>
                         <option value="의류" th:selected="${searchItem == '의류'}">의류</option>
@@ -113,8 +197,9 @@
                         <option value="철도부품" th:selected="${searchItem == '철도부품'}">철도부품</option>
                         <option value="원자로" th:selected="${searchItem == '원자로'}">원자로</option>
                     </select>
-                    </li>
-                    <li>관심품목2
+                    <!-- </li> -->
+                    <!-- <li> -->
+                        관심품목2
                     <select name="secondItem" id="secondItem">
                         <option value="">전체</option>
                         <option value="의류" th:selected="${searchItem == '의류'}">의류</option>
@@ -150,8 +235,9 @@
                         <option value="철도부품" th:selected="${searchItem == '철도부품'}">철도부품</option>
                         <option value="원자로" th:selected="${searchItem == '원자로'}">원자로</option>
                     </select>
-                    </li>
-                    <li>관심품목3
+                    <!-- </li> -->
+                    <!-- <li> -->
+                        관심품목3 
                     <select name="thirdItem" id="thirdItem">
                         <option value="">전체</option>
                         <option value="의류" th:selected="${searchItem == '의류'}">의류</option>
@@ -186,12 +272,12 @@
                         <option value="식기류" th:selected="${searchItem == '식기류'}">식기류</option>
                         <option value="철도부품" th:selected="${searchItem == '철도부품'}">철도부품</option>
                         <option value="원자로" th:selected="${searchItem == '원자로'}">원자로</option>
-                    </select>
-                </li>
-                <li>
+                    </select><br>
+                <!-- </li> -->
+                <!-- <li> -->
                     <input type="text" name="selfInfo" id="selfInfo" placeholder="자기소개">
-                </li>
-            </ul>
+                <!-- </li> -->
+            <!-- </ul> -->
             <div class="btns">
                 <input type="submit" id="submitBtn" value="회원가입">
                 <input type="reset" id="resetBtn" value="초기화">

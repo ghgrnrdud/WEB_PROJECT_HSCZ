@@ -235,14 +235,19 @@ chart.appear(1000, 100);
 // var div = document.getElementById("chartdiv");
 
 function createDiv(id, div) {
+  var parentContainer = document.createElement("span");
+  parentContainer.id = "parentContainer" + id;
+  parentContainer.style.width = "370px";
   var container = document.createElement("div");
+  parentContainer.appendChild(container);
   container.id = "chart" + id;
   container.style.width = "350px";
   container.style.height = "350px";
   // container.style.float = "left";
   container.style.margin = "10px";
   container.style.border = "1px solid #eee";
-  return container;
+  console.log("==========",parentContainer);
+  return parentContainer;
 }
 
 //지우는 함수
@@ -262,11 +267,21 @@ function maybeDisposeRoot(divId) {
 
 function createBullet(id, div) {
   console.log("============createBullet도착");
-  var newspace = createDiv(id, div);
+  var parentContainer = createDiv(id, div);
+  var newspace = parentContainer.firstChild;
   
-  newspace.style.display = "inline-block";
-  div.before(newspace);
+  console.log("newspace:",newspace);
+  var title = document.createElement('p');
+  title.id = "title"+id;
+
+  parentContainer.style.display = "inline-block";
+  // newspace.style.display = "inline-block";
+  div.before(parentContainer);
+  newspace.before(title);
+  document.getElementById(`title${id}`).innerText = "한국의 수출입 현황";
+  
   var root = am5.Root.new(newspace);
+  // newspace.prepend(`<p>한국의 수출입 현황</p>`);
   
   root.setThemes([
     am5themes_Animated.new(root)
@@ -599,12 +614,14 @@ function createPie(id, div, country, year) {
     var root;
 
     if(space == null) {
-      var newspace = createDiv(id, div);
+      var parentContainer = createDiv(id, div);
+      var newspace = parentContainer.firstChild;
+      newspace.prepend(`${country}의 수입시장 점유율`)
       newspace.style.width = "450px";
       newspace.style.display = "inline-block";
       newspace.style.float = "right";
       root = am5.Root.new(newspace);
-      div.after(newspace);
+      div.after(parentContainer);
       
       // 드롭박스 만들어보자
       // 새로운 select 요소 생성
@@ -683,7 +700,16 @@ function createPie(id, div, country, year) {
   $.each(resp, function(index, item) {
     if(item.importMarket != "총계" && item.dateYear == year && item.country == country){
       console.log(item);
-      var percentile = parseFloat(item.percentile.replace('%', '')); // '%' 문자 제거 후 실수로 변환
+      var totalpercent = 0;
+      // $.each(resp, function(index1, item1) {
+      //   if(item1.importMarket!=item.importMarket && item1.importMarket != "총계" && item1.dateYear == year && item1.country == country){
+      //     console.log(item1);
+      //     console.log(item1.percentile.replace('%',''));
+      //     totalpercent += parseFloat(item1.percentile.replace('%', '')); // '%' 문자 제거 후 실수로 변환
+      //   }
+      // })
+      // console.log("========totalpercent",totalpercent);
+      var percentile = parseFloat(item.percentile.replace('%', ''));
       data.push({
         "country": item.importMarket,
         "percentile": percentile
@@ -699,6 +725,7 @@ function createPie(id, div, country, year) {
     // https://www.amcharts.com/docs/v5/charts/percent-charts/pie-chart/
     var chart = root.container.children.push(
       am5percent.PieChart.new(root, {
+        radius: am5.percent(70),
         endAngle: 270
       })
     );
@@ -712,6 +739,12 @@ function createPie(id, div, country, year) {
         endAngle: 270
       })
     );
+
+    series.labels.template.setAll({
+      fontSize: 13,
+      fill: am5.color(0x553889),
+      text: "{category}"
+    });
     
     series.states.create("hidden", {
       endAngle: -90
@@ -767,11 +800,24 @@ function createRealxycluster(id, div, resp, selectedyear, selectedport) {
 
   //만약 그래프 영역이 비어있다면 새로 생성
   if(space == null){
-    var newspace = createDiv(id, div);
+    var parentContainer = createDiv(id, div);
+    var newspace = parentContainer.firstChild;
+    
+    console.log("newspace:",newspace);
+    var title = document.createElement('p');
+    title.id = "title"+id;
+
+    parentContainer.style.display = "inline-block";
+    // newspace.style.display = "inline-block";
+    div.before(parentContainer);
+    newspace.before(title);
+    document.getElementById(`title${id}`).innerText = "한국의 수출입 품목 top5";
+    
+    parentContainer.style.width = "510px";
     newspace.style.width = "500px";
     newspace.style.display = "inline-block";
     newspace.style.float = "right";
-    div.before(newspace);
+    div.before(parentContainer);
     console.log(newspace.id);
     root = am5.Root.new(newspace);
 
@@ -971,11 +1017,13 @@ function createBar(id, div, country, year, type) {
     var root;
 
     if(space == null) {
-      var newspace = createDiv(id, div);
+      var parentContainer = createDiv(id, div);
+    var newspace = parentContainer.firstChild;
+    newspace.prepend(`${country}의 10대 수출품목`)
       newspace.style.width = "450px";
       newspace.style.display = "inline-block";
       root = am5.Root.new(newspace);
-      div.after(newspace);
+      div.after(parentContainer);
       console.log(resp);
 
     // 드롭박스 만들어보자
@@ -1165,19 +1213,21 @@ function createString(id, div, country) {
     ,method: "GET"
     ,async: false
     ,data: {"country":country}
-    , success: function(resp) {createRealString(id, div, resp)}
+    , success: function(resp) {createRealString(id, div, resp, country)}
   })}
 
-function createRealString(id, div, resp) {
+function createRealString(id, div, resp, country) {
   console.log(resp);
   var space = document.getElementById("chart5");
   var root;
   if(space == null) {
-    var newspace = createDiv(id, div);
+    var parentContainer = createDiv(id, div);
+    var newspace = parentContainer.firstChild;
+    newspace.prepend(`${country}의 수출입 금액`)
     newspace.style.width = "500px";
     newspace.style.display = "inline-block";
     newspace.style.float = "right";
-    div.after(newspace);
+    div.after(parentContainer);
     root = am5.Root.new(newspace);
   }
 
@@ -1330,7 +1380,9 @@ function createRealStackCluster(id, div, resp, country) {
 
   //만약 첫 화면이라면 
   if(space == null) {
-    var newspace = createDiv(id, div);
+    var parentContainer = createDiv(id, div);
+    var newspace = parentContainer.firstChild;
+    newspace.prepend(`${country}의 수출입 품목 증감률`)
     newspace.style.width = "450px";
     newspace.style.display = "inline-block";
     root = am5.Root.new(newspace);
