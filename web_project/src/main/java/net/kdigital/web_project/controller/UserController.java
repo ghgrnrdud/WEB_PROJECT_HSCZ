@@ -8,22 +8,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import lombok.RequiredArgsConstructor;
-<<<<<<< HEAD
 import lombok.extern.slf4j.Slf4j;
-=======
-
->>>>>>> 8b277429deb5ae23f967cc85ba9c1cfbc4beec27
 import net.kdigital.web_project.dto.CustomerDTO;
 import net.kdigital.web_project.dto.CustomerItemDTO;
 import net.kdigital.web_project.service.CustomerItemService;
 import net.kdigital.web_project.service.CustomerService;
 
 @Controller
-<<<<<<< HEAD
 @Slf4j
-=======
-
->>>>>>> 8b277429deb5ae23f967cc85ba9c1cfbc4beec27
 @RequiredArgsConstructor
 public class UserController {
 	public final CustomerService customerService;
@@ -32,11 +24,7 @@ public class UserController {
 	// 회원가입 화면 요청
 	@GetMapping("/user/join") 
 	public String join() {
-<<<<<<< HEAD
 		return "/user/joinExample";
-=======
-		return "user/join";
->>>>>>> 8b277429deb5ae23f967cc85ba9c1cfbc4beec27
 	}
 
 	// 회원 저장
@@ -60,14 +48,7 @@ public class UserController {
 		model.addAttribute("error", error);
 		model.addAttribute("errMessage", errMessage);
 		
-<<<<<<< HEAD
 		return "/user/loginExample";
 	}
 	
 }
-=======
-		return "user/login";
-	}
-	
-}
->>>>>>> 8b277429deb5ae23f967cc85ba9c1cfbc4beec27

@@ -2,13 +2,6 @@ package net.kdigital.web_project.service;
 
 
 
-<<<<<<< HEAD
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.stereotype.Service;
-
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-=======
 import java.util.Optional;
 
 import org.springframework.data.domain.Page;
@@ -20,7 +13,6 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
->>>>>>> 8b277429deb5ae23f967cc85ba9c1cfbc4beec27
 import net.kdigital.web_project.dto.CustomerDTO;
 import net.kdigital.web_project.entity.CustomerEntity;
 import net.kdigital.web_project.repository.CustomerRepository;
@@ -48,8 +40,6 @@ public class CustomerService {
 		customerRepository.save(customerEntity);
 		 return true;
 	}
-<<<<<<< HEAD
-=======
 
 	public CustomerEntity findCustomerByUserId(String replyWriter) {
 		Optional<CustomerEntity> entity = customerRepository.findById(replyWriter);
@@ -91,5 +81,4 @@ public class CustomerService {
 	    }
 
 	
->>>>>>> 8b277429deb5ae23f967cc85ba9c1cfbc4beec27
 }

@@ -1,6 +1,6 @@
 plugins {
 	id 'java'
-	id 'org.springframework.boot' version '3.2.3'
+	id 'org.springframework.boot' version '3.2.4'
 	id 'io.spring.dependency-management' version '1.1.4'
 }
 
@@ -32,10 +32,9 @@ dependencies {
 	
 	// 보안관련 Dependency
 	implementation 'org.springframework.boot:spring-boot-starter-security'
-  	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
-  	testImplementation 'org.springframework.security:spring-security-test'
-  	
-  	// Test 관련 Dependency
+	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
+	testImplementation 'org.springframework.security:spring-security-test'
+	
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 

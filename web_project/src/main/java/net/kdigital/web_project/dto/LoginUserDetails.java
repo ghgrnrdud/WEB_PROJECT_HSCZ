@@ -21,10 +21,7 @@ public class LoginUserDetails implements UserDetails {
 	private String companyName;
 	private String companyRegion;
 	private int likeTotal;
-<<<<<<< HEAD
 	private int ccaNum;
-=======
->>>>>>> 8b277429deb5ae23f967cc85ba9c1cfbc4beec27
 	private String selfInfo;
 	private static final long serialVersionUID = 1L;
 	
@@ -39,10 +36,7 @@ public class LoginUserDetails implements UserDetails {
 		this.companyName = customerDTO.getCompanyName();
 		this.companyRegion = customerDTO.getCompanyRegion();
 		this.likeTotal = customerDTO.getLikeTotal();
-<<<<<<< HEAD
 		this.ccaNum = customerDTO.getCcaNum();
-=======
->>>>>>> 8b277429deb5ae23f967cc85ba9c1cfbc4beec27
 		this.selfInfo = customerDTO.getSelfInfo();
 	}
 	
@@ -93,12 +87,5 @@ public class LoginUserDetails implements UserDetails {
 		
 		return true;
 	}
-<<<<<<< HEAD
-=======
-	// 유저의 아이디가 아닌 이름을 가져오는 메소드 추가
-	public String getUserFullName() {
-		return this.userName;
-	}
->>>>>>> 8b277429deb5ae23f967cc85ba9c1cfbc4beec27
 
 }

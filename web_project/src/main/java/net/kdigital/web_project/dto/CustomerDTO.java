@@ -24,10 +24,7 @@ public class CustomerDTO {
 	private String companyName;
 	private String companyRegion;
 	private int likeTotal;
-<<<<<<< HEAD
 	private int ccaNum;
-=======
->>>>>>> 8b277429deb5ae23f967cc85ba9c1cfbc4beec27
 	private String selfInfo;
 	
 	public static CustomerDTO toDTO(CustomerEntity customerEntity) {
@@ -41,16 +38,11 @@ public class CustomerDTO {
 				.companyName(customerEntity.getCompanyName())
 				.companyRegion(customerEntity.getCompanyRegion())
 				.likeTotal(customerEntity.getLikeTotal())
-<<<<<<< HEAD
 				.ccaNum(customerEntity.getCcaNum())
 				.selfInfo(customerEntity.getSelfInfo())
 				.build();
 	}
-=======
-				.selfInfo(customerEntity.getSelfInfo())
-				.build();
-	}
-
+	
 	public CustomerDTO(String userName, int likeTotal, String companyName, String companyRegion, String phone,
 			String email) {
 		super();
@@ -62,6 +54,5 @@ public class CustomerDTO {
 		this.email =email;
 	}
 
->>>>>>> 8b277429deb5ae23f967cc85ba9c1cfbc4beec27
 	
 }

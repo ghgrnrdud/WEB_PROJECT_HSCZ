@@ -35,17 +35,7 @@ public class SecurityConfig {
 				, "/trade/Exbarchart"
 				, "/trade/Ixbarchart"
 				, "/assets/**"
-<<<<<<< HEAD
 				, "/images/**"
-=======
-				,"/cca/boardList"
-				,"/cca/ccaList"
-				,"/cca/ccaWrite"
-				,"/cca/detail"
-				,"/cca/replyUpdate"
-				,"/cca/replyWrite"
-				,"/cca/update"
->>>>>>> 8b277429deb5ae23f967cc85ba9c1cfbc4beec27
 				).permitAll()
 				.requestMatchers("/admin/**").hasRole("ADMIN")
 				.requestMatchers("/my/**").hasAnyRole("ADMIN", "USER", "CCA") // *********** 이게 맞나????
@@ -54,11 +44,7 @@ public class SecurityConfig {
 		// Custom Login 설정
 		http
 		.formLogin((auth) -> auth
-<<<<<<< HEAD
 				.loginPage("/user/loginExample")
-=======
-				.loginPage("/user/login")
->>>>>>> 8b277429deb5ae23f967cc85ba9c1cfbc4beec27
 				.failureHandler(failureHandler)
 				.usernameParameter("userId")
 				.passwordParameter("userPwd")
@@ -83,7 +69,3 @@ public class SecurityConfig {
 		return new BCryptPasswordEncoder();
 	};
 }
-<<<<<<< HEAD
-=======
-
->>>>>>> 8b277429deb5ae23f967cc85ba9c1cfbc4beec27
