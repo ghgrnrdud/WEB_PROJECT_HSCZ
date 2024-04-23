@@ -22,6 +22,19 @@
     <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
 
 </head>
+<style>
+    table {
+        text-align: center;
+        width: 90%;
+        margin: 10px;
+        border-radius: 5px;
+    }
+
+    th {
+        background-color: #0c0726;
+        color: white;
+    }
+</style>
 
 <body>
     <!-- Navbar -->
@@ -167,13 +180,13 @@
     <div class="content">
 
 
-        <h2 class="tit1">발효된 FTA(21건,59개국)</h2>
+        <h2 class="tit1">발효된 FTA</h2>
 
-        <p class="bu_atte cmgl30">2023년 1월 기준</p>
+        <p class="bu_atte cmgl30">2023년 1월 기준: 21건,59개국</p>
 
         <div class="scroll_gr cmgl30">
             <table class="tbl_st" border="1">
-                <caption>발효된 FTA</caption>
+                <!-- <caption>발효된 FTA</caption> -->
                 <colgroup>
                     <col style="width:20%;">
                     <col span="3" style="width:15%;">
@@ -395,8 +408,27 @@
             <li>RCEP(역내포괄적경제동반자협정)(한국제외 14개국) : 한국, 아세안10개국, 중국, 일본, 호주, 뉴질랜드</li>
         </ul>
         <!-- //페이지뷰 : 서브콘텐츠 끝 -->
-
     </div>
+    <!-- footer -->
+    <footer class="footer-wave">
+        <div class="waves">
+            <div class="wave" id="wave1"></div>
+            <div class="wave" id="wave2"></div>
+            <div class="wave" id="wave3"></div>
+            <div class="wave" id="wave4"></div>
+        </div>
+
+        <ul class="footer-wave-menu">
+            <li class="menu__item"><a class="menu__link" th:href="@{/}">HOME</a></li>
+            <li class="menu__item"><a class="menu__link" th:href="@{news}">무역뉴스</a></li>
+            <li class="menu__item"><a class="menu__link" th:href="@{info/infoList}">FTA정보</a></li>
+            <li class="menu__item"><a class="menu__link" href="#">무역통계</a></li>
+            <li class="menu__item"><a class="menu__link" href="#">관세사상담</a></li>
+
+        </ul>
+        <p>&copy;2024 HScode Zoom | All Rights Reserved</p>
+    </footer>
+    <!-- End footer -->
     <!--script-->
     <script th:src="@{/assets/js/core/jquery.min.js}" type="text/javascript"></script>
     <script th:src="@{/assets/js/core/popper.min.js}" type="text/javascript"></script>

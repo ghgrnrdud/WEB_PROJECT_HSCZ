@@ -5,56 +5,49 @@
 
 
 .settings {
-    height:80px; 
-    float:right;
-    /* background:url( https://s3.postimg.org/bqfooag4z/startific.jpg);
-    background-repeat:no-repeat; */
-    width:250px;
-    margin:0px;
     height: 80px;
     float: right;
     /* background:url( https://s3.postimg.org/bqfooag4z/startific.jpg);
+    background-repeat:no-repeat; */
+    width: 250px;
+    margin: 0px;
     /* text-align: center;
     font-size:20px;
     font-family: 'Strait', sans-serif; */
 }
 
 /* ScrolBar  */
-.scrollbar
-{
+.scrollbar {
     height: 90%;
     width: 100%;
     overflow-y: hidden;
     overflow-x: hidden;
 }
 
-.scrollbar:hover
-{
+.scrollbar:hover {
     height: 90%;
     width: 100%;
     overflow-y: scroll;
     overflow-x: hidden;
 }
 
-/* Scrollbar Style */ 
-#style-1::-webkit-scrollbar-track
-{
+/* Scrollbar Style */
+#style-1::-webkit-scrollbar-track {
     border-radius: 2px;
 }
 
-#style-1::-webkit-scrollbar
-{
+#style-1::-webkit-scrollbar {
     width: 5px;
     background-color: #07142a;
 }
 
-#style-1::-webkit-scrollbar-thumb
-{
+#style-1::-webkit-scrollbar-thumb {
     border-radius: 10px;
     /* -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3); */
     background-color: #ffff;
 }
-/* Scrollbar End */ 
+
+/* Scrollbar End */
 
 .fa {
     position: relative;
@@ -62,37 +55,19 @@
     width: 55px;
     height: 36px;
     text-align: center;
-    top:17px; 
-    font-size:20px;
-}
-
-.main-menu:hover, nav.main-menu.expanded {
-    width:250px;
-    overflow:hidden;
-    opacity:1;
     top: 17px;
     font-size: 20px;
 }
 
 .main-menu:hover,
 nav.main-menu.expanded {
+    width: 250px;
+    overflow: hidden;
+    opacity: 1;
     right: 0;
 }
 
 .main-menu {
-<<<<<<< HEAD
-    background:#07142a;
-    position:fixed;
-    top:0;
-    bottom:0;
-    height:100%;
-    width: 55px;
-    overflow:hidden;
-    -webkit-transition:width .2s linear;
-    transition:width .2s linear;
-    /* box-shadow: 1px 0 15px rgba(0, 0, 0, 0.07); */
-    opacity:1;
-=======
     background: #07142a;
     position: fixed;
     top: 0;
@@ -104,13 +79,11 @@ nav.main-menu.expanded {
     transition: width .2s linear;
     /* box-shadow: 1px 0 15px rgba(0, 0, 0, 0.07); */
     opacity: 1;
->>>>>>> 18502565116ef29917f861afb1863956da52907a
     right: 0;
     z-index: 1300;
 }
 
 .main-menu>ul {
-    margin:7px 0;
     margin: 7px 0;
 }
 
@@ -121,21 +94,12 @@ nav.main-menu.expanded {
 }
 
 .main-menu li>a {
-<<<<<<< HEAD
-    position:relative;
-    width:255px;
-    display:table;
-    border-collapse:collapse;
-    border-spacing:0;
-    color:#ffff;
-=======
     position: relative;
     width: 255px;
     display: table;
     border-collapse: collapse;
     border-spacing: 0;
     color: #ffff;
->>>>>>> 18502565116ef29917f861afb1863956da52907a
     font-size: 13px;
     text-decoration: none;
     -webkit-transform: translateZ(0) scale(1, 1);
@@ -143,11 +107,7 @@ nav.main-menu.expanded {
     transition: all .14s linear;
     font-family: 'Strait', sans-serif;
     /* border-top:1px solid #f2f2f2;
-<<<<<<< HEAD
     text-shadow: 1px 1px 1px  #fff;   */
-=======
-    text-shadow: 1px 1px 1px  #ffff;   */
->>>>>>> 18502565116ef29917f861afb1863956da52907a
 }
 
 .main-menu .nav-icon {
@@ -170,18 +130,11 @@ nav.main-menu.expanded {
 }
 
 
-<<<<<<< HEAD
-a:hover, a:focus {
-    text-decoration:none;
-    color:#07142a;
-    /* border-left:0px solid #2A2D33; */
-=======
 a:hover,
 a:focus {
     text-decoration: none;
     color: #07142a;
-    /* border-left:0px solid #07142a; */
->>>>>>> 18502565116ef29917f861afb1863956da52907a
+    /* border-left:0px solid #2A2D33; */
 }
 
 nav {
@@ -200,16 +153,10 @@ nav li {
     text-transform: uppercase;
 }
 
-<<<<<<< HEAD
-.main-menu li:hover>a, nav.main-menu li.active>a {
-    color:#07142a;
-    background-color:#ffff;
-=======
 .main-menu li:hover>a,
 nav.main-menu li.active>a {
     color: #07142a;
     background-color: #ffff;
->>>>>>> 18502565116ef29917f861afb1863956da52907a
 }
 
 
@@ -222,19 +169,11 @@ nav.main-menu li.active>a {
 
 
 .content {
-<<<<<<< HEAD
-    margin-right: 100px; /* 변경 */
-    margin-left: 200px; /* 기존의 값을 제거 */
-}
-
-.navbar {
-    margin-right: 55px; /* 변경 */
-    margin-left: 0; /* 기존의 값을 제거 */
-=======
     margin-right: 100px;
     /* 변경 */
     margin-left: 200px;
     /* 기존의 값을 제거 */
+    margin-bottom: 90px;
 }
 
 .navbar {
@@ -242,33 +181,21 @@ nav.main-menu li.active>a {
     /* 변경 */
     margin-left: 0;
     /* 기존의 값을 제거 */
->>>>>>> 18502565116ef29917f861afb1863956da52907a
 }
 
 
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 18502565116ef29917f861afb1863956da52907a
 /* 왼쪽 사이드바 설정 */
 #menubar {
     overflow: hidden;
     position: sticky;
     top: 0;
     width: 170px;
-<<<<<<< HEAD
-    height: 1500px;  /* 내용 길이에 맞춰 조절 필요*/
-    float: left;
-    background: #07142a;
-}
-=======
-    height: 1500px;
+    height: 100vh;
     float: left;
     background: #07142a;
 }
 
->>>>>>> 18502565116ef29917f861afb1863956da52907a
 #menubar-nav {
     width: 120%;
     height: calc(100% - 95px);
@@ -294,22 +221,6 @@ nav.main-menu li.active>a {
     -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
-<<<<<<< HEAD
-#menubar-nav ul li:hover a, #menubar-nav ul li:hover a i, #menubar-nav li.active a, #menubar-nav li.active a i {
-    color: #07142a;
-}
-#menubar-nav ul li:hover a {
-    background: #fff;
-    color: #07142a;
-}
-#menubar-nav ul li.active a {
-    background: #fff;
-    color: #07142a;
-}
-#menubar-nav ul li.active a i {
-    background: #fff;
-}
-=======
 
 #menubar-nav ul li:hover a,
 #menubar-nav ul li:hover a i,
@@ -319,16 +230,115 @@ nav.main-menu li.active>a {
 }
 
 #menubar-nav ul li:hover a {
-    background: #ffff;
+    background: #fff;
     color: #07142a;
 }
 
 #menubar-nav ul li.active a {
-    background: #ffff;
+    background: #fff;
     color: #07142a;
 }
 
 #menubar-nav ul li.active a i {
-    background: #ffff;
+    background: #fff;
 }
->>>>>>> 18502565116ef29917f861afb1863956da52907a
+
+.footer-wave {
+    position: relative;
+    width: 100%;
+    background: #3586ff;
+    background-size: cover;
+    min-height: 25px;
+    padding: 20px 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 1400;
+}
+
+.footer-wave-menu {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0;
+    flex-wrap: wrap;
+}
+
+.menu__item {
+    list-style: none;
+}
+
+.menu__link {
+    font-size: 1.2rem;
+    color: #fff;
+    margin: 0 10px;
+    display: inline-block;
+    transition: 0.5s;
+    text-decoration: none;
+    opacity: 0.75;
+    font-weight: 300;
+}
+
+.menu__link:hover {
+    opacity: 1;
+}
+
+.wave {
+    position: absolute;
+    top: -50px;
+    left: 0;
+    width: 100%;
+    height: 50px;
+    background: url("https://i.ibb.co/wQZVxxk/wave.png");
+    background-size: 1000px 50px;
+}
+
+.wave#wave1 {
+    z-index: 1000;
+    opacity: 1;
+    bottom: 0;
+    animation: animateWaves 4s linear infinite;
+}
+
+.wave#wave2 {
+    z-index: 999;
+    opacity: 0.5;
+    bottom: 5px;
+    animation: animate 4s linear infinite !important;
+}
+
+.wave#wave3 {
+    z-index: 1000;
+    opacity: 0.2;
+    bottom: 7.5px;
+    animation: animateWaves 3s linear infinite;
+}
+
+.wave#wave4 {
+    z-index: 999;
+    opacity: 0.7;
+    bottom: 10px;
+    animation: animate 3s linear infinite;
+}
+
+@keyframes animateWaves {
+    0% {
+        background-position-x: 1000px;
+    }
+
+    100% {
+        background-positon-x: 0px;
+    }
+}
+
+@keyframes animate {
+    0% {
+        background-position-x: -1000px;
+    }
+
+    100% {
+        background-positon-x: 0px;
+    }
+}

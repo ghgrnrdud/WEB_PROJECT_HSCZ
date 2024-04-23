@@ -18,7 +18,7 @@
     <!-- Resources -->
     <script th:src="@{/script/jquery-3.7.1.min.js}"></script>
     <script>
-        $(function(){
+        $(function () {
             // init1();
             init2();
         });
@@ -45,13 +45,11 @@
         }
 
         function init2() {
-            $(".hs4digit").each(function() {
+            $(".hs4digit").each(function () {
                 let hs4digit = $(this).text();
                 $.ajax({
                     url: "/heading/heading_des",
                     method: "POST",
-                    data: {"hs4digit" : hs4digit},
-                    success: function(resp) {
                     data: { "hs4digit": hs4digit },
                     success: function (resp) {
                         console.log(resp);
@@ -66,7 +64,6 @@
                         </tr>
                         `;
                         $("#info" + resp["hs4digit"]).append(receivedData);
-                    } 
                     }
                 });
             });
@@ -79,38 +76,10 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg fixed-top navbar-transparent " color-on-scroll="300">
         <div class="container">
-        <div class="navbar-translate">
-            <a class="navbar-brand" href="@{/}" rel="tooltip" title="Coded by Creative Tim" data-placement="bottom" target="_blank">
-                <img th:src="@{/images/web-logo4.png}" alt="로고">
-            </a>
-            <button class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-bar bar1"></span>
-            <span class="navbar-toggler-bar bar2"></span>
-            <span class="navbar-toggler-bar bar3"></span>
-            </button>
-        </div>
-        <div class="collapse navbar-collapse justify-content-end" id="navigation">
-            <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" rel="tooltip" data-placement="bottom" href="#" target="_blank">
-                무역뉴스
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" rel="tooltip" data-placement="bottom" href="#" target="_blank">
-                FTA정보
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" rel="tooltip" data-placement="bottom" href="#" target="_blank">
-                무역통계
-                </a>
-            </li>
-=======
             <div class="navbar-translate">
-                <a class="navbar-brand" href="@{/}" rel="tooltip" title="Coded by Creative Tim" data-placement="bottom"
-                    target="_blank">
-                    <img th:src="@{/images/web-logo4.png}" alt="로고">
+                <a class="navbar-brand" th:href="@{/}" rel="tooltip" title="Coded by Creative Tim"
+                    data-placement="bottom" target="_blank">
+                    <img th:src="@{/images/web-logo9.png}" alt="로고">
                 </a>
                 <button class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse"
                     data-target="#navigation" aria-controls="navigation-index" aria-expanded="false"
@@ -137,27 +106,13 @@
                             무역통계
                         </a>
                     </li>
->>>>>>> 18502565116ef29917f861afb1863956da52907a
 
-            <!-- <li class="nav-item">
                     <!-- <li class="nav-item">
                 <a class="nav-link" rel="tooltip" data-placement="bottom" href="https://demos.creative-tim.com/paper-kit/index.html" target="_blank">
                 관세사 Matching
                 </a>
             </li> -->
 
-<<<<<<< HEAD
-            <div class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-toggle="dropdown" id="dropdownMenuButton" href="#" role="button" aria-haspopup="true" aria-expanded="false">관세사상담</a>
-                <ul class="dropdown-menu dropdown-info" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="#">관세사목록</a>
-                <a class="dropdown-item" href="#">상담목록</a>
-                <a class="dropdown-item" href="#">상담하기</a>
-                </ul>
-            </div>
-            </ul>
-        </div>
-=======
                     <div class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" id="dropdownMenuButton" href="#"
                             role="button" aria-haspopup="true" aria-expanded="false">관세사상담</a>
@@ -169,7 +124,6 @@
                     </div>
                 </ul>
             </div>
->>>>>>> 18502565116ef29917f861afb1863956da52907a
         </div>
     </nav>
     <!-- End Navbar -->
@@ -187,7 +141,6 @@
         </div>
     </div>
     <!-- End page-header -->
-    
 
     <!-- side-bar 시작-->
     <nav class="main-menu">
@@ -198,15 +151,6 @@
                     <a href="#">
                         <i class="fa fa-solid fa-bars fa-lg"></i>
                         <span class="nav-text">Menu</span>
-                    </a>
-                </li> 
-                <li>                                 
-                    <a href="#">
-                        <i class="fa fa-solid fa-newspaper fa-lg"></i>
-                        <span class="nav-text">무역뉴스</span>
-                    </a>
-                </li>
-                <li>                                 
                     </a>
                 </li>
                 <li>
@@ -221,54 +165,37 @@
                         <span class="nav-text">FTA정보</span>
                     </a>
                 </li>
-                <li>                                 
+                <li>
                     <a href="#">
                         <i class="fa fa-solid fa-chart-simple fa-lg"></i>
                         <span class="nav-text">무역통계</span>
                     </a>
                 </li>
-<<<<<<< HEAD
-                <li>                                 
-=======
                 <li>
->>>>>>> 18502565116ef29917f861afb1863956da52907a
                     <a href="#">
                         <i class="fa fa-solid fa-handshake fa-lg"></i>
                         <span class="nav-text">관세사상담</span>
                     </a>
                 </li>
-<<<<<<< HEAD
-                <li>                                 
-=======
                 <li>
->>>>>>> 18502565116ef29917f861afb1863956da52907a
                     <a href="#">
                         <i class="fa fa-regular fa-user fa-lg"></i>
                         <span class="nav-text">로그인</span>
                     </a>
                 </li>
-<<<<<<< HEAD
-                <li>                                 
-=======
                 <li>
->>>>>>> 18502565116ef29917f861afb1863956da52907a
                     <a href="#">
                         <i class="fa fa-user fa-lg"></i>
                         <span class="nav-text">로그아웃</span>
                     </a>
                 </li>
-<<<<<<< HEAD
-                <li>                                 
-=======
                 <li>
->>>>>>> 18502565116ef29917f861afb1863956da52907a
                     <a href="#">
                         <i class="fa fa-solid fa-house-user fa-lg"></i>
                         <span class="nav-text">마이페이지</span>
                     </a>
                 </li>
             </ul>
-        </div>    
         </div>
     </nav>
 
@@ -276,11 +203,7 @@
         <!-- <div class="test-box">
             박스 1
         </div> -->
-<<<<<<< HEAD
-        
-=======
 
->>>>>>> 18502565116ef29917f861afb1863956da52907a
         <div class="top3-section">
             <div th:each="item : ${result}">
                 <table>
@@ -290,19 +213,11 @@
                                 <a th:href="@{/subhead/detail(hs4digit=${item})}">
                                     <h2 th:text="${item}" class="hs4digit"></h2>
                                 </a>
-<<<<<<< HEAD
-                            </th> 
-                        </tr>
-                    </thead>
-                    <tbody th:id="|info${item}|" class="top3-description">
-    
-=======
                             </th>
                         </tr>
                     </thead>
                     <tbody th:id="|info${item}|" class="top3-description">
 
->>>>>>> 18502565116ef29917f861afb1863956da52907a
                     </tbody>
                 </table>
             </div>
@@ -334,7 +249,6 @@
     <script th:src="@{/assets/js/plugins/bootstrap-datepicker.js}" type="text/javascript"></script>
 
     <script th:src="@{/assets/js/paper-kit.min.js?v=2.2.0}" type="text/javascript"></script>
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTTfWur0PDbZWPr7Pmq8K3jiDp0_xUziI"></script>
     <script type="text/javascript"
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTTfWur0PDbZWPr7Pmq8K3jiDp0_xUziI"></script>
 </body>

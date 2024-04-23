@@ -22,6 +22,12 @@
 	<script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
 
 </head>
+<style>
+	table {
+		text-align: center;
+		width: 90%;
+	}
+</style>
 
 <body class="index-page sidebar-collapse">
 	<!-- Navbar -->
@@ -172,6 +178,7 @@
 	</nav>
 
 	<div class="content">
+		<h2 class="tit1">세율정보</h2>
 		<br>
 		<ul class="list_st1">
 			<li>협정세율 : FTA 발효로 해당 협정에 따라 적용되는 세율
@@ -190,7 +197,7 @@
 
 			<li>관세법상 세율적용의 우선순위
 				<table class="tbl_st" border="1">
-					<caption>관세법상 세율적용의 우선순위</caption>
+					<!-- <caption>관세법상 세율적용의 우선순위</caption> -->
 					<colgroup>
 						<col style="width:10%;" />
 						<col style="width:50%;" />
@@ -321,6 +328,26 @@
 		<p></p>
 
 	</div>
+	<!-- footer -->
+	<footer class="footer-wave">
+		<div class="waves">
+			<div class="wave" id="wave1"></div>
+			<div class="wave" id="wave2"></div>
+			<div class="wave" id="wave3"></div>
+			<div class="wave" id="wave4"></div>
+		</div>
+
+		<ul class="footer-wave-menu">
+			<li class="menu__item"><a class="menu__link" th:href="@{/}">HOME</a></li>
+			<li class="menu__item"><a class="menu__link" th:href="@{news}">무역뉴스</a></li>
+			<li class="menu__item"><a class="menu__link" th:href="@{info/infoList}">FTA정보</a></li>
+			<li class="menu__item"><a class="menu__link" href="#">무역통계</a></li>
+			<li class="menu__item"><a class="menu__link" href="#">관세사상담</a></li>
+
+		</ul>
+		<p>&copy;2024 HScode Zoom | All Rights Reserved</p>
+	</footer>
+	<!-- End footer -->
 
 
 	<!--script-->

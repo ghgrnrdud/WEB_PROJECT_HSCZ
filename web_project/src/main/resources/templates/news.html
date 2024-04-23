@@ -9,9 +9,10 @@
     <link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css' rel='stylesheet' type='text/css'>
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
 
+
     <!--css-->
     <link th:href="@{/assets/css/bootstrap.min.css}" rel="stylesheet" />
-    <link th:href="@{/assets/css/with-sidebar.css}" rel="stylesheet" />
+    <link th:href="@{/assets/css/without-sidebar.css}" rel="stylesheet" />
 
     <link th:href="@{/assets/demo/demo.css}" rel="stylesheet" />
 
@@ -23,13 +24,52 @@
 </head>
 <style>
     .news-player {
-        width: 1080px;
+        width: 1200px;
         margin: 0 auto;
+        display: flex;
+        justify-content: space-evenly;
     }
 
-    .content {
-        width: 1080px;
+    .news-pubdate {
+        text-align: right;
+        border: none;
+    }
+
+    .news-title {
+        border: none;
+        font-weight: bolder;
+        font-size: large;
+    }
+
+    table,
+    tr {
+        width: 95%;
+        margin: 20px auto;
+        border-collapse: collapse;
+    }
+
+    tr {
+        border-bottom: 1px dotted black;
+    }
+
+    td {
+        padding: 8px;
+        text-align: left;
+    }
+
+    tr:last-child {
+        border: none;
+    }
+
+
+    .news-part {
+        width: 90%;
         margin: 0 auto;
+        display: block;
+        background: #eff3f5;
+        color: black;
+        padding: 10px;
+        border-radius: 20px;
     }
 </style>
 
@@ -165,31 +205,68 @@
         </div>
     </nav>
     <br>
-    <div class="news-player">
-        <iframe width="500" height="250"
-            src="https://www.youtube.com/embed/PjW0NBh0Htw?si=r-EaC6jBHpMkpMcA&amp;controls=0"
-            title="YouTube video player" frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
-        <iframe width="500" height="250"
-            src="https://www.youtube.com/embed/k4_dtRoaoE4?si=dtawycdoDoY05tGG&amp;controls=0"
-            title="YouTube video player" frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-    </div>
-    <br>
     <div class="content">
-        <table border="1" th:each="news : ${list}">
-            <tr>
-                <td><a th:href="${news.link}" th:utext="${news.title}"></a></td>
-                <td th:text="${news.pubDate}"></td>
-            </tr>
-            <tr>
-                <td th:utext="${news.description}" colspan="2"></td>
-            </tr>
-        </table>
+        <div class="news-player">
+            <iframe width="500" height="250"
+                src="https://www.youtube.com/embed/PjW0NBh0Htw?si=r-EaC6jBHpMkpMcA&amp;controls=0"
+                title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+            <iframe width="500" height="250"
+                src="https://www.youtube.com/embed/k4_dtRoaoE4?si=dtawycdoDoY05tGG&amp;controls=0"
+                title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <br>
+        <div class="news-part">
+            <table>
+                <tr th:each="news : ${list}">
+                    <td class="news-title"><a th:href="${news.link}" th:utext="${news.title}"></a></td>
+                    <td class="news-pubdate" th:text="${#dates.format(news.pubDate, 'yyyy년 MM월 dd일 HH시 mm분')}"></td>
+                </tr>
+            </table>
+        </div>
     </div>
+
+    <!-- footer -->
+    <footer class="footer-wave">
+        <div class="waves">
+            <div class="wave" id="wave1"></div>
+            <div class="wave" id="wave2"></div>
+            <div class="wave" id="wave3"></div>
+            <div class="wave" id="wave4"></div>
+        </div>
+
+        <ul class="footer-wave-menu">
+            <li class="menu__item"><a class="menu__link" th:href="@{/}">HOME</a></li>
+            <li class="menu__item"><a class="menu__link" th:href="@{news}">무역뉴스</a></li>
+            <li class="menu__item"><a class="menu__link" th:href="@{info/infoList}">FTA정보</a></li>
+            <li class="menu__item"><a class="menu__link" href="#">무역통계</a></li>
+            <li class="menu__item"><a class="menu__link" href="#">관세사상담</a></li>
+
+        </ul>
+        <p>&copy;2024 HScode Zoom | All Rights Reserved</p>
+    </footer>
+    <!-- End footer -->
+
+    <!--script-->
+    <script th:src="@{/assets/js/core/jquery.min.js}" type="text/javascript"></script>
+    <script th:src="@{/assets/js/core/popper.min.js}" type="text/javascript"></script>
+    <script th:src="@{/assets/js/core/bootstrap.min.js}" type="text/javascript"></script>
+
+    <script th:src="@{/assets/js/plugins/bootstrap-switch.js}"></script>
+
+    <script th:src="@{/assets/js/plugins/nouislider.min.js}" type="text/javascript"></script>
+
+    <script th:src="@{/assets/js/plugins/moment.min.js}"></script>
+    <script th:src="@{/assets/js/plugins/bootstrap-datepicker.js}" type="text/javascript"></script>
+
+    <script th:src="@{/assets/js/paper-kit.min.js?v=2.2.0}" type="text/javascript"></script>
+    <script type="text/javascript"
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTTfWur0PDbZWPr7Pmq8K3jiDp0_xUziI"></script>
+
 </body>
 
 </html>
