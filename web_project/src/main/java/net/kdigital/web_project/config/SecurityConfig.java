@@ -36,6 +36,14 @@ public class SecurityConfig {
 				, "/trade/Ixbarchart"
 				, "/assets/**"
 				, "/images/**"
+				, "/script/**"
+				,"/cca/boardList"
+				,"/cca/ccaList"
+				,"/cca/ccaWrite"
+				,"/cca/detail"
+				,"/cca/replyUpdate"
+				,"/cca/replyWrite"
+				,"/cca/update"
 				).permitAll()
 				.requestMatchers("/admin/**").hasRole("ADMIN")
 				.requestMatchers("/my/**").hasAnyRole("ADMIN", "USER", "CCA") // *********** 이게 맞나????

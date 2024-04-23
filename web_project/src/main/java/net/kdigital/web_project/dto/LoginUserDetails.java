@@ -87,5 +87,10 @@ public class LoginUserDetails implements UserDetails {
 		
 		return true;
 	}
+	
+	// 유저의 아이디가 아닌 이름을 가져오는 메소드 추가
+		public String getUserFullName() {
+			return this.userName;
+		}
 
 }

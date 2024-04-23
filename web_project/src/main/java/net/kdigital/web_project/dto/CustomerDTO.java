@@ -43,4 +43,15 @@ public class CustomerDTO {
 				.build();
 	}
 	
+	public CustomerDTO(String userName, int likeTotal, String companyName, String companyRegion, String phone,
+			String email) {
+		super();
+		this.userName= userName;
+		this.likeTotal = likeTotal;
+		this.companyName = companyName;
+		this.companyRegion = companyRegion;
+		this.phone = phone;
+		this.email =email;
+	}
+	
 }
