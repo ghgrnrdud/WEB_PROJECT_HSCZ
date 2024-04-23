@@ -18,50 +18,39 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg fixed-top navbar-transparent " color-on-scroll="300">
         <div class="container">
-        <div class="navbar-translate">
-            <a class="navbar-brand" href="index.html" rel="tooltip" title="Coded by Creative Tim" data-placement="bottom" target="_blank">
-                <img th:src="@{/images/web-logo4.png}" alt="로고">
-            </a>
-            <button class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-bar bar1"></span>
-            <span class="navbar-toggler-bar bar2"></span>
-            <span class="navbar-toggler-bar bar3"></span>
-            </button>
-        </div>
-        <div class="collapse navbar-collapse justify-content-end" id="navigation">
-            <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" rel="tooltip" data-placement="bottom" href="https://demos.creative-tim.com/paper-kit/index.html" target="_blank">
-                무역뉴스
+            <div class="navbar-translate">
+                <a class="navbar-brand" th:href="@{/}" rel="tooltip" title="Coded by Creative Tim" data-placement="bottom">
+                    <img th:src="@{/images/web-logo9.png}" alt="로고">
                 </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" rel="tooltip" data-placement="bottom" href="https://demos.creative-tim.com/paper-kit/index.html" target="_blank">
-                FTA정보
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" rel="tooltip" data-placement="bottom" href="https://demos.creative-tim.com/paper-kit/index.html" target="_blank">
-                무역통계
-                </a>
-            </li>
+            </div>
+            <div class="collapse navbar-collapse justify-content-end" id="navigation">
+                <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" rel="tooltip" data-placement="bottom" href="#">
+                    무역뉴스
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" rel="tooltip" data-placement="bottom" href="#">
+                    FTA정보
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" rel="tooltip" data-placement="bottom" href="#">
+                    무역통계
+                    </a>
+                </li>
 
-            <!-- <li class="nav-item">
-                <a class="nav-link" rel="tooltip" data-placement="bottom" href="https://demos.creative-tim.com/paper-kit/index.html" target="_blank">
-                관세사 Matching
-                </a>
-            </li> -->
-
-            <div class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-toggle="dropdown" id="dropdownMenuButton" href="#pk" role="button" aria-haspopup="true" aria-expanded="false">관세사상담</a>
-                <ul class="dropdown-menu dropdown-info" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="#pk">관세사목록</a>
-                <a class="dropdown-item" href="#pk">상담목록</a>
-                <a class="dropdown-item" href="#pk">상담하기</a>
+                <div class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" id="dropdownMenuButton" href="#" role="button" aria-haspopup="true" aria-expanded="false">관세사상담</a>
+                    <ul class="dropdown-menu dropdown-info" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="#">관세사목록</a>
+                    <a class="dropdown-item" href="#">상담목록</a>
+                    <a class="dropdown-item" href="#">상담하기</a>
+                    </ul>
+                </div>
                 </ul>
             </div>
-            </ul>
-        </div>
         </div>
     </nav>
     <!-- End Navbar -->
@@ -73,7 +62,6 @@
             <div class="container">
                 <div class="title-brand">
                     <h1 class="presentation-title">페이지 제목</h1>
-                    <h3 class="presentation-subtitle">문장 넣기</h3>
                 </div>
             </div> <!--div.content-center-->
         </div>
@@ -152,156 +140,8 @@
     </nav>
 
     <div class="content">
-        <h2 class="tit1">세율정보</h2>
-
-        <ul class="list_st1">
-            <li>협정세율 : FTA 발효로 해당 협정에 따라 적용되는 세율
-                <ul class="list_st2">
-                    <li>FTA 발효로 품목별로 즉시 관세 철폐, 단계별 관세 철폐, 관세 변동이 없는 미양허 품목 등으로 구분
-                    <p class="bu_atte mgt5">한 &middot; 아세안 FTA의 경우 일반품목, 민감품목, 초민감품목으로 구분</p>
-                    </li>
-                </ul>
-            </li>
-            <li>기본세율(General Rate) : 자국법에 따라 정해진 세율 중 가장 기본이 되는 세율</li>
-            <li>기준세율(Base Rate) : 관세인하 교섭 등에서 각국의 관세율 수준을 나타낼 때 사용하는 세율</li>
-            <li>MFN(Most Favored Nation)세율 : 물품을 수입하는 국가에서 가장 낮게 운용하는 세율</li>
-            <li>상호대응세율 : 한-아세안 FTA
-
-            </li>
-
-            <li>관세법상 세율적용의 우선순위
-                <table class="tbl_st" border="1">
-                    <caption>관세법상 세율적용의 우선순위</caption>
-                    <colgroup>
-                    <col style="width:10%;" />
-                    <col style="width:50%;" />
-                    <col style="width:20%;" />
-                    <col style="width:20%;" />
-                    </colgroup>
-                    <thead>
-                    <tr>
-                        <th scope="col">순위</th>
-                        <th scope="col">내용</th>
-                        <th scope="col">하위내용</th>
-                        <th scope="col">비고</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>덤핑방지관세+<br />
-                            상계관세<br />
-                            보복관세&nbsp;<br />
-                            긴급관세<br />
-                            특정물품긴급관세 (+)<br />
-                            농림축산물특별긴급관세<br />
-                            조정관세(제69조) 제2호</td>
-                        <td></td>
-                        <td>가장 우선하여 적용</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>칠레<br />
-                            아세안<br />
-                            싱가포르<br />
-                            EFTA<br />
-                            인도<br />
-                            EU<br />
-                            페루<br />
-                            미국<br />
-                            튀르키예<br />
-                            호주<br />
-                            캐나다<br />
-                            콜롬비아<br />
-                            중국<br />
-                            베트남<br />
-                            뉴질랜드<br />
-                            중미<br />
-                            영국<br />
-                            RCEP</td>
-                        <td></td>
-                        <td>3~7 보다 낮은 경우 우선 적용</td>
-                    </tr>
-                    <tr>
-                        <td rowspan="11">3</td>
-                        <td rowspan="2">WTO일반양허관세</td>
-                        <td>WTO양허규정 별표1가</td>
-                        <td rowspan="9">4~7 보다 낮은 경우 우선 적용</td>
-                    </tr>
-                    <tr>
-                        <td>&nbsp;WTO양허규정 별표1다</td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">WTO개도국간의 양허관세</td>
-                    </tr>
-                    <tr>
-                        <td rowspan="3">아태협정양허관세</td>
-                        <td>일반양허관세</td>
-                    </tr>
-                    <tr>
-                        <td>방글라데시에 대한 양허 관세</td>
-                    </tr>
-                    <tr>
-                        <td>라오스에 대한 양허 관세</td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">유엔무역개발회의 개발도상국간 협정관세</td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">특정국가와의 관세협상에 따른 국제협력관세</td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">편익관세</td>
-                    </tr>
-                    <tr>
-                        <td>WTO일반양허관세</td>
-                        <td>WTO양허규정 별표 1나</td>
-                        <td rowspan="2">
-                            <p>6, 7보다 우선하여 적용</p>
-
-                            <p>4, 5 보다 낮은 경우 우선 적용</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>아태협정양허관세</td>
-                        <td>일반양허관세(별표3다)</td>
-                    </tr>
-                    <tr>
-                        <td rowspan="2">4</td>
-                        <td colspan="2">조정관세(제69조) 제1호, 제3호, 제4호</td>
-                        <td>5, 6, 7 보다 우선 적용</td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">할당관세</td>
-                        <td>
-                            <p>5 보다 낮은 경우 우선 적용</p>
-
-                            <p>6, 7 보다 우선 적용</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td colspan="2">최빈개발도상국에 대한 특혜관세</td>
-                        <td>6, 7 보다 우선적용</td>
-                    </tr>
-                    <tr>
-                        <td>6</td>
-                        <td colspan="2">잠정관세</td>
-                        <td>7 보다 우선하여 적용</td>
-                    </tr>
-                    <tr>
-                        <td>7</td>
-                        <td colspan="2">기본관세</td>
-                        <td></td>
-                    </tr>
-                    </tbody>
-                </table>
-            </li>
-        </ul>
-
-        <p></p>
-
-        </div>
+        <!-- 본인 내용 삽입 -->
+    </div> <!--content끝-->
 
     <!-- footer -->
     <footer class="footer-wave">
