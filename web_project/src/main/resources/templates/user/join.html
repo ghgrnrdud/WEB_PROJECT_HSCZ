@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="ko" 
+	xmlns:th="http://www.thymeleaf.org" 
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script th:src="@{/assets/js/jquery-3.7.1.min.js}"></script>
+    <script>
+        $(function() {
+            $("#ROLE_CCA").on('change', function() {
+                console.log("CCA 체크 확인");
+            })
+        })
+
+    </script>
+    <title>join</title>
+</head>
+<body>
+    <h2>회원가입</h2>
+    <div class="content">
+        <form th:action="@{/user/joinProc}" method="POST">
+            <ul>
+                <li>
+                    * <input type="text" name="userId" id="userId" placeholder="ID">
+                    <span id="checkId"></span>
+                </li>
+                <li>
+                    * <input type="password" name="userPwd" id="userPwd" placeholder="Password">
+                    <span id="checkPwd"></span>
+                </li>
+                <li>
+                    * <input type="text" name="userName" id="userName" placeholder="Name">
+                    <span id="checkName"></span>
+                </li>
+                <li>
+                    * <input type="radio" name="userRole" value="ROLE_USER" id="ROLE_USER"> user
+                    <input type="radio" name="userRole" value="ROLE_CCA" id="ROLE_CCA"> cca
+                    <input type="radio" name="userRole" value="ROLE_ADMIN" id="ROLE_ADMIN"> admin
+                </li>
+                <li>
+                    *<input type="tel" name="phone" id="phone" placeholder="Phone">
+                    <span id="checkPhone"></span>
+                </li>
+                <li>
+                    * <input type="text" name="email" id="email" placeholder="Email">
+                    <span id="checkEmail"></span>
+                </li>
+                <li>
+                    <input type="text" name="companyName" id="companyName" placeholder="회사명">
+                    <span id="checkCompanyName"></span>
+                </li>
+                <li>
+                    <select id="companyRegion" name="companyRegion">
+                        <option value="서울">서울</option>
+                        <option value="경기">경기</option>
+                        <option value="대전">대전</option>
+                        <option value="충남">충남</option>
+                        <option value="충북">충북</option>
+                        <option value="부산">부산</option>
+                        <option value="경남">경남</option>
+                        <option value="울산">울산</option>
+                        <option value="강원">강원</option>
+                        <option value="인천">인천</option>
+                        <option value="전남">전남</option>
+                        <option value="전북">전북</option>
+                        <option value="광주">광주</option>
+                        <option value="제주">제주</option>
+                        <option value="세종">세종</option>
+                        <option value="대구">대구</option>
+                        <option value="경북">경북</option>
+                    </select>
+                    <span id="checkcompanyRegion"></span>
+                </li>
+                <li>
+                    <input type="hidden" name="ccaNum1" id="ccaNum1" placeholder="자격번호">
+                    <input type="hidden" name="ccaNum2" id="ccaNum2" placeholder="등록번호">
+                    <span id="checkCcaNum"></span>
+                </li>
+                <li>관심품목1
+                    <select name="firstItem" id="firstItem">
+                        <option value="">전체</option>
+                        <option value="의류" th:selected="${searchItem == '의류'}">의류</option>
+                        <option value="무기류" th:selected="${searchItem == '무기류'}">무기류</option>
+                        <option value="농산품" th:selected="${searchItem == '농산품'}">농산품</option>
+                        <option value="광물" th:selected="${searchItem == '광물'}">광물</option>
+                        <option value="화학품" th:selected="${searchItem == '화학품'}">화학품</option>
+                        <option value="완구류" th:selected="${searchItem == '완구류'}">완구류</option>
+                        <option value="예술품" th:selected="${searchItem == '예술품'}">예술품</option>
+                        <option value="가구류" th:selected="${searchItem == '가구류'}">가구류</option>
+                        <option value="악기류" th:selected="${searchItem == '악기류'}">악기류</option>
+                        <option value="선박" th:selected="${searchItem == '선박'}">선박</option>
+                        <option value="시계" th:selected="${searchItem == '시계'}">시계</option>
+                        <option value="항공기" th:selected="${searchItem == '항공기'}">항공기</option>
+                        <option value="기계류" th:selected="${searchItem == '기계류'}">기계류</option>
+                        <option value="금속류" th:selected="${searchItem == '금속류'}">금속류</option>
+                        <option value="비금속류" th:selected="${searchItem == '비금속류'}">비금속류</option>
+                        <option value="플라스틱류" th:selected="${searchItem == '플라스틱류'}">플라스틱류</option>
+                        <option value="목재류" th:selected="${searchItem == '목재류'}">목재류</option>
+                        <option value="의료용품" th:selected="${searchItem == '의료용품'}">의료용품</option>
+                        <option value="화장품" th:selected="${searchItem == '화장품'}">화장품</option>
+                        <option value="곡물류" th:selected="${searchItem == '곡물류'}">곡물류</option>
+                        <option value="화약류" th:selected="${searchItem == '화약류'}">화약류</option>
+                        <option value="고무제품류" th:selected="${searchItem == '고무제품류'}">고무제품류</option>
+                        <option value="가죽제품류" th:selected="${searchItem == '가죽제품류'}">가죽제품류</option>
+                        <option value="인쇄물류" th:selected="${searchItem == '인쇄물류'}">인쇄물류</option>
+                        <option value="케이블류" th:selected="${searchItem == '케이블류'}">케이블류</option>
+                        <option value="면제품류" th:selected="${searchItem == '면제품류'}">면제품류</option>
+                        <option value="견직류" th:selected="${searchItem == '견직류'}">견직류</option>
+                        <option value="섬유제품류" th:selected="${searchItem == '섬유제품류'}">섬유제품류</option>
+                        <option value="도자기류" th:selected="${searchItem == '도자기류'}">도자기류</option>
+                        <option value="식기류" th:selected="${searchItem == '식기류'}">식기류</option>
+                        <option value="철도부품" th:selected="${searchItem == '철도부품'}">철도부품</option>
+                        <option value="원자로" th:selected="${searchItem == '원자로'}">원자로</option>
+                    </select>
+                    </li>
+                    <li>관심품목2
+                    <select name="secondItem" id="secondItem">
+                        <option value="">전체</option>
+                        <option value="의류" th:selected="${searchItem == '의류'}">의류</option>
+                        <option value="무기류" th:selected="${searchItem == '무기류'}">무기류</option>
+                        <option value="농산품" th:selected="${searchItem == '농산품'}">농산품</option>
+                        <option value="광물" th:selected="${searchItem == '광물'}">광물</option>
+                        <option value="화학품" th:selected="${searchItem == '화학품'}">화학품</option>
+                        <option value="완구류" th:selected="${searchItem == '완구류'}">완구류</option>
+                        <option value="예술품" th:selected="${searchItem == '예술품'}">예술품</option>
+                        <option value="가구류" th:selected="${searchItem == '가구류'}">가구류</option>
+                        <option value="악기류" th:selected="${searchItem == '악기류'}">악기류</option>
+                        <option value="선박" th:selected="${searchItem == '선박'}">선박</option>
+                        <option value="시계" th:selected="${searchItem == '시계'}">시계</option>
+                        <option value="항공기" th:selected="${searchItem == '항공기'}">항공기</option>
+                        <option value="기계류" th:selected="${searchItem == '기계류'}">기계류</option>
+                        <option value="금속류" th:selected="${searchItem == '금속류'}">금속류</option>
+                        <option value="비금속류" th:selected="${searchItem == '비금속류'}">비금속류</option>
+                        <option value="플라스틱류" th:selected="${searchItem == '플라스틱류'}">플라스틱류</option>
+                        <option value="목재류" th:selected="${searchItem == '목재류'}">목재류</option>
+                        <option value="의료용품" th:selected="${searchItem == '의료용품'}">의료용품</option>
+                        <option value="화장품" th:selected="${searchItem == '화장품'}">화장품</option>
+                        <option value="곡물류" th:selected="${searchItem == '곡물류'}">곡물류</option>
+                        <option value="화약류" th:selected="${searchItem == '화약류'}">화약류</option>
+                        <option value="고무제품류" th:selected="${searchItem == '고무제품류'}">고무제품류</option>
+                        <option value="가죽제품류" th:selected="${searchItem == '가죽제품류'}">가죽제품류</option>
+                        <option value="인쇄물류" th:selected="${searchItem == '인쇄물류'}">인쇄물류</option>
+                        <option value="케이블류" th:selected="${searchItem == '케이블류'}">케이블류</option>
+                        <option value="면제품류" th:selected="${searchItem == '면제품류'}">면제품류</option>
+                        <option value="견직류" th:selected="${searchItem == '견직류'}">견직류</option>
+                        <option value="섬유제품류" th:selected="${searchItem == '섬유제품류'}">섬유제품류</option>
+                        <option value="도자기류" th:selected="${searchItem == '도자기류'}">도자기류</option>
+                        <option value="식기류" th:selected="${searchItem == '식기류'}">식기류</option>
+                        <option value="철도부품" th:selected="${searchItem == '철도부품'}">철도부품</option>
+                        <option value="원자로" th:selected="${searchItem == '원자로'}">원자로</option>
+                    </select>
+                    </li>
+                    <li>관심품목3
+                    <select name="thirdItem" id="thirdItem">
+                        <option value="">전체</option>
+                        <option value="의류" th:selected="${searchItem == '의류'}">의류</option>
+                        <option value="무기류" th:selected="${searchItem == '무기류'}">무기류</option>
+                        <option value="농산품" th:selected="${searchItem == '농산품'}">농산품</option>
+                        <option value="광물" th:selected="${searchItem == '광물'}">광물</option>
+                        <option value="화학품" th:selected="${searchItem == '화학품'}">화학품</option>
+                        <option value="완구류" th:selected="${searchItem == '완구류'}">완구류</option>
+                        <option value="예술품" th:selected="${searchItem == '예술품'}">예술품</option>
+                        <option value="가구류" th:selected="${searchItem == '가구류'}">가구류</option>
+                        <option value="악기류" th:selected="${searchItem == '악기류'}">악기류</option>
+                        <option value="선박" th:selected="${searchItem == '선박'}">선박</option>
+                        <option value="시계" th:selected="${searchItem == '시계'}">시계</option>
+                        <option value="항공기" th:selected="${searchItem == '항공기'}">항공기</option>
+                        <option value="기계류" th:selected="${searchItem == '기계류'}">기계류</option>
+                        <option value="금속류" th:selected="${searchItem == '금속류'}">금속류</option>
+                        <option value="비금속류" th:selected="${searchItem == '비금속류'}">비금속류</option>
+                        <option value="플라스틱류" th:selected="${searchItem == '플라스틱류'}">플라스틱류</option>
+                        <option value="목재류" th:selected="${searchItem == '목재류'}">목재류</option>
+                        <option value="의료용품" th:selected="${searchItem == '의료용품'}">의료용품</option>
+                        <option value="화장품" th:selected="${searchItem == '화장품'}">화장품</option>
+                        <option value="곡물류" th:selected="${searchItem == '곡물류'}">곡물류</option>
+                        <option value="화약류" th:selected="${searchItem == '화약류'}">화약류</option>
+                        <option value="고무제품류" th:selected="${searchItem == '고무제품류'}">고무제품류</option>
+                        <option value="가죽제품류" th:selected="${searchItem == '가죽제품류'}">가죽제품류</option>
+                        <option value="인쇄물류" th:selected="${searchItem == '인쇄물류'}">인쇄물류</option>
+                        <option value="케이블류" th:selected="${searchItem == '케이블류'}">케이블류</option>
+                        <option value="면제품류" th:selected="${searchItem == '면제품류'}">면제품류</option>
+                        <option value="견직류" th:selected="${searchItem == '견직류'}">견직류</option>
+                        <option value="섬유제품류" th:selected="${searchItem == '섬유제품류'}">섬유제품류</option>
+                        <option value="도자기류" th:selected="${searchItem == '도자기류'}">도자기류</option>
+                        <option value="식기류" th:selected="${searchItem == '식기류'}">식기류</option>
+                        <option value="철도부품" th:selected="${searchItem == '철도부품'}">철도부품</option>
+                        <option value="원자로" th:selected="${searchItem == '원자로'}">원자로</option>
+                    </select>
+                </li>
+                <li>
+                    <input type="text" name="selfInfo" id="selfInfo" placeholder="자기소개">
+                </li>
+            </ul>
+            <div class="btns">
+                <input type="submit" id="submitBtn" value="회원가입">
+                <input type="reset" id="resetBtn" value="초기화">
+            </div>
+        </form>
+    </div>
+</body>
+</html>

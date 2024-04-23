@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>우수 답변 관세사 목록</title>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <a th:href="@{/}"><img th:src="@{/images/logo.png}" alt="logo"></a>
+            <h2>우수 답변 관세사 순위</h2>
+        </div>
+    </div>
+
+    <div class="content">
+        <p th:if="${#lists.isEmpty(CustomerCCAList)}">해당 관세사는 존재하지 않습니다.</p>
+        <div class="head">
+            <p>검색된 총 관세사: [[${CustomerCCAList.totalElements}]]명</p>
+        </div>
+        
+        <table border="1">
+            <tr>
+                <th class="no">순위</th>
+                <th class="ccaName">관세사명</th>
+                <th class="companyName">관세사무소</th>
+                <th class="phone">연락처</th>
+                <th class="companyRegion">관세사무소 주소</th>
+                <th class="ccaEmail">이메일</th>
+                <th class="likeTotal">추천수</th>
+            </tr>
+            <tr th:each="cca, status : ${CustomerCCAList}">
+				<td th:text="${(CustomerCCAList.number * CustomerCCAList.size) + status.count}"></td>
+                <td th:text="${cca.userName}"></td>
+                <td th:text="${cca.companyName}"></td>
+                <td th:text="${cca.phone}"></td>
+                <td th:text="${cca.companyRegion}"></td>
+                <td th:text="${cca.email}"></td>
+                <td th:text="${cca.likeTotal}"></td>
+            </tr>
+        </table>
+        
+        <nav class="pagination">
+        
+            <span th:each="pageNum : ${#numbers.sequence(0, CustomerCCAList.totalPages - 1)}">
+                <span th:if="${pageNum == CustomerCCAList.number}">
+                    <b class="page-no current" th:text="${pageNum + 1}"></b>
+                </span>
+                <span th:unless="${pageNum == CustomerCCAList.number}">
+                    <a class="page-no" th:href="@{/cca/ccaTop10(page=${pageNum})}" th:text="${pageNum + 1}"></a>
+                </span>
+            </span>
+	
+ 
+        </nav>
+    </div>
+</body>
+</html>
