@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>관세사 연락처 목록</title>
+    
+    <link rel="stylesheet" th:href="@{/css/list.css}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script th:src="@{/script/jquery-3.7.1.min.js}"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <a th:href="@{/}"><img th:src="@{/images/logo.png}" alt="logo"></a>
+            <h2>관세사 연락처 목록</h2>
+        </div>
+    </div> <!-- .container 끝 -->
+
+    <!-- Hidden input for storing current search conditions -->
+    <input type="hidden" id="currentSearchType" th:value="${searchBy}" />
+    <input type="hidden" id="currentSearchItem" th:value="${searchItem}" />
+
+    <!-- 게시글 전체 목록 출력 -->
+    <div class="content">
+        <p th:if="${#lists.isEmpty(ccaList)}">해당 관세사는 존재하지 않습니다.</p>
+        <div class="head">
+            <div class="count">
+                <p>검색된 총 관세사: [[${ccaList.totalElements}]]명</p>
+            </div>
+            <div class="search">
+                <form id="searchForm" th:action="@{/cca/ccaList}" method="GET">
+                    <input type="hidden" name="page" id="requestPage" th:value="${page}">
+                    <select id="search-type" name="searchBy">
+                        <option value="companyRegion" th:selected="${searchBy == 'companyRegion'}">지역별로 검색하기</option>
+                        
+                    </select>
+					<select id="searchItem" name="searchItem">
+					    <option value="서울" th:selected="${searchItem == '서울'}">서울</option>
+					    <option value="경기" th:selected="${searchItem == '경기'}">경기</option>
+					    <option value="대전" th:selected="${searchItem == '대전'}">대전</option>
+					    <option value="충남" th:selected="${searchItem == '충남'}">충남</option>
+					    <option value="충북" th:selected="${searchItem == '충북'}">충북</option>
+					    <option value="부산" th:selected="${searchItem == '부산'}">부산</option>
+					    <option value="경남" th:selected="${searchItem == '경남'}">경남</option>
+					    <option value="울산" th:selected="${searchItem == '울산'}">울산</option>
+					    <option value="강원" th:selected="${searchItem == '강원'}">강원</option>
+					    <option value="인천" th:selected="${searchItem == '인천'}">인천</option>
+					    <option value="전남" th:selected="${searchItem == '전남'}">전남</option>
+					    <option value="전북" th:selected="${searchItem == '전북'}">전북</option>
+					    <option value="광주" th:selected="${searchItem == '광주'}">광주</option>
+					    <option value="제주" th:selected="${searchItem == '제주'}">제주</option>
+					    <option value="세종" th:selected="${searchItem == '세종'}">세종</option>
+					    <option value="대구" th:selected="${searchItem == '대구'}">대구</option>
+					    <option value="경북" th:selected="${searchItem == '경북'}">경북</option>
+					</select>
+
+                    <input type="submit" value="관세사 검색" id="ccaSearchBtn" class="btn btn-info">
+                </form>
+            </div>
+        </div>
+        <div>
+            <table border="1">
+                <tr>
+                    <th class="no">연번</th>
+                    <th class="ccaName">관세사명</th>
+                    <th class="companyName">관세사무소</th>
+                    <th class="phone">연락처</th>
+                    <th class="companyRegion">관세사무소 주소</th>
+                    <th class="ccaEmail">이메일</th>
+                </tr>
+                <tr th:each="cca, status : ${ccaList}">
+                    <td th:text="${(ccaList.number * ccaList.size) + status.count}"></td>
+                    <td th:text="${cca.ccaName}">홍길동</td>
+                    <td th:text="${cca.companyName}">관세사무소 이름</td>
+                    <td th:text="${cca.phone}">연락처</td>
+                    <td th:text="${cca.companyRegion}">관세사무소 주소</td>
+                    <td th:text="${cca.ccaEmail}">관세사 이메일</td>
+                </tr>
+            </table>
+        </div>
+        <nav class="pagination">
+            <a th:if="${navi.startPageGroup > 1}"
+               th:href="@{|/cca/ccaList?page=${navi.startPageGroup - 10}&searchBy=${searchBy}&searchItem=${searchItem}|}"
+               class="btn">&laquo; Previous</a>
+            <span th:each="count : ${#numbers.sequence(navi.startPageGroup, navi.endPageGroup)}">
+                <span th:if="${count == navi.page}">
+                    <b class="page-no current" th:text="${count}"></b>
+                </span>
+                <span th:unless="${count == navi.page}">
+                    <a class="page-no" th:href="@{|/cca/ccaList?page=${count}&searchBy=${searchBy}&searchItem=${searchItem}|}" th:text="${count}"></a>
+                </span>
+            </span>
+            <a th:if="${navi.endPageGroup < navi.totalPages}"
+               th:href="@{|/cca/ccaList?page=${navi.endPageGroup + 1}&searchBy=${searchBy}&searchItem=${searchItem}|}"
+               class="btn">Next &raquo;</a>
+        </nav>
+    </div>
+
+
+</body>
+</html>
+
+

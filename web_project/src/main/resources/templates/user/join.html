@@ -8,6 +8,7 @@
     <script th:src="@{/assets/js/jquery-3.7.1.min.js}"></script>
     <script>
         $(function() {
+<<<<<<< HEAD
             $("input[type='radio']").on('change', function() {
 
             if ($(this).val() === "") {
@@ -93,6 +94,11 @@
 
             
             
+=======
+            $("#ROLE_CCA").on('change', function() {
+                console.log("CCA 체크 확인");
+            })
+>>>>>>> 8b277429deb5ae23f967cc85ba9c1cfbc4beec27
         })
 
     </script>
@@ -102,6 +108,7 @@
     <h2>회원가입</h2>
     <div class="content">
         <form th:action="@{/user/joinProc}" method="POST">
+<<<<<<< HEAD
             <!-- <ul> -->
                 <!-- <li> -->
                     * <input type="text" name="userId" id="userId" placeholder="ID"><br>
@@ -135,6 +142,40 @@
                 <!-- </li> -->
                 <!-- <li> --> 지역
                     <select id="companyRegion">
+=======
+            <ul>
+                <li>
+                    * <input type="text" name="userId" id="userId" placeholder="ID">
+                    <span id="checkId"></span>
+                </li>
+                <li>
+                    * <input type="password" name="userPwd" id="userPwd" placeholder="Password">
+                    <span id="checkPwd"></span>
+                </li>
+                <li>
+                    * <input type="text" name="userName" id="userName" placeholder="Name">
+                    <span id="checkName"></span>
+                </li>
+                <li>
+                    * <input type="radio" name="userRole" value="ROLE_USER" id="ROLE_USER"> user
+                    <input type="radio" name="userRole" value="ROLE_CCA" id="ROLE_CCA"> cca
+                    <input type="radio" name="userRole" value="ROLE_ADMIN" id="ROLE_ADMIN"> admin
+                </li>
+                <li>
+                    *<input type="tel" name="phone" id="phone" placeholder="Phone">
+                    <span id="checkPhone"></span>
+                </li>
+                <li>
+                    * <input type="text" name="email" id="email" placeholder="Email">
+                    <span id="checkEmail"></span>
+                </li>
+                <li>
+                    <input type="text" name="companyName" id="companyName" placeholder="회사명">
+                    <span id="checkCompanyName"></span>
+                </li>
+                <li>
+                    <select id="companyRegion" name="companyRegion">
+>>>>>>> 8b277429deb5ae23f967cc85ba9c1cfbc4beec27
                         <option value="서울">서울</option>
                         <option value="경기">경기</option>
                         <option value="대전">대전</option>
@@ -152,6 +193,7 @@
                         <option value="세종">세종</option>
                         <option value="대구">대구</option>
                         <option value="경북">경북</option>
+<<<<<<< HEAD
                     </select><br>
                     <span id="checkcompanyRegion"></span>
                 <!-- </li> -->
@@ -162,6 +204,17 @@
                 <!-- </li> -->
                 <!-- <li> -->
                     관심품목1
+=======
+                    </select>
+                    <span id="checkcompanyRegion"></span>
+                </li>
+                <li>
+                    <input type="hidden" name="ccaNum1" id="ccaNum1" placeholder="자격번호">
+                    <input type="hidden" name="ccaNum2" id="ccaNum2" placeholder="등록번호">
+                    <span id="checkCcaNum"></span>
+                </li>
+                <li>관심품목1
+>>>>>>> 8b277429deb5ae23f967cc85ba9c1cfbc4beec27
                     <select name="firstItem" id="firstItem">
                         <option value="">전체</option>
                         <option value="의류" th:selected="${searchItem == '의류'}">의류</option>
@@ -197,9 +250,14 @@
                         <option value="철도부품" th:selected="${searchItem == '철도부품'}">철도부품</option>
                         <option value="원자로" th:selected="${searchItem == '원자로'}">원자로</option>
                     </select>
+<<<<<<< HEAD
                     <!-- </li> -->
                     <!-- <li> -->
                         관심품목2
+=======
+                    </li>
+                    <li>관심품목2
+>>>>>>> 8b277429deb5ae23f967cc85ba9c1cfbc4beec27
                     <select name="secondItem" id="secondItem">
                         <option value="">전체</option>
                         <option value="의류" th:selected="${searchItem == '의류'}">의류</option>
@@ -235,9 +293,14 @@
                         <option value="철도부품" th:selected="${searchItem == '철도부품'}">철도부품</option>
                         <option value="원자로" th:selected="${searchItem == '원자로'}">원자로</option>
                     </select>
+<<<<<<< HEAD
                     <!-- </li> -->
                     <!-- <li> -->
                         관심품목3 
+=======
+                    </li>
+                    <li>관심품목3
+>>>>>>> 8b277429deb5ae23f967cc85ba9c1cfbc4beec27
                     <select name="thirdItem" id="thirdItem">
                         <option value="">전체</option>
                         <option value="의류" th:selected="${searchItem == '의류'}">의류</option>
@@ -272,12 +335,21 @@
                         <option value="식기류" th:selected="${searchItem == '식기류'}">식기류</option>
                         <option value="철도부품" th:selected="${searchItem == '철도부품'}">철도부품</option>
                         <option value="원자로" th:selected="${searchItem == '원자로'}">원자로</option>
+<<<<<<< HEAD
                     </select><br>
                 <!-- </li> -->
                 <!-- <li> -->
                     <input type="text" name="selfInfo" id="selfInfo" placeholder="자기소개">
                 <!-- </li> -->
             <!-- </ul> -->
+=======
+                    </select>
+                </li>
+                <li>
+                    <input type="text" name="selfInfo" id="selfInfo" placeholder="자기소개">
+                </li>
+            </ul>
+>>>>>>> 8b277429deb5ae23f967cc85ba9c1cfbc4beec27
             <div class="btns">
                 <input type="submit" id="submitBtn" value="회원가입">
                 <input type="reset" id="resetBtn" value="초기화">

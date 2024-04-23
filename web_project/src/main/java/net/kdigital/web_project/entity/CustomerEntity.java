@@ -1,5 +1,6 @@
 package net.kdigital.web_project.entity;
 
+<<<<<<< HEAD
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,6 +11,11 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OrderBy;
+=======
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+>>>>>>> 8b277429deb5ae23f967cc85ba9c1cfbc4beec27
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -42,10 +48,14 @@ public class CustomerEntity {
 	@Column(name="user_role", nullable=false)
 	private String userRole;
 	
+<<<<<<< HEAD
 	@Column(name="phone", nullable=false)
 	private String phone;
 	
 	@Column(name="email", nullable=false)
+=======
+	private String phone;
+>>>>>>> 8b277429deb5ae23f967cc85ba9c1cfbc4beec27
 	private String email;
 	
 	@Column(name="company_name")
@@ -57,6 +67,7 @@ public class CustomerEntity {
 	@Column(name="like_total")
 	private int likeTotal;
 	
+<<<<<<< HEAD
 	@Column(name="cca_num")
 	private int ccaNum;
 	
@@ -74,6 +85,11 @@ public class CustomerEntity {
 	@OrderBy("item_id asc")
 	private List<CustomerItemEntity> customerItemEntity = new ArrayList<>();
 	
+=======
+	@Column(name="self_info")
+	private String selfInfo;
+	
+>>>>>>> 8b277429deb5ae23f967cc85ba9c1cfbc4beec27
 	public static CustomerEntity toEntity(CustomerDTO customerDTO) {
 		return CustomerEntity.builder()
 				.userId(customerDTO.getUserId())
@@ -85,8 +101,15 @@ public class CustomerEntity {
 				.companyName(customerDTO.getCompanyName())
 				.companyRegion(customerDTO.getCompanyRegion())
 				.likeTotal(customerDTO.getLikeTotal())
+<<<<<<< HEAD
 				.ccaNum(customerDTO.getCcaNum())
 				.selfInfo(customerDTO.getSelfInfo())
 				.build();
 	}
 }
+=======
+				.selfInfo(customerDTO.getSelfInfo())
+				.build();
+	}
+}
+>>>>>>> 8b277429deb5ae23f967cc85ba9c1cfbc4beec27

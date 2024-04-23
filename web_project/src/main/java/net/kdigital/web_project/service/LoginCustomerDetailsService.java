@@ -6,13 +6,21 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
+<<<<<<< HEAD
 import lombok.extern.slf4j.Slf4j;
+=======
+
+>>>>>>> 8b277429deb5ae23f967cc85ba9c1cfbc4beec27
 import net.kdigital.web_project.dto.CustomerDTO;
 import net.kdigital.web_project.dto.LoginUserDetails;
 import net.kdigital.web_project.entity.CustomerEntity;
 import net.kdigital.web_project.repository.CustomerRepository;
 
+<<<<<<< HEAD
 @Slf4j
+=======
+
+>>>>>>> 8b277429deb5ae23f967cc85ba9c1cfbc4beec27
 @RequiredArgsConstructor
 @Service
 public class LoginCustomerDetailsService implements UserDetailsService {
