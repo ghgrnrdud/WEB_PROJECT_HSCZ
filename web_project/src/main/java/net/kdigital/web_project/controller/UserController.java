@@ -24,7 +24,7 @@ public class UserController {
 	// 회원가입 화면 요청
 	@GetMapping("/user/join") 
 	public String join() {
-		return "user/join";
+		return "/user/joinExample";
 	}
 
 	// 회원 저장
@@ -48,7 +48,7 @@ public class UserController {
 		model.addAttribute("error", error);
 		model.addAttribute("errMessage", errMessage);
 		
-		return "user/login";
+		return "/user/loginExample";
 	}
 	
 }

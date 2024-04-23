@@ -207,7 +207,11 @@ function createDiv(id, div) {
   var parentContainer = document.createElement("span");
   parentContainer.id = "parentContainer" + id;
   parentContainer.style.width = "370px";
+  var parentContainer = document.createElement("span");
+  parentContainer.id = "parentContainer" + id;
+  parentContainer.style.width = "370px";
   var container = document.createElement("div");
+  parentContainer.appendChild(container);
   parentContainer.appendChild(container);
   container.id = "chart" + id;
   container.style.width = "350px";

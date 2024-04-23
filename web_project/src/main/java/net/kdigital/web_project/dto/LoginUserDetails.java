@@ -21,6 +21,7 @@ public class LoginUserDetails implements UserDetails {
 	private String companyName;
 	private String companyRegion;
 	private int likeTotal;
+	private int ccaNum;
 	private String selfInfo;
 	private static final long serialVersionUID = 1L;
 	
@@ -35,6 +36,7 @@ public class LoginUserDetails implements UserDetails {
 		this.companyName = customerDTO.getCompanyName();
 		this.companyRegion = customerDTO.getCompanyRegion();
 		this.likeTotal = customerDTO.getLikeTotal();
+		this.ccaNum = customerDTO.getCcaNum();
 		this.selfInfo = customerDTO.getSelfInfo();
 	}
 	

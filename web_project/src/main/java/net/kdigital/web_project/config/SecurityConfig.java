@@ -35,6 +35,7 @@ public class SecurityConfig {
 				, "/trade/Exbarchart"
 				, "/trade/Ixbarchart"
 				, "/assets/**"
+				, "/images/**"
 				).permitAll()
 				.requestMatchers("/admin/**").hasRole("ADMIN")
 				.requestMatchers("/my/**").hasAnyRole("ADMIN", "USER", "CCA") // *********** 이게 맞나????
@@ -43,7 +44,7 @@ public class SecurityConfig {
 		// Custom Login 설정
 		http
 		.formLogin((auth) -> auth
-				.loginPage("/user/login")
+				.loginPage("/user/loginExample")
 				.failureHandler(failureHandler)
 				.usernameParameter("userId")
 				.passwordParameter("userPwd")

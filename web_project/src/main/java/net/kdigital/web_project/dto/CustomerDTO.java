@@ -24,6 +24,7 @@ public class CustomerDTO {
 	private String companyName;
 	private String companyRegion;
 	private int likeTotal;
+	private int ccaNum;
 	private String selfInfo;
 	
 	public static CustomerDTO toDTO(CustomerEntity customerEntity) {
@@ -37,6 +38,7 @@ public class CustomerDTO {
 				.companyName(customerEntity.getCompanyName())
 				.companyRegion(customerEntity.getCompanyRegion())
 				.likeTotal(customerEntity.getLikeTotal())
+				.ccaNum(customerEntity.getCcaNum())
 				.selfInfo(customerEntity.getSelfInfo())
 				.build();
 	}

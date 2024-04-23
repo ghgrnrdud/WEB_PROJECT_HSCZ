@@ -42,7 +42,10 @@ public class CustomerEntity {
 	@Column(name="user_role", nullable=false)
 	private String userRole;
 	
+	@Column(name="phone", nullable=false)
 	private String phone;
+	
+	@Column(name="email", nullable=false)
 	private String email;
 	
 	@Column(name="company_name")
@@ -53,6 +56,9 @@ public class CustomerEntity {
 	
 	@Column(name="like_total")
 	private int likeTotal;
+	
+	@Column(name="cca_num")
+	private int ccaNum;
 	
 	@Column(name="self_info")
 	private String selfInfo;
@@ -79,6 +85,7 @@ public class CustomerEntity {
 				.companyName(customerDTO.getCompanyName())
 				.companyRegion(customerDTO.getCompanyRegion())
 				.likeTotal(customerDTO.getLikeTotal())
+				.ccaNum(customerDTO.getCcaNum())
 				.selfInfo(customerDTO.getSelfInfo())
 				.build();
 	}
