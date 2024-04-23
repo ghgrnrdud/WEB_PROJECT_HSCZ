@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script th:src="@{/assets/js/jquery-3.7.1.min.js}"></script>
+    <script>
+        $(function() {
+            $("#")
+        })
+
+    </script>
+    <title>login</title>
+</head>
+<body>
+    <h2>로그인</h2>
+    <div class="content">
+        <form th:action="@{/user/loginProc}" method="POST">
+            <ul>
+                <li>
+                    <input type="text" name="userId" placeholder="ID">
+                </li>
+                <li>
+                    <input type="password" name="userPwd" placeholder="Password">
+                </li>
+            </ul>
+
+            <th:block th:if="${error}">
+                <div th:text="${errMessage}"></div>
+            </th:block>
+
+            <div class="btns">
+                <input type="submit" id="submitBtn" value="로그인">
+                <input type="reset" id="resetBtn" value="초기화">
+            </div>
+        </form>
+    </div>
+</body>
+</html>

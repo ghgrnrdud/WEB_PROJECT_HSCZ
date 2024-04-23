@@ -1,0 +1,60 @@
+/* 한국 수출입 현황 제목 */
+#koreatitle{
+    font-size: 30px;
+    line-height: 50px;
+    font-weight: bold;
+}
+
+/* 그래프 1번 제목 */
+#title1{
+    width: 540px;
+    text-align: left;
+    font-size: 18px;
+    line-height: 50px;
+    margin-left: 25px;
+    margin-top: 12px;
+    margin-bottom: 0px;
+    border-bottom: 1.7px solid black;
+}
+
+/* 그래프 2번 제목 */
+#title2{
+    width: 440px;
+    text-align: left;
+    font-size: 18px;
+    line-height: 50px;
+    margin-left: 25px;
+    margin-top: 12px;
+    margin-bottom: 0px;
+    border-bottom: 1.7px solid black;
+    display: inline-block;
+}
+#smalltitle2{
+    display: inline-block;
+    margin-top: 12px;
+    margin-bottom: 0px;
+    margin-right: 15px;
+    padding-bottom: 12px;
+    border-bottom: 1.7px solid black;
+}
+#importdd{
+    border-radius: 8px;
+    background-color: rgba(241, 241, 241, 0.833);
+}
+#dropdown{
+    border-radius: 8px;
+    background-color: rgba(241, 241, 241, 0.833);
+}
+
+#chart2Newdiv{
+    /* float: right; */
+    display : inline-block;
+    background-color: aqua;
+    width: 550px;
+    height: 50px;
+    text-align : center;
+    margin-top: 0px;
+    margin-left: 10px;
+    font-size: 20px;
+    line-height: 50px;
+}
