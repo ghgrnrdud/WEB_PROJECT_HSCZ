@@ -7,13 +7,11 @@ function init(id, div) {
 
   var root = am5.Root.new("chartdiv");
 
-
   // Set themes
   // https://www.amcharts.com/docs/v5/concepts/themes/
   root.setThemes([
     am5themes_Animated.new(root)
   ]);
-
 
   // Create the map chart
   // https://www.amcharts.com/docs/v5/charts/map-chart/
@@ -22,7 +20,6 @@ function init(id, div) {
     // panY: "translateY",Fgtuy67=\  rotationX: -160,
     projection: am5map.geoEqualEarth()
   }));
-
 
   // Create main polygon series for countries
   // https://www.amcharts.com/docs/v5/charts/map-chart/map-polygon-series/
@@ -37,7 +34,6 @@ function init(id, div) {
     , fill: am5.color("#D8DEF6")
     , templateField: "polygonSettings"
   });
-
 
   // polygonSeries.mapPolygons.template.events.on("click", function(ev) {
   //   console.log("Clicked on", ev.target.dataItem.get("id"));
@@ -57,7 +53,6 @@ function init(id, div) {
     // HTML 요소에 국가 이름 설정
     document.getElementById("countryName").innerHTML = country;
   });
-
 
   polygonSeries.mapPolygons.template.states.create("hover", {
     fill: am5.color("#B0B2B5")
@@ -192,7 +187,6 @@ function init(id, div) {
   var zoomControl = chart.set("zoomControl", am5map.ZoomControl.new(root, {}));
   zoomControl.homeButton.set("visible", true);
 
-
   // Set clicking on "water" to zoom out
   chart.chartContainer.get("background").events.on("click", function () {
     chart.goHome();
@@ -239,23 +233,36 @@ function maybeDisposeRoot(divId) {
 // ================================== bulletChart ========================================
 // =======================================================================================
 function createBullet(id, div) {
-  // console.log("============createBullet도착");
+  var root;
 
   //title과 그래프를 감싸는 부모div 생성
   var parentContainer = createDiv(id, div);
   var newspace = parentContainer.firstChild;
+
   //제목 태그 생성
   var title = document.createElement('p');
   title.id = "title" + id;
 
-  //css
+  //단위 태그 생성
+  var smalltitle1 = document.createElement('p');
+  smalltitle1.id = "smalltitle1";
+
+  //넣을 위치 조정
+  div.before(parentContainer);
+  newspace.before(title, smalltitle1);
+
+  //제목 글 설정
+  document.getElementById(`title${id}`).innerText = "수출입 금액";
+  smalltitle1.innerText = "단위 : 천$";
+
+  //부모 div css
   parentContainer.style.display = "inline-block";
   parentContainer.style.width = "590px";
   parentContainer.style.height = "430px";
   parentContainer.style.borderRadius = "10px";
-  parentContainer.style.background = " #ffff";
   parentContainer.style.border = "1.8px solid #c3c6ce";
   parentContainer.style.transition = "0.5s ease-out";
+  smalltitle1.style.width = "90px";
 
   parentContainer.addEventListener('mouseenter', function () {
     this.style.borderColor = "#008ff0";
@@ -263,6 +270,9 @@ function createBullet(id, div) {
     title.style.fontWeight = "bolder";
     title.style.color = "#008ff0";
     title.style.borderBottom = "2px solid #008ff0";
+    smalltitle1.style.fontWeight = "bolder";
+    smalltitle1.style.color = "#008ff0";
+    smalltitle1.style.borderBottom = "2px solid #008ff0";
   });
   parentContainer.addEventListener('mouseleave', function () {
     this.style.borderColor = "#c3c6ce";
@@ -270,22 +280,21 @@ function createBullet(id, div) {
     title.style.fontWeight = "normal";
     title.style.color = "black";
     title.style.borderBottom = "1.7px solid black"
+    smalltitle1.style.fontWeight = "normal";
+    smalltitle1.style.color = "black";
+    smalltitle1.style.borderBottom = "1.7px solid black"
   });
 
-  // newspace.style.borderTop = "3px solid #c3c6ce";
+  //그래프 css
   newspace.style.width = "570px";
-  newspace.style.height = "340px";
+  newspace.style.height = "320px";
+  newspace.style.float = "right";
   newspace.style.margin = "10px";
   newspace.style.border = "0px";
 
-  //넣을 위치 조정
+  //그 외
   div.before(parentContainer);
-  newspace.before(title);
-
-  //제목 글 설정
-  document.getElementById(`title${id}`).innerText = "수출입 금액";
-
-  var root = am5.Root.new(newspace);
+  root = am5.Root.new(newspace);
 
   root.setThemes([
     am5themes_Animated.new(root)
@@ -335,7 +344,7 @@ function createBullet(id, div) {
   // Add series
   // https://www.amcharts.com/docs/v5/charts/xy-chart/series/
   var series = chart.series.push(am5xy.LineSeries.new(root, {
-    name: "수출(백만$)",
+    name: "수출",
     xAxis: xAxis,
     yAxis: yAxis,
     valueYField: "value1",
@@ -352,7 +361,7 @@ function createBullet(id, div) {
   series.get("tooltip").get("background").set("fillOpacity", 0.5);
 
   var series2 = chart.series.push(am5xy.LineSeries.new(root, {
-    name: "수입(10억$)",
+    name: "수입",
     xAxis: xAxis,
     yAxis: yAxis,
     valueYField: "value2",
@@ -573,6 +582,8 @@ function createBullet(id, div) {
   chart.appear(1000, 100);
 };//end createBullet
 
+
+
 // ====================================== pieChart =======================================
 // =======================================================================================
 // 첫 화면 시작 시 먼저 실행
@@ -591,26 +602,81 @@ function createRealPie(id, div, resp, country, year) {
   var space = document.getElementById("chart6");
   var root;
 
-  var parentContainer = createDiv(id, div);
-  var newspace = parentContainer.firstChild;
-  var title = document.createElement('p');
-  title.id = "title" + id;
-  parentContainer.style.display = "inline-block";
-
   if (space == null) {
-    div.before(parentContainer);
-    newspace.before(title);
-    title.innerText = `중국의 수입시장 점유율`;
+    //제목+그래프 감싸는 부모 div 
+    var parentContainer = createDiv(id, div);
+    var newspace = parentContainer.firstChild;
 
-    parentContainer.style.width = "550px";
-    newspace.style.width = "500px";
-    newspace.style.display = "inline-block";
+    //제목 태그 생성
+    var title = document.createElement('p');
+    title.id = "title" + id;
+
+    //단위 태그 생성
+    var smalltitle6 = document.createElement('p');
+    smalltitle6.id = "smalltitle6";
+
+    //위치 선정
+    div.before(parentContainer);
+    newspace.before(title, smalltitle6);
+
+    //제목 글 설정
+    title.innerText = `중국의 수입시장 점유율`;
+    smalltitle6.innerText = "단위 : 천$"
+
+    //부모 div css
+    parentContainer.style.display = "inline-block";
+    parentContainer.style.width = "590px";
+    parentContainer.style.height = "430px";
     parentContainer.style.float = "right";
+    parentContainer.style.borderRadius = "10px";
+    parentContainer.style.border = "1.8px solid #c3c6ce";
+    parentContainer.style.transition = "0.5s ease-out";
+    smalltitle6.style.width = "90px";
+
+    parentContainer.addEventListener('mouseenter', function () {
+      this.style.borderColor = "#008ff0";
+      this.style.boxShadow = " 0 4px 18px 0 rgba(0, 0, 0, 0.5)";
+      title.style.fontWeight = "bolder";
+      title.style.color = "#008ff0";
+      title.style.borderBottom = "2px solid #008ff0";
+      smalltitle6.style.fontWeight = "bolder";
+      smalltitle6.style.color = "#008ff0";
+      smalltitle6.style.borderBottom = "2px solid #008ff0";
+    });
+    parentContainer.addEventListener('mouseleave', function () {
+      this.style.borderColor = "#c3c6ce";
+      this.style.boxShadow = "2px 2px 10px rgba(0, 0, 0, 0.07)";
+      title.style.fontWeight = "normal";
+      title.style.color = "black";
+      title.style.borderBottom = "1.7px solid black"
+      smalltitle6.style.fontWeight = "normal";
+      smalltitle6.style.color = "black";
+      smalltitle6.style.borderBottom = "1.7px solid black"
+    });
+
+    //그래프 css
+    newspace.style.width = "570px";
+    newspace.style.height = "320px";
+    newspace.style.float = "right";
+    newspace.style.margin = "10px";
+    newspace.style.border = "0px";
+
+    //그 외
     div.after(parentContainer);
     root = am5.Root.new(newspace);
 
     // 드롭박스 만들어보자
-    // 새로운 select 요소 생성
+    // 컨테이너 div 생성
+    var controlsContainer = document.createElement('div');
+    controlsContainer.id = 'controlsContainer';
+    controlsContainer.style.display = 'flex';
+    controlsContainer.style.flexDirection = 'row';
+    controlsContainer.style.justifyContent = 'flex-end';
+
+    // 차트 div 가져오기
+    var chartDiv = document.getElementById('chart6');
+
+    //새로운 select 요소 생성
     var helpers = {
       buildDropdown: function (result, dropdown, emptyMessage) {
         // Remove current options
@@ -629,30 +695,28 @@ function createRealPie(id, div, resp, country, year) {
       }
     };//end helpers
 
-    var dropdown = document.createElement('select');
-    dropdown.id = 'dropdownpie';  // 선택 사항: id 설정
-
-    // chart6 div 가져오기
-    var chart6Div = document.getElementById('chart6');
-
-    // dropdown 요소를 chart6 div 안에 추가
-    chart6Div.prepend(dropdown);
-
-    var dropdata = '[{"id":2019,"name":"2019"}, {"id":2020,"name":"2020"},{"id":2021,"name":"2021"},{"id":2022,"name":"2022"},{"id":2023,"name":"2023"}]';
-    helpers.buildDropdown(
-      jQuery.parseJSON(dropdata),
-      $('#dropdownpie'),
-      '년도'
-    );
+    // 연도 선택하는 드롭박스
+    var dropdownpie = document.createElement('select');
+    dropdownpie.id = 'dropdownpie';  // 선택 사항: id 설정
+    controlsContainer.appendChild(dropdownpie);
 
     // 조회버튼 만들기
     var input = document.createElement('input');
     input.id = 'replyBtnpie';
     input.type = 'button';
     input.value = '조회';
+    controlsContainer.appendChild(input);
 
-    //var dropdown1 = document.getElementById('dropdown');
-    dropdown.after(input);
+    // 생성된 컨테이너를 차트 div에 추가
+    chartDiv.prepend(controlsContainer);
+
+    //데이터 예시와 함께 드롭다운 옵션 생성
+    var dropdata = '[{"id":2019,"name":"2019"}, {"id":2020,"name":"2020"},{"id":2021,"name":"2021"},{"id":2022,"name":"2022"},{"id":2023,"name":"2023"}]';
+    helpers.buildDropdown(
+      jQuery.parseJSON(dropdata),
+      $('#dropdownpie'),
+      '년도'
+    );
   }//end if
 
   else {
@@ -751,17 +815,16 @@ function createRealxycluster(id, div, resp, selectedyear, selectedport) {
     var title = document.createElement('p');
     title.id = "title" + id;
 
-    var smalltitle = document.createElement('p');
-    smalltitle.id = "smalltitle2";
+    var smalltitle2 = document.createElement('p');
+    smalltitle2.id = "smalltitle2";
 
     //위치 선정
     div.before(parentContainer);
-    newspace.before(title, smalltitle);
-    // title.after(smalltitle); 
+    newspace.before(title, smalltitle2);
 
     //제목 글 설정
     document.getElementById(`title${id}`).innerText = "수출입 품목 TOP5";
-    smalltitle.innerText = "단위 : 천$"
+    smalltitle2.innerText = "단위 : 천$"
 
     //부모 div css
     parentContainer.style.display = "inline-block";
@@ -771,6 +834,7 @@ function createRealxycluster(id, div, resp, selectedyear, selectedport) {
     parentContainer.style.borderRadius = "10px";
     parentContainer.style.border = "1.8px solid #c3c6ce";
     parentContainer.style.transition = "0.5s ease-out";
+    smalltitle2.style.width = "90px";
 
     parentContainer.addEventListener('mouseenter', function () {
       this.style.borderColor = "#008ff0";
@@ -778,9 +842,9 @@ function createRealxycluster(id, div, resp, selectedyear, selectedport) {
       title.style.fontWeight = "bolder";
       title.style.color = "#008ff0";
       title.style.borderBottom = "2px solid #008ff0";
-      smalltitle.style.fontWeight = "bolder";
-      smalltitle.style.color = "#008ff0";
-      smalltitle.style.borderBottom = "2px solid #008ff0";
+      smalltitle2.style.fontWeight = "bolder";
+      smalltitle2.style.color = "#008ff0";
+      smalltitle2.style.borderBottom = "2px solid #008ff0";
     });
     parentContainer.addEventListener('mouseleave', function () {
       this.style.borderColor = "#c3c6ce";
@@ -788,9 +852,9 @@ function createRealxycluster(id, div, resp, selectedyear, selectedport) {
       title.style.fontWeight = "normal";
       title.style.color = "black";
       title.style.borderBottom = "1.7px solid black"
-      smalltitle.style.fontWeight = "normal";
-      smalltitle.style.color = "black";
-      smalltitle.style.borderBottom = "1.7px solid black"
+      smalltitle2.style.fontWeight = "normal";
+      smalltitle2.style.color = "black";
+      smalltitle2.style.borderBottom = "1.7px solid black"
     });
 
     //그래프 css
@@ -868,14 +932,6 @@ function createRealxycluster(id, div, resp, selectedyear, selectedport) {
       $('#importdd'),
       '수출/수입'
     );
-
-    //css
-    parentContainer.addEventListener('mouseenter', function () {
-      importdd.style.backgroundColor = "rgb(214 230 241)";
-    });
-    parentContainer.addEventListener('mouseleave', function () {
-      importdd.style.backgroundColor = "normal";
-    });
   }//end if
 
   //그렇지 않다면 기존 그래프 지우는 함수 사용. 새로 만듦
@@ -977,10 +1033,22 @@ function createRealxycluster(id, div, resp, selectedyear, selectedport) {
   // Make stuff animate on load
   // https://www.amcharts.com/docs/v5/concepts/animations/
   chart.appear(1000, 100);
-  //data = [];
-  console.log(data);
-  console.log(selectedyear);
-  console.log(selectedport);
+
+  ///// 지도 위에 주제 설정
+  var mapdiv = document.getElementById('parentContainer2');
+
+  // 컨테이너 div 생성
+  var mapcontrolsContainer = document.createElement('div');
+  mapcontrolsContainer.id = 'mapcontrolsContainer';
+  // controlsContainer.style.display = 'flex';
+
+  //지도 위에 제목 태그 생성
+  var maptitle = document.createElement('p');
+  maptitle.id = 'maptitle';
+  mapcontrolsContainer.appendChild(maptitle);
+  maptitle.innerText = "국가별 수출입 현황";
+
+  mapdiv.after(mapcontrolsContainer);
 }
 
 // =============================== barChart(국가별 10대 수출입품목)==============================================
@@ -1013,26 +1081,79 @@ function createRealBar(id, div, resp, country, year) {
   var space = document.getElementById("chart4");
   var root;
 
-  // 제목+그래프 감싸는 div 생성
-  var parentContainer = createDiv(id, div);
-  var newspace = parentContainer.firstChild;
-  var title = document.createElement('p');
-  title.id = "title" + id;
-  parentContainer.style.display = "inline-block";
-
   if (space == null) {
-    div.before(parentContainer);
-    newspace.before(title);
-    title.innerText = `중국의 TOP5 수출입품목`;
+    // 제목+그래프 감싸는 div 생성
+    var parentContainer = createDiv(id, div);
+    var newspace = parentContainer.firstChild;
 
-    parentContainer.style.width = "550px";
-    newspace.style.width = "500px";
-    newspace.style.display = "inline-block";
-    // newspace.style.float = "right";
+    //제목 태그 생성
+    var title = document.createElement('p');
+    title.id = "title" + id;
+
+    //단위 태그 생성
+    var smalltitle4 = document.createElement('p');
+    smalltitle4.id = "smalltitle4";
+
+    //위치 선정
+    div.before(parentContainer);
+    newspace.before(title, smalltitle4);
+
+    //제목 글 설정
+    title.innerText = `중국의 TOP5 수출입품목`;
+    smalltitle4.innerText = "단위 : 천$";
+
+    //부모 div css
+    parentContainer.style.display = "inline-block";
+    parentContainer.style.width = "590px";
+    parentContainer.style.height = "430px";
+    parentContainer.style.borderRadius = "10px";
+    parentContainer.style.border = "1.8px solid #c3c6ce";
+    parentContainer.style.transition = "0.5s ease-out";
+    smalltitle4.style.width = "90px";
+
+    parentContainer.addEventListener('mouseenter', function () {
+      this.style.borderColor = "#008ff0";
+      this.style.boxShadow = " 0 4px 18px 0 rgba(0, 0, 0, 0.5)";
+      title.style.fontWeight = "bolder";
+      title.style.color = "#008ff0";
+      title.style.borderBottom = "2px solid #008ff0";
+      smalltitle4.style.fontWeight = "bolder";
+      smalltitle4.style.color = "#008ff0";
+      smalltitle4.style.borderBottom = "2px solid #008ff0";
+    });
+    parentContainer.addEventListener('mouseleave', function () {
+      this.style.borderColor = "#c3c6ce";
+      this.style.boxShadow = "2px 2px 10px rgba(0, 0, 0, 0.07)";
+      title.style.fontWeight = "normal";
+      title.style.color = "black";
+      title.style.borderBottom = "1.7px solid black"
+      smalltitle4.style.fontWeight = "normal";
+      smalltitle4.style.color = "black";
+      smalltitle4.style.borderBottom = "1.7px solid black"
+    });
+
+    //그래프 css
+    newspace.style.width = "570px";
+    newspace.style.height = "320px";
+    newspace.style.float = "right";
+    newspace.style.margin = "10px";
+    newspace.style.border = "0px";
+
+    //그 외
     div.after(parentContainer);
     root = am5.Root.new(newspace);
 
     // 드롭박스 만들어보자
+    // 컨테이너 div 생성
+    var controlsContainer = document.createElement('div');
+    controlsContainer.id = 'controlsContainer';
+    controlsContainer.style.display = 'flex';
+    controlsContainer.style.flexDirection = 'row';
+    controlsContainer.style.justifyContent = 'flex-end';
+
+    // 차트 div 가져오기
+    var chartDiv = document.getElementById('chart4');
+
     // 새로운 select 요소 생성
     var helpers = {
       buildDropdown: function (result, dropdown, emptyMessage) {
@@ -1052,37 +1173,33 @@ function createRealBar(id, div, resp, country, year) {
       }
     };//end helpers
 
+    // 수출/수입 선택하는 드롭박스
+    var importbar = document.createElement('select');
+    importbar.id = 'importbar';  // 선택 사항: id 설정
+    controlsContainer.appendChild(importbar);
+
+    // 연도 선택하는 드롭박스
     var dropdown = document.createElement('select');
     dropdown.id = 'dropdownbar';  // 선택 사항: id 설정
-
-    // chart6 div 가져오기
-    var chart6Div = document.getElementById('chart4');
-
-    // dropdown 요소를 chart6 div 안에 추가
-    chart6Div.prepend(dropdown);
-
-    var dropdata = '[{"id":2019,"name":"2019"}, {"id":2020,"name":"2020"},{"id":2021,"name":"2021"},{"id":2022,"name":"2022"},{"id":2023,"name":"2023"}]';
-    helpers.buildDropdown(
-      jQuery.parseJSON(dropdata),
-      $('#dropdownbar'),
-      '년도'
-    );
+    controlsContainer.appendChild(dropdown);
 
     // 조회버튼 만들기
     var input = document.createElement('input');
     input.id = 'replyBtnbar';
     input.type = 'button';
     input.value = '조회';
+    controlsContainer.appendChild(input);
 
-    //var dropdown1 = document.getElementById('dropdown');
-    dropdown.after(input);
+    //생성된 컨테이너를 차트 div에 추가
+    chartDiv.prepend(controlsContainer);
 
-    // 수출/수입 선택하는 드롭박스
-    var importbar = document.createElement('select');
-    importbar.id = 'importbar';  // 선택 사항: id 설정
-
-    //var chart6Div = document.getElementById('chart6');
-    chart6Div.prepend(importbar);
+    //데이터 예시와 함께 드롭다운 옵션 생성
+    var dropdata = '[{"id":2019,"name":"2019"}, {"id":2020,"name":"2020"},{"id":2021,"name":"2021"},{"id":2022,"name":"2022"},{"id":2023,"name":"2023"}]';
+    helpers.buildDropdown(
+      jQuery.parseJSON(dropdata),
+      $('#dropdownbar'),
+      '년도'
+    );
 
     var dropdata = '[{"id":"수출","name":"수출"}, {"id":"수입","name":"수입"}]';
     helpers.buildDropdown(
@@ -1211,6 +1328,7 @@ function createRealBar(id, div, resp, country, year) {
   series.appear(1000);
   chart.appear(1000, 100);
 };//end createRealBar
+
 // =============================== StringChart ==============================================
 // ==========================================================================================\
 function createString(id, div, country) {
@@ -1224,27 +1342,70 @@ function createString(id, div, country) {
 }
 
 function createRealString(id, div, resp, country) {
-  console.log(resp);
   var space = document.getElementById("chart5");
   var root;
 
-  //제목+그래프 감싸는 부모div생성
-  var parentContainer = createDiv(id, div);
-  var newspace = parentContainer.firstChild;
-  var title = document.createElement('p');
-  title.id = "title" + id;
-  parentContainer.style.display = "inline-block";
-
+  //만약 그래프 영역이 비어있다면 새로 생성
   if (space == null) {
-    div.before(parentContainer);
-    newspace.before(title);
-    title.innerText = `중국의 수출입 금액`;
+    //제목+그래프 감싸는 부모div생성
+    var parentContainer = createDiv(id, div);
+    var newspace = parentContainer.firstChild;
 
-    parentContainer.style.width = "550px";
-    newspace.style.width = "500px";
-    newspace.style.display = "inline-block";
+    //제목 태그 생성
+    var title = document.createElement('p');
+    title.id = "title" + id;
+
+    //단위 태그 생성
+    var smalltitle5 = document.createElement('p');
+    smalltitle5.id = "smalltitle5";
+
+    //위치 선정
+    div.before(parentContainer);
+    newspace.before(title, smalltitle5);
+
+    //제목 글 선정
+    title.innerText = `중국의 수출입 금액`;
+    smalltitle5.innerText = "단위 : 백만$"
+
+    //부모 div css
+    parentContainer.style.display = "inline-block";
+    parentContainer.style.width = "590px";
+    parentContainer.style.height = "430px";
     parentContainer.style.float = "right";
-    // newspace.style.float = "right";
+    parentContainer.style.borderRadius = "10px";
+    parentContainer.style.border = "1.8px solid #c3c6ce";
+    parentContainer.style.transition = "0.5s ease-out";
+    smalltitle5.style.width = "90px";
+
+    parentContainer.addEventListener('mouseenter', function () {
+      this.style.borderColor = "#008ff0";
+      this.style.boxShadow = " 0 4px 18px 0 rgba(0, 0, 0, 0.5)";
+      title.style.fontWeight = "bolder";
+      title.style.color = "#008ff0";
+      title.style.borderBottom = "2px solid #008ff0";
+      smalltitle5.style.fontWeight = "bolder";
+      smalltitle5.style.color = "#008ff0";
+      smalltitle5.style.borderBottom = "2px solid #008ff0";
+    });
+    parentContainer.addEventListener('mouseleave', function () {
+      this.style.borderColor = "#c3c6ce";
+      this.style.boxShadow = "2px 2px 10px rgba(0, 0, 0, 0.07)";
+      title.style.fontWeight = "normal";
+      title.style.color = "black";
+      title.style.borderBottom = "1.7px solid black"
+      smalltitle5.style.fontWeight = "normal";
+      smalltitle5.style.color = "black";
+      smalltitle5.style.borderBottom = "1.7px solid black"
+    });
+
+    //그래프 css
+    newspace.style.width = "570px";
+    newspace.style.height = "320px";
+    newspace.style.float = "right";
+    newspace.style.margin = "10px";
+    newspace.style.border = "0px";
+
+    //그 외
     div.after(parentContainer);
     root = am5.Root.new(newspace);
   }//end if
@@ -1398,22 +1559,66 @@ function createRealStackCluster(id, div, resp, country) {
   var space = document.getElementById("chart3");
   var root;
 
-  var parentContainer = createDiv(id, div);
-  var newspace = parentContainer.firstChild;
-  var title = document.createElement('p');
-  title.id = "title" + id;
-  parentContainer.style.display = "inline-block";
-
   //만약 첫 화면이라면 
   if (space == null) {
-    div.before(parentContainer);
-    newspace.before(title);
-    title.innerText = `중국의 수출입 품목 증감율(월)`;
+    //제목+그래프 감싸는 부모 div
+    var parentContainer = createDiv(id, div);
+    var newspace = parentContainer.firstChild;
 
-    parentContainer.style.width = "550px";
-    newspace.style.width = "500px";
-    newspace.style.display = "inline-block";
-    // newspace.style.float = "right";
+    //제목 태그 생성
+    var title = document.createElement('p');
+    title.id = "title" + id;
+
+    //단위 제목 태그 생성
+    var smalltitle3 = document.createElement('p');
+    smalltitle3.id = "smalltitle3";
+
+    //위치 선정
+    div.before(parentContainer);
+    newspace.before(title, smalltitle3);
+
+    //제목 내용 선정
+    title.innerText = `중국의 수출입 품목 증감율(월)`;
+    smalltitle3.innerText = "단위 : 천$"
+
+    //css
+    parentContainer.style.display = "inline-block";
+    parentContainer.style.width = "590px";
+    parentContainer.style.height = "430px";
+    parentContainer.style.borderRadius = "10px";
+    parentContainer.style.background = "#ffff";
+    parentContainer.style.border = "1.8px solid #c3c6ce"
+    parentContainer.style.transition = "0.5s ease-out";
+    parentContainer.style.marginBottom = "40px";
+    smalltitle3.style.width = "90px";
+
+    parentContainer.addEventListener('mouseenter', function () {
+      this.style.borderColor = "#008ff0";
+      this.style.boxShadow = " 0 4px 18px 0 rgba(0, 0, 0, 0.5)";
+      title.style.fontWeight = "bolder";
+      title.style.color = "#008ff0";
+      title.style.borderBottom = "2px solid #008ff0";
+      smalltitle3.style.fontWeight = "bolder";
+      smalltitle3.style.color = "#008ff0";
+      smalltitle3.style.borderBottom = "2px solid #008ff0";
+    });
+    parentContainer.addEventListener('mouseleave', function () {
+      this.style.borderColor = "#c3c6ce";
+      this.style.boxShadow = "2px 2px 10px rgba(0, 0, 0, 0.07)";
+      title.style.fontWeight = "normal";
+      title.style.color = "black";
+      title.style.borderBottom = "1.7px solid black"
+      smalltitle3.style.fontWeight = "normal";
+      smalltitle3.style.color = "black";
+      smalltitle3.style.borderBottom = "1.7px solid black"
+    });
+
+    newspace.style.width = "570px";
+    newspace.style.height = "340px";
+    newspace.style.margin = "10px";
+    newspace.style.border = "0px";
+
+    //그 외
     div.after(parentContainer);
     root = am5.Root.new(newspace);
   }//end if
