@@ -11,7 +11,7 @@
 
     <!--css-->
     <link th:href="@{/assets/css/bootstrap.min.css}" rel="stylesheet" />
-    <link th:href="@{/assets/css/with-sidebar.css}" rel="stylesheet" />
+    <link th:href="@{/assets/css/without-sidebar.css}" rel="stylesheet" />
 
     <link th:href="@{/assets/demo/demo.css}" rel="stylesheet" />
 
@@ -23,10 +23,11 @@
     <style>
         body {
             font-family: 'Spoqa Han Sans Neo', 'sans-serif';
+            color: #000;
         }
 
         .countryBtn {
-            background-color: #eef4ed;
+            background-color: #edf1f6;
             border: none;
             color: #000;
             padding: 5px 10px;
@@ -45,9 +46,6 @@
             color: #fff;
         }
 
-        #imageContainer {
-            margin-top: 20px;
-        }
 
         #worldMap {
             width: 1000px;
@@ -61,13 +59,45 @@
 
         #changeBtns {
             width: 700px;
-            margin-left: 400px;
+            margin-left: 500px;
         }
 
-        #ftaMenu {
-            width: 600px;
-            margin: 0 auto;
+        .container a {
             font-size: 20px;
+        }
+
+        .container a:hover {
+            color: #d81e5b;
+            font-size: 21px;
+        }
+
+        .col i {
+            font-size: 40px;
+            padding: 20px;
+        }
+
+        .fta-text {
+            margin: 5px 5px;
+        }
+
+        .col1 a {
+            color: #03045e;
+        }
+
+        .col2 a {
+            color: #023e8a;
+        }
+
+        .col3 a {
+            color: #0077b6;
+        }
+
+        .col4 a {
+            color: #0096c7;
+        }
+
+        .col5 a {
+            color: #00b4d8;
         }
     </style>
 </head>
@@ -140,38 +170,152 @@
         <div class="content-center">
             <div class="container">
                 <div class="title-brand">
-                    <h1 class="presentation-title">무역뉴스</h1>
+                    <h1 class="presentation-title">FTA정보</h1>
                     <h3 class="presentation-subtitle"></h3>
                 </div>
             </div> <!--div.content-center-->
         </div>
     </div>
     <!-- End page-header -->
-    <div id="worldMap">
-        <h3 style="font-weight: bolder;">FTA 체결 현황</h3>
-        <div id="changeBtns">
-            <input type="button" value="발효국가" class="countryBtn countryBtn1" onmouseover="changeImage('guidance1.png')">
-            <input type="button" value="서명/타결국가" class="countryBtn countryBtn2"
-                onmouseover="changeImage('guidance2.png')">
-            <input type="button" value="협상중국가" class="countryBtn countryBtn3"
-                onmouseover="changeImage('guidance3.jpg')">
-            <input type="button" value="재개,개시,여건조성" class="countryBtn countryBtn4"
-                onmouseover="changeImage('guidance4.jpg')">
-        </div>
 
-        <div id="imageContainer">
-            <img th:src="@{/images/guidance1.png}" alt="발효국가" id="mainImage">
+    <!-- side-bar 시작-->
+    <nav class="main-menu">
+        <div class="settings"></div>
+        <div class="scrollbar" id="style-1">
+            <ul>
+                <li class="menu-img">
+                    <a href="#">
+                        <i class="fa fa-solid fa-bars fa-lg"></i>
+                        <span class="nav-text">Menu</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-solid fa-newspaper fa-lg"></i>
+                        <span class="nav-text">무역뉴스</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-solid fa-book fa-lg"></i>
+                        <span class="nav-text">FTA정보</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-solid fa-chart-simple fa-lg"></i>
+                        <span class="nav-text">무역통계</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-solid fa-handshake fa-lg"></i>
+                        <span class="nav-text">관세사상담</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-regular fa-user fa-lg"></i>
+                        <span class="nav-text">로그인</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-user fa-lg"></i>
+                        <span class="nav-text">로그아웃</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-solid fa-house-user fa-lg"></i>
+                        <span class="nav-text">마이페이지</span>
+                    </a>
+                </li>
+            </ul>
         </div>
+    </nav>
 
+    <!-- End side-bar -->
+
+    <div class="content">
+        <h3>FTA 체결 현황 지도</h3>
+        <div id="worldMap">
+            <div id="changeBtns">
+                <input type="button" value="발효국가" class="countryBtn countryBtn1"
+                    onmouseover="changeImage('guidance1.png')">
+                <input type="button" value="서명/타결국가" class="countryBtn countryBtn2"
+                    onmouseover="changeImage('guidance2.png')">
+                <input type="button" value="협상중국가" class="countryBtn countryBtn3"
+                    onmouseover="changeImage('guidance3.jpg')">
+                <input type="button" value="재개,개시,여건조성" class="countryBtn countryBtn4"
+                    onmouseover="changeImage('guidance4.jpg')">
+            </div>
+            <div id="imageContainer">
+                <img th:src="@{/images/guidance1.png}" alt="발효국가" id="mainImage">
+            </div>
+
+        </div>
         <hr>
-        <div id="ftaMenu">
-            <a th:href="@{/info/origin}">원산지결정기준</a>
-            <a th:href="@{/info/country}">FTA협정국</a>
-            <a th:href="@{/info/tarrifrate}">세율정보</a>
-            <a th:href="@{/info/export_utilization}">수출활용정보</a>
-            <a th:href="@{/info/import_utilization}">수입활용정보</a>
+
+        <div class="container text-center" style="width: 75%;">
+            <div class="row align-items-center">
+                <div class="col col1">
+                    <a th:href="@{/info/origin}">
+                        <i class="fa-sharp fa-solid fa-book-bookmark"></i><br>
+                        <span class="fta-text">원산지결정기준</span>
+                    </a>
+                </div>
+                <div class="col col2">
+                    <a th:href="@{/info/country}">
+                        <i class="fa-sharp fa-solid fa-globe"></i><br>
+                        <span class="fta-text">FTA협정국</span>
+                    </a>
+                </div>
+                <div class="col col3">
+                    <a th:href="@{/info/tarrifrate}">
+                        <i class="fa-sharp fa-solid fa-coins"></i><br>
+                        <span class="fta-text">세율정보</span>
+                    </a>
+                </div>
+                <div class="col col4">
+                    <a th:href="@{/info/export_utilization}">
+                        <i class="fa-sharp fa-solid fa-ship"></i><br>
+                        <span class="fta-text">수출활용정보</span>
+                    </a>
+                </div>
+                <div class="col col5">
+                    <a th:href="@{/info/import_utilization}">
+                        <i class="fa-sharp fa-solid fa-anchor"></i> <br>
+                        <span class="fta-text">수입활용정보</span>
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
+
+
+
+    <!-- footer -->
+    <footer class="footer-wave">
+        <div class="waves">
+            <div class="wave" id="wave1"></div>
+            <div class="wave" id="wave2"></div>
+            <div class="wave" id="wave3"></div>
+            <div class="wave" id="wave4"></div>
+        </div>
+
+        <ul class="footer-wave-menu">
+            <li class="menu__item"><a class="menu__link" th:href="@{/}">HOME</a></li>
+            <li class="menu__item"><a class="menu__link" th:href="@{news}">무역뉴스</a></li>
+            <li class="menu__item"><a class="menu__link" th:href="@{info/infoList}">FTA정보</a></li>
+            <li class="menu__item"><a class="menu__link" href="#">무역통계</a></li>
+            <li class="menu__item"><a class="menu__link" href="#">관세사상담</a></li>
+
+        </ul>
+        <p>&copy;2024 HScode Zoom | All Rights Reserved</p>
+    </footer>
+    <!-- End footer -->
+
     <!--script-->
     <script th:src="@{/assets/js/core/jquery.min.js}" type="text/javascript"></script>
     <script th:src="@{/assets/js/core/popper.min.js}" type="text/javascript"></script>

@@ -26,11 +26,54 @@
 
 
 	<style>
-		.box,
-		hr {
-			display: none;
+		body {
+			color: black;
 		}
 
+		/* 상단 숫자 선택 */
+
+		.box {
+			width: 90%;
+			display: none;
+			padding: 20px;
+			margin: 10px auto;
+			border: 1px grey dotted;
+		}
+
+		.bu_atte {
+			margin-top: 10px !important;
+		}
+
+		#box-1 {
+			display: block;
+		}
+
+		.ftaTop {
+			display: inline-block;
+			padding: 10px;
+			font-size: 15px;
+			color: black;
+		}
+
+		.ftaTop:hover {
+			font-weight: bolder;
+			color: #1a1a4a;
+		}
+
+		.on {
+			border-bottom: 3px solid #018abe;
+		}
+
+		.fta-img {
+			margin: 0 auto;
+		}
+
+		.bu_atte {
+			font-size: large;
+		}
+
+
+		/* modal */
 		#modal1 {
 			position: fixed;
 			top: 50%;
@@ -51,6 +94,8 @@
 			left: calc(100% - 60px);
 			z-index: 9;
 			width: 50px;
+			border: none;
+			background-color: #ffff;
 		}
 
 
@@ -66,40 +111,94 @@
 
 		}
 
-		.container-top {
-			display: block;
-			width: 100%;
-			height: 280px;
-			background: #c6d5e9;
-			border: 1px;
-			color: black;
-			border-radius: 30px;
-		}
-
-		.container-top h2,
-		.container-top p,
-		.container-top ol {
+		.modal-text {
+			width: 90%;
 			padding: 10px;
-			padding-left: 30px;
 		}
 
-		.container-top ol {
-			padding-left: 60px;
+		/* table */
+		table {
+			text-align: center;
+			width: 90%;
+			margin: 10px auto;
+		}
+
+		th {
+			background-color: #0c0726;
+			color: white;
+		}
+
+		.list_st3 {
+			list-style-position: inside;
+			padding-left: 0px;
+		}
+
+		.list_st3 li {
+			text-align: left;
+			padding-left: 0px;
+		}
+
+		td {
+			padding: 10px;
+			vertical-align: middle;
+		}
+
+		img {
+			width: 80%;
+			margin: 15px auto;
+		}
+
+		/* ol태그 */
+		.tab_list {
+			list-style-type: upper-roman;
+			list-style-position: inside;
+			padding-left: 0;
+		}
+
+		.tab_list>li {
+			text-indent: -1.5em;
+			padding-left: 1.5em;
+		}
+
+		.goBtn {
+			border: none;
+			background-color: #018abe;
+			color: white;
+		}
+
+		.tit2 {
+			font-weight: bolder;
+			margin: 10px;
+			background-color: #edf1f6;
+		}
+
+		.box_st2 {
+			position: relative;
+			padding: 15px 25px;
+			border: 1px solid #bfbfbf;
+			background: #fbfbfb;
+		}
+
+		.guide-text {
+			width: 90%;
+			margin: 0 auto;
 		}
 	</style>
 	<script>
-		$(function () {
-			$(".title").on('click', changeStatus);
+		$(document).ready(function () {
+			$('.ftaTop').click(function (event) {
+				event.preventDefault();
+
+				$('.ftaTop').removeClass('on');
+				$(this).addClass('on');
+
+				var boxToShow = $(this).attr('href');
+				$('.box').hide();
+				$(boxToShow).show();
+
+				$('html, body').animate({ scrollTop: 0 }, 'fast');
+			});
 		});
-
-		function changeStatus() {
-			let clicked = $(this);
-			let data = clicked.attr("href");
-			$(".box").css("display", "none");
-			$(data).css("display", "block");
-
-			$('html, body').animate({ scrollTop: 0 }, 'fast');
-		}
 
 	</script>
 </head>
@@ -151,8 +250,6 @@
 							<a class="dropdown-item" href="#pk">상담하기</a>
 						</ul>
 					</div>
-
-
 				</ul>
 			</div>
 		</div>
@@ -250,28 +347,40 @@
 			<div class="container-top">
 
 				<h2>수입활용</h2>
-				<p class="bu_atte mgb10">FTA 수입통관 제도를 이용하기 위해서는 다음과 같은 <span class="pc_red">순차적인 절차</span>가 필요합니다.</p>
+				<p class="bu_atte mgb10">FTA 수입통관 제도를 이용하기 위해서는 다음과 같은 <mark>순차적인 절차</mark>가 필요합니다.</p>
 
-				<ol class="tab_list Tab_w30">
-					<li><a href="#box-1" class="title" title="FTA 협정 발효국 여부 확인하기 바로가기">FTA 협정 발효국 여부 확인하기</a></li>
-					<li><a href="#box-2" class="title" title="품목번호 확인하기 바로가기">품목번호 확인하기</a></li>
-					<li><a href="#box-3" class="title" title="FTA 관세혜택 확인하기 바로가기">FTA 관세혜택 확인하기</a></li>
-					<li><a href="#box-4" class="title" title="증빙서류 준비하기 바로가기">증빙서류 준비하기</a></li>
-					<li><a href="#box-5" class="title" title="협정세율 적용 신청하기 바로가기">협정세율 적용 신청하기</a></li>
-					<li><a href="#box-6" class="title" title="관련서류 보관하기 바로가기">관련서류 보관하기</a></li>
-				</ol>
+				<a href="#box-1" class="ftaTop on" title="FTA 협정 발효국 여부 확인하기 바로가기">Ⅰ. FTA 협정 발효국 여부 확인하기</a>
+				<a href="#box-2" class="ftaTop" title="품목번호 확인하기 바로가기">Ⅱ. 품목번호 확인하기</a>
+				<a href="#box-3" class="ftaTop" title="FTA 관세혜택 확인하기 바로가기">Ⅲ. FTA 관세혜택 확인하기</a>
+				<a href="#box-4" class="ftaTop" title="증빙서류 준비하기 바로가기">Ⅳ. 증빙서류 준비하기</a>
+				<a href="#box-5" class="ftaTop" title="협정세율 적용 신청하기 바로가기">Ⅴ. 협정세율 적용 신청하기</a>
+				<a href="#box-6" class="ftaTop" title="관련서류 보관하기 바로가기">Ⅵ.관련서류 보관하기</a>
+
 			</div>
 		</div>
-		<hr>
+
 		<div class="box" id="box-1">
-			<h3 class="tit1">FTA 발효국 여부 확인하기</h3>
+			<h3 class="tit1">
+				Ⅰ. FTA 발효국 여부 확인하기
+			</h3>
+			<hr>
 
 			<p class="bu_atte mgt5 mgl10 cmgl30">우리나라와 수입물품에 대한 국가간에 FTA 체결 후 발효되었는지 확인 <a class="bu_linkL mgl10"
-					th:href="@{/info/country}" target="_self" title="바로가기">바로가기</a></p>
-			<hr>
+					th:href="@{/info/country}" target="_self" title="바로가기"> <input type="button" class="goBtn"
+						value="바로가기"></a>
+			</p>
+
+			<div>
+				<img class="fta-img" th:src="@{/images/fta-country.jpg}" alt="발효국">
+			</div>
+
 		</div>
+
 		<div class="box" id="box-2">
-			<h3 class="tit1">품목번호 확인하기</h3>
+			<h3 class="tit1">
+				Ⅱ. 품목번호 확인하기
+			</h3>
+			<hr>
 
 			<ul class="list_st1">
 				<li>품목번호(HS Code)에 따라 FTA 세율과 원산지결정기준이 정해지므로 정확한 품목번호 확인은 필수</li>
@@ -279,21 +388,24 @@
 				<li>원산지증명서상 HS 코드(통상 6단위)와 수입신고시 기재할 HS 코드 확인 필요
 					<p class="bu_atte mgt5">품목번호 검색 사이트 (http://www.customs.go.kr) > Quick menu > 품목분류 <a
 							class="bu_linkL mgl10" href="https://unipass.customs.go.kr/clip/index.do" target="_blank"
-							title="새창열림">바로가기</a></p>
+							title="새창열림"><input type="button" class="goBtn" value="바로가기"></a></p>
 
 					<p class="bu_atte mgt5">품목분류 추천 서비스 이용하기 <a class="bu_linkL mgl10" th:href="@{/}" target="_blank"
-							title="새창열림">바로가기</a></p>
+							title="새창열림"><input type="button" class="goBtn" value="바로가기"></a></p>
 				</li>
 			</ul>
 
-			<hr>
+
 		</div>
 		<div class="box" id="box-3">
-			<h3 class="tit1">FTA 관세혜택 확인하기</h3>
+			<h3 class="tit1">
+				Ⅲ. FTA 관세혜택 확인하기
+			</h3>
+			<hr>
 
 			<ul class="list_st1">
 				<li>수입물품의 품목번호를 찾은 후 관세율표상 FTA 관세혜택여부 확인 필요
-					<p class="bu_st2 mgt5">[관세혜택 : (한국 MFN 세율 - FTA 세율) X 수입금액]</p>
+					<p class="bu_st2 mgt5"><mark>[관세혜택 : (한국 MFN 세율 - FTA 세율) X 수입금액]</mark></p>
 				</li>
 				<li>FTA 세율 확인은 협정문상 각국 양허안으로 확인
 					<ul class="list_st2">
@@ -302,10 +414,12 @@
 					</ul>
 				</li>
 			</ul>
-			<hr>
+
 		</div>
 		<div class="box" id="box-4">
-			<h3 class="tit1">증빙서류 준비하기</h3>
+			<h3 class="tit1">Ⅳ. 증빙서류 준비하기
+			</h3>
+			<hr>
 
 			<ul class="list_st1">
 				<li>수출상대국에서 FTA 세율 적용을 위해 한국산 제품임을 증빙하는 필수&middot;공식적인 서류</li>
@@ -313,7 +427,7 @@
 				<li>각 협정별 원산지증명서 발급방식
 					<div class="scroll_gr">
 						<table class="tbl_st" border="1">
-							<caption>각 협정별 원산지증명서 발급방식</caption>
+							<!-- <caption>각 협정별 원산지증명서 발급방식</caption> -->
 							<colgroup>
 								<col style="width: 9%;" />
 								<col style="width: 11%;" />
@@ -399,7 +513,7 @@
 
 					<div class="scroll_gr mgt30">
 						<table class="tbl_st" border="1">
-							<caption>각 협정별 원산지증명서 발급방식</caption>
+							<!-- <caption>각 협정별 원산지증명서 발급방식</caption> -->
 							<colgroup>
 								<col style="width: 9%;" />
 								<col style="width: 11%;" />
@@ -494,7 +608,7 @@
 
 					<div class="scroll_gr mgt30">
 						<table class="tbl_st" border="1">
-							<caption>각 협정별 원산지증명서 발급방식</caption>
+							<!-- <caption>각 협정별 원산지증명서 발급방식</caption> -->
 							<colgroup>
 								<col style="width: 10%;" />
 								<col style="width: 17%;" />
@@ -524,7 +638,7 @@
 								</tr>
 								<tr>
 									<td rowspan="1">자율(※발효 시점에서는 활용 불가, 향후 단계적 시행 예정)/기관발급</td>
-									<tr />
+								</tr>
 								<tr>
 									<td>발급자</td>
 									<td>수출자/ 6천 유로이상인 증수출자</td>
@@ -568,53 +682,63 @@
 
 			<h4 class="tit2 mgt30">Guide</h4>
 
-			<h5 class="tit3">한-EFTA</h5>
+			<div class="guide-text">
 
-			<p class="bu_st1">스위스산 치즈는 스위스연방농업국의 위임을 받은 4개 특산치즈 제조사가 발급</p>
+				<h5 class="tit3">한-EFTA</h5>
 
-			<h5 class="tit3 mgt20">아세안 발급기관</h5>
+				<p class="bu_st1">스위스산 치즈는 스위스연방농업국의 위임을 받은 4개 특산치즈 제조사가 발급</p>
 
-			<ol class="box_st2 list_ol1 li_w50 cmgl30">
-				<li><span class="num">01</span>브루나이(외교통상부)</li>
-				<li><span class="num">02</span>캄보디아(상무부)</li>
-				<li><span class="num">03</span>인도네시아(통상부)</li>
-				<li><span class="num">04</span>라오스(상공회의소,&#39;12.7.1 변경)</li>
-				<li><span class="num">05</span>말레이시아(국제통상산업부)</li>
-				<li><span class="num">06</span>미얀마(상무부)</li>
-				<li><span class="num">07</span>필리핀(세관)</li>
-				<li><span class="num">08</span>싱가포르(세관)</li>
-				<li><span class="num">09</span>베트남(산업무역부)</li>
-				<li><span class="num">10</span>태국(상무부)</li>
-			</ol>
+				<h5 class="tit3 mgt20">아세안 발급기관</h5>
 
-			<h5 class="tit3 mgt20">한-EU</h5>
+				<ol class="box_st2 list_ol1 li_w50 cmgl30">
+					<li><span class="num">01</span>브루나이(외교통상부)</li>
+					<li><span class="num">02</span>캄보디아(상무부)</li>
+					<li><span class="num">03</span>인도네시아(통상부)</li>
+					<li><span class="num">04</span>라오스(상공회의소,&#39;12.7.1 변경)</li>
+					<li><span class="num">05</span>말레이시아(국제통상산업부)</li>
+					<li><span class="num">06</span>미얀마(상무부)</li>
+					<li><span class="num">07</span>필리핀(세관)</li>
+					<li><span class="num">08</span>싱가포르(세관)</li>
+					<li><span class="num">09</span>베트남(산업무역부)</li>
+					<li><span class="num">10</span>태국(상무부)</li>
+				</ol>
 
-			<p class="bu_st1">수출자로부터 수하인에게 일시 송부된 물품 또는 단일 운송서류에 의해 수출자로부터 수하인에게 송부된 물품의 전체가격이 6천유로를 초과하는 경우
-				원산지인증수출자만
-				자율발급 가능</p>
+				<h5 class="tit3 mgt20">한-EU</h5>
 
-			<h5 class="tit3 mgt20">한-페루</h5>
+				<p class="bu_st1">수출자로부터 수하인에게 일시 송부된 물품 또는 단일 운송서류에 의해 수출자로부터 수하인에게 송부된 물품의 전체가격이 6천유로를 초과하는 경우
+					원산지인증수출자만
+					자율발급 가능</p>
 
-			<ol class="box_st2 list_ol1 cmgl30">
-				<li><span class="num">01</span>탁송화물의 총 가격이 미화 2천달러&nbsp;초과인 경우 원산지인증수출자만 자율발급 가능</li>
-				<li><span class="num">02</span>발효이후 5년간(2016.7.31까지) 기관발급 허용</li>
-			</ol>
+				<h5 class="tit3 mgt20">한-페루</h5>
 
-			<div>
-				<input type="button" id="modal-open" value="원산지증명서 발급절차">
+				<ol class="box_st2 list_ol1 cmgl30">
+					<li><span class="num">01</span>탁송화물의 총 가격이 미화 2천달러&nbsp;초과인 경우 원산지인증수출자만 자율발급 가능</li>
+					<li><span class="num">02</span>발효이후 5년간(2016.7.31까지) 기관발급 허용</li>
+				</ol>
+				<div>
+					<input type="button" class="goBtn" id="modal-open" value="원산지증명서 발급절차">
+				</div>
+
 			</div>
+
+			<br>
+
 			<div class="modal-content">
+
 				<div id="modal1" class="modal">
-					<input type="button" id="modal-close" value="닫기">
-					<h3>원산지 증명서 발급</h3>
-					<div class="ac">
+					<!-- Modal Header -->
+					<div class="modal-header">
+						<h3 class="modal-title">원산지 증명서 발급</h3>
+						<button type="button" id="modal-close" data-dismiss="modal">&times;</button>
+					</div>
+					<div class="modal-text">
 						<a class="btn_bl ico_w" href="https://unipass.customs.go.kr/csp/index.do" target="_blank"
-							title="새창열림"><input type="button" value="관세청 원산지증명서 발급신청"><span class="glan">
+							title="새창열림"><input type="button" class="goBtn" value="관세청 원산지증명서 발급신청"><span class="glan">
 							</span>
 						</a>
 						<a class="btn_blL ico_g" href="http://cert.korcham.net/base/index.htm" target="_blank"
 							title="새창열림">
-							<input type="button" value="대한상공회의소 원산지증명서 발급신청">
+							<input type="button" class="goBtn" value="대한상공회의소 원산지증명서 발급신청">
 							<span class="glan">
 							</span>
 						</a>
@@ -652,13 +776,16 @@
 						</div>
 
 					</div>
+
 				</div>
 			</div>
 		</div>
 
 
 		<div class="box" id="box-5">
-			<h3 class="tit1">협정세율 적용신청하기</h3>
+			<h3 class="tit1">Ⅴ. 협정세율 적용신청하기
+			</h3>
+			<hr>
 
 			<h4 class="tit2">협정세율 적용신청의 의의</h4>
 
@@ -678,7 +805,7 @@
 					<div class="box_st1 rsp_img ac mgt10"><img alt="수리전 협정관세 적용신청 절차도 이미지. 자세한 설명은 아래참고" class="zoom"
 							th:src="@{/images/img_020102_5_1.png}" />
 						<div class="hid">
-							<ol>
+							<ol style="list-style-type: none;">
 								<li>[수입자] ① 원산지 증명서 수령 : 수출자로부터 원산지증명서 수령</li>
 								<li>[수입자] ② 원산지확인 및 신청서 작성 : 원산지증명서를 근거로 원산지 확인 후 협정관세 적용신청서 작성</li>
 								<li>[수입자] ③ 협정관세 적용신청(수입신고) : 협정관세율 및 구분구호 &rarr; 수입P/L</li>
@@ -695,7 +822,8 @@
 			<h4 class="tit2 mgt30">수입신고 수리후 협정관세 적용 신청(사후적용)</h4>
 
 			<ul class="list_st1">
-				<li>수입자가 수입신고 수리 전까지 원산지증빙서류를 갖추지 못하여 협정관세 적용을 신청하지 못하는 경우, 당해 물품의 수입신고 수리일부터 1년 이내에 협정관세 적용 신청 가능
+				<li>수입자가 수입신고 수리 전까지 원산지증빙서류를 갖추지 못하여 협정관세 적용을 신청하지 못하는 경우, 당해 물품의 수입신고 수리일부터 1년 이내에 협정관세 적용 신청
+					가능
 				</li>
 				<li>제출서류 : 협정관세 적용신청서, 원산지 증빙서류, 보정신청에 필요한 서류 또는 경정청구서</li>
 				<li>수리 후 협정관세 적용신청 수입자는 당해 물품에 대하여 이미 납부한 세액의 보정신청 또는 경정청구 가능</li>
@@ -704,14 +832,17 @@
 			<h4 class="tit2 mgt30">원산지증빙서류 제출 면제 대상(시행령 제4조 제3항)</h4>
 
 			<ol class="list_ol1 cmgl30">
-				<li><span class="num">01</span>과세가격이 미화 1천달러&nbsp;이하인 물품(자유무역협정에서 금액을 달리 정하고 있는 경우에는 협정에 따름). 다만,
+				<li>과세가격이 미화 1천달러&nbsp;이하인 물품(자유무역협정에서 금액을 달리 정하고 있는 경우에는 협정에 따름).<br>
+					다만,
 					수입물품을
 					분할하여 수입하는 등 수입물품의 과세가격이 미화 1천달러를&nbsp;초과하지 아니하도록 부정한 방법을 사용하여 수입하는 경우 제외</li>
-				<li><span class="num">02</span>동종&middot;동질물품을 계속 반복적으로 수입하는 경우로서 당해 물품의 생산공정 또는 수입거래의 특성상 원산지의 변동이
+				<li>동종&middot;동질물품을 계속 반복적으로 수입하는 경우로서 당해 물품의 생산공정 또는 수입거래의 특성상 원산지의
+					변동이
 					없는
 					물품 중 관세청장이 정하여 고시하는 물품</li>
-				<li><span class="num">03</span>관세청장으로부터 원산지에 대한 사전심사를 받은 물품. 다만, 사전심사시의 조건과 동일한 경우에 한함</li>
-				<li><span class="num">04</span>물품의 종류&middot;성질&middot;형상&middot;상표&middot;생산국명 또는 제조자 등에 따라 원산지를
+				<li>관세청장으로부터 원산지에 대한 사전심사를 받은 물품. 다만, 사전심사시의 조건과 동일한 경우에 한함</li>
+				<li>물품의 종류&middot;성질&middot;형상&middot;상표&middot;생산국명 또는 제조자 등에 따라
+					원산지를
 					확인할 수
 					있는 물품으로서 관세청장이 정하여 고시한 물품</li>
 			</ol>
@@ -720,7 +851,7 @@
 
 			<div class="scroll_gr cmgl30">
 				<table class="tbl_st" border="1">
-					<caption>협정별 원산지증명서 면제 기준</caption>
+					<!-- <caption>협정별 원산지증명서 면제 기준</caption> -->
 					<colgroup>
 						<col style="width: 20%;" />
 						<col style="width: 80%;" />
@@ -875,7 +1006,8 @@
 							<td>한-중미</td>
 							<td class="al">
 								<ul class="list_st3">
-									<li>수입의 관세가격이 미화 1천 달러 또는 수입 당사국의 통화로 이에 상당하는 금액이나 수입 당사국이 설정할 수 있는 그 이상의 금액을
+									<li>수입의 관세가격이 미화 1천 달러 또는 수입 당사국의 통화로 이에 상당하는 금액이나 수입 당사국이 설정할 수 있는 그 이상의
+										금액을
 										초과하지
 										아니하는 경우</li>
 								</ul>
@@ -898,7 +1030,8 @@
 							<td>RCEP</td>
 							<td class="al">
 								<ul class="list_st3">
-									<li>수입의 관세가격이 미화 200달러 또는 수입 당사자의 통화로 이에 상당하는 금액이나 수입 당사자가 설정할 수 있는 그 이상의 금액을
+									<li>수입의 관세가격이 미화 200달러 또는 수입 당사자의 통화로 이에 상당하는 금액이나 수입 당사자가 설정할 수 있는 그 이상의
+										금액을
 										초과하지
 										않는 경우</li>
 									<li>수입 당사자가 요건을 면제한 상품인 경우</li>
@@ -908,11 +1041,12 @@
 					</tbody>
 				</table>
 			</div>
-			<hr>
+
 		</div>
 
 		<div class="box" id="box-6">
-			<h3 class="tit1">관련서류 보관하기</h3>
+			<h3 class="tit1">Ⅵ. 관련서류 보관하기</h3>
+			<hr>
 
 			<h4 class="tit2">수입자의 서류 보관</h4>
 
@@ -930,16 +1064,38 @@
 						<li><span class="num">라</span>지식재산권 거래 관련 계약서</li>
 						<li><span class="num">마</span>수입물품의 과세가격 결정에 관한 자료</li>
 						<li><span class="num">바</span>수입물품의 국제운송 관련 서류</li>
-						<li><span class="num">사</span>법 제31조제2항에 따른 사전심사서(이하 &ldquo;사전심사서&rdquo;라 한다) 사본 및 사전심사에 필요한
+						<li><span class="num">사</span>법 제31조제2항에 따른 사전심사서(이하 &ldquo;사전심사서&rdquo;라 한다) 사본 및 사전심사에
+							필요한
 							증빙서류(사전심사서를 받은 경우만 해당한다)</li>
 					</ol>
 				</li>
 			</ul>
 		</div>
 	</div>
+	</div>
 
 
 	</div>
+	<!-- footer -->
+	<footer class="footer-wave">
+		<div class="waves">
+			<div class="wave" id="wave1"></div>
+			<div class="wave" id="wave2"></div>
+			<div class="wave" id="wave3"></div>
+			<div class="wave" id="wave4"></div>
+		</div>
+
+		<ul class="footer-wave-menu">
+			<li class="menu__item"><a class="menu__link" th:href="@{/}">HOME</a></li>
+			<li class="menu__item"><a class="menu__link" th:href="@{news}">무역뉴스</a></li>
+			<li class="menu__item"><a class="menu__link" th:href="@{info/infoList}">FTA정보</a></li>
+			<li class="menu__item"><a class="menu__link" href="#">무역통계</a></li>
+			<li class="menu__item"><a class="menu__link" href="#">관세사상담</a></li>
+
+		</ul>
+		<p>&copy;2024 HScode Zoom | All Rights Reserved</p>
+	</footer>
+	<!-- End footer -->
 	<!--script-->
 	<script th:src="@{/assets/js/core/jquery.min.js}" type="text/javascript"></script>
 	<script th:src="@{/assets/js/core/popper.min.js}" type="text/javascript"></script>
@@ -975,6 +1131,7 @@
 				overlay.style.display = "none"; // 모달 오버레이도 숨기도록 변경
 			});
 		});
+
 
 	</script>
 
