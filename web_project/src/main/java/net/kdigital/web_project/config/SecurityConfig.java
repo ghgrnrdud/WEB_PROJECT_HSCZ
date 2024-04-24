@@ -26,7 +26,7 @@ public class SecurityConfig {
 				, "/user/join"
 				, "/user/login"
 				, "/user/joinProc"
-				, "user/loginProc"
+				, "/user/loginProc"
 				, "/trade/showStat"
 				, "/trade/stringChart"
 				, "/trade/pieChart"
