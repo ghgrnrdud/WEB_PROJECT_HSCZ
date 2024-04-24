@@ -97,7 +97,7 @@
       </form>
     </div>
     <div style="position: absolute; top: 0; left: 0; width: 100%; height: 670px; background-color: rgba(0, 0, 0, 0.5); z-index: 0;"></div>
-    <img src="assets/img/main-img.jpg" alt="배경 이미지" style="width:100%; height: 670px;">
+    <img th:src="@{/images/main-img.jpg}" alt="배경 이미지" style="width:100%; height: 670px;">
   </div>
   <div class="filter"></div>
   <!-- End 검색창 -->
@@ -116,7 +116,7 @@
             <h4>무역뉴스</h4>
             NEWS
           </div>
-          <img class=cardimage src="assets/img/trade news.jpg" alt="Avatar">
+          <img class=cardimage th:src="@{/images/trade news.jpg}" alt="Avatar">
         </div>
       </a>
       <a th:href="@{/info/infoList}" class="cardtest">
@@ -125,7 +125,7 @@
             <h4>FTA정보</h4>
             FTA
           </div>
-          <img class=cardimage src="assets/img/fta.jpg" alt="Avatar">
+          <img class=cardimage th:src="@{/images/fta.jpg}" alt="Avatar">
         </div>
       </a>
       <a th:href="@{/trade/showStat}" class="cardtest">
@@ -134,7 +134,7 @@
             <h4>무역통계</h4>
             TRADE STATICS
           </div>
-          <img class=cardimage src="assets/img/static.png" alt="Avatar">
+          <img class=cardimage th:src="@{/images/static.png}" alt="Avatar">
         </div>
       </a>
       <a th:href="@{/cca/ccaList}" class="cardtest">
@@ -143,7 +143,7 @@
             <h4>관세사목록</h4>
             CCA LIST
           </div>
-          <img class=cardimage src="assets/img/custom.jpg" alt="Avatar">
+          <img class=cardimage th:src="@{/images/custom.jpg}" alt="Avatar">
         </div>
       </a>
       <a th:href="@{/cca//ccaWrite}" class="cardtest">
@@ -152,7 +152,7 @@
             <h4>간편상담</h4>
             CONSULTING
           </div>
-          <img class=cardimage src="assets/img/consulting.jpg" alt="Avatar">
+          <img class=cardimage th:src="@{/images/consulting.jpg}" alt="Avatar">
         </div>
       </a>
     </div>
@@ -167,19 +167,19 @@
 
     <div class="clientlist">
       <div class="clientlistindi">
-        <img src="assets/img/customs.png" class="img-fluid" alt="">
+        <img th:src="@{/images/customs.png}" class="img-fluid" alt="">
       </div>
       <div class="clientlistindi">
-        <img src="assets/img/kita-logo.png" class="img-fluid" alt="">
+        <img th:src="@{/images/kita-logo.png}" class="img-fluid" alt="">
       </div>
       <div class="clientlistindi">
-        <img src="assets/img/KOTRA_Logo.jpg" class="img-fluid" alt="">
+        <img th:src="@{/images/KOTRA_Logo.jpg}" class="img-fluid" alt="">
       </div>
       <div class="clientlistindi">
-        <img src="assets/img/yesFTA logo.jpg" class="img-fluid" alt="">
+        <img th:src="@{/images/yesFTA logo.jpg}" class="img-fluid" alt="">
       </div>
       <div class="clientlistindi">
-        <img src="assets/img/un-logo.png" class="img-fluid" alt="">
+        <img th:src="@{/images/un-logo.png}" class="img-fluid" alt="">
       </div>
     </div>
   <!-- End Services Section -->
