@@ -1,6 +1,8 @@
 package net.kdigital.web_project.service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -15,6 +17,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.kdigital.web_project.dto.BoardDTO;
 import net.kdigital.web_project.entity.BoardEntity;
+import net.kdigital.web_project.entity.BycounImExPriceEntity;
 import net.kdigital.web_project.repository.CCARepository;
 
 @Service
@@ -123,6 +126,17 @@ public class CCAService {
         );
         return dtoList;
     }
+
+	public List<BoardEntity> findAllConsultsbyuserId(String userName) {
+		List<BoardEntity> boardList = ccaRepository.findAllByConsultWriterOrderByConsultNumDesc(userName);
+		
+//		List<BoardDTO> dtoList = new ArrayList<>();
+//		
+//		for(BoardEntity temp : boardList) {
+//			dtoList.add(BoardDTO.toDTO(temp));}
+		
+		return boardList;
+	}
 
     
 }

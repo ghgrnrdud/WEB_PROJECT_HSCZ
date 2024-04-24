@@ -1,5 +1,6 @@
 package net.kdigital.web_project.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
@@ -27,6 +28,13 @@ public class CustomerItemService {
 			customerItemRepository.save(itemEntity);
 		}
 		
+	}
+
+	public CustomerItemDTO findItem(String username) {
+		Optional<CustomerEntity> customerEntity = customerRepository.findById(username);
+		CustomerItemEntity customerItemEntity =  customerItemRepository.findByCustomerEntity(customerEntity.get());
+		
+		return CustomerItemDTO.toDTO(customerItemEntity, username);
 	}
 	
 
