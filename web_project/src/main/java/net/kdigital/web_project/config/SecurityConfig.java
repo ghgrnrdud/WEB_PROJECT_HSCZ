@@ -52,7 +52,7 @@ public class SecurityConfig {
 		// Custom Login 설정
 		http
 		.formLogin((auth) -> auth
-				.loginPage("/user/loginExample")
+				.loginPage("/user/login")
 				.failureHandler(failureHandler)
 				.usernameParameter("userId")
 				.passwordParameter("userPwd")

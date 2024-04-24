@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class MainController {
 	
-	@GetMapping({"/",""})
+	@GetMapping({"","/"})
 	public String sample(){
 		
 		return "index";
