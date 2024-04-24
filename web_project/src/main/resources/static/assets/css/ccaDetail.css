@@ -1,0 +1,6 @@
+@import "without-sidebar.css";
+
+/* 페이지 헤더 높이 줄이기 */
+.page-header {
+  min-height: 20vh;
+}

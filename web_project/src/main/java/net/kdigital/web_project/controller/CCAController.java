@@ -133,7 +133,7 @@ public class CCAController {
     @GetMapping("/update")
     public String boardUpdate(
             @RequestParam(name = "consultNum") Long consultNum,
-            @RequestParam(name = "searchBy") String searchBy,
+            @RequestParam(name = "searchBy", defaultValue = "") String searchBy,
             @RequestParam(name = "searchItem", defaultValue = "") String searchItem,
             Model model) {
 
@@ -141,13 +141,14 @@ public class CCAController {
         model.addAttribute("consult", boardDTO);
         model.addAttribute("searchItem", searchItem);
         model.addAttribute("searchBy",searchBy);
+
         return "cca/update";
     }
 
     @PostMapping("/update")
     public String boardUpdate(
             @ModelAttribute BoardDTO boardDTO,
-            @RequestParam(name = "searchBy") String searchBy,
+            @RequestParam(name = "searchBy", defaultValue = "") String searchBy,
             @RequestParam(name = "searchItem", defaultValue = "") String searchItem,
             RedirectAttributes rttr) {
 
