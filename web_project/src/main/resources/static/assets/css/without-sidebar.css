@@ -189,7 +189,6 @@ nav ul,nav li {
     display: flex;
 }
 
-/* 탑버튼 설정 */
 .moveTopBtn {
     border-radius: 30px;
     position: fixed;

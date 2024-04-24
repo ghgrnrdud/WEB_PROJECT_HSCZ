@@ -231,28 +231,6 @@ nav ul,nav li {
     background: #fff;
 }
 
-/* 탑버튼 설정 */
-.moveTopBtn {
-    border-radius: 30px;
-    position: fixed;
-    bottom: 1.5rem;
-    right: 5rem;
-    width: 3.5rem;
-    height: 3.5rem;
-    background: rgba(7, 20, 42, 0.6);
-    border: 1px solid rgba(255, 255, 255, 0.6);
-    color: #fff;
-    text-align: center;
-    z-index: 2000;
-}
-.moveTopBtn i {
-    font-size: 30px;
-    padding: 12px;
-}
-
-
-/* footer설정 */
-
 .footer-wave {
     position: relative;
     width: 100%;
