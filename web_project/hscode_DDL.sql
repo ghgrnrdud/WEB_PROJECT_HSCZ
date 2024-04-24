@@ -1,3 +1,79 @@
+/*********** 회원 및 관세사 테이블 ***********/
+----- user table 생성
+drop table customer CASCADE CONSTRAINTS;
+create table customer
+(
+    user_id varchar2(20) primary key
+    , user_pwd VARCHAR2(2000) not null
+    , user_name varchar2(20) not null
+    , user_role varchar2(20) not null check(user_role in ('ROLE_USER', 'ROLE_CCA', 'ROLE_ADMIN'))
+    , phone varchar2(20) not null
+    , email varchar2(200) not null
+    , company_name varchar2(20)
+    , company_region varchar2(200)
+    , like_total number
+    , cca_num number
+    , self_info varchar2(600)
+);
+----- item table 생성
+drop table customer_item;
+drop sequence customer_item_seq;
+
+create sequence customer_item_seq;
+create table customer_item
+(
+    item_id number primary key
+    , user_id varchar2(20) references customer(user_id) on delete cascade
+    , first_item varchar2(20)
+    , second_item varchar2(20)
+    , third_item varchar2(20)
+);
+
+------ 관세사 연락처 db
+drop table ccalist;
+
+CREATE TABLE ccalist 
+(
+    cca_num NUMBER primary key, -- 프라이머리 키
+    cca_name VARCHAR2(200),  -- 관세사 이름
+    company_name VARCHAR2(1000), -- 관세법인 이름
+    phone VARCHAR2(200), -- 전화번호
+    company_region VARCHAR2(2000), -- 관세법인 주소
+    cca_email VARCHAR2(1000) -- 이메일 주소
+);
+------ 답변 DB
+drop table reply_cca;
+drop sequence cca_seq;
+
+create table reply_cca 
+( 
+    reply_num number primary key, -- 답변번호
+    consult_num number references consult_cca(consult_num) ON DELETE CASCADE, -- 상담번호
+    reply_writer varchar2(20), -- 상담 답변자
+    reply_content varchar2(20), -- 답변 내용
+    reply_date date default sysdate, -- 상담 답변작성일
+    like_count number,  -- 추천여부
+    product_category VARCHAR2(100)
+);
+create sequence cca_seq;
+
+commit;
+------ 상담글 DB
+drop table consult_cca;
+drop sequence consult_seq;
+
+create table consult_cca 
+(
+    consult_num number primary key, -- 상담번호
+    consult_title varchar2(100), -- 상담제목
+    consult_writer varchar2(20), -- 상담 문의자
+    consult_content varchar2(2000), -- 상담 내용
+    consult_date date default sysdate, -- 상담일
+    product_category VARCHAR2(100)
+); 
+create sequence consult_seq;
+
+/*********** HSCODE 테이블 ***********/
 /* HSCODE 앞4자리 테이블*/
 DROP TABLE headings;
 CREATE TABLE headings
@@ -55,3 +131,200 @@ CREATE TABLE year_imex5
     , export_amount NUMBER
     , import_amount NUMBER
 );
+
+
+/*********** 무역 통계 테이블 ***********/
+----- 1) 10대 수출입품목(년도) - 한국
+drop table IMPORT_EXPORT_PRODUCT_TOP10;
+create table IMPORT_EXPORT_PRODUCT_TOP10
+(
+    seq1 NUMBER
+    , import_export VARCHAR2(10) not null
+    , DATE_YEAR NUMBER not null
+    , hs_4digit VARCHAR2(10) not null
+    , product_name VARCHAR2(1000) not null
+    , price NUMBER not null
+);
+
+select * from IMPORT_EXPORT_PRODUCT_TOP10;
+
+----- 2) 국가별 10대 수입품목(년도) - 수정
+drop table BYCOUN_IMPORT_PRODUCT_TOP10;
+create table BYCOUN_IMPORT_PRODUCT_TOP10
+(
+    seq3 number primary key
+    , DATE_YEAR NUMBER not null
+    , country varchar2(20)
+    , ranking number not null
+    , HSCODE varchar2(100) not null
+    , product_name varchar2(1000) not null
+    , price NUMBER not null
+);
+
+select * from BYCOUN_IMPORT_PRODUCT_TOP10;
+
+update BYCOUN_IMPORT_PRODUCT_TOP10 set country='US' where country='미국';
+update BYCOUN_IMPORT_PRODUCT_TOP10 set country='CN' where country='중국';
+update BYCOUN_IMPORT_PRODUCT_TOP10 set country='VN' where country='베트남';
+update BYCOUN_IMPORT_PRODUCT_TOP10 set country='JP' where country='일본';
+update BYCOUN_IMPORT_PRODUCT_TOP10 set country='HK' where country='홍콩';
+update BYCOUN_IMPORT_PRODUCT_TOP10 set country='TW' where country='대만';
+update BYCOUN_IMPORT_PRODUCT_TOP10 set country='SG' where country='싱가포르';
+update BYCOUN_IMPORT_PRODUCT_TOP10 set country='IN' where country='인도(인디아)';
+update BYCOUN_IMPORT_PRODUCT_TOP10 set country='AU' where country='호주';
+update BYCOUN_IMPORT_PRODUCT_TOP10 set country='MX' where country='멕시코';
+update BYCOUN_IMPORT_PRODUCT_TOP10 set country='DE' where country='독일';
+update BYCOUN_IMPORT_PRODUCT_TOP10 set country='MY' where country='말레이시아';
+update BYCOUN_IMPORT_PRODUCT_TOP10 set country='ID' where country='인도네시아';
+update BYCOUN_IMPORT_PRODUCT_TOP10 set country='PL' where country='폴란드';
+update BYCOUN_IMPORT_PRODUCT_TOP10 set country='PH' where country='필리핀';
+update BYCOUN_IMPORT_PRODUCT_TOP10 set country='TR' where country='튀르키예';
+update BYCOUN_IMPORT_PRODUCT_TOP10 set country='CA' where country='캐나다';
+update BYCOUN_IMPORT_PRODUCT_TOP10 set country='TH' where country='태국';
+update BYCOUN_IMPORT_PRODUCT_TOP10 set country='NL' where country='네덜란드';
+update BYCOUN_IMPORT_PRODUCT_TOP10 set country='HU' where country='헝가리';
+
+commit;
+
+-----3) 한국 수출입 금액(월별) - 천
+drop table korea_imex_price;
+drop sequence seq7;
+create table korea_imex_price
+(
+    seq7 number primary key
+    , date_year number not null
+    , date_month number not null
+    , export_price number not null
+    , import_price number not null
+);
+create sequence seq7;
+
+select * from korea_imex_price;
+
+------4) 국가별 수출입금액(월별)-백만/%
+drop table bycoun_imex_price;
+create table bycoun_imex_price
+(
+    seq6 number primary key
+    , country varchar2(20)
+    , date_year number not null
+    , date_month varchar2(1000) not null
+    , export_price number not null
+    , import_price number not null
+);
+
+select * from bycoun_imex_price;
+
+update bycoun_imex_price set country='US' where country='미국';
+update bycoun_imex_price set country='CN' where country='중국';
+update bycoun_imex_price set country='VN' where country='베트남';
+update bycoun_imex_price set country='JP' where country='일본';
+update bycoun_imex_price set country='HK' where country='홍콩';
+update bycoun_imex_price set country='TW' where country='대만';
+update bycoun_imex_price set country='SG' where country='싱가포르';
+update bycoun_imex_price set country='IN' where country='인도(인디아)';
+update bycoun_imex_price set country='AU' where country='호주';
+update bycoun_imex_price set country='MX' where country='멕시코';
+update bycoun_imex_price set country='DE' where country='독일';
+update bycoun_imex_price set country='MY' where country='말레이시아';
+update bycoun_imex_price set country='ID' where country='인도네시아';
+update bycoun_imex_price set country='PL' where country='폴란드';
+update bycoun_imex_price set country='PH' where country='필리핀';
+update bycoun_imex_price set country='TR' where country='튀르키예';
+update bycoun_imex_price set country='CA' where country='캐나다';
+update bycoun_imex_price set country='TH' where country='태국';
+update bycoun_imex_price set country='NL' where country='네덜란드';
+update bycoun_imex_price set country='HU' where country='헝가리';
+
+commit;
+
+-----5) 국가별 수입시장 점유율(년도)-천,TOP10
+drop table bycoun_import_market_top10;
+create table bycoun_import_market_top10
+(
+    seq5 number primary key
+    , country varchar2(20)
+    , date_year number not null
+    , ranking number not null
+    , import_market varchar2(200) not null
+    , price number not null
+    , percentile varchar2(100) not null
+);
+
+select * from bycoun_import_market_top10;
+
+update bycoun_import_market_top10 set country='US' where country='미국';
+update bycoun_import_market_top10 set country='CN' where country='중국';
+update bycoun_import_market_top10 set country='VN' where country='베트남';
+update bycoun_import_market_top10 set country='JP' where country='일본';
+update bycoun_import_market_top10 set country='HK' where country='홍콩';
+update bycoun_import_market_top10 set country='TW' where country='대만';
+update bycoun_import_market_top10 set country='SG' where country='싱가포르';
+update bycoun_import_market_top10 set country='IN' where country='인도(인디아)';
+update bycoun_import_market_top10 set country='AU' where country='호주';
+update bycoun_import_market_top10 set country='MX' where country='멕시코';
+update bycoun_import_market_top10 set country='DE' where country='독일';
+update bycoun_import_market_top10 set country='MY' where country='말레이시아';
+update bycoun_import_market_top10 set country='ID' where country='인도네시아';
+update bycoun_import_market_top10 set country='PL' where country='폴란드';
+update bycoun_import_market_top10 set country='PH' where country='필리핀';
+update bycoun_import_market_top10 set country='TR' where country='튀르키예';
+update bycoun_import_market_top10 set country='CA' where country='캐나다';
+update bycoun_import_market_top10 set country='TH' where country='태국';
+update bycoun_import_market_top10 set country='NL' where country='네덜란드';
+update bycoun_import_market_top10 set country='HU' where country='헝가리';
+
+commit;
+
+-----6) 국가별 10대 수출품목(연도) - 천
+drop table bycoun_export_product_top10;
+create table bycoun_export_product_top10
+(
+    seq4 number primary key
+    , DATE_YEAR NUMBER not null
+    , country varchar2(20)
+    , ranking number not null
+    , HSCODE varchar2(100) not null
+    , product_name varchar2(1000) not null
+    , price NUMBER not null
+);
+
+select * from bycoun_export_product_top10;
+
+update bycoun_export_product_top10 set country='US' where country='미국';
+update bycoun_export_product_top10 set country='CN' where country='중국';
+update bycoun_export_product_top10 set country='VN' where country='베트남';
+update bycoun_export_product_top10 set country='JP' where country='일본';
+update bycoun_export_product_top10 set country='HK' where country='홍콩';
+update bycoun_export_product_top10 set country='TW' where country='대만';
+update bycoun_export_product_top10 set country='SG' where country='싱가포르';
+update bycoun_export_product_top10 set country='IN' where country='인도(인디아)';
+update bycoun_export_product_top10 set country='AU' where country='호주';
+update bycoun_export_product_top10 set country='MX' where country='멕시코';
+update bycoun_export_product_top10 set country='DE' where country='독일';
+update bycoun_export_product_top10 set country='MY' where country='말레이시아';
+update bycoun_export_product_top10 set country='ID' where country='인도네시아';
+update bycoun_export_product_top10 set country='PL' where country='폴란드';
+update bycoun_export_product_top10 set country='PH' where country='필리핀';
+update bycoun_export_product_top10 set country='TR' where country='튀르키예';
+update bycoun_export_product_top10 set country='CA' where country='캐나다';
+update bycoun_export_product_top10 set country='TH' where country='태국';
+update bycoun_export_product_top10 set country='NL' where country='네덜란드';
+update bycoun_export_product_top10 set country='HU' where country='헝가리';
+
+commit;
+
+------7) 국가별 수출입품목 증감률 - 월별, 천(%)
+drop table bycoun_imex_product_top5;
+create table bycoun_imex_product_top5
+(
+    seq8 number primary key
+    , month_year NUMBER not null
+    , country varchar2(20)
+    , HSCODE varchar2(100) not null
+    , product_name varchar2(1000) not null
+    , exportrate NUMBER not null
+    , importrate NUMBER not null
+);
+
+select * from bycoun_imex_product_top5;

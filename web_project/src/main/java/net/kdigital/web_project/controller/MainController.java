@@ -17,4 +17,5 @@ public class MainController {
 	public String layout() {
 		return "layout";
 	}
+
 }

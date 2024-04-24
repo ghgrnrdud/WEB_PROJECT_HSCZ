@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+	            >
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>상담문의글 수정화면</title>
+
+ 
+</head>
+
+<body>
+    <div class="container">
+        <div class="logo">
+            <a th:href="@{/}"><img th:src="@{/images/logo.png}" alt="logo"></a>
+            <h2>[상담문의글 수정하기]</h2>
+        </div>
+    </div> <!-- .container 끝 -->
+
+    <!-- 글쓰기 -->
+    <div class="content">
+        <form th:action="@{/cca/replyUpdate}" method="POST" enctype="multipart/form-data">
+		
+			<input type="hidden" id="searchBy" name="searchBy" th:value="${searchBy}">
+			<input type="hidden" id="searchItem" name="searchItem" th:value="${searchItem}">
+			<input type="hidden" id="replyNum" name="replyNum" th:value="${reply.replyNum}">
+			<input type="hidden" id="consultNum" name="consultNum" th:value="${consult.consultNum}">
+            <table border="1">
+				<tr>
+							<th>작성자</th>
+							<td> <!-- 로그인한 사람의 아이디 -->
+							<input id="replyWriter" type="text" name="replyWriter" th:value="${#authentication.name}" readonly>
+							</td>
+						</tr>
+               
+                <tr>
+                    <th>답변글 내용</th>
+                    <td>
+                        <textarea name="replyContent" id="replyContent" cols="30" rows="10" required></textarea>
+                    </td>
+                </tr>
+			
+		
+               
+
+                <tr>
+                    <th colspan="2">
+                        <input type="submit" value="수정등록" class="btn btn-primary"> &nbsp;
+                        <input type="reset"  value="초기화" class="btn btn-danger">
+                    </th>
+
+                </tr>
+            </table>
+
+        </form>
+    </div>
+	
+
+</body>
+
+</html>
