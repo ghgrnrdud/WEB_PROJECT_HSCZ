@@ -182,31 +182,33 @@ nav ul,nav li {
     margin-right: 55px;
 }
 
-/* Navbar 컨테이너 */
-.navbar {
-    display: flex; /* Flexbox를 활성화 */
-    flex-wrap: wrap; /* 요소들이 너비를 초과하면 다음 줄로 이동 */
-    align-items: center; /* 세로 축 중앙 정렬 */
-    justify-content: space-between; /* 요소들 사이에 공간을 균등하게 분배 */
+.navbar .container {
+    width: 1200px !important;
+    margin-left: calc((100% - 1200px - 55px) / 2);
+    margin-right: auto;
+    display: flex;
 }
 
-/* Navbar 로고 또는 브랜드 */
-.navbar-brand {
-    flex-grow: 1; /* 나머지 공간을 채움 */
+.moveTopBtn {
+    border-radius: 30px;
+    position: fixed;
+    bottom: 1.5rem;
+    right: 5rem;
+    width: 3.5rem;
+    height: 3.5rem;
+    background: rgba(7, 20, 42, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    color: #fff;
+    text-align: center;
+    z-index: 2000;
+}
+.moveTopBtn i {
+    font-size: 30px;
+    padding: 12px;
 }
 
-/* Navbar 메뉴 */
-.navbar-nav {
-    display: flex; /* Flexbox를 활성화 */
-    list-style: none; /* 리스트 스타일 제거 */
-    padding: 0; /* 패딩 제거 */
-}
 
-/* Navbar 메뉴 항목 */
-.nav-item {
-    padding: 0 15px; /* 좌우 패딩 설정 */
-}
-
+/* footer설정 */
 .footer-wave {
     position: relative;
     width: 100%;

@@ -26,7 +26,7 @@ public class SecurityConfig {
 				, "/user/join"
 				, "/user/login"
 				, "/user/joinProc"
-				, "user/loginProc"
+				, "/user/loginProc"
 				, "/trade/showStat"
 				, "/trade/stringChart"
 				, "/trade/pieChart"
@@ -37,13 +37,13 @@ public class SecurityConfig {
 				, "/assets/**"
 				, "/images/**"
 				, "/script/**"
-				,"/cca/boardList"
-				,"/cca/ccaList"
-				,"/cca/ccaWrite"
-				,"/cca/detail"
-				,"/cca/replyUpdate"
-				,"/cca/replyWrite"
-				,"/cca/update"
+				, "/chart/**"
+				, "/info/**"
+				, "/subhead/**"
+				, "/predict/**"
+				, "/heading/**"
+				, "/news/**"
+				, "/cca/**"
 				).permitAll()
 				.requestMatchers("/admin/**").hasRole("ADMIN")
 				.requestMatchers("/my/**").hasAnyRole("ADMIN", "USER", "CCA") // *********** 이게 맞나????
@@ -52,7 +52,7 @@ public class SecurityConfig {
 		// Custom Login 설정
 		http
 		.formLogin((auth) -> auth
-				.loginPage("/user/loginExample")
+				.loginPage("/user/login")
 				.failureHandler(failureHandler)
 				.usernameParameter("userId")
 				.passwordParameter("userPwd")
