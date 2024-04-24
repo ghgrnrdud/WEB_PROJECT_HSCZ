@@ -19,6 +19,14 @@
                 <a th:href="@{/user/logout}">로그아웃</a>
             </li>
 
+	<li sec:authorize="hasRole('ROLE_USER')">
+		<a th:href="@{/my/userpage}">마이페이지</a>
+	</li>
+
+	<li sec:authorize="hasRole('ROLE_CCA')">
+		<a th:href="@{/my/ccapage}">마이페이지</a>
+	</li>
+
 	<li>
 		<a th:href="@{/trade/showStat}">무역통계</a>
 	</li>
