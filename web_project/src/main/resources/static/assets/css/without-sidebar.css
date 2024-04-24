@@ -168,15 +168,15 @@ nav ul,nav li {
 }
 
 /* 레이아웃 설정 */
-/* .content {
+.content {
     width: 1200px;
     padding-top: 40px;
-    margin-right: 55px;
-    margin: 0 auto;
+    /* margin-right: 55px;
+    margin: 0 auto; */
     margin-left: calc((100% - 1200px - 55px) / 2);
     margin-right: auto;
     margin-bottom: 90px;
-} */
+}
 
 .navbar {
     margin-right: 55px;
