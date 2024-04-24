@@ -550,7 +550,7 @@ body {
   width: 16em;
 }
 
-@media (min-width: 768px) {
+/* @media (min-width: 768px) {
   .bootstrap-datetimepicker-widget.dropdown-menu.timepicker-sbs {
     width: 38em;
   }
@@ -566,7 +566,7 @@ body {
   .bootstrap-datetimepicker-widget.dropdown-menu.timepicker-sbs {
     width: 38em;
   }
-}
+} */
 
 .bootstrap-datetimepicker-widget.dropdown-menu.bottom:before {
   border-bottom: 11px solid #F1EAE0;
@@ -4470,11 +4470,11 @@ License - nucleoapp.com/license/
   top: 0;
   border: 0;
   font-size: 14px;
-  /* transition: all 0.4s;
-  -webkit-transition: all 0.4s; */
   padding: 0;
-  /* background: #FFFFFF; */
-  /* box-shadow: 0 6px 10px -4px rgba(0, 0, 0, 0.15); */
+  background-size: cover;
+  /* position: relative; */
+  width: 100%;
+
 }
 
 .navbar .navbar-brand {
@@ -4593,8 +4593,9 @@ License - nucleoapp.com/license/
 
 .navbar.navbar-transparent {
   background: transparent !important;
-  padding-top: 25px;
+  padding-top: 15px;
   box-shadow: none;
+
 }
 
 .navbar.navbar-transparent .navbar-brand {
@@ -6630,7 +6631,7 @@ License - nucleoapp.com/license/
   z-index: -1;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
 }
 
 .page-header .filter::after {
@@ -6790,9 +6791,9 @@ License - nucleoapp.com/license/
 }
 
 .title-brand {
-  width: 500px;
+  /* width: 500px; */
   margin: 0 auto;
-  margin-left: 90px;
+  /* margin-left: 90px; */
   position: relative;
   text-align: left;
   color: #FFFFFF;
@@ -6813,7 +6814,7 @@ License - nucleoapp.com/license/
 
 .presentation-title {
   position: relative;
-  font-size: 3em;
+  font-size: 5em;
   font-weight: 700;
   margin: 0;
   color: #FFFFFF;
@@ -7023,10 +7024,10 @@ License - nucleoapp.com/license/
   min-height: 700px;
 }
 
-@media all and (-ms-high-contrast: none),
+/* @media all and (-ms-high-contrast: none),
 (-ms-high-contrast: active) {
   /* IE10+ CSS styles go here */
-  .page-header .content-center {
+  /* .page-header .content-center {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -7035,7 +7036,7 @@ License - nucleoapp.com/license/
   .page-header .presentation-title {
     background: none !important;
   }
-}
+} */
 
 [class*="features-"],
 [class*="team-"],
@@ -7070,7 +7071,7 @@ License - nucleoapp.com/license/
 
 /*          Changes for small display      */
 
-@media (max-width: 767px) {
+/* @media (max-width: 767px) {
   #cd-vertical-nav {
     display: none !important;
   }
@@ -7655,9 +7656,9 @@ License - nucleoapp.com/license/
   .subscribe-line .btn {
     margin: 0 auto;
   }
-}
+} */
 
-@media screen and (max-width: 991px) {
+/* @media screen and (max-width: 991px) {
   .navbar-collapse {
     position: fixed;
     display: block !important;
@@ -7869,9 +7870,9 @@ License - nucleoapp.com/license/
   .form-control+.form-control-feedback {
     padding-left: 0 !important;
   }
-}
+} */
 
-@media screen and (min-width: 991px) {
+/* @media screen and (min-width: 991px) {
   .burger-menu .navbar-collapse {
     position: fixed;
     display: block;
@@ -8045,9 +8046,9 @@ License - nucleoapp.com/license/
   .register-page .page-header .container {
     margin-top: 150px;
   }
-}
+} */
 
-@media (max-width: 1023px) and (min-width: 767px) {
+/* @media (max-width: 1023px) and (min-width: 767px) {
   .presentation-page .section-content .image-container .area-img {
     max-width: 190px;
     max-height: 270px;
@@ -8183,6 +8184,8 @@ License - nucleoapp.com/license/
   .presentation-page .section-content .image-container .area-img {
     max-width: 170px !important;
   }
-}
+} */
+
+
 
 /*# sourceMappingURL=kit-free.css.map */
