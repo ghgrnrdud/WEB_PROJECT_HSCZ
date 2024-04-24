@@ -37,13 +37,13 @@ public class SecurityConfig {
 				, "/assets/**"
 				, "/images/**"
 				, "/script/**"
-				,"/cca/boardList"
-				,"/cca/ccaList"
-				,"/cca/ccaWrite"
-				,"/cca/detail"
-				,"/cca/replyUpdate"
-				,"/cca/replyWrite"
-				,"/cca/update"
+				, "/chart/**"
+				, "/info/**"
+				, "/subhead/**"
+				, "/predict/**"
+				, "/heading/**"
+				, "/news/**"
+				, "/cca/**"
 				).permitAll()
 				.requestMatchers("/admin/**").hasRole("ADMIN")
 				.requestMatchers("/my/**").hasAnyRole("ADMIN", "USER", "CCA") // *********** 이게 맞나????

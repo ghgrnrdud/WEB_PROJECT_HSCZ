@@ -56,11 +56,10 @@ public class BoardEntity {
 	@Column(name="consult_content")
 	private String consultContent;
 	
-	
-	
 	@Column(name="consult_date")
 	@CreationTimestamp		// 게시글이 처음 생성될 때 자동으로 날짜 세팅
 	private LocalDateTime consultDate;
+	
 	@Column(name="product_category")
 	private String productCategory;
 	/*

@@ -38,7 +38,7 @@ public class StatController {
 	
 	@GetMapping("/showStat")
 	public String statShow() {
-		return "tradeStat";
+		return "sample-inner-page";
 	}
 
 	/**
