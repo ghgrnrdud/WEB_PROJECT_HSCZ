@@ -11,4 +11,8 @@ public class AppConfig {
 	RestTemplate restTemplate() {
 		return new RestTemplate();
 	}
+<<<<<<< HEAD
+=======
+
+>>>>>>> b634b614a84a70067bd50b394571f1357a1e9821
 }
