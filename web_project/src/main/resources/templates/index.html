@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<<<<<<< HEAD
 <html lang="ko" xmlns:th="http://thymeleaf.org">
 
 <head>
@@ -7,19 +6,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>HSCODE ZOOM</title>
 
-=======
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head>
-<meta charset="UTF-8">
-<script th:src="@{/assets/js/jquery-3.7.1.min.js}"></script>
-    <script>
-    </script>
-<title>index</title>
->>>>>>> b634b614a84a70067bd50b394571f1357a1e9821
 </head>
 
 <body>
-<<<<<<< HEAD
 	<form th:action="@{/predict}" method="post">
 		<div class="insert_des">
 			<h2>제품 상세 입력</h2>
@@ -41,7 +30,7 @@
 			<a th:href="@{/cca/boardList}">간편상담</a>
 		</div>
 	</form>
-=======
+	
 	<span>안녕하쇼</span>
 	<li sec:authorize="isAnonymous()">
 	<a th:href="@{/user/join}">회원가입</a>
@@ -58,9 +47,6 @@
 	</li>
 
 	<ul>
-             
-   
-              
 		<!-- 인증과 관계없음 -->
 		<li><a th:href="@{/cca/boardList}">관세사 상담문의게시판</a></li>
 		<li><a th:href="@{/cca/ccaList}">관세사 연락처 게시판</a></li>
@@ -87,7 +73,6 @@
 
 	<!-- 인증시 사용된 UserName -->
 	Name: <h2 sec:authentication="name"></h2>
->>>>>>> b634b614a84a70067bd50b394571f1357a1e9821
 </body>
 
 </html>

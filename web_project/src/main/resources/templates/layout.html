@@ -1,9 +1,5 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://thymeleaf.org">
-<<<<<<< HEAD
-
-=======
->>>>>>> b634b614a84a70067bd50b394571f1357a1e9821
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,11 +10,7 @@
 
     <!--css-->
     <link th:href="@{/assets/css/bootstrap.min.css}" rel="stylesheet" />
-<<<<<<< HEAD
     <link th:href="@{/assets/css/with-sidebar.css}" rel="stylesheet" />
-=======
-    <link th:href="@{/assets/css/without-sidebar.css}" rel="stylesheet" />
->>>>>>> b634b614a84a70067bd50b394571f1357a1e9821
 
     <link th:href="@{/assets/demo/demo.css}" rel="stylesheet" />
 </head>
@@ -26,7 +18,6 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg fixed-top navbar-transparent " color-on-scroll="300">
         <div class="container">
-<<<<<<< HEAD
             <div class="navbar-translate">
                 <a class="navbar-brand" th:href="@{/}" rel="tooltip" title="Coded by Creative Tim" data-placement="bottom">
                     <img th:src="@{/images/web-logo9.png}" alt="로고">
@@ -35,17 +26,17 @@
             <div class="collapse navbar-collapse justify-content-end" id="navigation">
                 <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" rel="tooltip" data-placement="bottom" href="#">
+                    <a class="nav-link" rel="tooltip" data-placement="bottom" th:href="@{/news}">
                     무역뉴스
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" rel="tooltip" data-placement="bottom" href="#">
+                    <a class="nav-link" rel="tooltip" data-placement="bottom" th:href="@{/info/infoList}">
                     FTA정보
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" rel="tooltip" data-placement="bottom" href="#">
+                    <a class="nav-link" rel="tooltip" data-placement="bottom" th:href="@{/trade/showStat}">
                     무역통계
                     </a>
                 </li>
@@ -53,106 +44,14 @@
                 <div class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-toggle="dropdown" id="dropdownMenuButton" href="#" role="button" aria-haspopup="true" aria-expanded="false">관세사상담</a>
                     <ul class="dropdown-menu dropdown-info" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="#">관세사목록</a>
-                    <a class="dropdown-item" href="#">상담목록</a>
-                    <a class="dropdown-item" href="#">상담하기</a>
+                        <a class="dropdown-item" th:href="@{/cca/ccaList}">관세사목록</a>
+                        <a class="dropdown-item" th:href="@{/cca/boardList}">상담목록</a>
+                        <a class="dropdown-item" th:href="@{/cca/ccaWrite}">상담하기</a>
                     </ul>
                 </div>
-                <a class="navbar-brand" th:href="@{/}" rel="tooltip" title="HScode Zoom" data-placement="bottom"
-                    target="_self">
-                    <img th:src="@{/images/web-logo9.png}" alt="로고">
-                </a>
-                <button class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse"
-                    data-target="#navigation" aria-controls="navigation-index" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                    <span class="navbar-toggler-bar bar1"></span>
-                    <span class="navbar-toggler-bar bar2"></span>
-                    <span class="navbar-toggler-bar bar3"></span>
-                </button>
-            </div>
-            <div class="collapse navbar-collapse justify-content-end" id="navigation">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" rel="tooltip" data-placement="bottom"
-                            href="https://demos.creative-tim.com/paper-kit/index.html" target="_blank">
-                            무역뉴스
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" rel="tooltip" data-placement="bottom"
-                            href="https://demos.creative-tim.com/paper-kit/index.html" target="_blank">
-                            FTA정보
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" rel="tooltip" data-placement="bottom"
-                            href="https://demos.creative-tim.com/paper-kit/index.html" target="_blank">
-                            무역통계
-                        </a>
-                    </li>
-
-                    <!-- <li class="nav-item">
-=======
-        <div class="navbar-translate">
-            <a class="navbar-brand" href="index.html" rel="tooltip" title="Coded by Creative Tim" data-placement="bottom" target="_blank">
-                <img th:src="@{/images/web-logo9.png}" alt="로고">
-            </a>
-            <button class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-bar bar1"></span>
-            <span class="navbar-toggler-bar bar2"></span>
-            <span class="navbar-toggler-bar bar3"></span>
-            </button>
-        </div>
-        <div class="collapse navbar-collapse justify-content-end" id="navigation">
-            <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" rel="tooltip" data-placement="bottom" href="https://demos.creative-tim.com/paper-kit/index.html" target="_blank">
-                무역뉴스
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" rel="tooltip" data-placement="bottom" href="https://demos.creative-tim.com/paper-kit/index.html" target="_blank">
-                FTA정보
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" rel="tooltip" data-placement="bottom" href="https://demos.creative-tim.com/paper-kit/index.html" target="_blank">
-                무역통계
-                </a>
-            </li>
-
-            <!-- <li class="nav-item">
->>>>>>> b634b614a84a70067bd50b394571f1357a1e9821
-                <a class="nav-link" rel="tooltip" data-placement="bottom" href="https://demos.creative-tim.com/paper-kit/index.html" target="_blank">
-                관세사 Matching
-                </a>
-            </li> -->
-
-<<<<<<< HEAD
-                    <div class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" id="dropdownMenuButton" href="#pk"
-                            role="button" aria-haspopup="true" aria-expanded="false">관세사상담</a>
-                        <ul class="dropdown-menu dropdown-info" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#pk">관세사목록</a>
-                            <a class="dropdown-item" href="#pk">상담목록</a>
-                            <a class="dropdown-item" href="#pk">상담하기</a>
-                        </ul>
-                    </div>
                 </ul>
             </div>
-=======
-            <div class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-toggle="dropdown" id="dropdownMenuButton" href="#pk" role="button" aria-haspopup="true" aria-expanded="false">관세사상담</a>
-                <ul class="dropdown-menu dropdown-info" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="#pk">관세사목록</a>
-                <a class="dropdown-item" href="#pk">상담목록</a>
-                <a class="dropdown-item" href="#pk">상담하기</a>
-                </ul>
-            </div>
-            </ul>
-        </div>
->>>>>>> b634b614a84a70067bd50b394571f1357a1e9821
-        </div>
+        </div>    
     </nav>
     <!-- End Navbar -->
 
@@ -182,23 +81,7 @@
                 </ul>
             </div>
     </section>
-    
-<<<<<<< HEAD
-    <section id="menubar">
-        <div id="menubar-nav">
-            <ul>
-                <li class="active"><a href="#"> Menu1</a></li>
-                <li><a href="#"> Menu2</a></li>
-                <li><a href="#"> Menu3</a></li>
-                <li><a href="#"> Menu4</a></li>
-                <li><a href="#"> Menu5</a></li>
-                <li><a href="#"> Menu6</a></li>
-            </ul>
-        </div>
-    </section>
 
-=======
->>>>>>> b634b614a84a70067bd50b394571f1357a1e9821
     <!-- side-bar 시작-->
     <nav class="main-menu">
         <div class="settings"></div>
@@ -211,41 +94,37 @@
                     </a>
                 </li> 
                 <li>                                 
-                    <a href="#">
+                    <a th:href="@{/news}">
                         <i class="fa fa-solid fa-newspaper fa-lg"></i>
                         <span class="nav-text">무역뉴스</span>
                     </a>
                 </li>
                 <li>                                 
-                    <a href="#">
+                    <a th:href="@{/info/infoList}">
                         <i class="fa fa-solid fa-book fa-lg"></i>
                         <span class="nav-text">FTA정보</span>
                     </a>
                 </li>
                 <li>                                 
-                    <a href="#">
+                    <a th:href="@{/trade/showStat}">
                         <i class="fa fa-solid fa-chart-simple fa-lg"></i>
                         <span class="nav-text">무역통계</span>
                     </a>
                 </li>
                 <li>                                 
-                    <a href="#">
+                    <a th:href="@{/cca/boardList}">
                         <i class="fa fa-solid fa-handshake fa-lg"></i>
                         <span class="nav-text">관세사상담</span>
                     </a>
                 </li>
                 <li>                                 
-                    <a href="#">
+                    <a th:href="@{/user/login}">
                         <i class="fa fa-regular fa-user fa-lg"></i>
                         <span class="nav-text">로그인</span>
                     </a>
                 </li>
-<<<<<<< HEAD
                 <li>
-=======
-                <li>                                 
->>>>>>> b634b614a84a70067bd50b394571f1357a1e9821
-                    <a href="#">
+                    <a th:href="@{/user/logout}">
                         <i class="fa fa-user fa-lg"></i>
                         <span class="nav-text">로그아웃</span>
                     </a>
@@ -258,10 +137,7 @@
                 </li>
             </ul>
         </div>    
-<<<<<<< HEAD
         </div>
-=======
->>>>>>> b634b614a84a70067bd50b394571f1357a1e9821
     </nav>
 
     <div class="content">
@@ -278,11 +154,11 @@
         </div>
 
         <ul class="footer-wave-menu">
-            <li class="menu__item"><a class="menu__link" href="#">HOME</a></li>
-            <li class="menu__item"><a class="menu__link" href="#">무역뉴스</a></li>
-            <li class="menu__item"><a class="menu__link" href="#">FTA정보</a></li>
-            <li class="menu__item"><a class="menu__link" href="#">무역통계</a></li>
-            <li class="menu__item"><a class="menu__link" href="#">관세사상담</a></li>
+            <li class="menu__item"><a class="menu__link" th:href="@{/}">HOME</a></li>
+            <li class="menu__item"><a class="menu__link" th:href="@{/news}">무역뉴스</a></li>
+            <li class="menu__item"><a class="menu__link" th:href="@{/info/infoList}">FTA정보</a></li>
+            <li class="menu__item"><a class="menu__link" th:href="@{/trade/showStat}">무역통계</a></li>
+            <li class="menu__item"><a class="menu__link" th:href="@{/cca/boardList}">관세사상담</a></li>
 
         </ul>
         <p>&copy;2024 HScode Zoom | All Rights Reserved</p>
@@ -303,12 +179,5 @@
 
     <script th:src="@{/assets/js/paper-kit.min.js?v=2.2.0}" type="text/javascript"></script>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTTfWur0PDbZWPr7Pmq8K3jiDp0_xUziI"></script>
-<<<<<<< HEAD
-    <script type="text/javascript"
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTTfWur0PDbZWPr7Pmq8K3jiDp0_xUziI"></script>
 </body>
-
-=======
-</body>
->>>>>>> b634b614a84a70067bd50b394571f1357a1e9821
 </html>

@@ -31,18 +31,10 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 	
 	// 보안관련 Dependency
-<<<<<<< HEAD
-	//implementation 'org.springframework.boot:spring-boot-starter-security'
-  	//implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
-  	//testImplementation 'org.springframework.security:spring-security-test'
-  	
-  	// Test 관련 Dependency
-=======
 	implementation 'org.springframework.boot:spring-boot-starter-security'
-	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
-	testImplementation 'org.springframework.security:spring-security-test'
-	
->>>>>>> b634b614a84a70067bd50b394571f1357a1e9821
+  	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
+  	testImplementation 'org.springframework.security:spring-security-test'
+  	// Test 관련 Dependency
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
