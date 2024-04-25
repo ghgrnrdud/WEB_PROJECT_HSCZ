@@ -620,7 +620,7 @@ function createRealPie(id, div, resp, country, year) {
     newspace.before(title, smalltitle6);
 
     //제목 글 설정
-    title.innerText = `중국의 수입시장 점유율`;
+    title.innerText = `미국의 수입시장 점유율`;
     smalltitle6.innerText = "단위 : 천$"
 
     //부모 div css
@@ -723,6 +723,8 @@ function createRealPie(id, div, resp, country, year) {
     if (country == 'CN') { document.getElementById('title6').innerHTML = `중국의 수입시장 점유율`; }
     else if (country == 'US') { document.getElementById('title6').innerHTML = `미국의 수입시장 점유율`; }
     else if (country == 'JP') { document.getElementById('title6').innerHTML = `일본의 수입시장 점유율`; }
+    else if (country == 'AU') { document.getElementById('title6').innerHTML = `호주의 수입시장 점유율`; }
+    else if (country == 'TW') { document.getElementById('title6').innerHTML = `대만의 수입시장 점유율`; }
     maybeDisposeRoot("chart6");
     root = am5.Root.new(space);
   }//end else
@@ -1099,7 +1101,7 @@ function createRealBar(id, div, resp, country, year) {
     newspace.before(title, smalltitle4);
 
     //제목 글 설정
-    title.innerText = `중국의 TOP5 수출입품목`;
+    title.innerText = `미국의 TOP5 수출입품목`;
     smalltitle4.innerText = "단위 : 천$";
 
     //부모 div css
@@ -1212,6 +1214,8 @@ function createRealBar(id, div, resp, country, year) {
     if (country == 'CN') { document.getElementById('title4').innerHTML = `중국의 TOP5 수출입품목`; }
     else if (country == 'US') { document.getElementById('title4').innerHTML = `미국의 TOP5 수출입품목`; }
     else if (country == 'JP') { document.getElementById('title4').innerHTML = `일본의 TOP5 수출입품목`; }
+    else if (country == 'AU') { document.getElementById('title4').innerHTML = `호주의 TOP5 수출입품목`; }
+    else if (country == 'TW') { document.getElementById('title4').innerHTML = `대만의 TOP5 수출입품목`; }
     maybeDisposeRoot("chart4");
     root = am5.Root.new(space);
   }//end else
@@ -1364,7 +1368,7 @@ function createRealString(id, div, resp, country) {
     newspace.before(title, smalltitle5);
 
     //제목 글 선정
-    title.innerText = `중국의 수출입 금액`;
+    title.innerText = `미국의 수출입 금액`;
     smalltitle5.innerText = "단위 : 백만$"
 
     //부모 div css
@@ -1414,6 +1418,8 @@ function createRealString(id, div, resp, country) {
     if (country == 'CN') { document.getElementById('title5').innerHTML = `중국의 수출입 금액`; }
     else if (country == 'US') { document.getElementById('title5').innerHTML = `미국의 수출입 금액`; }
     else if (country == 'JP') { document.getElementById('title5').innerHTML = `일본의 수출입 금액`; }
+    else if (country == 'AU') { document.getElementById('title5').innerHTML = `호주의 수출입 금액`; }
+    else if (country == 'TW') { document.getElementById('title5').innerHTML = `대만의 수출입 금액`; }
     maybeDisposeRoot("chart5");
     root = am5.Root.new(space);
   }//end else
@@ -1578,7 +1584,7 @@ function createRealStackCluster(id, div, resp, country) {
     newspace.before(title, smalltitle3);
 
     //제목 내용 선정
-    title.innerText = `중국의 수출입 품목 증감율(월)`;
+    title.innerText = `미국의 수출입 품목 증감율(월)`;
     smalltitle3.innerText = "단위 : 천$"
 
     //css
@@ -1628,6 +1634,8 @@ function createRealStackCluster(id, div, resp, country) {
     if (country == 'CN') { document.getElementById('title3').innerHTML = `중국의 수출입품목 증감율(월)`; }
     else if (country == 'US') { document.getElementById('title3').innerHTML = `미국의 수출입품목 증감율(월)`; }
     else if (country == 'JP') { document.getElementById('title3').innerHTML = `일본의 수출입품목 증감율(월)`; }
+    else if (country == 'AU') { document.getElementById('title3').innerHTML = `호주의 수출입품목 증감율(월)`; }
+    else if (country == 'TW') { document.getElementById('title3').innerHTML = `대만의 수출입품목 증감율(월)`; }
     maybeDisposeRoot("chart3");
     root = am5.Root.new(space);
   }//end else
