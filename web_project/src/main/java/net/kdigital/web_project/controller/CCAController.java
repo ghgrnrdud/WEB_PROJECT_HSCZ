@@ -39,6 +39,7 @@ public class CCAController {
     private final int pageLimit; // 한 페이지에 보여줄 글의 개수
     private final CCAListService ccaListService;
     private final CustomerService customerService;
+    
     public CCAController(CCAService ccaService, ReplyService replyService, @Value("${user.board.pageLimit}") int pageLimit,CCAListService ccaListService,CustomerService customerService) {
         this.ccaService = ccaService;
         this.replyService = replyService;
@@ -46,7 +47,15 @@ public class CCAController {
         this.ccaListService = ccaListService;
         this.customerService = customerService;
     }
-
+    
+    /**]
+     * 상담목록
+     * @param pageable
+     * @param searchBy
+     * @param searchItem
+     * @param model
+     * @return
+     */
     @GetMapping("/boardList")
     public String boardList(
             @PageableDefault(page = 1) Pageable pageable,
@@ -57,12 +66,9 @@ public class CCAController {
         Page<BoardDTO> dtoList;
 
         if (searchItem.isEmpty()) {
-            dtoList = ccaService.findAllConsults(pageable);
-        
+            dtoList = ccaService.findAllConsults(pageable);        
         } else {
-        
             dtoList = ccaService.findAllConsultsbySearch(pageable, searchBy, searchItem);
-        
         }
     
         int totalPages = dtoList.getTotalPages();
@@ -250,10 +256,18 @@ public class CCAController {
         return replyList;
     }
 
+    /**
+     * 관세사 목록
+     * @param pageable
+     * @param searchBy
+     * @param searchItem
+     * @param model
+     * @return
+     */
     @GetMapping("/ccaList")
     public String ccaList(
         @PageableDefault(page = 1) Pageable pageable,
-        @RequestParam(name="searchBy",defaultValue="companyRegion") String searchBy,
+        @RequestParam(name="searchBy", defaultValue="companyRegion") String searchBy,
         @RequestParam(name = "searchItem", defaultValue = "") String searchItem,
         Model model) {
             Page<CCAListDTO> dtoList;
@@ -263,12 +277,11 @@ public class CCAController {
             } else {
                 dtoList = ccaListService.findAllCCABySearch(pageable,searchBy, searchItem);
             }
-        
-        
+  
         int totalPages = (int) dtoList.getTotalPages();
         int page = pageable.getPageNumber();
         PageNavigator navi = new PageNavigator(pageLimit, page, totalPages);
-
+        log.info("관세사 리스트 : {}", dtoList);
         model.addAttribute("ccaList", dtoList);
         model.addAttribute("searchItem", searchItem);
         model.addAttribute("navi", navi);
@@ -310,8 +323,6 @@ public class CCAController {
         // 상세 페이지로 리다이렉트한다.
         return "redirect:/cca/detail?consultNum=" + consultNum + "&searchBy=" + searchBy + "&searchItem=" + searchItem;
     }
-
-
 
 
     @GetMapping("/ccaTop10")
