@@ -128,104 +128,130 @@
         </div>
     </nav>
 
-    <!-- 글보기 -->
+    <!-- 메인내용 -->
+    <!-- 상담글 보기 -->
     <div class="content">
-            <table border="1">
-                <tr>
-                    <th>작성자</th>
-                    <td>
-                    	<span th:text="${consult.consultWriter}">작성자</span>
-                    </td>
-                </tr>
-                <tr>
-                    <th>글제목</th>
-                    <td>
-                    	<span th:text="${consult.consultTitle}">글제목</span>
-                    </td>
-                </tr>
-                <tr>
-                    <th>작성일</th>
-                    <td>
-                    	<span th:text="${#temporals.format(consult.consultDate, 'yyyy-MM-dd hh:mm:ss')}">작성일</span>
-                    </td>
-                </tr>
-				<tr>
-					<th>글내용</th>
-					<td>
-						<textarea>[[ ${consult.consultContent} ]]</textarea>
-					</td>
-				</tr>
-                <tr>
-                    <th>품목</th>
-                    <td>
-						<span th:text="${consult.productCategory}">품목</span>
-                    </td>
-                </tr>
-                <tr>
-                    <th colspan="2">
-                    	<!-- 글 삭제와 수정은 글쓴 사람과 로그인한 사람과 동일한 경우에만 나타나야 함 -->
-						<th:block th:if="${consult.consultWriter == #authentication.name}">     
-							<a th:href="@{/cca/update(consultNum=${consult.consultNum}, searchBy=${searchBy}, searchItem=${searchItem})}" class="btn btn-primary">상담글 수정</a>
-							<a th:href="@{/cca/delete(consultNum=${consult.consultNum},searchBy=${searchBy}, searchItem=${searchItem})}" class="btn btn-danger">상담글 삭제</a>
-						</th:block>
-						<th:block th:if="${#authentication.authorities.![authority].contains('ROLE_CCA')}">
-							<a th:href="@{/cca/replyWrite(consultNum=${consult.consultNum}, searchBy=${searchBy}, searchItem=${searchItem})}" class="btn btn-danger">답변달기</a>
-						</th:block>
-                        <a th:href="@{/cca/boardList(searchBy=${searchBy}, searchItem=${searchItem})}" class="btn btn-info">목록</a>
-                    </th>
+        <div class="question-area">
+            <h3 th:text="${consult.consultTitle}"></h3>
+            <div class="userInfo">
+                <span class="infoItem">[[ ${consult.consultWriter} ]] </span>
+                <span class="infoItem">[[ ${#temporals.format(consult.consultDate, 'yyyy-MM-dd')} ]]</span>
+            </div>
+            <div class="questionDetail">
+                <p th:text="${consult.consultContent}"></p>
+            </div>
+            <div class="productCategory">
+                <span>#[[ ${consult.productCategory} ]]</span>
+            </div>
+            <div class="buttonArea">
+                <!-- 글 삭제와 수정은 글쓴 사람과 로그인한 사람과 동일한 경우에만 나타나야 함 -->
+                    <th:block th:if="${consult.consultWriter == #authentication.name}">     
+                        <a th:href="@{/cca/update(consultNum=${consult.consultNum}, searchBy=${searchBy}, searchItem=${searchItem})}" class="qna-button ans-btn">수정하기</a>
+                        <a th:href="@{/cca/delete(consultNum=${consult.consultNum},searchBy=${searchBy}, searchItem=${searchItem})}" class="qna-button ans-btn">삭제하기</a>
+                    </th:block>
+                    <th:block th:if="${#authentication.authorities.![authority].contains('ROLE_CCA')}">
+                        <a th:href="@{/cca/replyWrite(consultNum=${consult.consultNum}, searchBy=${searchBy}, searchItem=${searchItem})}" class="qna-button ans-btn">답변달기</a>
+                    </th:block>
+                    <input type="button" value="버튼" class="qna-button ans-btn">
+            </div>
+        </div>    
 
-                </tr>
-            </table>
-			
-			<!-- 댓글 목록 부분 -->
-			<div id="answer-list" th:if="${#lists.size(replyList) > 0}">
-			    <h2>[관세사 답변 목록]</h2>
-			    <p th:if="${#lists.size(replyList) > 0}" th:text="'총 ' + ${#lists.size(replyList)} + '개의 답변이 있습니다.'"></p>
-			
-			    <!-- 각 답변 정보를 담는 테이블 -->
-			    <div th:each="reply, status : ${replyList}">
-			        <table border="1">
-						<input type="hidden" id="replyNum" th:value="${reply.replyNum}">
-			            <tr>
-			                <th>작성자</th>
-			                <td th:text="${reply.replyWriter}">답변자</td>
-			            </tr>
-			            <tr>
-			                <th>답변 작성일</th>
-							<td>
-								<span th:text="${#temporals.format(reply.replyDate, 'yyyy-MM-dd hh:mm:ss')}">작성일</span>
-							</td>
-			            </tr>
-						
-			            <tr>
-			                <th>내용</th>
-			                <td><textarea th:text="${reply.replyContent}">답변내용</textarea></td>
-			            </tr>
-			
-			            <tr>
-			                <td colspan="2">
-								<!-- 답변 채택 버튼 -->
-								<th:block th:if="${reply.likeCount == 0 &&consult.consultWriter == #authentication.name}">
-									<form action="setLike" method="POST">
-										<input type="hidden" name="replyNum" th:value="${reply.replyNum}">
-										<input type="hidden" name="consultNum" th:value="${consult.consultNum}">
-										<input type="hidden" name="searchBy" th:value="${searchBy}">
-										<input type="hidden" name="searchItem" th:value="${searchItem}">
-										
-										<button type="submit" class="chooseAnswerBtn">답변 추천</button>
-									</form>
-								</th:block>
-								<th:block th:if="${reply.replyWriter == #authentication.name}">   
-			                    <!-- 답변 수정 버튼 -->
-								<a th:href="@{/cca/replyUpdate(replyNum=${reply.replyNum},consultNum=${consult.consultNum}, searchBy=${searchBy}, searchItem=${searchItem})}" class="btn btn-primary">답변 수정</a>
-					            <a th:href="@{/cca/replyDelete(replyNum=${reply.replyNum},consultNum=${consult.consultNum},searchBy=${searchBy},searchItem=${searchItem})}" class="btn btn-primary">답변 삭제</a>
-								</th:block>	                    
-			                </td>
-			            </tr>
-			        </table>
-			    </div>
-			</div>
+        <!-- 답변 버튼 섹션-->
+        <div class="editorHeader">
+            <div class="editorHeaderArea">
+                <div class="editorHeaderInner">
+                    <div class="headerThumbnail">
+                        <div class="thumbnail">
+                            <img src="	https://ssl.pstatic.net/static/kin/09renewal/avatar/200x200_m_gray/profilePlaceholder_191121.png" alt="프로필 사진">
+                        </div>
+                    </div>
+                    <div class="headerDetail">
+                        <p class="headerText">관세사님, 정보를 공유해주세요.</p>
+                    </div>
+                    <div class="headerButton">
+                        <!-- <th:block th:if="${#authentication.authorities.![authority].contains('ROLE_CCA')}"> -->
+                            <a th:href="@{/cca/replyWrite(consultNum=${consult.consultNum}, searchBy=${searchBy}, searchItem=${searchItem})}" class="qna-button ans-btn">답변달기</a>
+                        <!-- </th:block> -->
+                    </div>
+                </div>
+            </div>
+        </div>
 
+        <!-- 답변 섹션-->
+        <div class="answer-area" th:if="${#lists.size(replyList) > 0}">
+            <div class="answerHeader">
+                <div class="titleSection">
+                    <div class="titleArea">
+                        <div class="title">
+                            <span class="answerCount" th:text="${#lists.size(replyList)}"></span>개 답변
+                        </div>
+                        <div class="option">
+                            <select class="dropdownBtn">
+                                <option value="추천순" selected>추천순</option>
+                                <option value="최신순">최신순</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 각 답변 정보를 담는 테이블 -->
+            <div th:each="reply, status : ${replyList}" class="answerList">
+                <div class="answerDetailArea">
+                    <div class="profileCard">
+                        <div class="cardInfo">
+                            <div class="thumbnailArea">
+                                <div class="thumbnail">
+                                    <img src="https://ssl.pstatic.net/static/kin/09renewal/avatar/200x200_m_gray/profilePlaceholder_191121.png" alt="프로필 사진">
+                                </div>
+                            </div>
+                            <div class="profileInfo">
+                                <div class="nameArea">
+                                    <strong class="name" th:text="${reply.replyWriter}"></strong>
+                                </div>
+                                <div class="companyArea">
+                                    <span class="company">00관세법인</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="answerDetail">
+                        <p th:text="${reply.replyContent}"></p>
+                    </div>
+                    <div class="answerInfo">
+                        <p class="answerDate" th:text="${#temporals.format(reply.replyDate, 'yyyy-MM-dd')}"></p>
+                    </div>
+                    <div class="answerBtnArea">
+                        <div class="answerBtnLeft">
+                            <!-- 답변 수정 버튼 -->
+                            <th:block th:if="${reply.replyWriter == #authentication.name}">   
+                                <a th:href="@{/cca/replyUpdate(replyNum=${reply.replyNum},consultNum=${consult.consultNum}, searchBy=${searchBy}, searchItem=${searchItem})}" class="qna-button ans-btn">수정하기</a>
+                                <a th:href="@{/cca/replyDelete(replyNum=${reply.replyNum},consultNum=${consult.consultNum},searchBy=${searchBy},searchItem=${searchItem})}" class="qna-button ans-btn">삭제하기</a>
+                            </th:block>	
+                        </div>
+                        <div class="answerBtnRight">
+                            <th:block th:if="${#authentication.authorities.![authority].contains('ROLE_USER')}">
+                                
+                                <form th:action="@{/cca/setLike}" method="POST">
+                                    <input type="hidden" name="replyNum" th:value="${reply.replyNum}">
+                                    <input type="hidden" name="consultNum" th:value="${consult.consultNum}">
+                                    <input type="hidden" name="searchBy" th:value="${searchBy}">
+                                    <input type="hidden" name="searchItem" th:value="${searchItem}">
+                                    <div class="likeArea">
+                                        <span class="likeCount">채택수: [[ ${reply.likeCount} ]]</span>
+                                        <input type="submit" class="thumbsUp" value="">
+                                    </div>
+                                </form>
+                            </th:block>
+                        </div>
+                    </div>
+                </div> <!--answerDetailArea-->
+            </div>    
+        </div>
+    </div>
+
+
+    <br>
+    <br>
 	<!-- footer -->
     <footer class="footer-wave">
         <div class="waves">
