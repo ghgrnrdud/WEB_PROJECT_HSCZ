@@ -14,7 +14,7 @@
 	<!--css-->
 	<link th:href="@{/assets/css/bootstrap.min.css}" rel="stylesheet" />
 	<link th:href="@{/assets/css/with-sidebar.css}" rel="stylesheet" />
-
+	<link th:href="@{/assets/css/info-utilization.css}" rel="stylesheet" />
 	<link th:href="@{/assets/demo/demo.css}" rel="stylesheet" />
 
 	<!-- Resources -->
@@ -24,166 +24,6 @@
 	<script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
 	<script th:src="@{/script/jquery-3.7.1.min.js}"></script>
 
-
-	<style>
-		body {
-			color: black;
-		}
-
-		/* 상단 숫자 선택 */
-
-		.box {
-			width: 90%;
-			display: none;
-			padding: 20px;
-			margin: 10px auto;
-			border: 1px grey dotted;
-		}
-
-		.bu_atte {
-			margin-top: 10px !important;
-		}
-
-		#box-1 {
-			display: block;
-		}
-
-		.ftaTop {
-			display: inline-block;
-			padding: 10px;
-			font-size: 15px;
-			color: black;
-		}
-
-		.ftaTop:hover {
-			font-weight: bolder;
-			color: #1a1a4a;
-		}
-
-		.on {
-			border-bottom: 3px solid #018abe;
-		}
-
-		.fta-img {
-			margin: 0 auto;
-		}
-
-		.bu_atte {
-			font-size: large;
-		}
-
-
-		/* modal */
-		#modal1 {
-			position: fixed;
-			top: 50%;
-			left: 55%;
-			transform: translate(-50%, -50%);
-			overflow-y: auto;
-			max-height: 80vh;
-			max-width: 155vh;
-			z-index: 8;
-			background-color: #fff;
-			display: none;
-
-		}
-
-		#modal-close {
-			position: sticky;
-			top: 10px;
-			left: calc(100% - 60px);
-			z-index: 9;
-			width: 50px;
-			border: none;
-			background-color: #ffff;
-		}
-
-
-		.modal-overlay {
-			position: fixed;
-			top: 0;
-			left: 0;
-			width: 100%;
-			height: 100%;
-			background-color: rgba(0, 0, 0, 0.5);
-			z-index: 7;
-			display: none;
-
-		}
-
-		.modal-text {
-			width: 90%;
-			padding: 10px;
-		}
-
-		/* table */
-		table {
-			text-align: center;
-			width: 90%;
-			margin: 10px auto;
-		}
-
-		th {
-			background-color: #0c0726;
-			color: white;
-		}
-
-		.list_st3 {
-			list-style-position: inside;
-			padding-left: 0px;
-		}
-
-		.list_st3 li {
-			text-align: left;
-			padding-left: 0px;
-		}
-
-		td {
-			padding: 10px;
-			vertical-align: middle;
-		}
-
-		img {
-			width: 80%;
-			margin: 15px auto;
-		}
-
-		/* ol태그 */
-		.tab_list {
-			list-style-type: upper-roman;
-			list-style-position: inside;
-			padding-left: 0;
-		}
-
-		.tab_list>li {
-			text-indent: -1.5em;
-			padding-left: 1.5em;
-		}
-
-		.goBtn {
-			border: none;
-			background-color: #018abe;
-			color: white;
-		}
-
-		.tit2 {
-			font-weight: bolder;
-			margin: 10px;
-			background-color: #edf1f6;
-		}
-
-		.box_st2 {
-			position: relative;
-			padding: 15px 25px;
-			border: 1px solid #bfbfbf;
-			background: #fbfbfb;
-		}
-
-		.guide-text {
-			width: 90%;
-			margin: 0 auto;
-		}
-	</style>
 	<script>
 		$(document).ready(function () {
 			$('.ftaTop').click(function (event) {
@@ -346,11 +186,11 @@
 		<div class="container-block">
 			<div class="container-top">
 
-				<h2>수입활용</h2>
-				<p class="bu_atte mgb10">FTA 수입통관 제도를 이용하기 위해서는 다음과 같은 <mark>순차적인 절차</mark>가 필요합니다.</p>
+				<!-- <h2>수입활용</h2> -->
+				<p class="bu_atte mgb10 top-text">FTA 수입통관 제도를 이용하기 위해서는 다음과 같은 <mark>순차적인 절차</mark>가 필요합니다.</p>
 
-				<a href="#box-1" class="ftaTop on" title="FTA 협정 발효국 여부 확인하기 바로가기">Ⅰ. FTA 협정 발효국 여부 확인하기</a>
-				<a href="#box-2" class="ftaTop" title="품목번호 확인하기 바로가기">Ⅱ. 품목번호 확인하기</a>
+				<a href="#box-1" class="ftaTop on" title="FTA 협정 발효국 여부 확인하기 바로가기">Ⅰ.FTA 협정 발효국 여부 확인하기</a>
+				<a href="#box-2" class="ftaTop" title="품목번호 확인하기 바로가기">Ⅱ.품목번호 확인하기</a>
 				<a href="#box-3" class="ftaTop" title="FTA 관세혜택 확인하기 바로가기">Ⅲ. FTA 관세혜택 확인하기</a>
 				<a href="#box-4" class="ftaTop" title="증빙서류 준비하기 바로가기">Ⅳ. 증빙서류 준비하기</a>
 				<a href="#box-5" class="ftaTop" title="협정세율 적용 신청하기 바로가기">Ⅴ. 협정세율 적용 신청하기</a>
@@ -365,15 +205,15 @@
 			</h3>
 			<hr>
 
-			<p class="bu_atte mgt5 mgl10 cmgl30">우리나라와 수입물품에 대한 국가간에 FTA 체결 후 발효되었는지 확인 <a class="bu_linkL mgl10"
-					th:href="@{/info/country}" target="_self" title="바로가기"> <input type="button" class="goBtn"
-						value="바로가기"></a>
-			</p>
+			<p class="bu_st1 cmgl10">우리나라와 수출하고자 하는 국가간에 FTA 체결 후 발효되었는지 확인 <a class="bu_linkL mgl10"
+					th:href="@{/info/country}" target="_blank" title="새창열림">바로가기</a></p>
+			<div class="fta-div">
 
-			<div>
-				<img class="fta-img" th:src="@{/images/fta-country.jpg}" alt="발효국">
+				<div class="fta-div">
+					<img class="fta-img" th:src="@{/images/fta-country.jpg}" alt="발효국">
+				</div>
+
 			</div>
-
 		</div>
 
 		<div class="box" id="box-2">
@@ -386,12 +226,14 @@
 				<li>품목번호(HS Code)에 따라 FTA 세율과 원산지결정기준이 정해지므로 정확한 품목번호 확인은 필수</li>
 				<li>수입물품의 경우 품목번호 확인을 위해 관세사 등 전문가와 상담 또는 관세평가분류원에 품목분류 사전심사 신청</li>
 				<li>원산지증명서상 HS 코드(통상 6단위)와 수입신고시 기재할 HS 코드 확인 필요
-					<p class="bu_atte mgt5">품목번호 검색 사이트 (http://www.customs.go.kr) > Quick menu > 품목분류 <a
-							class="bu_linkL mgl10" href="https://unipass.customs.go.kr/clip/index.do" target="_blank"
-							title="새창열림"><input type="button" class="goBtn" value="바로가기"></a></p>
+					<ul>
+						<li class="bu_atte mgt5">품목번호 검색 사이트 (http://www.customs.go.kr) > Quick menu > 품목분류 <a
+								class="bu_linkL mgl10" href="https://unipass.customs.go.kr/clip/index.do?banId=hsinfo"
+								target="_blank" title="새창열림">바로가기</a></li>
 
-					<p class="bu_atte mgt5">품목분류 추천 서비스 이용하기 <a class="bu_linkL mgl10" th:href="@{/}" target="_blank"
-							title="새창열림"><input type="button" class="goBtn" value="바로가기"></a></p>
+						<li class="bu_atte mgt5">품목분류 추천 서비스 이용하기 <a class="bu_linkL mgl10" th:href="@{/}"
+								target="_blank" title="새창열림">바로가기</a></li>
+					</ul>
 				</li>
 			</ul>
 
@@ -679,6 +521,7 @@
 					</div>
 				</li>
 			</ul>
+			<br>
 
 			<h4 class="tit2 mgt30">Guide</h4>
 
@@ -691,16 +534,16 @@
 				<h5 class="tit3 mgt20">아세안 발급기관</h5>
 
 				<ol class="box_st2 list_ol1 li_w50 cmgl30">
-					<li><span class="num">01</span>브루나이(외교통상부)</li>
-					<li><span class="num">02</span>캄보디아(상무부)</li>
-					<li><span class="num">03</span>인도네시아(통상부)</li>
-					<li><span class="num">04</span>라오스(상공회의소,&#39;12.7.1 변경)</li>
-					<li><span class="num">05</span>말레이시아(국제통상산업부)</li>
-					<li><span class="num">06</span>미얀마(상무부)</li>
-					<li><span class="num">07</span>필리핀(세관)</li>
-					<li><span class="num">08</span>싱가포르(세관)</li>
-					<li><span class="num">09</span>베트남(산업무역부)</li>
-					<li><span class="num">10</span>태국(상무부)</li>
+					<li>브루나이(외교통상부)</li>
+					<li>캄보디아(상무부)</li>
+					<li>인도네시아(통상부)</li>
+					<li>라오스(상공회의소,&#39;12.7.1 변경)</li>
+					<li>말레이시아(국제통상산업부)</li>
+					<li>미얀마(상무부)</li>
+					<li>필리핀(세관)</li>
+					<li>싱가포르(세관)</li>
+					<li>베트남(산업무역부)</li>
+					<li>태국(상무부)</li>
 				</ol>
 
 				<h5 class="tit3 mgt20">한-EU</h5>
@@ -712,8 +555,8 @@
 				<h5 class="tit3 mgt20">한-페루</h5>
 
 				<ol class="box_st2 list_ol1 cmgl30">
-					<li><span class="num">01</span>탁송화물의 총 가격이 미화 2천달러&nbsp;초과인 경우 원산지인증수출자만 자율발급 가능</li>
-					<li><span class="num">02</span>발효이후 5년간(2016.7.31까지) 기관발급 허용</li>
+					<li>탁송화물의 총 가격이 미화 2천달러&nbsp;초과인 경우 원산지인증수출자만 자율발급 가능</li>
+					<li>발효이후 5년간(2016.7.31까지) 기관발급 허용</li>
 				</ol>
 				<div>
 					<input type="button" class="goBtn" id="modal-open" value="원산지증명서 발급절차">
@@ -793,7 +636,7 @@
 				<li>수입자가 FTA 세율 적용을 받으려면 수입신고시 「협정관세적용신청서」를 제출해야 함</li>
 				<li>협정관세 적용은 수입신고 수리 전과 수리 후에 신청하여 받을 수 있음</li>
 			</ul>
-
+			<br>
 			<h4 class="tit2 mgt30">수입신고 수리전 협정관세 적용 신청</h4>
 
 			<ul class="list_st1">
@@ -818,7 +661,7 @@
 					</div>
 				</li>
 			</ul>
-
+			<br>
 			<h4 class="tit2 mgt30">수입신고 수리후 협정관세 적용 신청(사후적용)</h4>
 
 			<ul class="list_st1">
@@ -828,7 +671,7 @@
 				<li>제출서류 : 협정관세 적용신청서, 원산지 증빙서류, 보정신청에 필요한 서류 또는 경정청구서</li>
 				<li>수리 후 협정관세 적용신청 수입자는 당해 물품에 대하여 이미 납부한 세액의 보정신청 또는 경정청구 가능</li>
 			</ul>
-
+			<br>
 			<h4 class="tit2 mgt30">원산지증빙서류 제출 면제 대상(시행령 제4조 제3항)</h4>
 
 			<ol class="list_ol1 cmgl30">
@@ -846,7 +689,7 @@
 					확인할 수
 					있는 물품으로서 관세청장이 정하여 고시한 물품</li>
 			</ol>
-
+			<br>
 			<h4 class="tit2 mgt30">협정별 원산지증명서 면제 기준</h4>
 
 			<div class="scroll_gr cmgl30">
@@ -1056,15 +899,15 @@
 				</li>
 				<li>수입자가 보관하여야 하는 서류
 					<ol class="box_st2 mgt10 list_ol1">
-						<li><span class="num">가</span>원산지증명서(전자문서를 포함한다) 사본. 다만, 협정에 따라 수입자의 증명 또는 인지에 기초하여 협정관세
+						<li>원산지증명서(전자문서를 포함한다) 사본. 다만, 협정에 따라 수입자의 증명 또는 인지에 기초하여 협정관세
 							적용신청을
 							하는 경우로서 수출자 또는 생산자로부터 원산지증명서를 발급받지 아니한 경우에는 그 수입물품이 협정관세의 적용대상임을 증명하는 서류를 말한다.</li>
-						<li><span class="num">나</span>수입신고필증</li>
-						<li><span class="num">다</span>수입거래 관련 계약서</li>
-						<li><span class="num">라</span>지식재산권 거래 관련 계약서</li>
-						<li><span class="num">마</span>수입물품의 과세가격 결정에 관한 자료</li>
-						<li><span class="num">바</span>수입물품의 국제운송 관련 서류</li>
-						<li><span class="num">사</span>법 제31조제2항에 따른 사전심사서(이하 &ldquo;사전심사서&rdquo;라 한다) 사본 및 사전심사에
+						<li>수입신고필증</li>
+						<li>수입거래 관련 계약서</li>
+						<li>지식재산권 거래 관련 계약서</li>
+						<li>수입물품의 과세가격 결정에 관한 자료</li>
+						<li>수입물품의 국제운송 관련 서류</li>
+						<li>법 제31조제2항에 따른 사전심사서(이하 &ldquo;사전심사서&rdquo;라 한다) 사본 및 사전심사에
 							필요한
 							증빙서류(사전심사서를 받은 경우만 해당한다)</li>
 					</ol>
@@ -1072,10 +915,12 @@
 			</ul>
 		</div>
 	</div>
+
+	<!-- 위로가기 -->
+	<div class="moveTopBtn">
+		<i class="fa-solid fa-chevron-up"></i>
 	</div>
 
-
-	</div>
 	<!-- footer -->
 	<footer class="footer-wave">
 		<div class="waves">
@@ -1111,6 +956,7 @@
 	<script th:src="@{/assets/js/paper-kit.min.js?v=2.2.0}" type="text/javascript"></script>
 	<script type="text/javascript"
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTTfWur0PDbZWPr7Pmq8K3jiDp0_xUziI"></script>
+
 	<script>
 
 		// 모달을 여는 버튼에 클릭 이벤트 핸들러 추가
@@ -1132,8 +978,15 @@
 			});
 		});
 
+		const $topBtn = document.querySelector(".moveTopBtn");
+
+		// 버튼 클릭 시 맨 위로 이동
+		$topBtn.onclick = () => {
+			window.scrollTo({ top: 0, behavior: "smooth" });
+		}
 
 	</script>
+
 
 </body>
 

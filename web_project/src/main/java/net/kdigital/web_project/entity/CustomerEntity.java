@@ -57,7 +57,7 @@ public class CustomerEntity {
 	@Column(name="like_total")
 	private int likeTotal;
 	
-	@Column(name="cca_num")
+	@Column(name="cca_num", nullable=true)
 	private int ccaNum;
 	
 	@Column(name="self_info")

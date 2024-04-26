@@ -192,4 +192,47 @@ public class OpenApiManager {
         }
     }
     
+    public List<String> CCAOpenApi(String ccaNum) {
+        String key = "k280h294z014d068h040p090i0";
+        List<String> ccaList = new ArrayList<>();
+
+        try {
+            String url = "https://unipass.customs.go.kr:38010/ext/rest/lcaBrkdQry/retrieveLcaBrkd?"
+                    + "crkyCn=" + key // 인증키
+                    + "&lcaSgn=" + ccaNum;
+  
+
+            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+            Document doc = dBuilder.parse(url);
+            doc.getDocumentElement().normalize();
+
+            NodeList nList = doc.getElementsByTagName("lcaBrkdQryRtnVo");
+            System.out.println(nList.toString());
+            System.out.println(nList.getLength());
+
+            if (nList.getLength() > 0) {
+                Node nNode = nList.item(0);
+                if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+                    Element eElement = (Element) nNode;
+                    System.out.println(nNode);
+                    // 각 lcaBrkdQryRsltVo 요소에서 필요한 데이터 가져오기
+                    System.out.println("회사명 : " + getTagValue("lcaConm", eElement));
+                    System.out.println("전화번호 : " + getTagValue("telno", eElement));
+                    System.out.println("주소 : " + getTagValue("addr", eElement));       
+                    ccaList.add(getTagValue("jrsdCstmNm", eElement));
+                    ccaList.add(getTagValue("lcaSgn", eElement));
+                    ccaList.add(getTagValue("lcaConm", eElement));
+                    ccaList.add(getTagValue("telno", eElement));
+                    ccaList.add(getTagValue("addr", eElement));
+                }
+            }
+            return ccaList;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    
 }

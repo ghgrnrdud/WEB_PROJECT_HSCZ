@@ -78,4 +78,11 @@ public class CustomerService {
         return dtoList;
        
 	    }
+	 
+	 public boolean findByUserId(String userId) {
+		 
+		 boolean customerEntity = customerRepository.existsById(userId);
+		 
+		 return customerEntity;
+	 }
 }

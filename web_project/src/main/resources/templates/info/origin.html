@@ -22,8 +22,14 @@
 
     <title>원산지결정기준</title>
     <style>
-        * {
+        body {
+            font-size: medium;
             color: black;
+        }
+
+        .content {
+            width: 85%;
+            padding: 15px;
         }
 
         table {
@@ -35,7 +41,6 @@
         th {
             background-color: #0c0726;
             color: white;
-            border: white 1px solid;
         }
     </style>
 </head>
@@ -183,7 +188,7 @@
 
     <div class="content">
 
-        <h2 class="tit1">원산지결정기준의 종류</h2>
+        <h3 class="tit1">원산지결정기준의 종류</h3>
 
         <div class="scroll_gr">
             <table class="tbl_st" border="1">
@@ -320,7 +325,7 @@
 
         <hr>
 
-        <h2 class="tit1 mgt40">FTA협정문상 원산지 결정기준</h2>
+        <h3 class="tit1 mgt40">FTA협정문상 원산지 결정기준</h3>
 
         <div class="scroll_gr">
             <table class="tbl_st" border="1">
@@ -471,9 +476,12 @@
                 </tbody>
             </table>
         </div>
-
-
     </div>
+    <!-- 위로가기 -->
+    <div class="moveTopBtn">
+        <i class="fa-solid fa-chevron-up"></i>
+    </div>
+
     <!-- footer -->
     <footer class="footer-wave">
         <div class="waves">
@@ -509,6 +517,14 @@
     <script th:src="@{/assets/js/paper-kit.min.js?v=2.2.0}" type="text/javascript"></script>
     <script type="text/javascript"
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTTfWur0PDbZWPr7Pmq8K3jiDp0_xUziI"></script>
+    <script>
+        const $topBtn = document.querySelector(".moveTopBtn");
+
+        // 버튼 클릭 시 맨 위로 이동
+        $topBtn.onclick = () => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+    </script>
 </body>
 
 </html>
