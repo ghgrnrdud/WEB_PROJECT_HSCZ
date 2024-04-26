@@ -3245,18 +3245,23 @@ blockquote small {
   0% {
     transform: scale(0.75);
   }
+
   20% {
     transform: scale(1);
   }
+
   40% {
     transform: scale(0.75);
   }
+
   60% {
     transform: scale(1);
   }
+
   80% {
     transform: scale(0.75);
   }
+
   100% {
     transform: scale(0.75);
   }
@@ -3455,18 +3460,23 @@ input[type="file"]>input[type="button"]::-moz-focus-inner {
   0% {
     transform: scale(0.75);
   }
+
   20% {
     transform: scale(1);
   }
+
   40% {
     transform: scale(0.75);
   }
+
   60% {
     transform: scale(1);
   }
+
   80% {
     transform: scale(0.75);
   }
+
   100% {
     transform: scale(0.75);
   }
@@ -3678,6 +3688,7 @@ License - nucleoapp.com/license/
   0% {
     -webkit-transform: rotate(0deg);
   }
+
   100% {
     -webkit-transform: rotate(360deg);
   }
@@ -3687,6 +3698,7 @@ License - nucleoapp.com/license/
   0% {
     -moz-transform: rotate(0deg);
   }
+
   100% {
     -moz-transform: rotate(360deg);
   }
@@ -3700,6 +3712,7 @@ License - nucleoapp.com/license/
     -o-transform: rotate(0deg);
     transform: rotate(0deg);
   }
+
   100% {
     -webkit-transform: rotate(360deg);
     -moz-transform: rotate(360deg);
@@ -4466,7 +4479,8 @@ License - nucleoapp.com/license/
 
 
 .navbar {
-  position: absolute; /* 4/19에 추가 */
+  position: absolute;
+  /* 4/19에 추가 */
   top: 0;
   border: 0;
   font-size: 14px;
@@ -6242,7 +6256,7 @@ License - nucleoapp.com/license/
 }
 
 .card h6 {
-  font-size: 12px;
+  font-size: 18px;
   margin: 0;
 }
 
@@ -6881,6 +6895,7 @@ License - nucleoapp.com/license/
     -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
   }
+
   100% {
     -webkit-transform: translate3d(-50%, 0, 0);
     transform: translate3d(-50%, 0, 0);
@@ -7027,7 +7042,7 @@ License - nucleoapp.com/license/
 /* @media all and (-ms-high-contrast: none),
 (-ms-high-contrast: active) {
   /* IE10+ CSS styles go here */
-  /* .page-header .content-center {
+/* .page-header .content-center {
     position: absolute;
     top: 50%;
     left: 50%;

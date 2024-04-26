@@ -138,5 +138,12 @@ public class CCAService {
 		return boardList;
 	}
 
+	public BoardDTO findByConsultNum(Long consultNum) {
+		Optional <BoardEntity> entity = ccaRepository.findById(consultNum);
+		
+		BoardDTO dto = BoardDTO.toDTO(entity.get());
+		return dto;
+	}
+
     
 }

@@ -57,7 +57,7 @@ public class SecurityConfig {
 				.usernameParameter("userId")
 				.passwordParameter("userPwd")
 				.loginProcessingUrl("/user/loginProc")
-				.defaultSuccessUrl("/").permitAll());
+				.defaultSuccessUrl("/", true).permitAll());
 		
 		// 로그아웃 설정
 		http
