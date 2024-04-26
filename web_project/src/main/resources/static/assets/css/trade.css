@@ -1,8 +1,8 @@
 /* 한국 수출입 현황 제목 */
-#koreatitle{
-    font-size: 30px;
-    line-height: 50px;
-    font-weight: bold;
+#koreatitle {
+  font-size: 30px;
+  line-height: 50px;
+  font-weight: bold;
 }
 /* 
 #controlsContainer{
@@ -11,140 +11,152 @@
     line-height: 50px;
     font-weight: bold;
 } */
-#maptitle{
-    font-size: 30px;
-    line-height: 50px;
-    font-weight: bold;
-    margin-top: 30px;
+#maptitle {
+  font-size: 30px;
+  line-height: 50px;
+  font-weight: bold;
+  margin-top: 30px;
 }
 /* 그래프 1번 제목 */
-#title1{
-    width: 440px;
-    text-align: left;
-    font-size: 18px;
-    line-height: 50px;
-    margin-left: 25px;
-    margin-top: 12px;
-    margin-bottom: 0px;
-    border-bottom: 1.7px solid black;
-    display: inline-block;
+#title1 {
+  width: 440px;
+  text-align: left;
+  font-size: 18px;
+  line-height: 50px;
+  margin-left: 25px;
+  margin-top: 12px;
+  margin-bottom: 0px;
+  border-bottom: 1.7px solid black;
+  display: inline-block;
+  font-weight: 500;
 }
-#smalltitle1{
-    display: inline-block;
-    margin-top: 12px;
-    margin-bottom: 0px;
-    margin-right: 15px;
-    padding-bottom: 12px;
-    border-bottom: 1.7px solid black;
+#smalltitle1 {
+  display: inline-block;
+  margin-top: 12px;
+  margin-bottom: 0px;
+  margin-right: 15px;
+  padding-bottom: 12px;
+  border-bottom: 1.7px solid black;
+  font-weight: 500;
 }
 
 /* chart 2번 제목 */
-#title2{
-    width: 440px;
-    text-align: left;
-    font-size: 18px;
-    line-height: 50px;
-    margin-left: 25px;
-    margin-top: 12px;
-    margin-bottom: 0px;
-    border-bottom: 1.7px solid black;
-    display: inline-block;
+#title2 {
+  width: 440px;
+  text-align: left;
+  font-size: 18px;
+  line-height: 50px;
+  margin-left: 25px;
+  margin-top: 12px;
+  margin-bottom: 0px;
+  border-bottom: 1.7px solid black;
+  display: inline-block;
+  font-weight: 500;
 }
-#smalltitle2{
-    display: inline-block;
-    margin-top: 12px;
-    margin-bottom: 0px;
-    margin-right: 15px;
-    padding-bottom: 12px;
-    border-bottom: 1.7px solid black;
+#smalltitle2 {
+  display: inline-block;
+  margin-top: 12px;
+  margin-bottom: 0px;
+  margin-right: 15px;
+  padding-bottom: 12px;
+  border-bottom: 1.7px solid black;
+  font-weight: 500;
 }
-#importdd{
-    border-radius: 8px;
+#importdd {
+  border-radius: 8px;
 }
-#dropdown{
-    border-radius: 8px;
+#dropdown {
+  border-radius: 8px;
 }
 
 /* chart3 제목 */
-#title3{
-    width: 440px;
-    text-align: left;
-    font-size: 18px;
-    line-height: 50px;
-    margin-left: 25px;
-    margin-top: 12px;
-    margin-bottom: 0px;
-    border-bottom: 1.7px solid black;
-    display: inline-block;
+#title3 {
+  width: 440px;
+  text-align: left;
+  font-size: 18px;
+  line-height: 50px;
+  margin-left: 25px;
+  margin-top: 12px;
+  margin-bottom: 0px;
+  border-bottom: 1.7px solid black;
+  display: inline-block;
+  font-weight: 500;
 }
-#smalltitle3{
-    display: inline-block;
-    margin-top: 12px;
-    margin-bottom: 0px;
-    margin-right: 0px;
-    padding-bottom: 12px;
-    border-bottom: 1.7px solid black;
+#smalltitle3 {
+  display: inline-block;
+  margin-top: 12px;
+  margin-bottom: 0px;
+  margin-right: 0px;
+  padding-bottom: 12px;
+  border-bottom: 1.7px solid black;
+  font-weight: 500;
 }
 
 /* chart6(파이) 제목 */
-#title6{
-    width: 440px;
-    text-align: left;
-    font-size: 18px;
-    line-height: 50px;
-    margin-left: 25px;
-    margin-top: 12px;
-    margin-bottom: 0px;
-    border-bottom: 1.7px solid black;
-    display: inline-block;
+#title6 {
+  width: 440px;
+  text-align: left;
+  font-size: 18px;
+  line-height: 50px;
+  margin-left: 25px;
+  margin-top: 12px;
+  margin-bottom: 0px;
+  border-bottom: 1.7px solid black;
+  display: inline-block;
+  font-weight: 500;
 }
-#smalltitle6{
-    display: inline-block;
-    margin-top: 12px;
-    margin-bottom: 0px;
-    margin-right: 0px;
-    padding-bottom: 12px;
-    border-bottom: 1.7px solid black;
+#smalltitle6 {
+  display: inline-block;
+  margin-top: 12px;
+  margin-bottom: 0px;
+  margin-right: 0px;
+  padding-bottom: 12px;
+  border-bottom: 1.7px solid black;
+  font-weight: 500;
 }
 
 /* chart4(bar) 제목 */
-#title4{
-    width: 440px;
-    text-align: left;
-    font-size: 18px;
-    line-height: 50px;
-    margin-left: 25px;
-    margin-top: 12px;
-    margin-bottom: 0px;
-    border-bottom: 1.7px solid black;
-    display: inline-block;
+#title4 {
+  width: 440px;
+  text-align: left;
+  font-size: 18px;
+  line-height: 50px;
+  margin-left: 25px;
+  margin-top: 12px;
+  margin-bottom: 0px;
+  border-bottom: 1.7px solid black;
+  display: inline-block;
+  font-weight: 500;
 }
-#smalltitle4{
-    display: inline-block;
-    margin-top: 12px;
-    margin-bottom: 0px;
-    margin-right: 0px;
-    padding-bottom: 12px;
-    border-bottom: 1.7px solid black;
+#smalltitle4 {
+  display: inline-block;
+  margin-top: 12px;
+  margin-bottom: 0px;
+  margin-right: 0px;
+  padding-bottom: 12px;
+  border-bottom: 1.7px solid black;
+  font-weight: 500;
 }
 
 /* chart5(string) 제목 */
-#title5{
-    width: 440px;
-    text-align: left;
-    font-size: 18px;
-    line-height: 50px;
-    margin-left: 25px;
-    margin-top: 12px;
-    margin-bottom: 0px;
-    border-bottom: 1.7px solid black;
-    display: inline-block;
+#title5 {
+  width: 440px;
+  text-align: left;
+  font-size: 18px;
+  line-height: 50px;
+  margin-left: 25px;
+  margin-top: 12px;
+  margin-bottom: 0px;
+  border-bottom: 1.7px solid black;
+  display: inline-block;
+  font-weight: 500;
 }
-#smalltitle5{
-    display: inline-block;
-    margin-top: 12px;
-    margin-bottom: 0px;
-    margin-right: 0px;
-    padding-bottom: 12px;
-    border-bottom: 1.7px solid black;
+#smalltitle5 {
+  display: inline-block;
+  margin-top: 12px;
+  margin-bottom: 0px;
+  margin-right: 0px;
+  padding-bottom: 12px;
+  border-bottom: 1.7px solid black;
+  font-weight: 500;
 }
