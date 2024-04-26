@@ -23,6 +23,16 @@
 
 </head>
 <style>
+    body {
+        font-size: medium;
+        color: black;
+    }
+
+    .content {
+        width: 85%;
+        padding: 15px;
+    }
+
     table {
         text-align: center;
         width: 90%;
@@ -33,6 +43,10 @@
     th {
         background-color: #0c0726;
         color: white;
+    }
+
+    li {
+        padding: 8px;
     }
 </style>
 
@@ -180,7 +194,7 @@
     <div class="content">
 
 
-        <h2 class="tit1">발효된 FTA</h2>
+        <h3 class="tit1">발효된 FTA</h3>
 
         <p class="bu_atte cmgl30">2023년 1월 기준: 21건,59개국</p>
 
@@ -407,7 +421,10 @@
             <li>중미(5개국) : 파나마, 코스타리카, 온두라스, 엘살바도르, 니카라과</li>
             <li>RCEP(역내포괄적경제동반자협정)(한국제외 14개국) : 한국, 아세안10개국, 중국, 일본, 호주, 뉴질랜드</li>
         </ul>
-        <!-- //페이지뷰 : 서브콘텐츠 끝 -->
+    </div>
+    <!-- 위로가기 -->
+    <div class="moveTopBtn">
+        <i class="fa-solid fa-chevron-up"></i>
     </div>
     <!-- footer -->
     <footer class="footer-wave">
@@ -444,6 +461,14 @@
     <script th:src="@{/assets/js/paper-kit.min.js?v=2.2.0}" type="text/javascript"></script>
     <script type="text/javascript"
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTTfWur0PDbZWPr7Pmq8K3jiDp0_xUziI"></script>
+    <script>
+        const $topBtn = document.querySelector(".moveTopBtn");
+
+        // 버튼 클릭 시 맨 위로 이동
+        $topBtn.onclick = () => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+    </script>
 </body>
 
 </html>

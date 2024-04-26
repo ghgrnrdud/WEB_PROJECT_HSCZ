@@ -293,7 +293,10 @@
         </div>
     </div>
 
-
+    <!-- 위로가기 -->
+    <div class="moveTopBtn">
+        <i class="fa-solid fa-chevron-up"></i>
+    </div>
 
     <!-- footer -->
     <footer class="footer-wave">
@@ -336,6 +339,14 @@
         function changeImage(imageName) {
             document.getElementById('mainImage').src = '/images/' + imageName;
         }
+
+        const $topBtn = document.querySelector(".moveTopBtn");
+
+        // 버튼 클릭 시 맨 위로 이동
+        $topBtn.onclick = () => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+
     </script>
 </body>
 

@@ -28,19 +28,11 @@
             let hscode = $("#getHs4digit").val();
             console.log(hscode);
             $.ajax({
-<<<<<<< HEAD
                 url: "/chart/imexXYChart"
                 , method: "GET"
                 , data: { "hs4digit": hscode }
                 , success: function (resp) {
                     console.log(resp);
-=======
-                url : "/chart/imexXYChart",
-                method : "GET",
-                data : {"hs4digit" : hscode},
-                dataType : 'json', //
-                success : function(resp){
->>>>>>> 5f73164063190fca705acd9d0d6e64a8a3807559
                     let exYearAmountList = [];
                     let imYearAmountList = [];
 
@@ -52,7 +44,7 @@
                     imexXYChart(exYearAmountList, imYearAmountList);
                     console.log("차트 그려짐");
                 },
-                error : function(xhr, status, error) {
+                error: function (xhr, status, error) {
                     console.error("Error occurred: " + error);
                 }
             });
@@ -61,18 +53,11 @@
         function showExPieCharts() {
             let hscode = $("#getHs4digit").val();
             $.ajax({
-<<<<<<< HEAD
                 url: "/chart/exPieChart"
                 , method: "GET"
                 , data: { "hs4digit": hscode }
+                , dataType: 'json'
                 , success: function (resp) {
-=======
-                url : "/chart/exPieChart"
-                , method : "GET"
-                , data : {"hs4digit" : hscode}
-                , dataType : 'json'
-                , success : function(resp){
->>>>>>> 5f73164063190fca705acd9d0d6e64a8a3807559
                     console.log(resp);
                     let countryList = [];
                     let exRankingList = [];
@@ -87,7 +72,7 @@
                     exportPieChart(countryList, exRankingList, exAmountList);
                     console.log("차트 그려짐");
                 },
-                error : function(xhr, status, error) {
+                error: function (xhr, status, error) {
                     console.error("Error occurred: " + error);
                 }
             });
@@ -96,20 +81,12 @@
         function showImPieCharts() {
             let hscode = $("#getHs4digit").val();
             $.ajax({
-<<<<<<< HEAD
                 url: "/chart/imPieChart"
                 , method: "GET"
                 , data: { "hs4digit": hscode }
+                , dataType: 'json'
                 , success: function (resp) {
-                    console.log(resp);
-=======
-                url : "/chart/imPieChart"
-                , method : "GET"
-                , data : {"hs4digit" : hscode}
-                , dataType : 'json'
-                , success : function(resp){
                     // console.log(resp);
->>>>>>> 5f73164063190fca705acd9d0d6e64a8a3807559
                     let countryList = [];
                     let imRankingList = [];
                     let imAmountList = [];
@@ -123,7 +100,7 @@
                     importPieChart(countryList, imRankingList, imAmountList);
                     console.log("차트 그려짐");
                 },
-                error : function(xhr, status, error) {
+                error: function (xhr, status, error) {
                     console.error("Error occurred: " + error);
                 }
             });
@@ -143,19 +120,18 @@
             </div>
             <div class="collapse navbar-collapse justify-content-end" id="navigation">
                 <ul class="navbar-nav">
-<<<<<<< HEAD
                     <li class="nav-item">
-                        <a class="nav-link" rel="tooltip" data-placement="bottom" href="#">
+                        <a class="nav-link" rel="tooltip" data-placement="bottom" th:href="@{/news}">
                             무역뉴스
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" rel="tooltip" data-placement="bottom" href="#">
+                        <a class="nav-link" rel="tooltip" data-placement="bottom" th:href="@{/info/infoList}">
                             FTA정보
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" rel="tooltip" data-placement="bottom" href="#">
+                        <a class="nav-link" rel="tooltip" data-placement="bottom" th:href="@{/trade/showStat}">
                             무역통계
                         </a>
                     </li>
@@ -164,40 +140,14 @@
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" id="dropdownMenuButton" href="#"
                             role="button" aria-haspopup="true" aria-expanded="false">관세사상담</a>
                         <ul class="dropdown-menu dropdown-info" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#">관세사목록</a>
-                            <a class="dropdown-item" href="#">상담목록</a>
-                            <a class="dropdown-item" href="#">상담하기</a>
+                            <a class="dropdown-item" th:href="@{/cca/ccaList}">관세사목록</a>
+                            <a class="dropdown-item" th:href="@{/cca/boardList}">상담목록</a>
+                            <a class="dropdown-item" th:href="@{/cca/ccaWrite}">상담하기</a>
                         </ul>
                     </div>
-=======
-                <li class="nav-item">
-                    <a class="nav-link" rel="tooltip" data-placement="bottom" th:href="@{/news}">
-                    무역뉴스
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" rel="tooltip" data-placement="bottom" th:href="@{/info/infoList}">
-                    FTA정보
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" rel="tooltip" data-placement="bottom" th:href="@{/trade/showStat}">
-                    무역통계
-                    </a>
-                </li>
-
-                <div class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" id="dropdownMenuButton" href="#" role="button" aria-haspopup="true" aria-expanded="false">관세사상담</a>
-                    <ul class="dropdown-menu dropdown-info" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" th:href="@{/cca/ccaList}">관세사목록</a>
-                        <a class="dropdown-item" th:href="@{/cca/boardList}">상담목록</a>
-                        <a class="dropdown-item" th:href="@{/cca/ccaWrite}">상담하기</a>
-                    </ul>
-                </div>
->>>>>>> 5f73164063190fca705acd9d0d6e64a8a3807559
                 </ul>
             </div>
-        </div>    
+        </div>
     </nav>
     <!-- End Navbar -->
 
@@ -224,69 +174,39 @@
                         <i class="fa fa-solid fa-bars fa-lg"></i>
                         <span class="nav-text">Menu</span>
                     </a>
-<<<<<<< HEAD
                 </li>
                 <li>
-                    <a href="#">
-=======
-                </li> 
-                <li>                                 
                     <a th:href="@{/news}">
->>>>>>> 5f73164063190fca705acd9d0d6e64a8a3807559
                         <i class="fa fa-solid fa-newspaper fa-lg"></i>
                         <span class="nav-text">무역뉴스</span>
                     </a>
                 </li>
-<<<<<<< HEAD
                 <li>
-                    <a href="#">
-=======
-                <li>                                 
                     <a th:href="@{/info/infoList}">
->>>>>>> 5f73164063190fca705acd9d0d6e64a8a3807559
                         <i class="fa fa-solid fa-book fa-lg"></i>
                         <span class="nav-text">FTA정보</span>
                     </a>
                 </li>
-<<<<<<< HEAD
                 <li>
-                    <a href="#">
-=======
-                <li>                                 
                     <a th:href="@{/trade/showStat}">
->>>>>>> 5f73164063190fca705acd9d0d6e64a8a3807559
                         <i class="fa fa-solid fa-chart-simple fa-lg"></i>
                         <span class="nav-text">무역통계</span>
                     </a>
                 </li>
-<<<<<<< HEAD
                 <li>
-                    <a href="#">
-=======
-                <li>                                 
                     <a th:href="@{/cca/boardList}">
->>>>>>> 5f73164063190fca705acd9d0d6e64a8a3807559
                         <i class="fa fa-solid fa-handshake fa-lg"></i>
                         <span class="nav-text">관세사상담</span>
                     </a>
                 </li>
-<<<<<<< HEAD
                 <li>
-                    <a href="#">
-=======
-                <li>                                 
                     <a th:href="@{/user/login}">
->>>>>>> 5f73164063190fca705acd9d0d6e64a8a3807559
                         <i class="fa fa-regular fa-user fa-lg"></i>
                         <span class="nav-text">로그인</span>
                     </a>
                 </li>
                 <li>
-<<<<<<< HEAD
-                    <a href="#">
-=======
                     <a th:href="@{/user/logout}">
->>>>>>> 5f73164063190fca705acd9d0d6e64a8a3807559
                         <i class="fa fa-user fa-lg"></i>
                         <span class="nav-text">로그아웃</span>
                     </a>
@@ -298,10 +218,7 @@
                     </a>
                 </li>
             </ul>
-<<<<<<< HEAD
-=======
-        </div>    
->>>>>>> 5f73164063190fca705acd9d0d6e64a8a3807559
+        </div>
         </div>
     </nav>
 
@@ -376,11 +293,6 @@
         </div>
 
         <ul class="footer-wave-menu">
-            <li class="menu__item"><a class="menu__link" href="#">HOME</a></li>
-            <li class="menu__item"><a class="menu__link" href="#">무역뉴스</a></li>
-            <li class="menu__item"><a class="menu__link" href="#">FTA정보</a></li>
-            <li class="menu__item"><a class="menu__link" href="#">무역통계</a></li>
-            <li class="menu__item"><a class="menu__link" href="#">관세사상담</a></li>
             <li class="menu__item"><a class="menu__link" th:href="@{/}">HOME</a></li>
             <li class="menu__item"><a class="menu__link" th:href="@{/news}">무역뉴스</a></li>
             <li class="menu__item"><a class="menu__link" th:href="@{/info/infoList}">FTA정보</a></li>

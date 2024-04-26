@@ -1,48 +1,48 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org"
-	            xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>상담문의글 등록화면</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>상담문의글 등록화면</title>
 
-  
+
 </head>
 
 <body>
-    <div class="container">
-        <div class="logo">
-            <a th:href="@{/}"><img th:src="@{/images/logo.png}" alt="logo"></a>
-            <h2>[상담문의글 쓰기]</h2>
-        </div>
-    </div> <!-- .container 끝 -->
+	<div class="container">
+		<div class="logo">
+			<a th:href="@{/}"><img th:src="@{/images/logo.png}" alt="logo"></a>
+			<h2>[상담문의글 쓰기]</h2>
+		</div>
+	</div> <!-- .container 끝 -->
 
-    <!-- 글쓰기 -->
-    <div class="content">
-        <form th:action="@{/cca/ccaWrite}" method="POST" enctype="multipart/form-data">
-            <table border="1">
+	<!-- 글쓰기 -->
+	<div class="content">
+		<form th:action="@{/cca/ccaWrite}" method="POST" enctype="multipart/form-data">
+			<table border="1">
 				<tr>
-				    <th>작성자</th>
+					<th>작성자</th>
 					<td> <!-- 로그인한 사람의 아이디 -->
-					<input id="consultWriter" type="text" name="consultWriter" th:value="${#authentication.name}" readonly>
+						<input id="consultWriter" type="text" name="consultWriter" th:value="${#authentication.name}"
+							readonly>
 					</td>
 				</tr>
-                <tr>
-                    <th>글제목</th>
-                    <td><input id="consultTitle" type="text" name="consultTitle" required></td>
-                </tr>
-                <tr>
-                    <th>글내용</th>
-                    <td>
-                        <textarea name="consultContent" id="consultContent" cols="30" rows="10" required></textarea>
-                    </td>
-                </tr>
-			
 				<tr>
-				    <th>품목</th>
-				    <td>
-				        <select id="productCategory" name="productCategory" required>
+					<th>글제목</th>
+					<td><input id="consultTitle" type="text" name="consultTitle" required></td>
+				</tr>
+				<tr>
+					<th>글내용</th>
+					<td>
+						<textarea name="consultContent" id="consultContent" cols="30" rows="10" required></textarea>
+					</td>
+				</tr>
+
+				<tr>
+					<th>품목</th>
+					<td>
+						<select id="productCategory" name="productCategory" required>
 							<option value="의류">의류</option>
 							<option value="무기류">무기류</option>
 							<option value="농산품">농산품</option>
@@ -61,7 +61,7 @@
 							<option value="플라스틱류">플라스틱류</option>
 							<option value="목재류">목재류</option>
 							<option value="의료용품">의료용품</option>
-							 <option value="화장품">화장품</option>
+							<option value="화장품">화장품</option>
 							<option value="곡물류">곡물류</option>
 							<option value="화약류">화약류</option>
 							<option value="고무제품류">고무제품류</option>
@@ -75,23 +75,23 @@
 							<option value="식기류">식기류</option>
 							<option value="철도부품">철도부품</option>
 							<option value="원자로">원자로</option>
-				            <!-- 원하는 품목을 추가할 수 있습니다 -->
-				        </select>
-				    </td>
+							<!-- 원하는 품목을 추가할 수 있습니다 -->
+						</select>
+					</td>
 				</tr>
 
 
-                <tr>
-                    <th colspan="2">
-                        <input type="submit" value="상담글 등록" class="btn btn-primary"> &nbsp;
-                        <input type="reset"  value="초기화" class="btn btn-danger">
-                    </th>
+				<tr>
+					<th colspan="2">
+						<input type="submit" value="상담글 등록" class="btn btn-primary"> &nbsp;
+						<input type="reset" value="초기화" class="btn btn-danger">
+					</th>
 
-                </tr>
-            </table>
+				</tr>
+			</table>
 
-        </form>
-    </div>
+		</form>
+	</div>
 </body>
 
 </html>

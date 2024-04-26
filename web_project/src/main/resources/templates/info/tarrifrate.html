@@ -23,13 +23,35 @@
 
 </head>
 <style>
+	body {
+		font-size: medium;
+		color: black;
+	}
+
+	.content {
+		width: 85%;
+		padding: 15px;
+	}
+
 	table {
 		text-align: center;
 		width: 90%;
+		margin: 10px;
+		border-radius: 5px;
+	}
+
+	th {
+		background-color: #0c0726;
+		color: white;
+	}
+
+
+	li {
+		padding: 8px;
 	}
 </style>
 
-<body class="index-page sidebar-collapse">
+< class="index-page sidebar-collapse">
 	<!-- Navbar -->
 	<nav class="navbar navbar-expand-lg fixed-top navbar-transparent " color-on-scroll="300">
 		<div class="container">
@@ -178,14 +200,14 @@
 	</nav>
 
 	<div class="content">
-		<h2 class="tit1">세율정보</h2>
+		<h3 class="tit1">세율정보</h3>
 		<br>
 		<ul class="list_st1">
 			<li>협정세율 : FTA 발효로 해당 협정에 따라 적용되는 세율
 				<ul class="list_st2">
 					<li>FTA 발효로 품목별로 즉시 관세 철폐, 단계별 관세 철폐, 관세 변동이 없는 미양허 품목 등으로 구분
-						<p class="bu_atte mgt5">한 &middot; 아세안 FTA의 경우 일반품목, 민감품목, 초민감품목으로 구분</p>
 					</li>
+					<li> 한 &middot; 아세안 FTA의 경우 일반품목, 민감품목, 초민감품목으로 구분</li>
 				</ul>
 			</li>
 			<li>기본세율(General Rate) : 자국법에 따라 정해진 세율 중 가장 기본이 되는 세율</li>
@@ -326,7 +348,13 @@
 		</ul>
 
 		<p></p>
+	</div>
 
+
+
+	<!-- 위로가기 -->
+	<div class="moveTopBtn">
+		<i class="fa-solid fa-chevron-up"></i>
 	</div>
 	<!-- footer -->
 	<footer class="footer-wave">
@@ -365,6 +393,15 @@
 	<script th:src="@{/assets/js/paper-kit.min.js?v=2.2.0}" type="text/javascript"></script>
 	<script type="text/javascript"
 		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTTfWur0PDbZWPr7Pmq8K3jiDp0_xUziI"></script>
-</body>
+
+	<script>
+		const $topBtn = document.querySelector(".moveTopBtn");
+
+		// 버튼 클릭 시 맨 위로 이동
+		$topBtn.onclick = () => {
+			window.scrollTo({ top: 0, behavior: "smooth" });
+		}
+	</script>
+	</body>
 
 </html>
