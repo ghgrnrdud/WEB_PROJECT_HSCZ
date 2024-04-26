@@ -104,4 +104,15 @@ List<AnswerDTO> replyDTOList = new ArrayList<>();
         }
         return answerDTO;
     }
+
+	public List<AnswerDTO> selectAllReplysByUsername(String username) {
+		List<AnswerEntity> optionalAnswer = answerRepository.findAllByReplyWriterOrderByReplyNumDesc(username);
+		
+		List<AnswerDTO> answerDTOList = new ArrayList<>();
+		
+		for(AnswerEntity temp : optionalAnswer) {
+			answerDTOList.add(AnswerDTO.toDTO(temp, temp.getBoardEntity().getConsultNum()));
+		}
+		return answerDTOList;
+	}
 } 

@@ -97,7 +97,7 @@ public class CCAController {
     @GetMapping("/detail")
     public String ccaDetail(
             @RequestParam(name = "consultNum") Long consultNum,
-            @RequestParam(name = "searchBy") String searchBy,
+            @RequestParam(name = "searchBy", defaultValue="") String searchBy,
             @RequestParam(name = "searchItem", defaultValue = "") String searchItem,
             HttpServletRequest request,
             Model model) {

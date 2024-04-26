@@ -1,10 +1,13 @@
 package net.kdigital.web_project.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import net.kdigital.web_project.dto.CustomerDTO;
 import net.kdigital.web_project.dto.CustomerItemDTO;
 import net.kdigital.web_project.entity.CustomerEntity;
 import net.kdigital.web_project.entity.CustomerItemEntity;
@@ -27,6 +30,23 @@ public class CustomerItemService {
 			customerItemRepository.save(itemEntity);
 		}
 		
+	}
+
+	public CustomerItemDTO findItem(String username) {
+		Optional<CustomerEntity> customerEntity = customerRepository.findById(username);
+		CustomerItemEntity customerItemEntity =  customerItemRepository.findByCustomerEntity(customerEntity.get());
+		
+		return CustomerItemDTO.toDTO(customerItemEntity, username);
+	}
+
+	@Transactional
+	public CustomerItemDTO updateItem(CustomerDTO customerDTO, CustomerItemDTO customerItemDTO) {
+		CustomerItemEntity entity = customerItemRepository.findByCustomerEntity(CustomerEntity.toEntity(customerDTO));
+		entity.setFirstItem(customerItemDTO.getFirstItem());
+		entity.setSecondItem(customerItemDTO.getSecondItem());
+		entity.setThirdItem(customerItemDTO.getThirdItem());
+
+		return CustomerItemDTO.toDTO(entity, customerDTO.getUserId());
 	}
 	
 

@@ -25,62 +25,57 @@ public class UserController {
 	public final CustomerService customerService;
 	public final CustomerItemService customerItemService;
 	private final OpenApiManager openApiManager;
-	
+
 	// 회원가입 화면 요청
-	@GetMapping("/user/join") 
+	@GetMapping("/user/join")
 	public String join() {
 		return "/user/joinExample";
 	}
 
 	// 회원 저장
 	@PostMapping("/user/joinProc")
-	public String joinProc(@ModelAttribute CustomerDTO customerDTO
-			, @ModelAttribute CustomerItemDTO customerItemDTO) {
-		
-		log.info("============{}",customerDTO);
+	public String joinProc(@ModelAttribute CustomerDTO customerDTO, @ModelAttribute CustomerItemDTO customerItemDTO) {
+
+		log.info("============{}", customerDTO);
 		customerService.joinProc(customerDTO);
 		customerItemService.insertItem(customerItemDTO);
 		log.info("============가입됨");
 		return "redirect:/";
 	}
-	
-	
+
 	// 로그인 화면 요청
 	@GetMapping("/user/login")
 	public String login(
-			@RequestParam(value="error", required=false) String error
-			, @RequestParam(value="errMessage", required=false) String errMessage
-			, Model model
-			) {
-		
+			@RequestParam(value = "error", required = false) String error,
+			@RequestParam(value = "errMessage", required = false) String errMessage, Model model) {
+
 		model.addAttribute("error", error);
 		model.addAttribute("errMessage", errMessage);
-		
+
 		return "/user/loginExample";
 	}
-	
+
 	// 관세사부호 확인
 	@PostMapping("/user/ccaCheck")
 	@ResponseBody
 	public List<String> ccaCheck(@RequestParam(name = "ccaNum") int ccaNum, Model model) {
 
 		List<String> ccaCheckList = openApiManager.CCAOpenApi(Integer.toString(ccaNum));
-		 
-		 log.info("==========={}", ccaCheckList);
-		 
-		 model.addAttribute("ccaCheckList", ccaCheckList);
-		 
-		 return ccaCheckList;
+
+		log.info("==========={}", ccaCheckList);
+
+		model.addAttribute("ccaCheckList", ccaCheckList);
+
+		return ccaCheckList;
 	}
-	
+
 	// 아이디 중복확인
 	@PostMapping("/user/confirmId")
 	@ResponseBody
 	public boolean confirmId(@RequestParam(name = "userId") String userId) {
 		boolean confirmId = customerService.findByUserId(userId);
-		
+
 		return !confirmId;
 	}
-	
-	
+
 }
