@@ -215,10 +215,20 @@ public class MypageController {
 	public String updateUser(@ModelAttribute CustomerDTO customerDTO
 			, @ModelAttribute CustomerItemDTO customerItemDTO)
 	{
+		log.info("{}", customerDTO);
+		log.info("{}", customerItemDTO);
 		
-		CustomerDTO updatedCustomerDTO = customerService.updateUser(customerDTO);
+		// 로그인한 유저 정보 가져오기
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal(); 
+		UserDetails userDetails = (UserDetails)principal; 
+		String username = ((UserDetails) principal).getUsername(); 
+				
+		// 유저 정보 업데이트		
+		CustomerItemDTO updatedCustomerItemDTO = customerItemService.updateItem(username , customerItemDTO);
+				
+		// 유저 아이템 업데이트
+		CustomerDTO updatedCustomerDTO = customerService.updateUser(username, customerDTO);
 		
-		CustomerItemDTO updatedCustomerItemDTO = customerItemService.updateItem(customerDTO , customerItemDTO);
 		
 		log.info("{}", updatedCustomerDTO);
 		log.info("{}", updatedCustomerItemDTO);
@@ -230,13 +240,16 @@ public class MypageController {
 	public String updateCCA(@ModelAttribute CustomerDTO customerDTO
 			, @ModelAttribute CustomerItemDTO customerItemDTO)
 	{
-		
-		log.info("{}", customerDTO);
-		log.info("{}", customerItemDTO);
-		
-		CustomerDTO updatedCustomerDTO = customerService.updateUser(customerDTO);
-		
-		CustomerItemDTO updatedCustomerItemDTO = customerItemService.updateItem(customerDTO , customerItemDTO);
+		// 로그인한 유저 정보 가져오기
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal(); 
+		UserDetails userDetails = (UserDetails)principal; 
+		String username = ((UserDetails) principal).getUsername(); 
+				
+		// 유저 정보 업데이트		
+		CustomerItemDTO updatedCustomerItemDTO = customerItemService.updateItem(username , customerItemDTO);
+				
+		// 유저 아이템 업데이트
+		CustomerDTO updatedCustomerDTO = customerService.updateUser(username, customerDTO);
 		
 		log.info("{}", updatedCustomerDTO);
 		log.info("{}", updatedCustomerItemDTO);

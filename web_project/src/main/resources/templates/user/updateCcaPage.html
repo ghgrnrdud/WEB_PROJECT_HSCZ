@@ -16,13 +16,27 @@
     <script th:src="@{/script/jquery-3.7.1.min.js}"></script>
     <script>
         $(function () {
+
             $("#saveBtn").on('click', function () {
                 let sendUpdateDDA = $("#sendUpdateDDA");
-                //console.log(sendUpdateDDA);
 
+                console.log($("#phone").val().length);
+                if ($("#userName").val() == "") { alert("성함은 필수값 입니다."); $("#userName").focus(); return false; }
+                if ($("#userName").val().length > 20) { alert("id는 20자 이내로 설정해주세요"); $("#userName").focus(); return false; }
+                if ($("#phone").val() == "") { alert("전화번호는 필수값 입니다."); $("#phone").focus(); return false; }
+                if ($("#phone").val().length > 20) { alert("전화번호는 20자 이내로 설정해주세요"); $("#phone").focus(); return false; }
+                if ($("#email").val() == "") { alert("이메일은 필수값 입니다."); $("#email").focus(); return false; }
+                if ($("#email").val().length > 20) { alert("이메일은 20자 이내로 설정해주세요"); $("#email").focus(); return false; }
+                if ($("#selfInfo").val().length > 600) { alert("자기소개는 600자 이내로 설정해주세요"); $("#selfInfo").focus(); return false; }
                 sendUpdateDDA.submit();
 
-            })
+            });
+
+
+
+
+
+
         })
     </script>
 </head>
@@ -151,8 +165,7 @@
                         <div class="col-lg-3 order-lg-2">
                             <div class="card-profile-image">
                                 <a href="#">
-                                    <img src="https://demos.creative-tim.com/argon-dashboard/assets-old/img/theme/team-4.jpg"
-                                        class="rounded-circle">
+                                    <img src="/images/free-icon-user-check-12109000.png" class="rounded-circle">
                                 </a>
                             </div>
                         </div>
@@ -220,17 +233,17 @@
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="form-group focused">
-                                            <label class="form-control-label ta" for="input-username">아이디</label>
-                                            <input name="userId" type="text" id="userName"
+                                            <label class="form-control-label ta" for="input-username">* 아이디</label>
+                                            <input name="userId" type="text" id="userId"
                                                 th:placeholder="${customerDTO.userId}"
                                                 class="form-control form-control-alternative nec"
-                                                th:value="${customerDTO.userId}">
+                                                th:value="${customerDTO.userId}" readonly>
 
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="form-group focused">
-                                            <label class="form-control-label" for="input-email">성함</label>
+                                            <label class="form-control-label" for="input-email">* 성함</label>
                                             <input type="text" id="userName" name="userName"
                                                 class="form-control form-control-alternative nec"
                                                 th:placeholder="${customerDTO.userName}"
@@ -242,7 +255,7 @@
                                 <div class="row">
                                     <div class="col-lg-6">
                                         <div class="form-group focused">
-                                            <label class="form-control-label ta" for="input-username">전화번호</label>
+                                            <label class="form-control-label ta" for="input-username">* 전화번호</label>
                                             <input type="text" name="phone" id="phone"
                                                 th:placeholder="${customerDTO.phone}"
                                                 class="form-control form-control-alternative nec"
@@ -252,7 +265,7 @@
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="form-group focused">
-                                            <label class="form-control-label" for="input-email">이메일</label>
+                                            <label class="form-control-label" for="input-email">* 이메일</label>
                                             <input type="text" name="email" id="email"
                                                 class="form-control form-control-alternative nec"
                                                 th:placeholder="${customerDTO.email}"
@@ -289,7 +302,8 @@
                                         <div class="form-group focused">
                                             <label class="form-control-label ta" for="input-username">지역</label><br>
                                             <span class="form-control form-control-alternative">
-
+                                                <input type="hidden" id="defaultCompanyRegion"
+                                                    th:value="${customerDTO.companyRegion}">
                                                 <select id="companyRegion" name="companyRegion" class="selectBox">
                                                     <option value="서울">서울</option>
                                                     <option value="경기">경기</option>
@@ -320,6 +334,8 @@
 
                                             <label class="form-control-label" for="input-city">관심 품목1</label>
                                             <span class="form-control form-control-alternative">
+                                                <input type="hidden" id="defaultFirstItem"
+                                                    th:value="${customerItemDTO.firstItem}">
                                                 <select name="firstItem" id="firstItem" class="selectBox">
                                                     <option value="">전체</option>
                                                     <option value="의류" th:selected="${searchItem == '의류'}">의류</option>
@@ -391,6 +407,8 @@
 
                                             <label class="form-control-label" for="input-country">관심 품목2</label>
                                             <span class="form-control form-control-alternative">
+                                                <input type="hidden" id="defaultSecondItem"
+                                                    th:value="${customerItemDTO.secondItem}">
                                                 <select name="secondItem" id="secondItem" class="selectBox">
                                                     <option value="">전체</option>
                                                     <option value="의류" th:selected="${searchItem == '의류'}">의류</option>
@@ -462,6 +480,8 @@
 
                                             <label class="form-control-label" for="input-country">관심 품목3</label>
                                             <span class="form-control form-control-alternative">
+                                                <input type="hidden" id="defaultThirdItem"
+                                                    th:value="${customerItemDTO.thirdItem}">
                                                 <select name="thirdItem" id="thirdItem" class="selectBox">
                                                     <option value="">전체</option>
                                                     <option value="의류" th:selected="${searchItem == '의류'}">의류</option>
@@ -531,13 +551,12 @@
 
                                 </div>
                                 <div class="row">
-                                    <div class="col-lg-6">
+                                    <div class="col-lg-8">
                                         <div class="form-group focused">
                                             <label class="form-control-label ta" for="input-username">자기소개</label>
-                                            <input id="input-username" th:value="${customerDTO.selfInfo}"
+                                            <input id="selfInfo" th:value="${customerDTO.selfInfo}"
                                                 th:placeholder="${customerDTO.selfInfo}"
                                                 class="form-control form-control-alternative" name="selfInfo">
-
                                         </div>
                                     </div>
                                 </div>
@@ -548,54 +567,57 @@
 
                             <hr class="my-4">
                             <!-- Address -->
-                            <h6 class="heading-small text-muted mb-4">내가 쓴 댓글</h6>
+                            <div style="margin: 10px; padding: 10px; background-color: aliceblue;">
+                                <h6 class="heading-small text-muted mb-4">내가 쓴 댓글</h6>
 
-                            <div class="pl-lg-4">
-                                <div class="row2">
-                                    <div class="col-lg-4">
-                                        <div class="form-group focused">
-                                            <label class="form-control-label table-title" for="input-city">글
-                                                제목</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4">
-                                        <div class="form-group focused">
-                                            <label class="form-control-label table-title" for="input-country">댓글</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-2">
-                                        <div class="form-group focused">
-                                            <label class="form-control-label table-title" for="input-country">좋아요 수
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div th:each="entry : ${dataMap}">
+                                <div class="pl-lg-4">
                                     <div class="row2">
                                         <div class="col-lg-4">
                                             <div class="form-group focused">
-                                                <span id="input-address"
-                                                    class="form-control form-control-alternative form-control-table"
-                                                    th:text="${entry.value.consultTitle}"> </span>
+                                                <label class="form-control-label table-title" for="input-country">글
+                                                    제목</label>
                                             </div>
                                         </div>
-
                                         <div class="col-lg-4">
                                             <div class="form-group focused">
-                                                <span id="input-address"
-                                                    class="form-control form-control-alternative form-control-table"
-                                                    th:text="${entry.key.replyContent}"> </span>
+                                                <label class="form-control-label table-title"
+                                                    for="input-country">댓글</label>
                                             </div>
                                         </div>
-
                                         <div class="col-lg-2">
                                             <div class="form-group focused">
-                                                <span id="input-address"
-                                                    class="form-control form-control-alternative form-control-table"
-                                                    th:text="${entry.key.likeCount}"> </span>
+                                                <label class="form-control-label table-title" for="input-country">좋아요 수
+                                                </label>
                                             </div>
                                         </div>
+                                    </div>
+                                    <div th:each="entry : ${dataMap}">
+                                        <div class="row2">
+                                            <div class="col-lg-4">
+                                                <div class="form-group focused">
+                                                    <span id="input-address"
+                                                        class="form-control form-control-alternative form-control-table"
+                                                        th:text="${entry.value.consultTitle}"> </span>
+                                                </div>
+                                            </div>
 
+                                            <div class="col-lg-4">
+                                                <div class="form-group focused">
+                                                    <span id="input-address"
+                                                        class="form-control form-control-alternative form-control-table"
+                                                        th:text="${entry.key.replyContent}"> </span>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-2">
+                                                <div class="form-group focused">
+                                                    <span id="input-address"
+                                                        class="form-control form-control-alternative form-control-table"
+                                                        th:text="${entry.key.likeCount}"> </span>
+                                                </div>
+                                            </div>
+
+                                        </div>
                                     </div>
                                 </div>
                             </div>

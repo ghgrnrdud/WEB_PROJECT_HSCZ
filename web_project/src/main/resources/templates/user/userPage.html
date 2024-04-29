@@ -144,8 +144,7 @@
                         <div class="col-lg-3 order-lg-2">
                             <div class="card-profile-image">
                                 <a href="#">
-                                    <img src="https://demos.creative-tim.com/argon-dashboard/assets-old/img/theme/team-4.jpg"
-                                        class="rounded-circle">
+                                    <img src="/images/free-icon-user-9634070.png" class="rounded-circle">
                                 </a>
                             </div>
                         </div>
@@ -197,7 +196,7 @@
                                 <h3 class="mb-0">마이 페이지</h3>
                             </div>
                             <div class="col-4 text-right">
-                                <a href="/my/updateUserPage" class="btn btn-sm btn-primary">설정</a>
+                                <a href="/my/updateUserPage" class="btn btn-sm btn-primary">수정</a>
                             </div>
                         </div>
                     </div>
@@ -301,69 +300,73 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-lg-7">
+                                    <div class="col-lg-8">
                                         <div class="form-group focused">
                                             <label class="form-control-label ta" for="input-username">자기소개</label>
-                                            <span id="input-username" th:text="${customerDTO.selfInfo}"
-                                                class="form-control form-control-alternative">
-                                            </span>
+                                            <textarea id="input-username" th:text="${customerDTO.selfInfo}"
+                                                class="form-control form-control-alternative" style="overflow:hidden"
+                                                readonly>
+                                            </textarea>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <hr class="my-4">
                             <!-- Address -->
-                            <h6 class="heading-small text-muted mb-4">내가 쓴 상담글</h6>
+                            <div style="margin: 10px; padding: 10px; background-color: aliceblue;">
+                                <h6 class="heading-small text-muted mb-4">내가 쓴 상담글</h6>
 
-                            <div class="pl-lg-4">
-                                <div class="row2">
-                                    <div class="col-lg-4">
-                                        <div class="form-group focused">
-                                            <label class="form-control-label table-title" for="input-city">글
-                                                제목</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4">
-                                        <div class="form-group focused">
-                                            <label class="form-control-label table-title" for="input-country">작성
-                                                일자</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-2">
-                                        <div class="form-group focused">
-                                            <label class="form-control-label table-title" for="input-country">댓글
-                                                수</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div th:each="entry : ${dataMap}">
+                                <div class="pl-lg-4">
                                     <div class="row2">
                                         <div class="col-lg-4">
                                             <div class="form-group focused">
-                                                <span id="input-address"
-                                                    class="form-control form-control-alternative form-control-table">
-                                                    <a th:href="@{/cca/detail(consultNum=${entry.key.consultNum})}"
-                                                        th:text="${entry.key.consultTitle}"></a>
-                                                </span>
+                                                <label class="form-control-label table-title" for="input-city">글
+                                                    제목</label>
                                             </div>
                                         </div>
-
                                         <div class="col-lg-4">
                                             <div class="form-group focused">
-                                                <span id="input-address"
-                                                    class="form-control form-control-alternative form-control-table"
-                                                    th:text="${entry.key.consultDate}"> </span>
+                                                <label class="form-control-label table-title" for="input-country">작성
+                                                    일자</label>
                                             </div>
                                         </div>
-
                                         <div class="col-lg-2">
                                             <div class="form-group focused">
-                                                <span id="input-address"
-                                                    class="form-control form-control-alternative form-control-table"
-                                                    th:text="${entry.value}"> </span>
+                                                <label class="form-control-label table-title" for="input-country">댓글
+                                                    수</label>
                                             </div>
                                         </div>
+                                    </div>
+                                    <div th:each="entry : ${dataMap}">
+                                        <div class="row2">
+                                            <div class="col-lg-4">
+                                                <div class="form-group focused">
+                                                    <span id="input-address"></span>
+                                                    <!-- class="form-control form-control-alternative form-control-table"> -->
+                                                    <a th:href="@{/cca/detail(consultNum=${entry.key.consultNum})}"
+                                                        th:text="${entry.key.consultTitle}"
+                                                        class="form-control form-control-alternative form-control-table"></a>
+                                                    </span>
+                                                </div>
+                                            </div>
 
+                                            <div class="col-lg-4">
+                                                <div class="form-group focused">
+                                                    <span id="input-address"
+                                                        class="form-control form-control-alternative form-control-table"
+                                                        th:text="${entry.key.consultDate}"> </span>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-2">
+                                                <div class="form-group focused">
+                                                    <span id="input-address"
+                                                        class="form-control form-control-alternative form-control-table"
+                                                        th:text="${entry.value}"> </span>
+                                                </div>
+                                            </div>
+
+                                        </div>
                                     </div>
                                 </div>
                             </div>
