@@ -31,7 +31,7 @@ function init(id, div) {
     tooltipText: "{name}",
     toggleKey: "active",
     interactive: true
-    , fill: am5.color("#D8DEF6")
+    , fill: am5.color("#CDEBFC")
     , templateField: "polygonSettings"
   });
 
@@ -55,132 +55,71 @@ function init(id, div) {
   });
 
   polygonSeries.mapPolygons.template.states.create("hover", {
-    fill: am5.color("#B0B2B5")
+    fill: am5.color("#CDEBCC")
   });
 
   polygonSeries.data.setAll([{
-    id: "CA",
     id: "CN",
     url: "/trade/statShow",
     polygonSettings: {
-      fill: am5.color("#025EEC")
+      fill: am5.color("#0000FF")
     }
   }, {
     id: "US",
     url: "/trade/statShow",
     polygonSettings: {
-      fill: am5.color("#0963EE")
+      fill: am5.color("#008000")
     }
   }, {
     id: "VN",
     url: "/trade/statShow",
     polygonSettings: {
-      fill: am5.color("#146AEF")
+      fill: am5.color("#FF0000")
     }
   }, {
     id: "JP",
     url: "/trade/statShow",
     polygonSettings: {
-      fill: am5.color("#1D70EF")
+      fill: am5.color("#FFD700")
     }
   }, {
     id: "HK",
     url: "/trade/statShow",
     polygonSettings: {
-      fill: am5.color("#2676F0")
+      fill: am5.color("#800080")
     }
   }, {
     id: "TW",
     url: "/trade/statShow",
     polygonSettings: {
-      fill: am5.color("#2C7AF2")
+      fill: am5.color("#008080")
     }
   }, {
     id: "SG",
     url: "/trade/statShow",
     polygonSettings: {
-      fill: am5.color("#347FF3")
+      fill: am5.color("#FFA500")
     }
   }, {
     id: "IN",
     url: "/trade/statShow",
     polygonSettings: {
-      fill: am5.color("#3C84F5")
+      fill: am5.color("#FF00FF")
     }
   }, {
     id: "AU",
     url: "/trade/statShow",
     polygonSettings: {
-      fill: am5.color("#4589F5")
+      fill: am5.color("#00FF00")
     }
   }, {
     id: "MX",
     url: "/trade/statShow",
     polygonSettings: {
-      fill: am5.color("#4E8FF7")
+      fill: am5.color("#00FFFF")
     }
-  }, {
-    id: "DE",
-    url: "/trade/statShow",
-    polygonSettings: {
-      fill: am5.color("#7BAAF5")
-    }
-  }, {
-    id: "MY",
-    url: "/trade/statShow",
-    polygonSettings: {
-      fill: am5.color("#609BF8")
-    }
-  }, {
-    id: "ID",
-    url: "/trade/statShow",
-    polygonSettings: {
-      fill: am5.color("#68A0F8")
-    }
-  }, {
-    id: "PL",
-    url: "/trade/statShow",
-    polygonSettings: {
-      fill: am5.color("#70A4F6")
-    }
-  }, {
-    id: "PH",
-    url: "/trade/statShow",
-    polygonSettings: {
-      fill: am5.color("#7BAAF5")
-    }
-  }, {
-    id: "TR",
-    url: "/trade/statShow",
-    polygonSettings: {
-      fill: am5.color("#83AFF5")
-    }
-  },
-  {
-    id: "CA",
-    url: "/trade/statShow",
-    polygonSettings: {
-      fill: am5.color("#8CB5F6")
-    }
-  }, {
-    id: "TH",
-    url: "/trade/statShow",
-    polygonSettings: {
-      fill: am5.color("#94BAF6")
-    }
-  }, {
-    id: "NL",
-    url: "/trade/statShow",
-    polygonSettings: {
-      fill: am5.color("#9FBFF2")
-    }
-  }, {
-    id: "HU",
-    url: "/trade/statShow",
-    polygonSettings: {
-      fill: am5.color("#A2C1F2")
-    }
-  }]);
+  }
+  ]);
 
   // Add zoom control
   // https://www.amcharts.com/docs/v5/charts/map-chart/map-pan-zoom/#Zoom_control
@@ -785,6 +724,12 @@ function createRealPie(id, div, resp, country, year) {
     else if (country == 'JP') { document.getElementById('title6').innerHTML = `일본의 수입시장 점유율`; }
     else if (country == 'AU') { document.getElementById('title6').innerHTML = `호주의 수입시장 점유율`; }
     else if (country == 'TW') { document.getElementById('title6').innerHTML = `대만의 수입시장 점유율`; }
+
+    else if (country == 'HK') { document.getElementById('title6').innerHTML = `홍콩의 수입시장 점유율`; }
+    else if (country == 'SG') { document.getElementById('title6').innerHTML = `싱가포르의 수입시장 점유율`; }
+    else if (country == 'MX') { document.getElementById('title6').innerHTML = `멕시코의 수입시장 점유율`; }
+    else if (country == 'IN') { document.getElementById('title6').innerHTML = `인도의 수입시장 점유율`; }
+    else if (country == 'VN') { document.getElementById('title6').innerHTML = `베트남의 수입시장 점유율`; }
     maybeDisposeRoot("chart6");
     root = am5.Root.new(space);
   }//end else
@@ -1378,6 +1323,11 @@ function createRealBar(id, div, resp, country, year) {
     else if (country == 'JP') { document.getElementById('title4').innerHTML = `일본의 TOP5 수출입품목`; }
     else if (country == 'AU') { document.getElementById('title4').innerHTML = `호주의 TOP5 수출입품목`; }
     else if (country == 'TW') { document.getElementById('title4').innerHTML = `대만의 TOP5 수출입품목`; }
+    else if (country == 'HK') { document.getElementById('title4').innerHTML = `홍콩의 TOP5 수출입품목`; }
+    else if (country == 'SG') { document.getElementById('title4').innerHTML = `싱가포르의 TOP5 수출입품목`; }
+    else if (country == 'MX') { document.getElementById('title4').innerHTML = `멕시코의 TOP5 수출입품목`; }
+    else if (country == 'IN') { document.getElementById('title4').innerHTML = `인도의 TOP5 수출입품목`; }
+    else if (country == 'VN') { document.getElementById('title4').innerHTML = `베트남의 TOP5 수출입품목`; }
     maybeDisposeRoot("chart4");
     root = am5.Root.new(space);
   }//end else
@@ -1612,6 +1562,11 @@ function createRealString(id, div, resp, country) {
     else if (country == 'JP') { document.getElementById('title5').innerHTML = `일본의 수출입 금액`; }
     else if (country == 'AU') { document.getElementById('title5').innerHTML = `호주의 수출입 금액`; }
     else if (country == 'TW') { document.getElementById('title5').innerHTML = `대만의 수출입 금액`; }
+    else if (country == 'HK') { document.getElementById('title5').innerHTML = `홍콩의 수출입 금액`; }
+    else if (country == 'SG') { document.getElementById('title5').innerHTML = `싱가포르의 수출입 금액`; }
+    else if (country == 'MX') { document.getElementById('title5').innerHTML = `멕시코의 수출입 금액`; }
+    else if (country == 'IN') { document.getElementById('title5').innerHTML = `인도의 수출입 금액`; }
+    else if (country == 'VN') { document.getElementById('title5').innerHTML = `베트남의 수출입 금액`; }
     maybeDisposeRoot("chart5");
     root = am5.Root.new(space);
   }//end else
@@ -1854,11 +1809,16 @@ function createRealStackCluster(id, div, resp, country) {
 
   //그렇지 않다면 기존 그래프 지우는 함수 사용. 새로 만듦
   else {
-    if (country == 'CN') { document.getElementById('title3').innerHTML = `중국의 수출입품목 증감율(월)`; }
-    else if (country == 'US') { document.getElementById('title3').innerHTML = `미국의 수출입품목 증감율(월)`; }
-    else if (country == 'JP') { document.getElementById('title3').innerHTML = `일본의 수출입품목 증감율(월)`; }
-    else if (country == 'AU') { document.getElementById('title3').innerHTML = `호주의 수출입품목 증감율(월)`; }
-    else if (country == 'TW') { document.getElementById('title3').innerHTML = `대만의 수출입품목 증감율(월)`; }
+    if (country == 'CN') { document.getElementById('title3').innerHTML = `중국의 수출입품목 증감율`; }
+    else if (country == 'US') { document.getElementById('title3').innerHTML = `미국의 수출입품목 증감율`; }
+    else if (country == 'JP') { document.getElementById('title3').innerHTML = `일본의 수출입품목 증감율`; }
+    else if (country == 'AU') { document.getElementById('title3').innerHTML = `호주의 수출입품목 증감율`; }
+    else if (country == 'TW') { document.getElementById('title3').innerHTML = `대만의 수출입품목 증감율`; }
+    else if (country == 'HK') { document.getElementById('title3').innerHTML = `홍콩의 수출입품목 증감율`; }
+    else if (country == 'SG') { document.getElementById('title3').innerHTML = `싱가포르의 수출입품목 증감율`; }
+    else if (country == 'MX') { document.getElementById('title3').innerHTML = `멕시코의 수출입품목 증감율`; }
+    else if (country == 'IN') { document.getElementById('title3').innerHTML = `인도의 수출입품목 증감율`; }
+    else if (country == 'VN') { document.getElementById('title3').innerHTML = `베트남의 수출입품목 증감율`; }
     maybeDisposeRoot("chart3");
     root = am5.Root.new(space);
   }//end else
