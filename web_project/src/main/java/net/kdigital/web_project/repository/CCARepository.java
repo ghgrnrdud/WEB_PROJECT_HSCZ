@@ -15,7 +15,9 @@ public interface CCARepository extends JpaRepository<BoardEntity, Long> {
  
     @Query(value = "SELECT * FROM consult_cca WHERE product_category = :productCategory", nativeQuery = true)
     Page<BoardEntity> findAllByProductCategory(@Param("productCategory") String productCategory, PageRequest pageRequest);
+    @Query(value = "SELECT * FROM consult_cca WHERE product_category LIKE %:searchItem% AND (consult_title LIKE %:searchWord% OR consult_writer LIKE %:searchWord% OR consult_content LIKE %:searchWord%)", nativeQuery = true)
+    Page<BoardEntity> findAllByProductCategory(@Param("searchItem") String searchItem,
+            @Param("searchWord") String searchWord, PageRequest pageRequest);
 
     List<BoardEntity> findAllByConsultWriterOrderByConsultNumDesc(String userName);
 }
-

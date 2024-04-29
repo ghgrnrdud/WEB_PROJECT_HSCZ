@@ -12,9 +12,7 @@ public interface CCAListRepository extends JpaRepository<CCAListEntity, Long> {
     @Query(value = "SELECT * FROM CCALIST", nativeQuery = true)
     Page<CCAListEntity> findAllCCA(Pageable pageable);
 
-    @Query(value = "SELECT * FROM CCALIST WHERE company_region LIKE CONCAT(:searchItem, '%')", nativeQuery = true)
-    Page<CCAListEntity> findAllCCAByRegion(@Param("searchItem") String searchItem, Pageable pageable);
-
-   
+    @Query(value = "SELECT * FROM CCALIST WHERE (company_region LIKE %:searchItem%) AND (cca_name LIKE %:searchWord% OR company_name LIKE %:searchWord% OR company_region LIKE %:searchWord%)", nativeQuery = true)
+    Page<CCAListEntity> findAllCCAByRegion(@Param("searchItem") String searchItem, @Param("searchWord") String searchWord ,Pageable pageable);
 }
 

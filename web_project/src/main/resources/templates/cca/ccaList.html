@@ -130,9 +130,10 @@
   </nav>
 
   <!-- 관세사 테이블 시작 -->
-  <!-- Hidden input for storing current search conditions -->
-  <input type="hidden" id="currentSearchType" th:value="${searchBy}" />
+  <!-- 검색상태 저장하기 위한 값들 -->
+  <!-- <input type="hidden" id="currentSearchType" th:value="${searchBy}" /> -->
   <input type="hidden" id="currentSearchItem" th:value="${searchItem}" />
+  <input type="hidden" id="currentSearchWord" th:value="${searchWord}">
 
   <!-- 게시글 전체 목록 출력 -->
   <div class="content">
@@ -147,9 +148,8 @@
           <input type="hidden" name="page" id="requestPage" th:value="${page}" />
 
           <div id="selectcss">
-            <span>지역별 검색</span>
-
             <select id="searchItem" name="searchItem">
+              <option value="" selected>지역별 검색</option>
               <option value="서울" th:selected="${searchItem == '서울'}">
                 서울
               </option>
@@ -202,7 +202,7 @@
                 경북
               </option>
             </select>
-
+            <input type="text" name="searchWord" class="searchWord" th:value="${searchWord}">
             <input type="submit" value="검색" id="ccaSearchBtn" class="btn btn-info" />
           </div>
         </form>

@@ -11,18 +11,21 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.kdigital.web_project.dto.CustomerDTO;
-import net.kdigital.web_project.dto.CustomerItemDTO;
+import net.kdigital.web_project.entity.AnswerEntity;
 import net.kdigital.web_project.entity.CustomerEntity;
-import net.kdigital.web_project.entity.CustomerItemEntity;
-import net.kdigital.web_project.repository.CustomerItemRepository;
+import net.kdigital.web_project.entity.CustomerLikeEntity;
+import net.kdigital.web_project.repository.AnswerRepository;
+import net.kdigital.web_project.repository.CustomerLikeRepository;
 import net.kdigital.web_project.repository.CustomerRepository;
 
 @Service
 @RequiredArgsConstructor
 @Slf4j
 public class CustomerService {
+
+	public final CustomerLikeRepository customerLikeRepository;
+	public final AnswerRepository answerRepository;
 	public final CustomerRepository customerRepository;
-	public final CustomerItemRepository customerItemRepository;
 	public final BCryptPasswordEncoder bCryptPasswordEncoder;
 
 	/**
@@ -102,4 +105,30 @@ public class CustomerService {
 
 		return CustomerDTO.toDTO(customerEntity);
 	}
+
+	public boolean checkIsAlreadyLiked(Long replyNum, String username) {
+		AnswerEntity answerEntity = answerRepository.findById(replyNum).get();
+
+		boolean isLIkeExist = customerLikeRepository.existsByUserIdAndAnswerEntity(username, answerEntity);
+
+		return !isLIkeExist;
+	}
+
+	public void insertCustomerLike(Long replyNum, String username) {
+		CustomerLikeEntity entity = new CustomerLikeEntity();
+		AnswerEntity answerEntity = answerRepository.findById(replyNum).get();
+
+		entity.setUserId(username);
+		entity.setAnswerEntity(answerEntity);
+
+		customerLikeRepository.save(entity);
+	}
+
+	@Transactional
+	public void increaseLikeTotal(String replyWriter) {
+		CustomerEntity customerEntity = customerRepository.findById(replyWriter).get();
+
+		customerEntity.setLikeTotal(customerEntity.getLikeTotal() + 1);
+	}
+
 }
