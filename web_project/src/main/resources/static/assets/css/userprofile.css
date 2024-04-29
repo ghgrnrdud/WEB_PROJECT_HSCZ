@@ -466,6 +466,11 @@ a>code {
         flex: 0 0 58.33333%;
     }
 
+    /* .col-lg-12 {
+        max-width: 100%;
+        flex: 0 0 58.33333%;
+    } */
+
     .order-lg-2 {
         order: 2;
     }
@@ -511,6 +516,10 @@ a>code {
     background-color: #fff;
     background-clip: padding-box;
     box-shadow: none;
+}
+
+a.form-control-table:hover {
+    text-decoration: underline;
 }
 
 .form-control-table {
@@ -1108,7 +1117,7 @@ button.bg-white:focus {
 }
 
 .rounded-circle {
-    border-radius: 50% !important;
+    /* border-radius: 50% !important; */
 }
 
 .d-none {
@@ -1202,6 +1211,7 @@ button.bg-white:focus {
 .my-4 {
     margin-bottom: 1.5rem !important;
 }
+
 
 .mb-5 {
     margin-bottom: 3rem !important;
@@ -1377,7 +1387,7 @@ main {
 }
 
 .nec {
-    border-color: #324cdd;
+    border-color: #2a19ef;
     border-width: 2px;
 }
 
@@ -1549,6 +1559,7 @@ a.text-white:focus {
     transition: all .15s ease;
     transform: translate(-50%, -30%);
     border-radius: .375rem;
+    padding: 10px;
 }
 
 .card-profile-image img:hover {
