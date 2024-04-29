@@ -47,7 +47,6 @@ public class CCAListDTO {
                 .phone(ccaListEntity.getPhone())
                 .companyRegion(ccaListEntity.getCompanyRegion())
                 .ccaEmail(ccaListEntity.getCcaEmail())
-               
                 .build();
     }
 }

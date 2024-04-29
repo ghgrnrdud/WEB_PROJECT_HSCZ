@@ -1,44 +1,65 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="ko" xmlns:th="http://thymeleaf.org">
+
 <head>
-<meta charset="UTF-8">
-<script th:src="@{/script/jquery-3.7.1.min.js}"></script>
-    <script>
-    </script>
-<title>index</title>
+	<meta charset="UTF-8">
+	<script th:src="@{/script/jquery-3.7.1.min.js}"></script>
+	<script>
+	</script>
+	<title>index</title>
 </head>
+
 <body>
+	<form th:action="@{/predict}" method="post">
+		<div class="insert_des">
+			<h2>제품 상세 입력</h2>
+			<input type="text" id="description" name="description" placeholder="제품 설명 입력">
+			<input type="submit" value="찾기">
+		</div>
+		<hr>
+		<br>
+		<div class="menu">
+			<a th:href="@{/news}" text="무역뉴스">무역뉴스</a>
+			<a th:href="@{/info/infoList}">FTA정보</a>
+			<a href="#">무역통계</a>
+			<a href="#">관세사리스트</a>
+			<a href="#">간편상담</a>
+
+			<!-- 상세페이지 레이아웃 페이지로 이동-->
+			<a th:href="@{/layout}">layout</a>
+			<a th:href="@{/cca/ccaList}">관세사리스트</a>
+			<a th:href="@{/cca/boardList}">간편상담</a>
+		</div>
+	</form>
+
 	<span>안녕하쇼</span>
 	<li sec:authorize="isAnonymous()">
-	<a th:href="@{/user/join}">회원가입</a>
+		<a th:href="@{/user/join}">회원가입</a>
 	</li>
 	<li sec:authorize="isAnonymous()">
-	<a th:href="@{/user/login}">로그인</a>
+		<a th:href="@{/user/login}">로그인</a>
 	</li>
 	<li sec:authorize="isAuthenticated()">
-                <a th:href="@{/user/logout}">로그아웃</a>
-            </li>
+		<a th:href="@{/user/logout}">로그아웃</a>
+	</li>
 
 	<li>
 		<a th:href="@{/trade/showStat}">무역통계</a>
 	</li>
 
 	<ul>
-             
-   
-              
 		<!-- 인증과 관계없음 -->
 		<li><a th:href="@{/cca/boardList}">관세사 상담문의게시판</a></li>
 		<li><a th:href="@{/cca/ccaList}">관세사 연락처 게시판</a></li>
 	</ul>
 
-            
-        <!-- ROLE_ADMIN 계정을 가지고 있으면 아래 내용 출력 -->
+
+	<!-- ROLE_ADMIN 계정을 가지고 있으면 아래 내용 출력 -->
 	<h2 sec:authorize="hasRole('ROLE_ADMIN')">관리자</h2>
 
 	<!-- ROLE_USER 계정을 가지고 있으면 아래 내용 출력-->
 	<h2 sec:authorize="hasRole('ROLE_USER')">일반 사용자</h2>
-	
+
 	<!-- ROLE_USER 계정을 가지고 있으면 아래 내용 출력-->
 	<h2 sec:authorize="hasRole('ROLE_CCA')">관세사</h2>
 
@@ -54,4 +75,8 @@
 	<!-- 인증시 사용된 UserName -->
 	Name: <h2 sec:authentication="name"></h2>
 </body>
+
+</html>
+
+
 </html>

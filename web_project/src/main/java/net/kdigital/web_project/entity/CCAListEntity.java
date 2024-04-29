@@ -42,14 +42,6 @@ public class CCAListEntity {
     @Column(name="cca_email", nullable=false)
     private String ccaEmail;
     
-
-
-    /*
-     * 댓글과의 관계설정
-     * mappedBy: one에 해당하는 테이블 엔티티
-     * CascadeType.REMOVE 이 값으로 on delete cascade를 설정
-     * fetch : LAZY는 지연호출, EAGER: 즉시 호출
-     */
     
     public static CCAListEntity toEntity(CCAListDTO ccaListDTO) {
         return CCAListEntity.builder()
@@ -59,7 +51,6 @@ public class CCAListEntity {
                 .phone(ccaListDTO.getPhone())
                 .companyRegion(ccaListDTO.getCompanyRegion())
                 .ccaEmail(ccaListDTO.getCcaEmail())
-               
                 .build();
     }
 }

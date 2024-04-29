@@ -141,4 +141,5 @@ gradle-app.setting
 *.hprof
 
 **/application.properties
+README.md
 # End of https://www.toptal.com/developers/gitignore/api/gradle,java,visualstudiocode,eclipse
