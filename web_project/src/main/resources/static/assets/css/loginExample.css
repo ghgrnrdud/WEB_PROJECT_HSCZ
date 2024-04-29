@@ -135,6 +135,10 @@
     line-height: 27px;
     color: #0068ff;
     background: #ffffff;
-    border: 1px solid #0068ff;
     border-radius: 10px;
+    border: 1px solid #aacdff;
+  }
+
+  .button:hover {
+    box-shadow: 7px 7px 39px rgba(0, 104, 255, 0.25);
   }

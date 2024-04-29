@@ -13,7 +13,10 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.kdigital.web_project.dto.CustomerDTO;
+import net.kdigital.web_project.dto.CustomerItemDTO;
 import net.kdigital.web_project.entity.CustomerEntity;
+import net.kdigital.web_project.entity.CustomerItemEntity;
+import net.kdigital.web_project.repository.CustomerItemRepository;
 import net.kdigital.web_project.repository.CustomerRepository;
 
 @Service
@@ -21,6 +24,7 @@ import net.kdigital.web_project.repository.CustomerRepository;
 @Slf4j
 public class CustomerService {
 	public final CustomerRepository customerRepository;
+	public final CustomerItemRepository customerItemRepository;
 	public final BCryptPasswordEncoder bCryptPasswordEncoder;
 
 	/** 회원가입
@@ -78,4 +82,20 @@ public class CustomerService {
         return dtoList;
        
 	    }
+
+	@Transactional
+	public CustomerDTO updateUser(String username, CustomerDTO customerDTO) {
+		Optional<CustomerEntity> originalEntity = customerRepository.findByUserId(username);
+		
+		CustomerEntity customerEntity = originalEntity.get();
+		
+		customerEntity.setUserName(customerDTO.getUserName());
+		customerEntity.setPhone(customerDTO.getPhone());
+		customerEntity.setEmail(customerDTO.getEmail());
+		customerEntity.setCompanyName(customerDTO.getCompanyName());
+		customerEntity.setCompanyRegion(customerDTO.getCompanyRegion());
+		customerEntity.setSelfInfo(customerDTO.getSelfInfo());
+		
+		return CustomerDTO.toDTO(customerEntity);
+	}
 }

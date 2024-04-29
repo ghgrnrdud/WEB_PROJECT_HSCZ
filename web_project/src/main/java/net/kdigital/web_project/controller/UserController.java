@@ -45,8 +45,8 @@ public class UserController {
 			, @RequestParam(value="errMessage", required=false) String errMessage
 			, Model model
 			) {
-		model.addAttribute("error", error);
-		model.addAttribute("errMessage", errMessage);
+//		model.addAttribute("error", error);
+//		model.addAttribute("errMessage", errMessage);
 		
 		return "/user/loginExample";
 	}

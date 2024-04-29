@@ -81,7 +81,8 @@
 
 			</tr>
 		</table>
-		<input type="button" <!-- 댓글 목록 부분 -->
+		<!-- <input type="button"  -->
+		<!-- 댓글 목록 부분 -->
 		<div id="answer-list" th:if="${#lists.size(replyList) > 0}">
 			<h2>[관세사 답변 목록]</h2>
 			<p th:if="${#lists.size(replyList) > 0}" th:text="'총 ' + ${#lists.size(replyList)} + '개의 답변이 있습니다.'"></p>

@@ -3,10 +3,9 @@
 
 <head>
 	<meta charset="UTF-8">
-	<script th:src="@{/script/jquery-3.7.1.min.js}"></script>
-	<script>
-	</script>
-	<title>index</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>HSCODE ZOOM</title>
+
 </head>
 
 <body>
@@ -41,6 +40,14 @@
 	</li>
 	<li sec:authorize="isAuthenticated()">
 		<a th:href="@{/user/logout}">로그아웃</a>
+	</li>
+
+	<li sec:authorize="hasRole('ROLE_USER')">
+		<a th:href="@{/my/userpage}">마이페이지</a>
+	</li>
+
+	<li sec:authorize="hasRole('ROLE_CCA')">
+		<a th:href="@{/my/ccapage}">마이페이지</a>
 	</li>
 
 	<li>

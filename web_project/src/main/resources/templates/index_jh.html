@@ -9,7 +9,8 @@
   <title>
     HSCODE ZOOM
   </title>
-  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
+    name='viewport' />
   <!--     Fonts and icons     -->
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
@@ -25,11 +26,12 @@
   <nav class="navbar navbar-expand-lg fixed-top navbar-transparent " color-on-scroll="300">
     <div class="container">
       <div class="navbar-translate">
-        
+
         <a class="navbar-brand" th:href="@{/}" rel="tooltip" title="Coded by Creative Tim" data-placement="bottom">
           <img th:src="@{/images/web-logo9.png}" alt="로고" style="vertical-align: bottom;">
         </a>
-        <button class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
+          aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-bar bar1"></span>
           <span class="navbar-toggler-bar bar2"></span>
           <span class="navbar-toggler-bar bar3"></span>
@@ -39,27 +41,28 @@
         <ul class="navbar-nav">
           <li class="nav-item">
             <a class="nav-link" rel="tooltip" data-placement="bottom" th:href="@{/}">
-            Home
+              Home
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" rel="tooltip" data-placement="bottom" th:href="@{/news}">
-            무역뉴스
+              무역뉴스
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" rel="tooltip" data-placement="bottom" th:href="@{/info/infoList}">
-            FTA정보
+              FTA정보
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" rel="tooltip" data-placement="bottom" th:href="@{/trade/showStat}">
-            무역통계
+              무역통계
             </a>
           </li>
 
           <div class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" data-toggle="dropdown" id="dropdownMenuButton" href="#" role="button" aria-haspopup="true" aria-expanded="false">관세사 Matching</a>
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" id="dropdownMenuButton" href="#" role="button"
+              aria-haspopup="true" aria-expanded="false">관세사 Matching</a>
             <ul class="dropdown-menu dropdown-info" aria-labelledby="dropdownMenuButton">
               <a class="dropdown-item" th:href="@{/cca/ccaList}">관세사목록</a>
               <a class="dropdown-item" th:href="@{/cca/boardList}">상담목록</a>
@@ -67,17 +70,30 @@
             </ul>
           </div>
 
-          <li class="nav-item">
+          <li class="nav-item" sec:authorize="isAnonymous()">
             <a class="nav-link" rel="tooltip" data-placement="bottom" th:href="@{/user/join}">
               <i class="fa-solid fa-users"></i>
             </a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" sec:authorize="isAnonymous()">
             <a class="nav-link" rel="tooltip" data-placement="bottom" th:href="@{/user/login}">
               <i class="fa-solid fa-right-to-bracket"></i>
             </a>
           </li>
-          <li class="nav-item">
+
+          <li class="nav-item" sec:authorize="hasRole('ROLE_USER')">
+            <a class="nav-link" rel="tooltip" data-placement="bottom" th:href="@{/my/userpage}">
+              <i class="fa-solid fa-right-to-bracket"></i>
+            </a>
+          </li>
+
+          <li class="nav-item" sec:authorize="hasRole('ROLE_CCA')">
+            <a class="nav-link" rel="tooltip" data-placement="bottom" th:href="@{/my/ccapage}">
+              <i class="fa-solid fa-right-to-bracket"></i>
+            </a>
+          </li>
+
+          <li class="nav-item" sec:authorize="isAuthenticated()">
             <a class="nav-link" rel="tooltip" data-placement="bottom" th:href="@{/user/logout}">
               <i class="fa-solid fa-right-from-bracket"></i>
             </a>
@@ -90,13 +106,17 @@
 
   <!-- 검색창 -->
   <div class="content-center" style="position: relative;">
-    <div class="form-group row" style="position: absolute; top: 370px; left: 50%; transform: translate(-50%, -50%); z-index: 1;">
+    <div class="form-group row"
+      style="position: absolute; top: 370px; left: 50%; transform: translate(-50%, -50%); z-index: 1;">
       <form th:action="@{/predict}" method="post" class="searchForm">
-        <input type="text" class="form-control" id="description" name="description" placeholder="제품 설명 입력" title="제품 설명을 입력해주세요." style="width: 514px; height: 66px;">
+        <input type="text" class="form-control" id="description" name="description" placeholder="제품 설명 입력"
+          title="제품 설명을 입력해주세요." style="width: 514px; height: 66px;">
         <input type="submit" class="btn btn-info" style="margin-left: 10px; width: 86px;" value="찾기">
       </form>
     </div>
-    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 670px; background-color: rgba(0, 0, 0, 0.5); z-index: 0;"></div>
+    <div
+      style="position: absolute; top: 0; left: 0; width: 100%; height: 670px; background-color: rgba(0, 0, 0, 0.5); z-index: 0;">
+    </div>
     <img th:src="@{/images/main-img.jpg}" alt="배경 이미지" style="width:100%; height: 670px;">
   </div>
   <div class="filter"></div>
@@ -182,54 +202,54 @@
         <img th:src="@{/images/un-logo.png}" class="img-fluid" alt="">
       </div>
     </div>
-  <!-- End Services Section -->
+    <!-- End Services Section -->
 
-    
 
-  <!--   Core JS Files   -->
-  <script src="./assets/js/core/jquery.min.js" type="text/javascript"></script>
-  <script src="./assets/js/core/popper.min.js" type="text/javascript"></script>
-  <script src="./assets/js/core/bootstrap.min.js" type="text/javascript"></script>
-  <!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
-  <script src="./assets/js/plugins/bootstrap-switch.js"></script>
-  <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
-  <script src="./assets/js/plugins/nouislider.min.js" type="text/javascript"></script>
-  <!--  Plugin for the DatePicker, full documentation here: https://github.com/uxsolutions/bootstrap-datepicker -->
-  <script src="./assets/js/plugins/moment.min.js"></script>
-  <script src="./assets/js/plugins/bootstrap-datepicker.js" type="text/javascript"></script>
-  <!-- Control Center for Paper Kit: parallax effects, scripts for the example pages etc -->
-  <script src="./assets/js/paper-kit.js?v=2.2.0" type="text/javascript"></script>
-  <!--  Google Maps Plugin    -->
-  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
-  <script>
-    $(document).ready(function() {
 
-      if ($("#datetimepicker").length != 0) {
-        $('#datetimepicker').datetimepicker({
-          icons: {
-            time: "fa fa-clock-o",
-            date: "fa fa-calendar",
-            up: "fa fa-chevron-up",
-            down: "fa fa-chevron-down",
-            previous: 'fa fa-chevron-left',
-            next: 'fa fa-chevron-right',
-            today: 'fa fa-screenshot',
-            clear: 'fa fa-trash',
-            close: 'fa fa-remove'
-          }
-        });
-      }
+    <!--   Core JS Files   -->
+    <script src="./assets/js/core/jquery.min.js" type="text/javascript"></script>
+    <script src="./assets/js/core/popper.min.js" type="text/javascript"></script>
+    <script src="./assets/js/core/bootstrap.min.js" type="text/javascript"></script>
+    <!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
+    <script src="./assets/js/plugins/bootstrap-switch.js"></script>
+    <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+    <script src="./assets/js/plugins/nouislider.min.js" type="text/javascript"></script>
+    <!--  Plugin for the DatePicker, full documentation here: https://github.com/uxsolutions/bootstrap-datepicker -->
+    <script src="./assets/js/plugins/moment.min.js"></script>
+    <script src="./assets/js/plugins/bootstrap-datepicker.js" type="text/javascript"></script>
+    <!-- Control Center for Paper Kit: parallax effects, scripts for the example pages etc -->
+    <script src="./assets/js/paper-kit.js?v=2.2.0" type="text/javascript"></script>
+    <!--  Google Maps Plugin    -->
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+    <script>
+      $(document).ready(function () {
 
-      function scrollToDownload() {
-
-        if ($('.section-download').length != 0) {
-          $("html, body").animate({
-            scrollTop: $('.section-download').offset().top
-          }, 1000);
+        if ($("#datetimepicker").length != 0) {
+          $('#datetimepicker').datetimepicker({
+            icons: {
+              time: "fa fa-clock-o",
+              date: "fa fa-calendar",
+              up: "fa fa-chevron-up",
+              down: "fa fa-chevron-down",
+              previous: 'fa fa-chevron-left',
+              next: 'fa fa-chevron-right',
+              today: 'fa fa-screenshot',
+              clear: 'fa fa-trash',
+              close: 'fa fa-remove'
+            }
+          });
         }
-      }
-    });
-  </script>
+
+        function scrollToDownload() {
+
+          if ($('.section-download').length != 0) {
+            $("html, body").animate({
+              scrollTop: $('.section-download').offset().top
+            }, 1000);
+          }
+        }
+      });
+    </script>
 </body>
 
 </html>
