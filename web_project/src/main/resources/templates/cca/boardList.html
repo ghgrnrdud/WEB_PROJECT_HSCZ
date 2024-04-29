@@ -259,117 +259,118 @@
 					</form>
 				</div>
 			</div>
+		</div>
 
-			<div class="container">
-				<div class="table-responsive">
-					<table class="table custom-table">
-						<thead>
-							<tr id="tableTr">
-								<th class="ccaName">글번호</th>
-								<th class="companyName">글제목</th>
-								<th class="phone">작성자</th>
-								<th class="companyRegion">품목</th>
-								<th class="ccaEmail">작성일</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr th:each="board, status : ${consultList}">
-								<td th:text="${(consultList.number * consultList.size) + status.count}"></td>
-								<td>
-									<a class="boardTitle"
-										th:href="@{/cca/detail(consultNum=${board.consultNum}, searchBy=${searchBy}, searchItem=${searchItem})}"
-										th:text="${board.consultTitle}"></a>
-								</td>
-								<td th:text="${board.consultWriter}"></td>
-								<td th:text="${board.productCategory}"></td>
-								<td th:text="*{#temporals.format(board.consultDate, 'yyyy-MM-dd hh:mm:ss')}"></td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
+		<div class="container">
+			<div class="table-responsive">
+				<table class="table custom-table">
+					<thead>
+						<tr id="tableTr">
+							<th class="ccaName">글번호</th>
+							<th class="companyName">글제목</th>
+							<th class="phone">작성자</th>
+							<th class="companyRegion">품목</th>
+							<th class="ccaEmail">작성일</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="board, status : ${consultList}">
+							<td th:text="${(consultList.number * consultList.size) + status.count}"></td>
+							<td>
+								<a class="boardTitle"
+									th:href="@{/cca/detail(consultNum=${board.consultNum}, searchBy=${searchBy}, searchItem=${searchItem})}"
+									th:text="${board.consultTitle}"></a>
+							</td>
+							<td th:text="${board.consultWriter}"></td>
+							<td th:text="${board.productCategory}"></td>
+							<td th:text="*{#temporals.format(board.consultDate, 'yyyy-MM-dd hh:mm:ss')}"></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
 
-				<!-- 페이징 -->
-				<nav class="pagination">
-					<a th:if="${navi.startPageGroup > 1}"
-						th:href="@{|/cca/boardList?page=${navi.startPageGroup - 10}&searchBy=${searchBy}&searchItem=${searchItem}|}"
-						class="btn">&laquo; Previous</a>
-					<span th:each="count : ${#numbers.sequence(navi.startPageGroup, navi.endPageGroup)}">
-						<span th:if="${count == navi.page}">
-							<b class="page-no current" th:text="${count}"></b>
-						</span>
-						<span th:unless="${count == navi.page}">
-							<a class="page-no"
-								th:href="@{|/cca/boardList?page=${count}&searchBy=${searchBy}&searchItem=${searchItem}|}"
-								th:text="${count}"></a>
-						</span>
+			<!-- 페이징 -->
+			<nav class="pagination">
+				<a th:if="${navi.startPageGroup > 1}"
+					th:href="@{|/cca/boardList?page=${navi.startPageGroup - 10}&searchBy=${searchBy}&searchItem=${searchItem}|}"
+					class="btn">&laquo; Previous</a>
+				<span th:each="count : ${#numbers.sequence(navi.startPageGroup, navi.endPageGroup)}">
+					<span th:if="${count == navi.page}">
+						<b class="page-no current" th:text="${count}"></b>
 					</span>
-					<a th:if="${navi.endPageGroup < navi.totalPages}"
-						th:href="@{|/cca/boardList?page=${navi.endPageGroup + 1}&searchBy=${searchBy}&searchItem=${searchItem}|}"
-						class="btn">Next &raquo;</a>
-				</nav>
-				<!--페이징 끝-->
-			</div>
-			<!--table-reponsive 끝-->
-		</div> <!--content 끝-->
+					<span th:unless="${count == navi.page}">
+						<a class="page-no"
+							th:href="@{|/cca/boardList?page=${count}&searchBy=${searchBy}&searchItem=${searchItem}|}"
+							th:text="${count}"></a>
+					</span>
+				</span>
+				<a th:if="${navi.endPageGroup < navi.totalPages}"
+					th:href="@{|/cca/boardList?page=${navi.endPageGroup + 1}&searchBy=${searchBy}&searchItem=${searchItem}|}"
+					class="btn">Next &raquo;</a>
+			</nav>
+			<!--페이징 끝-->
+		</div>
+		<!--table-reponsive 끝-->
+	</div> <!--content 끝-->
 
-		<!-- footer -->
-		<footer class="footer-wave">
-			<div class="waves">
-				<div class="wave" id="wave1"></div>
-				<div class="wave" id="wave2"></div>
-				<div class="wave" id="wave3"></div>
-				<div class="wave" id="wave4"></div>
-			</div>
+	<!-- footer -->
+	<footer class="footer-wave">
+		<div class="waves">
+			<div class="wave" id="wave1"></div>
+			<div class="wave" id="wave2"></div>
+			<div class="wave" id="wave3"></div>
+			<div class="wave" id="wave4"></div>
+		</div>
 
-			<ul class="footer-wave-menu">
-				<li class="menu__item">
-					<a class="menu__link" th:href="@{/}">HOME</a>
-				</li>
-				<li class="menu__item">
-					<a class="menu__link" th:href="@{/news}">무역뉴스</a>
-				</li>
-				<li class="menu__item">
-					<a class="menu__link" th:href="@{/info/infoList}">FTA정보</a>
-				</li>
-				<li class="menu__item">
-					<a class="menu__link" th:href="@{/trade/showStat}">무역통계</a>
-				</li>
-				<li class="menu__item">
-					<a class="menu__link" th:href="@{/cca/boardList}">관세사상담</a>
-				</li>
-			</ul>
-			<p>&copy;2024 HScode Zoom | All Rights Reserved</p>
-		</footer>
-		<!-- End footer -->
+		<ul class="footer-wave-menu">
+			<li class="menu__item">
+				<a class="menu__link" th:href="@{/}">HOME</a>
+			</li>
+			<li class="menu__item">
+				<a class="menu__link" th:href="@{/news}">무역뉴스</a>
+			</li>
+			<li class="menu__item">
+				<a class="menu__link" th:href="@{/info/infoList}">FTA정보</a>
+			</li>
+			<li class="menu__item">
+				<a class="menu__link" th:href="@{/trade/showStat}">무역통계</a>
+			</li>
+			<li class="menu__item">
+				<a class="menu__link" th:href="@{/cca/boardList}">관세사상담</a>
+			</li>
+		</ul>
+		<p>&copy;2024 HScode Zoom | All Rights Reserved</p>
+	</footer>
+	<!-- End footer -->
 
-		<!--script-->
-		<script th:src="@{/script/jquery-3.7.1.min.js}" type="text/javascript"></script>
-		<script th:src="@{/assets/js/core/popper.min.js}" type="text/javascript"></script>
-		<script th:src="@{/assets/js/core/bootstrap.min.js}" type="text/javascript"></script>
+	<!--script-->
+	<script th:src="@{/script/jquery-3.7.1.min.js}" type="text/javascript"></script>
+	<script th:src="@{/assets/js/core/popper.min.js}" type="text/javascript"></script>
+	<script th:src="@{/assets/js/core/bootstrap.min.js}" type="text/javascript"></script>
 
-		<script th:src="@{/assets/js/plugins/bootstrap-switch.js}"></script>
+	<script th:src="@{/assets/js/plugins/bootstrap-switch.js}"></script>
 
-		<script th:src="@{/assets/js/plugins/nouislider.min.js}" type="text/javascript"></script>
+	<script th:src="@{/assets/js/plugins/nouislider.min.js}" type="text/javascript"></script>
 
-		<script th:src="@{/assets/js/plugins/moment.min.js}"></script>
-		<script th:src="@{/assets/js/plugins/bootstrap-datepicker.js}" type="text/javascript"></script>
+	<script th:src="@{/assets/js/plugins/moment.min.js}"></script>
+	<script th:src="@{/assets/js/plugins/bootstrap-datepicker.js}" type="text/javascript"></script>
 
-		<script th:src="@{/assets/js/paper-kit.min.js?v=2.2.0}" type="text/javascript"></script>
-		<script type="text/javascript"
-			src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTTfWur0PDbZWPr7Pmq8K3jiDp0_xUziI"></script>
-		<script>
-			function pageFormSubmit(page) {
-				document.getElementById("requestPage").value = page;
-				// 선택한 검색 옵션과 검색어를 폼에 추가하여 서브밋
-				var searchBy = document.getElementById("searchBy").value;
-				var searchItem = document.getElementById("searchItem").value;
-				document.getElementById("searchBy").setAttribute("name", "searchBy");
-				document
-					.getElementById("searchItem")
-					.setAttribute("name", "searchItem");
-				document.getElementById("searchForm").submit();
-			}
-		</script>
+	<script th:src="@{/assets/js/paper-kit.min.js?v=2.2.0}" type="text/javascript"></script>
+	<script type="text/javascript"
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTTfWur0PDbZWPr7Pmq8K3jiDp0_xUziI"></script>
+	<script>
+		function pageFormSubmit(page) {
+			document.getElementById("requestPage").value = page;
+			// 선택한 검색 옵션과 검색어를 폼에 추가하여 서브밋
+			var searchBy = document.getElementById("searchBy").value;
+			var searchItem = document.getElementById("searchItem").value;
+			document.getElementById("searchBy").setAttribute("name", "searchBy");
+			document
+				.getElementById("searchItem")
+				.setAttribute("name", "searchItem");
+			document.getElementById("searchForm").submit();
+		}
+	</script>
 </body>
 
 </html>

@@ -36,8 +36,7 @@ public class CCAListService {
                     cca.getCcaName(),
                     cca.getCompanyName(),
                     cca.getPhone(),
-                    cca.getCompanyRegion(),
-                    cca.getCcaEmail()
+                    cca.getCompanyRegion()
                 )
         );
         return dtoList;
