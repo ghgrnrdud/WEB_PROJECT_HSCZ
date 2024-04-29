@@ -49,7 +49,7 @@ public class ReplyService {
     public List<AnswerDTO> selectAllReplys(Long consultNum) {
         log.info("{}", consultNum);
         BoardEntity entity = ccaRepository.findById(consultNum).get();
-        List<AnswerEntity> answerEntityList = answerRepository.findAllByBoardEntityOrderByReplyNumDesc(entity);
+        List<AnswerEntity> answerEntityList = answerRepository.findAllByBoardEntityOrderByLikeCountDesc(entity);
 
         /* EntityList --> DTOList */
 List<AnswerDTO> replyDTOList = new ArrayList<>();

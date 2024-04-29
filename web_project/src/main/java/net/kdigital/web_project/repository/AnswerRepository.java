@@ -11,4 +11,6 @@ public interface AnswerRepository extends JpaRepository<AnswerEntity, Long> {
 
 	List<AnswerEntity> findAllByBoardEntityOrderByReplyNumDesc(BoardEntity entity);
 
+    List<AnswerEntity> findAllByBoardEntityOrderByLikeCountDesc(BoardEntity entity);
+
 }

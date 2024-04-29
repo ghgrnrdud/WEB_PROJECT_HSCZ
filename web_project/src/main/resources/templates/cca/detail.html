@@ -22,7 +22,6 @@
 <body>
 	<!-- Ajax 전송 시 필요  -->
 	<input type="hidden" id="consultNum" th:value="${consult.consultNum}">
-	<input type="hidden" id="contextPath" th:value="${contextPath}">
 
 	<!-- Navbar -->
     <nav class="navbar navbar-expand-lg fixed-top navbar-transparent " color-on-scroll="300">
@@ -149,10 +148,10 @@
                         <a th:href="@{/cca/update(consultNum=${consult.consultNum}, searchBy=${searchBy}, searchItem=${searchItem})}" class="qna-button ans-btn">수정하기</a>
                         <a th:href="@{/cca/delete(consultNum=${consult.consultNum},searchBy=${searchBy}, searchItem=${searchItem})}" class="qna-button ans-btn">삭제하기</a>
                     </th:block>
-                    <th:block th:if="${#authentication.authorities.![authority].contains('ROLE_CCA')}">
+                    <!-- <th:block th:if="${#authentication.authorities.![authority].contains('ROLE_CCA')}">
                         <a th:href="@{/cca/replyWrite(consultNum=${consult.consultNum}, searchBy=${searchBy}, searchItem=${searchItem})}" class="qna-button ans-btn">답변달기</a>
-                    </th:block>
-                    <input type="button" value="버튼" class="qna-button ans-btn">
+                    </th:block> -->
+                    <!-- <input type="button" value="버튼" class="qna-button ans-btn"> -->
             </div>
         </div>    
 
@@ -162,16 +161,16 @@
                 <div class="editorHeaderInner">
                     <div class="headerThumbnail">
                         <div class="thumbnail">
-                            <img src="	https://ssl.pstatic.net/static/kin/09renewal/avatar/200x200_m_gray/profilePlaceholder_191121.png" alt="프로필 사진">
+                            <img src="https://ssl.pstatic.net/static/kin/09renewal/avatar/200x200_m_gray/profilePlaceholder_191121.png" alt="프로필 사진">
                         </div>
                     </div>
                     <div class="headerDetail">
                         <p class="headerText">관세사님, 정보를 공유해주세요.</p>
                     </div>
                     <div class="headerButton">
-                        <!-- <th:block th:if="${#authentication.authorities.![authority].contains('ROLE_CCA')}"> -->
+                        <th:block th:if="${#authentication.authorities.![authority].contains('ROLE_CCA')}">
                             <a th:href="@{/cca/replyWrite(consultNum=${consult.consultNum}, searchBy=${searchBy}, searchItem=${searchItem})}" class="qna-button ans-btn">답변달기</a>
-                        <!-- </th:block> -->
+                        </th:block>
                     </div>
                 </div>
             </div>

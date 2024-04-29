@@ -96,14 +96,12 @@ public class CCAController {
             HttpServletRequest request,
             Model model) {
 
-        String contextPath = request.getContextPath();
         BoardDTO boardDTO = ccaService.selectOneConsult(consultNum);
         List<AnswerDTO> replyList = replyService.selectAllReplys(consultNum); // 예시일 뿐, 해당 메서드가 실제로 존재한다고 가정
- 
+
         model.addAttribute("consult", boardDTO);
         model.addAttribute("searchItem", searchItem);
         model.addAttribute("searchBy",searchBy);
-        model.addAttribute("contextPath", contextPath);
         model.addAttribute("replyList", replyList); // 답변 DTO도 Model에 추가
 
         return "cca/detail";

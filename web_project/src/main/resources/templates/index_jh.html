@@ -92,17 +92,17 @@
   <div class="content-center" style="position: relative;">
     <div class="form-group row" style="position: absolute; top: 370px; left: 50%; transform: translate(-50%, -50%); z-index: 1;">
       <form th:action="@{/predict}" method="post" class="searchForm">
-        <div class="search" style="display:flex;">
-          <input type="text" class="form-control" id="description" name="description" placeholder="제품 설명 입력" title="제품 설명을 입력해주세요." style="width: 900px; height: 66px;">
+        <div class="search" id="mySearch" data-tooltip="수출입 하고자 하는 제품의 상세 설명을 입력해주세요" style="display:flex;">
+          <input type="text" class="form-control" id="description" name="description" style="width: 890px; height: 66px;">
           <img class="searchimg2" th:src="@{/images/searchbox-logo.png}" alt="찾기아이콘">
-          <input type="submit" class="btn btn-info" style="width: 70px; height: 50px" value="찾기">
+          <input type="submit" id=searchbtn class="btn btn-info" style="width: 95px; height: 65px; border:0px;" value="찾기">
         </div>
       </form>
     </div>
-    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 670px; background-color: rgba(0, 0, 0, 0.5); z-index: 0;"></div>
-    <img th:src="@{/images/main-img.jpg}" alt="배경 이미지" style="width:100%; height: 640px;">
-  </div>
-  <div class="filter"></div>
+    <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100vh; background-color: rgba(0, 0, 0, 0.5); z-index: 0;"></div>
+      <img th:src="@{/images/main-img.jpg}" alt="배경 이미지" style="width:100%; height: 100vh;">
+    </div>
+    <div class="filter"></div>
   <!-- End 검색창 -->
 
   <!-- Services Section -->
