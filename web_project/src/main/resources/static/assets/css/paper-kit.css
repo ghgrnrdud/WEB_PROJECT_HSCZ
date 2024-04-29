@@ -2538,7 +2538,7 @@ height: 40px;
 box-shadow: none;
 }
 
-.form-control:focus {빌딩빌
+.form-control:focus {
 background-color: #FFFFFF;
 border: 1px solid #ccc;
 -webkit-box-shadow: none;
