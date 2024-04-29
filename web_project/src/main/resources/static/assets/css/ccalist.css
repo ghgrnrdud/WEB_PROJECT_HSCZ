@@ -265,6 +265,7 @@ tbody tr td .boardTitle:hover {
 .pagination .current {
   font-weight: bold;
 }
-.pagination .next10 {
+.pagination .next10,
+.pagination .prev {
   color: white;
 }

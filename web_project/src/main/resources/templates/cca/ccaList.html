@@ -223,7 +223,6 @@
               <th class="companyName">관세사무소</th>
               <th class="phone">연락처</th>
               <th class="companyRegion">관세사무소 주소</th>
-              <th class="ccaEmail">이메일</th>
             </tr>
           </thead>
           <tbody>
@@ -232,7 +231,6 @@
               <td th:text="${cca.companyName}">관세사무소 이름</td>
               <td th:text="${cca.phone}">연락처</td>
               <td th:text="${cca.companyRegion}">관세사무소 주소</td>
-              <td th:text="${cca.ccaEmail}">관세사 이메일</td>
             </tr>
           </tbody>
         </table>
@@ -242,7 +240,7 @@
       <nav class="pagination">
         <a th:if="${navi.startPageGroup > 1}"
           th:href="@{|/cca/ccaList?page=${navi.startPageGroup - 10}&searchBy=${searchBy}&searchItem=${searchItem}|}"
-          class="btn">&laquo; Previous</a>
+          class="btn prev">&laquo; Previous</a>
         <span th:each="count : ${#numbers.sequence(navi.startPageGroup, navi.endPageGroup)}">
           <span th:if="${count == navi.page}">
             <b class="page-no current" th:text="${count}"></b>

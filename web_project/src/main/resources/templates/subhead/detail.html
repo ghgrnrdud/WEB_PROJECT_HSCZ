@@ -242,12 +242,12 @@
 
                 <tbody th:each="subhead : ${list}">
                     <tr>
-                        <td rowspan="2" th:text="${hs4digit}"></td>
-                        <td rowspan="2" th:text="${subhead.hs6digit}"></td>
+                        <td rowspan="2" th:text="${hs4digit}" class="hsCodetd"></td>
+                        <td rowspan="2" th:text="${subhead.hs6digit}" class="hsCodetd"></td>
 
                         <!-- 조건문 시작 -->
                         <!-- 마지막 네자리가 null이 아니고 길이가 4이면 하이퍼링크 걸기-->
-                        <td class="last4digit-td" rowspan="2"
+                        <td class="last4digit-td hsCodetd" rowspan="2"
                             th:if="!${#strings.isEmpty(subhead.hs10digit)} and ${#strings.length(subhead.hs10digit) == 4}">
                             <a class="last4digit"
                                 th:href="@{/subhead/info(hsAll=${subhead.hsAll},hs4digit=${subhead.hs4digit})}"
@@ -255,7 +255,8 @@
                         </td>
                         <td rowspan="2"
                             th:unless="!${#strings.isEmpty(subhead.hs10digit)} and ${#strings.length(subhead.hs10digit) == 4}"
-                            th:text="${subhead.hs10digit}"></td>
+                            th:text="${subhead.hs10digit}"
+                            class="hsCodetd"></td>
                         <!-- 조건문 끝 -->
 
                         <td th:text="${subhead.koDescription}"></td>
