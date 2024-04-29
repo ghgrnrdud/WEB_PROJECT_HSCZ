@@ -26,30 +26,20 @@ public class CCAService {
     
     private final CCARepository ccaRepository;
 
-    public Page<BoardDTO> findAllConsultsbySearch(Pageable pageable, String searchBy, String searchItem) {
+    public Page<BoardDTO> findAllConsultsbySearch(Pageable pageable, String searchWord, String searchItem) {
 		int page = pageable.getPageNumber() - 1; 
-		// -1을 한 이유: page 위치의 값은 0부터 시작함
-		// 사용자가 1페이지를 요청하면 DB에서는 0페이지를 가져와야 함
-		
-		// Java Reflection 기능을 이용할 수도 있다.
-		// List<BoardEntity> entityList = null;
+
 		Page<BoardEntity> entityList = null;
-		
-		switch(searchBy) {
-		
-		case "productCategory":
-			entityList = ccaRepository.findAllByProductCategory(
-					searchItem, 
+
+        entityList = ccaRepository.findAllByProductCategory(
+                    searchItem,
+                    searchWord,
 					PageRequest.of(page, pageLimit, Sort.by(Sort.Direction.DESC, "consult_num")));
-			break;
-		
-		}
-		log.info("{}",entityList.get());
+
+        log.info("{}", entityList.get());
+        
 		Page<BoardDTO> dtoList = null;  // DTO 생성자 추가
 
-		// entity를 dto로 변환하여 List에 담는 작업
-		// entityList.forEach((entity) -> dtoList.add(BoardDTO.toDTO(entity)));
-		// 앞단으로 가져갈 내용만 간추림
 		dtoList = entityList.map(board -> 
 		new BoardDTO(
 				board.getConsultNum(),
@@ -57,8 +47,6 @@ public class CCAService {
 				board.getConsultTitle(),
 				board.getConsultDate(),
 				board.getProductCategory()
-				
-			
 				)
 			);
 		
@@ -106,23 +94,5 @@ public class CCAService {
             ccaRepository.save(boardEntity); // 수정된 엔터티를 저장
         }
     }
-    public Page<BoardDTO> findAllConsults(Pageable pageable) {
-        int page = pageable.getPageNumber() - 1; 
-
-        Page<BoardEntity> entityList = ccaRepository.findAll(
-                PageRequest.of(page, pageLimit, Sort.by(Sort.Direction.DESC, "consultNum")));
-
-        Page<BoardDTO> dtoList = entityList.map(board -> 
-            new BoardDTO(
-                    board.getConsultNum(),
-                    board.getConsultWriter(),
-                    board.getConsultTitle(),
-                    board.getConsultDate(),
-                    board.getProductCategory()
-                )
-        );
-        return dtoList;
-    }
-
     
 }

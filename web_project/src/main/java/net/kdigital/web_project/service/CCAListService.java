@@ -20,19 +20,15 @@ public class CCAListService {
     
     private final CCAListRepository ccaListRepository;
 
-    public Page<CCAListDTO> findAllCCABySearch(Pageable pageable, String searchBy, String searchItem) {
+    public Page<CCAListDTO> findAllCCABySearch(Pageable pageable, String searchItem, String searchWord) {
         int page = pageable.getPageNumber() - 1; 
 
         Page<CCAListEntity> entityList = null;
 
-        switch (searchBy) {
-            case "companyRegion":
-                entityList = ccaListRepository.findAllCCAByRegion(
-                        searchItem, 
-                        PageRequest.of(page, pageLimit, Sort.by(Sort.Direction.ASC, "cca_num")));
-                break;
-           
-        }
+        entityList = ccaListRepository.findAllCCAByRegion(
+                searchItem,
+                searchWord,
+                PageRequest.of(page, pageLimit, Sort.by(Sort.Direction.ASC, "cca_num")));
 
         Page<CCAListDTO> dtoList = entityList.map(cca -> 
             new CCAListDTO(
@@ -42,29 +38,6 @@ public class CCAListService {
                     cca.getPhone(),
                     cca.getCompanyRegion(),
                     cca.getCcaEmail()
-                   
-                   
-                )
-        );
-        return dtoList;
-    }
-
-    public Page<CCAListDTO> findAllCCA(Pageable pageable) {
-        int page = pageable.getPageNumber() - 1; 
-
-        Page<CCAListEntity> entityList = ccaListRepository.findAll(
-                PageRequest.of(page, pageLimit, Sort.by(Sort.Direction.ASC, "ccaNum")));
-
-        Page<CCAListDTO> dtoList = entityList.map(cca -> 
-            new CCAListDTO(
-                    cca.getCcaNum(),
-                    cca.getCcaName(),
-                    cca.getCompanyName(),
-                    cca.getPhone(),
-                    cca.getCompanyRegion(),
-                    cca.getCcaEmail()
-                   
-                   
                 )
         );
         return dtoList;

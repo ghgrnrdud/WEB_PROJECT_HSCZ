@@ -28,6 +28,10 @@
   font-weight: 500;
   font-size: 17px;
 }
+#selectcss .searchWord {
+  border-radius: 10px;
+  border-color: #dad8d8a6;
+}
 
 .custom-table {
   min-width: 1000px;
@@ -192,8 +196,8 @@ tbody tr td .boardTitle:hover {
   color: black;
   font-size: 15px;
   height: 45px;
-  width: 250px;
-  padding: 7px 20px;
+  width: 350px;
+  padding: 7px 15px;
   border: 1.8px solid rgb(114, 183, 225);
   border-radius: 15px;
   display: flex;

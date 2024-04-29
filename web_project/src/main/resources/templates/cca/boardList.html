@@ -140,121 +140,124 @@
     	<!-- <h2 class="ccaLIST">상담문의글 목록</h2> -->
       	<p th:if="${#lists.isEmpty(consultList)}">목록이 없습니다.</p>
       	<div class="head">
-			<!-- 글쓰기 버튼 -->
-			<div>
-				<div class="write" th:if="${#authentication.authorities.![authority].contains('ROLE_USER')}">
-					<a th:href="@{/cca/ccaWrite}" class="btn">상담글 작성하기</a>
-				</div>
-			</div>
-			<div class="searh-section">
+        <!-- 글쓰기 버튼 -->
+        <div>
+          <div class="write" th:if="${#authentication.authorities.![authority].contains('ROLE_USER')}">
+            <a th:href="@{/cca/ccaWrite}" class="btn">상담글 작성하기</a>
+          </div>
+        </div>
+        <div class="searh-section">
         	<div class="search">
-				<div id="ccaCount">
-					<p>검색된 총 게시물수: <b>[[${consultList.totalElements}]]</b>건</p>
-				</div>
-          		<form id="searchForm" th:action="@{/cca/boardList}" method="GET">
-            		<input type="hidden" name="page" id="requestPage" th:value="${page}"/>
-					<input type="hidden" id="contextPath" th:value="${contextPath}" />
-            		<div id="selectcss">
-              			<span>지역별 검색</span>
-              			<select name="searchItem">
-							<option value="">전체</option>
-							<option value="의류" th:selected="${searchItem == '의류'}">
-								의류
-							</option>
-							<option value="무기류" th:selected="${searchItem == '무기류'}">
-								무기류
-							</option>
-							<option value="농산품" th:selected="${searchItem == '농산품'}">
-								농산품
-							</option>
-							<option value="광물" th:selected="${searchItem == '광물'}">
-								광물
-							</option>
-							<option value="화학품" th:selected="${searchItem == '화학품'}">
-								화학품
-							</option>
-							<option value="완구류" th:selected="${searchItem == '완구류'}">
-								완구류
-							</option>
-							<option value="예술품" th:selected="${searchItem == '예술품'}">
-								예술품
-							</option>
-							<option value="가구류" th:selected="${searchItem == '가구류'}">
-								가구류
-							</option>
-							<option value="악기류" th:selected="${searchItem == '악기류'}">
-								악기류
-							</option>
-							<option value="선박" th:selected="${searchItem == '선박'}">
-								선박
-							</option>
-							<option value="시계" th:selected="${searchItem == '시계'}">
-								시계
-							</option>
-							<option value="항공기" th:selected="${searchItem == '항공기'}">
-								항공기
-							</option>
-							<option value="기계류" th:selected="${searchItem == '기계류'}">
-								기계류
-							</option>
-							<option value="금속류" th:selected="${searchItem == '금속류'}">
-								금속류
-							</option>
-							<option value="비금속류" th:selected="${searchItem == '비금속류'}">
-								비금속류
-							</option>
-							<option value="플라스틱류" th:selected="${searchItem == '플라스틱류'}">
-								플라스틱류
-							</option>
-							<option value="목재류" th:selected="${searchItem == '목재류'}">
-								목재류
-							</option>
-							<option value="의료용품" th:selected="${searchItem == '의료용품'}">
-								의료용품
-							</option>
-							<option value="화장품" th:selected="${searchItem == '화장품'}">
-								화장품
-							</option>
-							<option value="곡물류" th:selected="${searchItem == '곡물류'}">
-								곡물류
-							</option>
-							<option value="화약류" th:selected="${searchItem == '화약류'}">
-								화약류
-							</option>
-							<option value="고무제품류" th:selected="${searchItem == '고무제품류'}">
-								고무제품류
-							</option>
-							<option value="가죽제품류" th:selected="${searchItem == '가죽제품류'}">
-								가죽제품류
-							</option>
-							<option value="인쇄물류" th:selected="${searchItem == '인쇄물류'}">
-								인쇄물류
-							</option>
-							<option value="케이블류" th:selected="${searchItem == '케이블류'}">
-								케이블류
-							</option>
-							<option value="면제품류" th:selected="${searchItem == '면제품류'}">
-								면제품류
-							</option>
-							<option value="견직류" th:selected="${searchItem == '견직류'}">
-								견직류
-							</option>
-							<option value="섬유제품류" th:selected="${searchItem == '섬유제품류'}">
-								섬유제품류
-							</option>
-							<option value="도자기류" th:selected="${searchItem == '도자기류'}">
-								도자기류
-							</option>
-							<option value="식기류" th:selected="${searchItem == '식기류'}">
-								식기류
-							</option>
-							<option value="철도부품" th:selected="${searchItem == '철도부품'}">
-								철도부품
-							</option>
-							<option value="원자로" th:selected="${searchItem == '원자로'}">
-								원자로
-							</option>
-						</select>
+          <div id="ccaCount">
+            <p>검색된 총 게시물수: <b>[[${consultList.totalElements}]]</b>건</p>
+          </div>
+          <form id="searchForm" th:action="@{/cca/boardList}" method="GET">
+            <input type="hidden" name="page" id="requestPage" th:value="${page}"/>
+            <input type="hidden" id="contextPath" th:value="${contextPath}" />
+            <div id="selectcss">
+              <select name="searchItem">
+                <option value="" selected>품목별 검색</option>
+                <option value="의류" th:selected="${searchItem == '의류'}">
+                  의류
+                </option>
+                <option value="식품류" th:selected="${searchItem == '식품류'}">
+                  식품류
+                </option>
+                <option value="무기류" th:selected="${searchItem == '무기류'}">
+                  무기류
+                </option>
+                <option value="농산품" th:selected="${searchItem == '농산품'}">
+                  농산품
+                </option>
+                <option value="광물" th:selected="${searchItem == '광물'}">
+                  광물
+                </option>
+                <option value="화학품" th:selected="${searchItem == '화학품'}">
+                  화학품
+                </option>
+                <option value="완구류" th:selected="${searchItem == '완구류'}">
+                  완구류
+                </option>
+                <option value="예술품" th:selected="${searchItem == '예술품'}">
+                  예술품
+                </option>
+                <option value="가구류" th:selected="${searchItem == '가구류'}">
+                  가구류
+                </option>
+                <option value="악기류" th:selected="${searchItem == '악기류'}">
+                  악기류
+                </option>
+                <option value="선박" th:selected="${searchItem == '선박'}">
+                  선박
+                </option>
+                <option value="시계" th:selected="${searchItem == '시계'}">
+                  시계
+                </option>
+                <option value="항공기" th:selected="${searchItem == '항공기'}">
+                  항공기
+                </option>
+                <option value="기계류" th:selected="${searchItem == '기계류'}">
+                  기계류
+                </option>
+                <option value="금속류" th:selected="${searchItem == '금속류'}">
+                  금속류
+                </option>
+                <option value="비금속류" th:selected="${searchItem == '비금속류'}">
+                  비금속류
+                </option>
+                <option value="플라스틱류" th:selected="${searchItem == '플라스틱류'}">
+                  플라스틱류
+                </option>
+                <option value="목재류" th:selected="${searchItem == '목재류'}">
+                  목재류
+                </option>
+                <option value="의료용품" th:selected="${searchItem == '의료용품'}">
+                  의료용품
+                </option>
+                <option value="화장품" th:selected="${searchItem == '화장품'}">
+                  화장품
+                </option>
+                <option value="곡물류" th:selected="${searchItem == '곡물류'}">
+                  곡물류
+                </option>
+                <option value="화약류" th:selected="${searchItem == '화약류'}">
+                  화약류
+                </option>
+                <option value="고무제품류" th:selected="${searchItem == '고무제품류'}">
+                  고무제품류
+                </option>
+                <option value="가죽제품류" th:selected="${searchItem == '가죽제품류'}">
+                  가죽제품류
+                </option>
+                <option value="인쇄물류" th:selected="${searchItem == '인쇄물류'}">
+                  인쇄물류
+                </option>
+                <option value="케이블류" th:selected="${searchItem == '케이블류'}">
+                  케이블류
+                </option>
+                <option value="면제품류" th:selected="${searchItem == '면제품류'}">
+                  면제품류
+                </option>
+                <option value="견직류" th:selected="${searchItem == '견직류'}">
+                  견직류
+                </option>
+                <option value="섬유제품류" th:selected="${searchItem == '섬유제품류'}">
+                  섬유제품류
+                </option>
+                <option value="도자기류" th:selected="${searchItem == '도자기류'}">
+                  도자기류
+                </option>
+                <option value="식기류" th:selected="${searchItem == '식기류'}">
+                  식기류
+                </option>
+                <option value="철도부품" th:selected="${searchItem == '철도부품'}">
+                  철도부품
+                </option>
+                <option value="원자로" th:selected="${searchItem == '원자로'}">
+                  원자로
+                </option>
+              </select>
+                <input type="text" name="searchWord" class="searchWord" th:value="${searchWord}">
               	<input type="submit" value="검색" id="ccaSearchBtn" class="btn btn-info"/>
             </div>
           </form>
@@ -281,8 +284,8 @@
 					<a class="boardTitle" th:href="@{/cca/detail(consultNum=${board.consultNum}, searchBy=${searchBy}, searchItem=${searchItem})}" th:text="${board.consultTitle}"></a>
 				</td>
                 <td th:text="${board.consultWriter}"></td>
-                <td th:text="${board.productCategory}">관세사무소 주소</td>
-                <td th:text="*{#temporals.format(board.consultDate, 'yyyy-MM-dd hh:mm:ss')}">관세사 이메일</td>
+                <td th:text="${board.productCategory}"></td>
+                <td th:text="*{#temporals.format(board.consultDate, 'yyyy-MM-dd hh:mm:ss')}"></td>
               </tr>
             </tbody>
           </table>

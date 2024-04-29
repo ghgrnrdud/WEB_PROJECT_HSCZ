@@ -50,7 +50,7 @@ create table reply_cca
     reply_num number primary key, -- 답변번호
     consult_num number references consult_cca(consult_num) ON DELETE CASCADE, -- 상담번호
     reply_writer varchar2(20), -- 상담 답변자
-    reply_content varchar2(20), -- 답변 내용
+    reply_content varchar2(2000), -- 답변 내용
     reply_date date default sysdate, -- 상담 답변작성일
     like_count number,  -- 추천여부
     product_category VARCHAR2(100)
@@ -72,6 +72,18 @@ create table consult_cca
     product_category VARCHAR2(100)
 ); 
 create sequence consult_seq;
+----- 회원의 답변 채택 테이블
+drop table customer_like;
+drop sequence customer_like_seq;
+
+create table customer_like
+(
+    user_like_id number primary key
+    , user_id varchar2(20)
+    , reply_num number references reply_cca(reply_num)
+    , like_date date default sysdate
+);
+create sequence customer_like_seq;
 
 /*********** HSCODE 테이블 ***********/
 /* HSCODE 앞4자리 테이블*/

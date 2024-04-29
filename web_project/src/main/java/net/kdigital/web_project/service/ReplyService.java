@@ -104,4 +104,12 @@ List<AnswerDTO> replyDTOList = new ArrayList<>();
         }
         return answerDTO;
     }
+
+    @Transactional
+    public void increaseLikeCount(Long replyNum) {
+        AnswerEntity answerEntity = answerRepository.findById(replyNum).get();
+        answerEntity.setLikeCount(answerEntity.getLikeCount() + 1);
+    }
+
+
 } 

@@ -231,9 +231,11 @@
                         <div class="answerBtnRight">
                             <th:block th:if="${#authentication.authorities.![authority].contains('ROLE_USER')}">
                                 
-                                <form th:action="@{/cca/setLike}" method="POST">
+                                <form th:action="@{/cca/increaseLike}" method="POST">
                                     <input type="hidden" name="replyNum" th:value="${reply.replyNum}">
                                     <input type="hidden" name="consultNum" th:value="${consult.consultNum}">
+                                    <input type="hidden" name="consultWriter" th:value="${consult.consultWriter}">
+                                    <input type="hidden" name="replyWriter" th:value="${reply.replyWriter}">
                                     <input type="hidden" name="searchBy" th:value="${searchBy}">
                                     <input type="hidden" name="searchItem" th:value="${searchItem}">
                                     <div class="likeArea">

@@ -6,6 +6,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -50,36 +54,26 @@ public class CCAController {
     @GetMapping("/boardList")
     public String boardList(
             @PageableDefault(page = 1) Pageable pageable,
-            @RequestParam(name = "searchBy",defaultValue="productCategory") String searchBy,
-            @RequestParam(name = "searchItem",defaultValue="") String searchItem,
+            @RequestParam(name = "searchItem", defaultValue = "") String searchItem,
+            @RequestParam(name = "searchWord", defaultValue = "") String searchWord,
             Model model) {
 
-        Page<BoardDTO> dtoList;
+            Page<BoardDTO> dtoList;
 
-        if (searchItem.isEmpty()) {
-            dtoList = ccaService.findAllConsults(pageable);
+            dtoList = ccaService.findAllConsultsbySearch(pageable, searchWord, searchItem);
         
-        } else {
-        
-            dtoList = ccaService.findAllConsultsbySearch(pageable, searchBy, searchItem);
-        
+            int totalPages = dtoList.getTotalPages();
+            int page = pageable.getPageNumber();
+
+            PageNavigator navi = new PageNavigator(pageLimit, page, totalPages);
+
+            model.addAttribute("consultList", dtoList);
+            model.addAttribute("searchItem", searchItem);
+            model.addAttribute("searchWord", searchWord); 
+            model.addAttribute("navi", navi);
+            
+            return "/cca/boardList";
         }
-    
-        int totalPages = dtoList.getTotalPages();
-        int page = pageable.getPageNumber();
-
-        PageNavigator navi = new PageNavigator(pageLimit, page, totalPages);
-        System.out.println(searchBy);
-        System.out.println(searchItem);
-    
-        System.out.println(dtoList.toString());
-        model.addAttribute("consultList", dtoList);
-        model.addAttribute("searchItem", searchItem);
-        model.addAttribute("searchBy", searchBy);
-        model.addAttribute("navi", navi);
-        
-        return "/cca/boardList";
-    }
 
     @GetMapping("/ccaWrite")
     public String ccaWrite() {
@@ -97,7 +91,7 @@ public class CCAController {
     @GetMapping("/detail")
     public String ccaDetail(
             @RequestParam(name = "consultNum") Long consultNum,
-            @RequestParam(name = "searchBy") String searchBy,
+            @RequestParam(name = "searchBy", defaultValue = "") String searchBy,
             @RequestParam(name = "searchItem", defaultValue = "") String searchItem,
             HttpServletRequest request,
             Model model) {
@@ -254,65 +248,59 @@ public class CCAController {
     @GetMapping("/ccaList")
     public String ccaList(
         @PageableDefault(page = 1) Pageable pageable,
-        @RequestParam(name="searchBy",defaultValue="companyRegion") String searchBy,
         @RequestParam(name = "searchItem", defaultValue = "") String searchItem,
+        @RequestParam(name = "searchWord", defaultValue = "") String searchWord,
         Model model) {
-            Page<CCAListDTO> dtoList;
+                Page<CCAListDTO> dtoList;
 
-            if (searchItem.isEmpty()) {
-                dtoList = ccaListService.findAllCCA(pageable);
-            } else {
-                dtoList = ccaListService.findAllCCABySearch(pageable,searchBy, searchItem);
-            }
-        
-        
-        int totalPages = (int) dtoList.getTotalPages();
-        int page = pageable.getPageNumber();
-        PageNavigator navi = new PageNavigator(pageLimit, page, totalPages);
+                dtoList = ccaListService.findAllCCABySearch(pageable, searchItem, searchWord);
+                    
+                int totalPages = (int) dtoList.getTotalPages();
+                int page = pageable.getPageNumber();
+                PageNavigator navi = new PageNavigator(pageLimit, page, totalPages);
 
-        model.addAttribute("ccaList", dtoList);
-        model.addAttribute("searchItem", searchItem);
-        model.addAttribute("navi", navi);
-        model.addAttribute("searchBy",searchBy);
-        return "cca/ccaList";
-    }
+                model.addAttribute("ccaList", dtoList);
+                model.addAttribute("searchItem", searchItem);
+                model.addAttribute("navi", navi);
+                model.addAttribute("searchWord", searchWord);
+            return "cca/ccaList";
+        }   
 
+    @PostMapping("/increaseLike")
+    public String increaseLike(
+        @RequestParam("replyNum") Long replyNum,
+        @RequestParam("consultNum") Long consultNum,
+        @RequestParam("replyWriter") String replyWriter,
+        @RequestParam(name = "searchBy", defaultValue = "") String searchBy,
+            @RequestParam(name = "searchItem", defaultValue = "") String searchItem
+        ) {
+        // 로그인한 유저 정보 가져오기
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal(); 
+		UserDetails userDetails = (UserDetails)principal; 
+		String username = ((UserDetails) principal).getUsername(); 
 
-    @PostMapping("/setLike")
-    @Transactional  // 데이터베이스 작업을 트랜잭션으로 관리
-    public String setLike(Model model, 
-            @RequestParam("replyNum") Long replyNum,
-            @RequestParam("consultNum") Long consultNum,
-            @RequestParam("searchBy") String searchBy,
-            @RequestParam("searchItem") String searchItem) {
-        
-        // 답변 정보를 가져온다.
-        AnswerDTO answer = replyService.selectOneAnswer(replyNum, consultNum);
-    
-        // 중복 추천을 방지한다. 답변이 존재하고, 이미 likeCount가 증가되었다면 아무 작업도 수행하지 않는다.
-        if (answer != null && answer.getLikeCount() > 0) {
-        
-            return "redirect:/cca/detail?consultNum=" + consultNum + "&searchBy=" + searchBy + "&searchItem=" + searchItem;
-        }
+        log.info("===================increaseLike 도착");
+        // 사용자가 답변에 추천을 했는지 확인
+        boolean likeCheck = customerService.checkIsAlreadyLiked(replyNum, username);
 
-        // 첫 추천을 처리한다. 답변이 존재하고 likeCount가 0이라면 추천 로직을 수행한다.
-        if (answer != null && answer.getLikeCount() == 0) {
-            // 사용자의 likeTotal을 증가시킨다.
-            CustomerEntity customer = customerService.findCustomerByUserId(answer.getReplyWriter());
-            if (customer != null) {
-                customerService.increaseTotalLike(customer);
-            }
-            
-            // 답변의 likeCount를 1로 증가시킨다.
-            answer.setLikeCount(1);
-            replyService.updateOneAnswer(replyNum, answer);
+        if (likeCheck) {
+            // customerLike 엔티티에 추가
+            customerService.insertCustomerLike(replyNum, username);
+            log.info("============ customerLikeEntity에 추가됨");
+
+            // reply_cca 엔티티의 like_count 증가
+            replyService.increaseLikeCount(replyNum);
+            log.info("============= likeCount 증가");
+
+            // customer 엔티티의 like_total 증가
+            customerService.increaseLikeTotal(replyWriter);
+            log.info("============= likeTotal 증가");
+
+            return "redirect:/cca/detail?consultNum=" + consultNum;
         }
         
-        // 상세 페이지로 리다이렉트한다.
-        return "redirect:/cca/detail?consultNum=" + consultNum + "&searchBy=" + searchBy + "&searchItem=" + searchItem;
+        return "redirect:/cca/detail?consultNum=" + consultNum;
     }
-
-
 
 
     @GetMapping("/ccaTop10")

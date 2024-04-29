@@ -135,17 +135,17 @@
         <div class="hsCode-head">
             <h5>더 많은 정보가 필요하신가요? &nbsp;</h5>
             <div>
-                <a href="#">
+                <a th:href="@{/cca/ccaList}">
                     <button type="button" class="mybtn-consult" data-tooltip="관세사 목록보기">
                         <i class="fa-regular fa-address-book"></i>
                     </button>
                 </a>
-                <a href="#">
+                <a th:href="@{/cca/boardList}">
                     <button type="button" class="mybtn-consult" data-tooltip="관세사 상담목록보기">
                         <i class="fa-solid fa-list-ul"></i>
                     </button>
                 </a>
-                <a href="#">
+                <a th:href="@{/cca/ccaWrite}">
                     <button type="button" class="mybtn-consult" data-tooltip="관세사 상담글쓰기">
                         <i class="fa-solid fa-pen-to-square"></i>
                     </button>
@@ -157,9 +157,7 @@
             <div class="container1">
                 <!-- 10자리 코드의 기본 정보 -->
                 <div class="basic-info-table">
-                    <div>
-                        <h3>품목번호: &nbsp; <span>[[ ${hsCode} ]]</span></h3>
-                    </div>
+                    <h3>품목번호: &nbsp; <span>[[ ${hsCode} ]]</span></h3>
                     <table border="1">
                         <tr>
                             <th>단위(중량/수량)</th>
@@ -204,13 +202,10 @@
                                     <td th:text="${exCheckList[1]}"></td>
                                 </tr>
                             </table>
-                            <!-- <div th:each="exCheck : ${exCheckList}">
-                            <p th:text="${exCheck}"></p> 
-                        </div> -->
                         </div>
 
                         <h5>수입</h5>
-                        <div> <!--th:unless="${imCheckList[0] == null and imCheckList[1] == null}"-->
+                        <div>
                             <table>
                                 <tr>
                                     <th>신고확인법령</th>
