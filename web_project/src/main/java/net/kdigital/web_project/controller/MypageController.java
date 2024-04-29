@@ -38,224 +38,218 @@ public class MypageController {
 	public final CustomerItemService customerItemService;
 	public int boardCount;
 	public int replyCount;
-	
+
 	@GetMapping("/userpage")
 	public String userpage(Model model) {
 		boardCount = 0;
 		// 로그인한 유저 정보 가져오기
-		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal(); 
-		UserDetails userDetails = (UserDetails)principal; 
-		String username = ((UserDetails) principal).getUsername(); 
-		
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		UserDetails userDetails = (UserDetails) principal;
+		String username = ((UserDetails) principal).getUsername();
+
 		CustomerDTO customerDTO = CustomerDTO.toDTO(customerService.findCustomerByUserId(username));
-		
+
 		// 유저 아이템 정보 가져오기
 		CustomerItemDTO customerItemDTO = customerItemService.findItem(username);
-		
+
 		// 로그인한 유저가 작성한 글 가져오기
-		List<BoardEntity> boardEntityList =  ccaService.findAllConsultsbyuserId(username);
-		
+		List<BoardEntity> boardEntityList = ccaService.findAllConsultsbyuserId(username);
+
 		log.info("{}", boardEntityList);
-		
+
 		Map<BoardDTO, Integer> dataMap = new HashMap<>();
-		
-//		List<BoardDTO> totalBoardDTOList = new ArrayList<>();
-//		List<AnswerDTO> totalReplyDTOList = new ArrayList<>();
-		for(BoardEntity temp : boardEntityList) {
+
+		// List<BoardDTO> totalBoardDTOList = new ArrayList<>();
+		// List<AnswerDTO> totalReplyDTOList = new ArrayList<>();
+		for (BoardEntity temp : boardEntityList) {
 			// 작성한 글에 해당하는 댓글 가져오기
 			List<AnswerDTO> replyDTOList = replyService.selectAllReplys(temp.getConsultNum());
-			
+
 			log.info("{}", replyDTOList.size());
-			
+
 			dataMap.put(BoardDTO.toDTO(temp), replyDTOList.size());
-//			for(AnswerDTO temp2 : replyDTOList) {
-//				totalReplyDTOList.add(temp2);
-//			}
-//			totalBoardDTOList.add(BoardDTO.toDTO(temp));
+			// for(AnswerDTO temp2 : replyDTOList) {
+			// totalReplyDTOList.add(temp2);
+			// }
+			// totalBoardDTOList.add(BoardDTO.toDTO(temp));
 			boardCount += 1;
 		}
-		
+
 		log.info("{}", dataMap);
-		
+
 		model.addAttribute("customerDTO", customerDTO);
 		model.addAttribute("customerItemDTO", customerItemDTO);
-		model.addAttribute("dataMap",dataMap);
-//		model.addAttribute("totalBoardDTOList",totalBoardDTOList);
-//		model.addAttribute("totalReplyDTOList", totalReplyDTOList);
+		model.addAttribute("dataMap", dataMap);
+		// model.addAttribute("totalBoardDTOList",totalBoardDTOList);
+		// model.addAttribute("totalReplyDTOList", totalReplyDTOList);
 		model.addAttribute("boardCount", boardCount);
 		return "/user/userPage";
 	}
-	
+
 	@GetMapping("/ccapage")
 	public String ccapage(Model model) {
 		replyCount = 0;
 		// 로그인한 유저 정보 가져오기
-		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal(); 
-		UserDetails userDetails = (UserDetails)principal; 
-		String username = ((UserDetails) principal).getUsername(); 
-		
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		UserDetails userDetails = (UserDetails) principal;
+		String username = ((UserDetails) principal).getUsername();
+
 		CustomerDTO customerDTO = CustomerDTO.toDTO(customerService.findCustomerByUserId(username));
-		
+
 		// 유저 아이템 정보 가져오기
 		CustomerItemDTO customerItemDTO = customerItemService.findItem(username);
-		
+
 		// 유저가 쓴 댓글 정보 가져오기
 		List<AnswerDTO> replyDTOList = replyService.selectAllReplysByUsername(username);
-		
+
 		Map<AnswerDTO, BoardDTO> dataMap = new HashMap<>();
-		
-		for(AnswerDTO answerDTO : replyDTOList) {
-			
+
+		for (AnswerDTO answerDTO : replyDTOList) {
+
 			// 댓글에 해당하는 글정보 가져오기
 			BoardDTO boardDTO = ccaService.findByConsultNum(answerDTO.getConsultNum());
-			
+
 			dataMap.put(answerDTO, boardDTO);
-			
+
 			replyCount += 1;
-			
+
 		}
-		
+
 		log.info("{}", dataMap);
-		
+
 		model.addAttribute("customerDTO", customerDTO);
 		model.addAttribute("customerItemDTO", customerItemDTO);
-		model.addAttribute("dataMap",dataMap);
-//		model.addAttribute("totalBoardDTOList",totalBoardDTOList);
-//		model.addAttribute("totalReplyDTOList", totalReplyDTOList);
+		model.addAttribute("dataMap", dataMap);
+		// model.addAttribute("totalBoardDTOList",totalBoardDTOList);
+		// model.addAttribute("totalReplyDTOList", totalReplyDTOList);
 		model.addAttribute("replyCount", replyCount);
 		return "/user/ccaPage";
 	}
-	
+
 	@GetMapping("/updateUserPage")
 	public String updateUserPage(Model model) {
 		boardCount = 0;
 		// 로그인한 유저 정보 가져오기
-		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal(); 
-		UserDetails userDetails = (UserDetails)principal; 
-		String username = ((UserDetails) principal).getUsername(); 
-		
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		UserDetails userDetails = (UserDetails) principal;
+		String username = ((UserDetails) principal).getUsername();
+
 		CustomerDTO customerDTO = CustomerDTO.toDTO(customerService.findCustomerByUserId(username));
-		
+
 		// 유저 아이템 정보 가져오기
 		CustomerItemDTO customerItemDTO = customerItemService.findItem(username);
-		
+
 		// 로그인한 유저가 작성한 글 가져오기
-				List<BoardEntity> boardEntityList =  ccaService.findAllConsultsbyuserId(username);
-				
-				log.info("{}", boardEntityList);
-				
-				Map<BoardDTO, Integer> dataMap = new HashMap<>();
-				
-//				List<BoardDTO> totalBoardDTOList = new ArrayList<>();
-//				List<AnswerDTO> totalReplyDTOList = new ArrayList<>();
-				for(BoardEntity temp : boardEntityList) {
-					// 작성한 글에 해당하는 댓글 가져오기
-					List<AnswerDTO> replyDTOList = replyService.selectAllReplys(temp.getConsultNum());
-					
-					log.info("{}", replyDTOList.size());
-					
-					dataMap.put(BoardDTO.toDTO(temp), replyDTOList.size());
-//					for(AnswerDTO temp2 : replyDTOList) {
-//						totalReplyDTOList.add(temp2);
-//					}
-//					totalBoardDTOList.add(BoardDTO.toDTO(temp));
-					boardCount += 1;
-				}
-				
-				log.info("{}", dataMap);
-				
-				model.addAttribute("customerDTO", customerDTO);
-				model.addAttribute("customerItemDTO", customerItemDTO);
-				model.addAttribute("dataMap",dataMap);
-				model.addAttribute("boardCount", boardCount);
-		
+		List<BoardEntity> boardEntityList = ccaService.findAllConsultsbyuserId(username);
+
+		log.info("{}", boardEntityList);
+
+		Map<BoardDTO, Integer> dataMap = new HashMap<>();
+
+		// List<BoardDTO> totalBoardDTOList = new ArrayList<>();
+		// List<AnswerDTO> totalReplyDTOList = new ArrayList<>();
+		for (BoardEntity temp : boardEntityList) {
+			// 작성한 글에 해당하는 댓글 가져오기
+			List<AnswerDTO> replyDTOList = replyService.selectAllReplys(temp.getConsultNum());
+
+			log.info("{}", replyDTOList.size());
+
+			dataMap.put(BoardDTO.toDTO(temp), replyDTOList.size());
+			// for(AnswerDTO temp2 : replyDTOList) {
+			// totalReplyDTOList.add(temp2);
+			// }
+			// totalBoardDTOList.add(BoardDTO.toDTO(temp));
+			boardCount += 1;
+		}
+
+		log.info("{}", dataMap);
+
+		model.addAttribute("customerDTO", customerDTO);
+		model.addAttribute("customerItemDTO", customerItemDTO);
+		model.addAttribute("dataMap", dataMap);
+		model.addAttribute("boardCount", boardCount);
+
 		return "/user/updateUserPage";
 	}
-	
+
 	@GetMapping("/updateCCAPage")
 	public String updateCCAPage(Model model) {
 		replyCount = 0;
 		// 로그인한 유저 정보 가져오기
-		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal(); 
-		UserDetails userDetails = (UserDetails)principal; 
-		String username = ((UserDetails) principal).getUsername(); 
-		
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		UserDetails userDetails = (UserDetails) principal;
+		String username = ((UserDetails) principal).getUsername();
+
 		CustomerDTO customerDTO = CustomerDTO.toDTO(customerService.findCustomerByUserId(username));
-		
+
 		// 유저 아이템 정보 가져오기
-				CustomerItemDTO customerItemDTO = customerItemService.findItem(username);
-				
-				// 유저가 쓴 댓글 정보 가져오기
-				List<AnswerDTO> replyDTOList = replyService.selectAllReplysByUsername(username);
-				
-				Map<AnswerDTO, BoardDTO> dataMap = new HashMap<>();
-				
-				for(AnswerDTO answerDTO : replyDTOList) {
-					
-					// 댓글에 해당하는 글정보 가져오기
-					BoardDTO boardDTO = ccaService.findByConsultNum(answerDTO.getConsultNum());
-					
-					dataMap.put(answerDTO, boardDTO);
-					
-					replyCount += 1;
-					
-				}
-				
-				log.info("{}", dataMap);
-				
-				model.addAttribute("customerDTO", customerDTO);
-				model.addAttribute("customerItemDTO", customerItemDTO);
-				model.addAttribute("dataMap",dataMap);
-				model.addAttribute("replyCount", replyCount);
-		
+		CustomerItemDTO customerItemDTO = customerItemService.findItem(username);
+
+		// 유저가 쓴 댓글 정보 가져오기
+		List<AnswerDTO> replyDTOList = replyService.selectAllReplysByUsername(username);
+
+		Map<AnswerDTO, BoardDTO> dataMap = new HashMap<>();
+
+		for (AnswerDTO answerDTO : replyDTOList) {
+
+			// 댓글에 해당하는 글정보 가져오기
+			BoardDTO boardDTO = ccaService.findByConsultNum(answerDTO.getConsultNum());
+
+			dataMap.put(answerDTO, boardDTO);
+
+			replyCount += 1;
+
+		}
+
+		log.info("{}", dataMap);
+
+		model.addAttribute("customerDTO", customerDTO);
+		model.addAttribute("customerItemDTO", customerItemDTO);
+		model.addAttribute("dataMap", dataMap);
+		model.addAttribute("replyCount", replyCount);
+
 		return "/user/updateCcaPage";
 	}
-	
+
 	@PostMapping("/updateUser")
-	public String updateUser(@ModelAttribute CustomerDTO customerDTO
-			, @ModelAttribute CustomerItemDTO customerItemDTO)
-	{
+	public String updateUser(@ModelAttribute CustomerDTO customerDTO, @ModelAttribute CustomerItemDTO customerItemDTO) {
 		log.info("{}", customerDTO);
 		log.info("{}", customerItemDTO);
-		
+
 		// 로그인한 유저 정보 가져오기
-		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal(); 
-		UserDetails userDetails = (UserDetails)principal; 
-		String username = ((UserDetails) principal).getUsername(); 
-				
-		// 유저 정보 업데이트		
-		CustomerItemDTO updatedCustomerItemDTO = customerItemService.updateItem(username , customerItemDTO);
-				
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		UserDetails userDetails = (UserDetails) principal;
+		String username = ((UserDetails) principal).getUsername();
+
+		// 유저 정보 업데이트
+		CustomerItemDTO updatedCustomerItemDTO = customerItemService.updateItem(username, customerItemDTO);
+
 		// 유저 아이템 업데이트
 		CustomerDTO updatedCustomerDTO = customerService.updateUser(username, customerDTO);
-		
-		
+
 		log.info("{}", updatedCustomerDTO);
 		log.info("{}", updatedCustomerItemDTO);
 
 		return "redirect:/my/userpage";
 	}
-	
+
 	@PostMapping("/updateCCA")
-	public String updateCCA(@ModelAttribute CustomerDTO customerDTO
-			, @ModelAttribute CustomerItemDTO customerItemDTO)
-	{
+	public String updateCCA(@ModelAttribute CustomerDTO customerDTO, @ModelAttribute CustomerItemDTO customerItemDTO) {
 		// 로그인한 유저 정보 가져오기
-		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal(); 
-		UserDetails userDetails = (UserDetails)principal; 
-		String username = ((UserDetails) principal).getUsername(); 
-				
-		// 유저 정보 업데이트		
-		CustomerItemDTO updatedCustomerItemDTO = customerItemService.updateItem(username , customerItemDTO);
-				
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		UserDetails userDetails = (UserDetails) principal;
+		String username = ((UserDetails) principal).getUsername();
+
+		// 유저 정보 업데이트
+		CustomerItemDTO updatedCustomerItemDTO = customerItemService.updateItem(username, customerItemDTO);
+
 		// 유저 아이템 업데이트
 		CustomerDTO updatedCustomerDTO = customerService.updateUser(username, customerDTO);
-		
+
 		log.info("{}", updatedCustomerDTO);
 		log.info("{}", updatedCustomerItemDTO);
 
 		return "redirect:/my/ccapage";
 	}
-	
-	
+
 }

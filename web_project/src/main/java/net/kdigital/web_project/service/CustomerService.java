@@ -102,6 +102,7 @@ public class CustomerService {
 		customerEntity.setCompanyName(customerDTO.getCompanyName());
 		customerEntity.setCompanyRegion(customerDTO.getCompanyRegion());
 		customerEntity.setSelfInfo(customerDTO.getSelfInfo());
+		customerEntity.setUserId(customerDTO.getUserId());
 
 		return CustomerDTO.toDTO(customerEntity);
 	}

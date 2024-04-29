@@ -46,6 +46,7 @@ public class SecurityConfig {
 				, "/heading/**"
 				, "/news/**"
 				, "/cca/**"
+				, "/exchangeRate"
 				).permitAll()
 				.requestMatchers("/admin/**").hasRole("ADMIN")
 				.requestMatchers("/my/**").hasAnyRole("ADMIN", "USER", "CCA") // *********** 이게 맞나????
