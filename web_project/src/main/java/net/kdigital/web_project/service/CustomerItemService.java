@@ -40,7 +40,7 @@ public class CustomerItemService {
 	}
 
 	@Transactional
-	public CustomerItemDTO updateItem(CustomerDTO customerDTO, CustomerItemDTO customerItemDTO) {
+	public CustomerItemDTO updateItem(CustomerDTO customerDTO, CustomerItemDTO customerItemDTO, String username) {
 		CustomerItemEntity entity = customerItemRepository.findByCustomerEntity(CustomerEntity.toEntity(customerDTO));
 		entity.setFirstItem(customerItemDTO.getFirstItem());
 		entity.setSecondItem(customerItemDTO.getSecondItem());
