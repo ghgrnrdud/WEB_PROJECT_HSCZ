@@ -1,12 +1,9 @@
 package net.kdigital.web_project.service;
 
-
-
 import java.util.Optional;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -31,32 +28,34 @@ public class CustomerService {
 	public final CustomerRepository customerRepository;
 	public final BCryptPasswordEncoder bCryptPasswordEncoder;
 
-	/** 회원가입
+	/**
+	 * 회원가입
 	 * 
 	 */
 	public boolean joinProc(CustomerDTO customerDTO) {
 		boolean isExistCustomer = customerRepository.existsById(customerDTO.getUserId());
-		if(isExistCustomer) return false;
+		if (isExistCustomer)
+			return false;
 
 		// 비번을 암호화
 		customerDTO.setUserPwd(bCryptPasswordEncoder.encode(customerDTO.getUserPwd()));
-		
+
 		// DTO를 Entity로 변경
 		CustomerEntity customerEntity = CustomerEntity.toEntity(customerDTO);
 		log.info("{}", customerEntity.toString());
 		customerRepository.save(customerEntity);
-		 return true;
+		return true;
 	}
-	
+
 	public CustomerEntity findCustomerByUserId(String replyWriter) {
 		Optional<CustomerEntity> entity = customerRepository.findById(replyWriter);
 
-        if(entity.isPresent()) {
-            CustomerEntity customerEntity = entity.get();
-            return customerEntity;
-        }
+		if (entity.isPresent()) {
+			CustomerEntity customerEntity = entity.get();
+			return customerEntity;
+		}
 
-        return null;
+		return null;
 	}
 
 	@Transactional
@@ -71,27 +70,41 @@ public class CustomerService {
 
 	public Page<CustomerDTO> findAllUserCCA(Pageable pageable) {
 		Page<CustomerEntity> entities = customerRepository.findAllUserCCA(pageable);
-		
-		Page<CustomerDTO> dtoList = entities.map(cca -> 
-		new CustomerDTO(
+
+		Page<CustomerDTO> dtoList = entities.map(cca -> new CustomerDTO(
 				cca.getUserName(),
 				cca.getLikeTotal(),
 				cca.getCompanyName(),
 				cca.getCompanyRegion(),
 				cca.getPhone(),
-				cca.getEmail()
-			)
-	);
-	System.out.println(dtoList);
-	return dtoList;
-	
+				cca.getEmail()));
+		System.out.println(dtoList);
+		return dtoList;
+
 	}
-	
+
 	public boolean findByUserId(String userId) {
 
 		boolean customerEntity = customerRepository.existsById(userId);
 
 		return customerEntity;
+	}
+
+	@Transactional
+	public CustomerDTO updateUser(String username, CustomerDTO customerDTO) {
+		Optional<CustomerEntity> originalEntity = customerRepository.findByUserId(username);
+
+		CustomerEntity customerEntity = originalEntity.get();
+
+		customerEntity.setUserName(customerDTO.getUserName());
+		customerEntity.setPhone(customerDTO.getPhone());
+		customerEntity.setEmail(customerDTO.getEmail());
+		customerEntity.setCompanyName(customerDTO.getCompanyName());
+		customerEntity.setCompanyRegion(customerDTO.getCompanyRegion());
+		customerEntity.setSelfInfo(customerDTO.getSelfInfo());
+		customerEntity.setUserId(customerDTO.getUserId());
+
+		return CustomerDTO.toDTO(customerEntity);
 	}
 
 	public boolean checkIsAlreadyLiked(Long replyNum, String username) {
@@ -118,6 +131,5 @@ public class CustomerService {
 
 		customerEntity.setLikeTotal(customerEntity.getLikeTotal() + 1);
 	}
-	
-	
+
 }

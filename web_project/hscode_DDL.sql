@@ -72,6 +72,7 @@ create table consult_cca
     product_category VARCHAR2(100)
 ); 
 create sequence consult_seq;
+
 ----- 회원의 답변 채택 테이블
 drop table customer_like;
 drop sequence customer_like_seq;

@@ -24,7 +24,7 @@
   </head>
 
   <body>
-	<!-- Navbar -->
+   <!-- Navbar -->
     <nav class="navbar navbar-expand-lg fixed-top navbar-transparent " color-on-scroll="300">
         <div class="container">
             <div class="navbar-translate">
@@ -67,7 +67,7 @@
     <!-- page-header 시작-->
     <div class="page-header section-dark" th:style="'background-image: url(\'' + @{/images/cover-img1.jpg} + '\')'">
         <div class="filter"></div>
-		<div class="content-center">
+      <div class="content-center">
             <div class="container">
                 <div class="title-brand">
                     <h1 class="presentation-title">상담글 목록</h1>
@@ -112,20 +112,26 @@
                         <span class="nav-text">관세사상담</span>
                     </a>
                 </li>
-                <li>                                 
+                <li sec:authorize="isAnonymous()">                                 
                     <a th:href="@{/user/login}">
                         <i class="fa fa-regular fa-user fa-lg"></i>
                         <span class="nav-text">로그인</span>
                     </a>
                 </li>
-                <li>
+                <li sec:authorize="isAuthenticated()">
                     <a th:href="@{/user/logout}">
                         <i class="fa fa-user fa-lg"></i>
                         <span class="nav-text">로그아웃</span>
                     </a>
                 </li>
-                <li>                                 
-                    <a href="#">
+                <li sec:authorize="hasRole('ROLE_USER')">                                 
+                    <a th:href="@{/my/userpage}">
+                        <i class="fa fa-solid fa-house-user fa-lg"></i>
+                        <span class="nav-text">마이페이지</span>
+                    </a>
+                </li>
+				<li sec:authorize="hasRole('ROLE_CCA')">>                                 
+                    <a th:href="@{/user/logout}">
                         <i class="fa fa-solid fa-house-user fa-lg"></i>
                         <span class="nav-text">마이페이지</span>
                     </a>
@@ -135,11 +141,11 @@
         </div>
     </nav>
 
-	<!-- 게시글 전체 목록 출력 -->
+   <!-- 게시글 전체 목록 출력 -->
     <div class="content">
-    	<!-- <h2 class="ccaLIST">상담문의글 목록</h2> -->
-      	<p th:if="${#lists.isEmpty(consultList)}">목록이 없습니다.</p>
-      	<div class="head">
+       <!-- <h2 class="ccaLIST">상담문의글 목록</h2> -->
+         <p th:if="${#lists.isEmpty(consultList)}">목록이 없습니다.</p>
+         <div class="head">
         <!-- 글쓰기 버튼 -->
         <div>
           <div class="write" th:if="${#authentication.authorities.![authority].contains('ROLE_USER')}">
@@ -147,7 +153,7 @@
           </div>
         </div>
         <div class="searh-section">
-        	<div class="search">
+           <div class="search">
           <div id="ccaCount">
             <p>검색된 총 게시물수: <b>[[${consultList.totalElements}]]</b>건</p>
           </div>
@@ -258,11 +264,11 @@
                 </option>
               </select>
                 <input type="text" name="searchWord" class="searchWord" th:value="${searchWord}">
-              	<input type="submit" value="검색" id="ccaSearchBtn" class="btn btn-info"/>
+                 <input type="submit" value="검색" id="ccaSearchBtn" class="btn btn-info"/>
             </div>
           </form>
         </div>
-		</div>
+      </div>
       </div>
 
       <div class="container">
@@ -281,8 +287,8 @@
               <tr th:each="board, status : ${consultList}">
                 <td th:text="${(consultList.number * consultList.size) + status.count}"></td>
                 <td>
-					<a class="boardTitle" th:href="@{/cca/detail(consultNum=${board.consultNum}, searchBy=${searchBy}, searchItem=${searchItem})}" th:text="${board.consultTitle}"></a>
-				</td>
+               <a class="boardTitle" th:href="@{/cca/detail(consultNum=${board.consultNum}, searchBy=${searchBy}, searchItem=${searchItem})}" th:text="${board.consultTitle}"></a>
+            </td>
                 <td th:text="${board.consultWriter}"></td>
                 <td th:text="${board.productCategory}"></td>
                 <td th:text="*{#temporals.format(board.consultDate, 'yyyy-MM-dd hh:mm:ss')}"></td>

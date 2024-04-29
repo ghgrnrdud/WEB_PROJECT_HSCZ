@@ -1,5 +1,6 @@
 
 package net.kdigital.web_project.service;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -52,15 +53,16 @@ public class ReplyService {
         List<AnswerEntity> answerEntityList = answerRepository.findAllByBoardEntityOrderByLikeCountDesc(entity);
 
         /* EntityList --> DTOList */
-List<AnswerDTO> replyDTOList = new ArrayList<>();
-		
-		for(AnswerEntity temp : answerEntityList) {
-			AnswerDTO dto = AnswerDTO.toDTO(temp, consultNum);
-			replyDTOList.add(dto);
-		}
+        List<AnswerDTO> replyDTOList = new ArrayList<>();
 
-        	return replyDTOList;
+        for (AnswerEntity temp : answerEntityList) {
+            AnswerDTO dto = AnswerDTO.toDTO(temp, consultNum);
+            replyDTOList.add(dto);
+        }
+
+        return replyDTOList;
     }
+
     /**
      * 댓글 삭제
      * 
@@ -77,7 +79,7 @@ List<AnswerDTO> replyDTOList = new ArrayList<>();
 
         if (optionalAnswer.isPresent()) {
             AnswerEntity answerEntity = optionalAnswer.get();
-        
+
             return AnswerDTO.toDTO(answerEntity, consultNum); // 두 번째 매개변수로 consultNum 전달
         } else {
             return null; // 해당 ID에 해당하는 댓글이 없을 경우 null 반환
@@ -105,11 +107,21 @@ List<AnswerDTO> replyDTOList = new ArrayList<>();
         return answerDTO;
     }
 
+    public List<AnswerDTO> selectAllReplysByUsername(String username) {
+        List<AnswerEntity> optionalAnswer = answerRepository.findAllByReplyWriterOrderByReplyNumDesc(username);
+
+        List<AnswerDTO> answerDTOList = new ArrayList<>();
+
+        for (AnswerEntity temp : optionalAnswer) {
+            answerDTOList.add(AnswerDTO.toDTO(temp, temp.getBoardEntity().getConsultNum()));
+        }
+        return answerDTOList;
+    }
+
     @Transactional
     public void increaseLikeCount(Long replyNum) {
         AnswerEntity answerEntity = answerRepository.findById(replyNum).get();
         answerEntity.setLikeCount(answerEntity.getLikeCount() + 1);
     }
 
-
-} 
+}

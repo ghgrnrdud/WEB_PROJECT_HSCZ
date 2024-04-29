@@ -192,6 +192,7 @@ public class OpenApiManager {
         }
     }
     
+    // 관세사부호 조회
     public List<String> CCAOpenApi(String ccaNum) {
         String key = "k280h294z014d068h040p090i0";
         List<String> ccaList = new ArrayList<>();
@@ -228,6 +229,48 @@ public class OpenApiManager {
                 }
             }
             return ccaList;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    // 환율
+    public List<Map<String, String>> exchangeRateOpenApi(String today, String imexTP) {
+        String key = "q270q264p024s098v060x060p0";
+        List<Map<String, String>> exchangeRateList = new ArrayList<>();
+
+        try {
+            String url = "https://unipass.customs.go.kr:38010/ext/rest/trifFxrtInfoQry/retrieveTrifFxrtInfo?"
+                    + "crkyCn=" + key // 인증키
+                    + "&qryYymmDd=" + today
+                    + "&imexTp=" + imexTP;
+
+            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+            Document doc = dBuilder.parse(url);
+            doc.getDocumentElement().normalize();
+
+            NodeList nList = doc.getElementsByTagName("trifFxrtInfoQryRsltVo");
+            System.out.println("Total elements: " + nList.getLength());
+
+            for (int i = 0; i < nList.getLength(); i++) {
+                Node nNode = nList.item(i);
+                if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+                    Element eElement = (Element) nNode;
+
+                    Map<String, String> exchangeRate = new HashMap<>();
+                    exchangeRate.put("CountrySign", getTagValue("cntySgn", eElement));
+                    exchangeRate.put("CurrencyUnitName", getTagValue("mtryUtNm", eElement));
+                    exchangeRate.put("ExchangeRate", getTagValue("fxrt", eElement));
+                    exchangeRate.put("CurrencySign", getTagValue("currSgn", eElement));
+                    exchangeRate.put("ImportExportType", getTagValue("imexTp", eElement));
+
+                    exchangeRateList.add(exchangeRate);
+                }
+            }
+
+            return exchangeRateList;
 
         } catch (Exception e) {
             e.printStackTrace();
