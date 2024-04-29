@@ -123,7 +123,7 @@ function init(id, div) {
     id: "DE",
     url: "/trade/statShow",
     polygonSettings: {
-      fill: am5.color("#4E8FF")
+      fill: am5.color("#7BAAF5")
     }
   }, {
     id: "MY",
@@ -247,9 +247,43 @@ function createBullet(id, div) {
   var smalltitle1 = document.createElement('p');
   smalltitle1.id = "smalltitle1";
 
+  //설명 태그 생성
+  var information1 = document.createElement('span');
+  information1.id = "information1";
+
+  // 이미지 태그 생성
+  var img = document.createElement('img');
+  img.src = "/assets/img/information.png";
+  img.alt = "설명 이미지";
+
+  // 이미지 크기 조절 (필요한 경우)
+  img.style.width = "25px"; // 너비
+  img.style.height = "27px"; // 높이
+
+  // span 태그에 이미지 태그 추가
+  information1.appendChild(img);
+
+  //이미지 툴팁
+  var tooltipSpan = document.createElement('span');
+  tooltipSpan.className = 'tooltip';
+  tooltipSpan.textContent = "한국의 월별 수출입금액"; // 툴팁에 표시할 텍스트
+
+  information1.appendChild(tooltipSpan);
+
+  img.addEventListener('mouseenter', function () {
+    tooltipSpan.classList.add('show-tooltip');
+  });
+  img.addEventListener('mouseleave', function () {
+    tooltipSpan.classList.remove('show-tooltip');
+  });
+
+  //밑줄 태그 생성
+  var line1 = document.createElement('div');
+  line1.id = "line1";
+
   //넣을 위치 조정
   div.before(parentContainer);
-  newspace.before(title, smalltitle1);
+  newspace.before(title, information1, smalltitle1, line1);
 
   //제목 글 설정
   document.getElementById(`title${id}`).innerText = "수출입 금액";
@@ -262,27 +296,23 @@ function createBullet(id, div) {
   parentContainer.style.borderRadius = "10px";
   parentContainer.style.border = "1.8px solid #c3c6ce";
   parentContainer.style.transition = "0.5s ease-out";
-  smalltitle1.style.width = "90px";
 
   parentContainer.addEventListener('mouseenter', function () {
-    this.style.borderColor = "#008ff0";
     this.style.boxShadow = " 0 4px 18px 0 rgba(0, 0, 0, 0.5)";
     title.style.fontWeight = "bolder";
     title.style.color = "#008ff0";
-    title.style.borderBottom = "2px solid #008ff0";
     smalltitle1.style.fontWeight = "bolder";
     smalltitle1.style.color = "#008ff0";
-    smalltitle1.style.borderBottom = "2px solid #008ff0";
+    line1.style.borderTop = "2.5px solid #008ff0"
   });
   parentContainer.addEventListener('mouseleave', function () {
     this.style.borderColor = "#c3c6ce";
     this.style.boxShadow = "2px 2px 10px rgba(0, 0, 0, 0.07)";
     title.style.fontWeight = "normal";
     title.style.color = "black";
-    title.style.borderBottom = "1.7px solid black"
     smalltitle1.style.fontWeight = "normal";
     smalltitle1.style.color = "black";
-    smalltitle1.style.borderBottom = "1.7px solid black"
+    line1.style.borderTop = "1.5px solid black"
   });
 
   //그래프 css
@@ -615,9 +645,43 @@ function createRealPie(id, div, resp, country, year) {
     var smalltitle6 = document.createElement('p');
     smalltitle6.id = "smalltitle6";
 
+    //설명 태그 생성
+    var information6 = document.createElement('span');
+    information6.id = "information6";
+
+    //이미지 태그 생성
+    var img = document.createElement('img');
+    img.src = "/assets/img/information.png";
+    img.alt = "설명 이미지";
+
+    //이미지 크기 조절
+    img.style.width = "25px";
+    img.style.height = "27px";
+
+    //span 태그에 이미지 태그 추가
+    information6.appendChild(img);
+
+    //이미지 툴팁
+    var tooltipSpan6 = document.createElement('span');
+    tooltipSpan6.className = 'tooltip6';
+    tooltipSpan6.textContent = "국가의 수입시장을 점유한 나라 TOP10";
+
+    information6.appendChild(tooltipSpan6);
+
+    img.addEventListener('mouseenter', function () {
+      tooltipSpan6.classList.add('show-tooltip');
+    });
+    img.addEventListener('mouseleave', function () {
+      tooltipSpan6.classList.remove('show-tooltip');
+    });
+
+    //밑줄 태그 생성
+    var line6 = document.createElement('div');
+    line6.id = "line6";
+
     //위치 선정
     div.before(parentContainer);
-    newspace.before(title, smalltitle6);
+    newspace.before(title, information6, smalltitle6, line6);
 
     //제목 글 설정
     title.innerText = `미국의 수입시장 점유율`;
@@ -631,27 +695,23 @@ function createRealPie(id, div, resp, country, year) {
     parentContainer.style.borderRadius = "10px";
     parentContainer.style.border = "1.8px solid #c3c6ce";
     parentContainer.style.transition = "0.5s ease-out";
-    smalltitle6.style.width = "90px";
 
     parentContainer.addEventListener('mouseenter', function () {
-      this.style.borderColor = "#008ff0";
       this.style.boxShadow = " 0 4px 18px 0 rgba(0, 0, 0, 0.5)";
       title.style.fontWeight = "bolder";
       title.style.color = "#008ff0";
-      title.style.borderBottom = "2px solid #008ff0";
       smalltitle6.style.fontWeight = "bolder";
       smalltitle6.style.color = "#008ff0";
-      smalltitle6.style.borderBottom = "2px solid #008ff0";
+      line6.style.borderTop = "2.5px solid #008ff0";
     });
     parentContainer.addEventListener('mouseleave', function () {
       this.style.borderColor = "#c3c6ce";
       this.style.boxShadow = "2px 2px 10px rgba(0, 0, 0, 0.07)";
       title.style.fontWeight = "normal";
       title.style.color = "black";
-      title.style.borderBottom = "1.7px solid black"
       smalltitle6.style.fontWeight = "normal";
       smalltitle6.style.color = "black";
-      smalltitle6.style.borderBottom = "1.7px solid black"
+      line6.style.borderTop = "1.5px solid black";
     });
 
     //그래프 css
@@ -817,12 +877,46 @@ function createRealxycluster(id, div, resp, selectedyear, selectedport) {
     var title = document.createElement('p');
     title.id = "title" + id;
 
+    //단위 태그 생성
     var smalltitle2 = document.createElement('p');
     smalltitle2.id = "smalltitle2";
 
+    //설명 태그 생성
+    var information2 = document.createElement('span');
+    information2.id = "information2";
+
+    //설명 태그 생성
+    var img = document.createElement('img');
+    img.src = "/assets/img/information.png";
+    img.alt = "설명 이미지";
+
+    //이미지 크기 조절
+    img.style.width = "25px";
+    img.style.height = "27px";
+
+    information2.appendChild(img);
+
+    //이미지 툴팁
+    var tooltipSpan = document.createElement('span');
+    tooltipSpan.className = 'tooltip2';
+    tooltipSpan.textContent = "한국이 가장 많이 수출, 수입한 품목 중 TOP5"; // 툴팁에 표시할 텍스트
+
+    information2.appendChild(tooltipSpan);
+
+    img.addEventListener('mouseenter', function () {
+      tooltipSpan.classList.add('show-tooltip');
+    });
+    img.addEventListener('mouseleave', function () {
+      tooltipSpan.classList.remove('show-tooltip');
+    });
+
+    //밑줄 태그 생성
+    var line2 = document.createElement('div');
+    line2.id = "line2";
+
     //위치 선정
     div.before(parentContainer);
-    newspace.before(title, smalltitle2);
+    newspace.before(title, information2, smalltitle2, line2);
 
     //제목 글 설정
     document.getElementById(`title${id}`).innerText = "수출입 품목 TOP5";
@@ -836,27 +930,23 @@ function createRealxycluster(id, div, resp, selectedyear, selectedport) {
     parentContainer.style.borderRadius = "10px";
     parentContainer.style.border = "1.8px solid #c3c6ce";
     parentContainer.style.transition = "0.5s ease-out";
-    smalltitle2.style.width = "90px";
 
     parentContainer.addEventListener('mouseenter', function () {
-      this.style.borderColor = "#008ff0";
       this.style.boxShadow = " 0 4px 18px 0 rgba(0, 0, 0, 0.5)";
       title.style.fontWeight = "bolder";
       title.style.color = "#008ff0";
-      title.style.borderBottom = "2px solid #008ff0";
       smalltitle2.style.fontWeight = "bolder";
       smalltitle2.style.color = "#008ff0";
-      smalltitle2.style.borderBottom = "2px solid #008ff0";
+      line2.style.borderTop = "2.5px solid #008ff0"
     });
     parentContainer.addEventListener('mouseleave', function () {
       this.style.borderColor = "#c3c6ce";
       this.style.boxShadow = "2px 2px 10px rgba(0, 0, 0, 0.07)";
       title.style.fontWeight = "normal";
       title.style.color = "black";
-      title.style.borderBottom = "1.7px solid black"
       smalltitle2.style.fontWeight = "normal";
       smalltitle2.style.color = "black";
-      smalltitle2.style.borderBottom = "1.7px solid black"
+      line2.style.borderTop = "1.5px solid black"
     });
 
     //그래프 css
@@ -1013,7 +1103,37 @@ function createRealxycluster(id, div, resp, selectedyear, selectedport) {
     width: am5.percent(90),
     tooltipY: 0
   });
+  series.columns.template.adapters.add("fill", function (fill, target) {
+    // return chart.get("colors").getIndex(series.columns.indexOf(target));
+    var value = target.dataItem.get("valueY");
+    if (value > 60000000) {
+      return am5.color("#575AEB"); // 값이 100000 초과일 경우 빨간색
+    } else if (value > 35000000) {
+      return am5.color("#9974ED");// 값이 50000 초과일 경우 녹색
+    } else if (value > 25000000) {
+      return am5.color("#A6A7ED"); // 값이 50000 초과일 경우 녹색
+    } else if (value > 19000000) {
+      return am5.color("#749DED"); // 값이 50000 초과일 경우 녹색
+    } else {
+      return am5.color("#6AC2F0"); // 그 외의 경우 파란색
+    }
+  });
 
+  series.columns.template.adapters.add("stroke", function (stroke, target) {
+    // return chart.get("colors").getIndex(series.columns.indexOf(target));
+    var value = target.dataItem.get("valueY");
+    if (value > 60000000) {
+      return am5.color("#575AEB"); // 값이 100000 초과일 경우 빨간색
+    } else if (value > 35000000) {
+      return am5.color("#9974ED"); // 값이 50000 초과일 경우 녹색
+    } else if (value > 30000000) {
+      return am5.color("#A6A7ED"); // 값이 50000 초과일 경우 녹색
+    } else if (value > 20000000) {
+      return am5.color("#749DED"); // 값이 50000 초과일 경우 녹색
+    } else {
+      return am5.color("#6AC2F0"); // 그 외의 경우 파란색
+    }
+  });
   series.data.setAll(data);
   // Make stuff animate on load
   // https://www.amcharts.com/docs/v5/concepts/animations/
@@ -1036,21 +1156,29 @@ function createRealxycluster(id, div, resp, selectedyear, selectedport) {
   // https://www.amcharts.com/docs/v5/concepts/animations/
   chart.appear(1000, 100);
 
-  ///// 지도 위에 주제 설정
   var mapdiv = document.getElementById('parentContainer2');
+  var mapcontrolsContainer = document.getElementById('mapcontrolsContainer');
+  var maptitle;
 
-  // 컨테이너 div 생성
-  var mapcontrolsContainer = document.createElement('div');
-  mapcontrolsContainer.id = 'mapcontrolsContainer';
-  // controlsContainer.style.display = 'flex';
+  // mapcontrolsContainer가 이미 존재하지 않으면 새로 생성
+  if (!mapcontrolsContainer) {
+    mapcontrolsContainer = document.createElement('div');
+    mapcontrolsContainer.id = 'mapcontrolsContainer';
 
-  //지도 위에 제목 태그 생성
-  var maptitle = document.createElement('p');
-  maptitle.id = 'maptitle';
-  mapcontrolsContainer.appendChild(maptitle);
+    // 컨테이너 div 생성 후 맵 div 다음에 추가
+    mapdiv.after(mapcontrolsContainer);
+
+    // 지도 위에 제목 태그 생성
+    maptitle = document.createElement('p');
+    maptitle.id = 'maptitle';
+    mapcontrolsContainer.appendChild(maptitle);
+  } else {
+    // 이미 존재하는 경우, maptitle만 찾아서 사용
+    maptitle = document.getElementById('maptitle');
+  }
+
+  // 제목 설정
   maptitle.innerText = "국가별 수출입 현황";
-
-  mapdiv.after(mapcontrolsContainer);
 }
 
 // =============================== barChart(국가별 10대 수출입품목)==============================================
@@ -1096,9 +1224,43 @@ function createRealBar(id, div, resp, country, year) {
     var smalltitle4 = document.createElement('p');
     smalltitle4.id = "smalltitle4";
 
+    //설명 태그 생성
+    var information4 = document.createElement('span');
+    information4.id = "information4";
+
+    //이미지 태그 생성
+    var img = document.createElement('img');
+    img.src = "/assets/img/information.png";
+    img.alt = "설명 이미지";
+
+    //이미지 크기 조절
+    img.style.width = "25px";
+    img.style.height = "27px";
+
+    //span 태그에 이미지 태그 추가
+    information4.appendChild(img);
+
+    //이미지 툴팁
+    var tooltipSpan4 = document.createElement('span');
+    tooltipSpan4.className = 'tooltip4';
+    tooltipSpan4.textContent = "국가가 가장 많이 수출, 수입한 TOP5 품목";
+
+    information4.appendChild(tooltipSpan4);
+
+    img.addEventListener('mouseenter', function () {
+      tooltipSpan4.classList.add('show-tooltip');
+    });
+    img.addEventListener('mouseleave', function () {
+      tooltipSpan4.classList.remove('show-tooltip');
+    });
+
+    //밑줄 태그 생성
+    var line4 = document.createElement('div');
+    line4.id = "line4";
+
     //위치 선정
     div.before(parentContainer);
-    newspace.before(title, smalltitle4);
+    newspace.before(title, information4, smalltitle4, line4);
 
     //제목 글 설정
     title.innerText = `미국의 TOP5 수출입품목`;
@@ -1111,27 +1273,27 @@ function createRealBar(id, div, resp, country, year) {
     parentContainer.style.borderRadius = "10px";
     parentContainer.style.border = "1.8px solid #c3c6ce";
     parentContainer.style.transition = "0.5s ease-out";
-    smalltitle4.style.width = "90px";
 
     parentContainer.addEventListener('mouseenter', function () {
-      this.style.borderColor = "#008ff0";
       this.style.boxShadow = " 0 4px 18px 0 rgba(0, 0, 0, 0.5)";
       title.style.fontWeight = "bolder";
       title.style.color = "#008ff0";
-      title.style.borderBottom = "2px solid #008ff0";
+      // title.style.borderBottom = "2px solid #008ff0";
       smalltitle4.style.fontWeight = "bolder";
       smalltitle4.style.color = "#008ff0";
-      smalltitle4.style.borderBottom = "2px solid #008ff0";
+      line4.style.borderTop = "2.5px solid  #008ff0";
     });
+
     parentContainer.addEventListener('mouseleave', function () {
       this.style.borderColor = "#c3c6ce";
       this.style.boxShadow = "2px 2px 10px rgba(0, 0, 0, 0.07)";
       title.style.fontWeight = "normal";
       title.style.color = "black";
-      title.style.borderBottom = "1.7px solid black"
+      // title.style.borderBottom = "1.7px solid black"
       smalltitle4.style.fontWeight = "normal";
       smalltitle4.style.color = "black";
-      smalltitle4.style.borderBottom = "1.7px solid black"
+      // smalltitle4.style.borderBottom = "1.7px solid black"
+      line4.style.borderTop = "1.5px solid black";
     });
 
     //그래프 css
@@ -1363,9 +1525,43 @@ function createRealString(id, div, resp, country) {
     var smalltitle5 = document.createElement('p');
     smalltitle5.id = "smalltitle5";
 
+    //설명 태그 생성
+    var information5 = document.createElement('span');
+    information5.id = "information5";
+
+    //이미지 태그 생성
+    var img = document.createElement('img');
+    img.src = "/assets/img/information.png";
+    img.alt = "설명 이미지";
+
+    //이미지 크기 조절
+    img.style.width = "25px";
+    img.style.height = "27px";
+
+    //span 태그에 이미지 태그 추가
+    information5.appendChild(img);
+
+    //이미지 툴팁
+    var tooltipSpan5 = document.createElement('span');
+    tooltipSpan5.className = 'tooltip5';
+    tooltipSpan5.textContent = "국가의 수입시장을 점유한 나라 TOP10";
+
+    information5.appendChild(tooltipSpan5);
+
+    img.addEventListener('mouseenter', function () {
+      tooltipSpan5.classList.add('show-tooltip');
+    });
+    img.addEventListener('mouseleave', function () {
+      tooltipSpan5.classList.remove('show-tooltip');
+    });
+
+    //밑줄 태그 생성
+    var line5 = document.createElement('div');
+    line5.id = "line5";
+
     //위치 선정
     div.before(parentContainer);
-    newspace.before(title, smalltitle5);
+    newspace.before(title, information5, smalltitle5, line5);
 
     //제목 글 선정
     title.innerText = `미국의 수출입 금액`;
@@ -1379,27 +1575,23 @@ function createRealString(id, div, resp, country) {
     parentContainer.style.borderRadius = "10px";
     parentContainer.style.border = "1.8px solid #c3c6ce";
     parentContainer.style.transition = "0.5s ease-out";
-    smalltitle5.style.width = "90px";
 
     parentContainer.addEventListener('mouseenter', function () {
-      this.style.borderColor = "#008ff0";
       this.style.boxShadow = " 0 4px 18px 0 rgba(0, 0, 0, 0.5)";
       title.style.fontWeight = "bolder";
       title.style.color = "#008ff0";
-      title.style.borderBottom = "2px solid #008ff0";
       smalltitle5.style.fontWeight = "bolder";
       smalltitle5.style.color = "#008ff0";
-      smalltitle5.style.borderBottom = "2px solid #008ff0";
+      line5.style.borderTop = "2.5px solid #008ff0";
     });
     parentContainer.addEventListener('mouseleave', function () {
       this.style.borderColor = "#c3c6ce";
       this.style.boxShadow = "2px 2px 10px rgba(0, 0, 0, 0.07)";
       title.style.fontWeight = "normal";
       title.style.color = "black";
-      title.style.borderBottom = "1.7px solid black"
       smalltitle5.style.fontWeight = "normal";
       smalltitle5.style.color = "black";
-      smalltitle5.style.borderBottom = "1.7px solid black"
+      line5.style.borderTop = "1.5px solid black"
     });
 
     //그래프 css
@@ -1579,12 +1771,46 @@ function createRealStackCluster(id, div, resp, country) {
     var smalltitle3 = document.createElement('p');
     smalltitle3.id = "smalltitle3";
 
+    //설명 태그 생성
+    var information3 = document.createElement('span');
+    information3.id = "information3";
+
+    //이미지 태그 생성
+    var img = document.createElement('img');
+    img.src = "/assets/img/information.png";
+    img.alt = "설명 이미지";
+
+    //이미지 크기 조절
+    img.style.width = "25px";
+    img.style.height = "27px";
+
+    //span 태그에 이미지 태그 추가
+    information3.appendChild(img);
+
+    //이미지 툴팁
+    var tooltipSpan3 = document.createElement('span');
+    tooltipSpan3.className = 'tooltip3';
+    tooltipSpan3.textContent = "수출금액 높은 기준 TOP5품목의 최근 월별 수출수입 금액 증감율";
+
+    information3.appendChild(tooltipSpan3);
+
+    img.addEventListener('mouseenter', function () {
+      tooltipSpan3.classList.add('show-tooltip');
+    });
+    img.addEventListener('mouseleave', function () {
+      tooltipSpan3.classList.remove('show-tooltip');
+    });
+
+    //밑줄 태그 생성
+    var line3 = document.createElement('div');
+    line3.id = "line3";
+
     //위치 선정
     div.before(parentContainer);
-    newspace.before(title, smalltitle3);
+    newspace.before(title, information3, smalltitle3, line3);
 
     //제목 내용 선정
-    title.innerText = `미국의 수출입 품목 증감율(월)`;
+    title.innerText = `미국의 수출입 품목 증감율`;
     smalltitle3.innerText = "단위 : 천$"
 
     //css
@@ -1595,28 +1821,25 @@ function createRealStackCluster(id, div, resp, country) {
     parentContainer.style.background = "#ffff";
     parentContainer.style.border = "1.8px solid #c3c6ce"
     parentContainer.style.transition = "0.5s ease-out";
-    parentContainer.style.marginBottom = "40px";
-    smalltitle3.style.width = "90px";
+    parentContainer.style.marginBottom = "30px";
 
     parentContainer.addEventListener('mouseenter', function () {
-      this.style.borderColor = "#008ff0";
       this.style.boxShadow = " 0 4px 18px 0 rgba(0, 0, 0, 0.5)";
       title.style.fontWeight = "bolder";
       title.style.color = "#008ff0";
-      title.style.borderBottom = "2px solid #008ff0";
       smalltitle3.style.fontWeight = "bolder";
       smalltitle3.style.color = "#008ff0";
-      smalltitle3.style.borderBottom = "2px solid #008ff0";
+      line3.style.borderTop = "2.5px solid #008ff0";
     });
+
     parentContainer.addEventListener('mouseleave', function () {
       this.style.borderColor = "#c3c6ce";
       this.style.boxShadow = "2px 2px 10px rgba(0, 0, 0, 0.07)";
       title.style.fontWeight = "normal";
       title.style.color = "black";
-      title.style.borderBottom = "1.7px solid black"
       smalltitle3.style.fontWeight = "normal";
       smalltitle3.style.color = "black";
-      smalltitle3.style.borderBottom = "1.7px solid black"
+      line3.style.borderTop = "1.5px solid black";
     });
 
     newspace.style.width = "570px";
