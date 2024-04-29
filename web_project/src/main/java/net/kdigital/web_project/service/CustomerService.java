@@ -88,17 +88,11 @@ public class CustomerService {
 	}
 
 	@Transactional
-	public CustomerDTO updateUser(CustomerDTO customerDTO) {
-		Optional<CustomerEntity> entity = customerRepository.findByUserId(customerDTO.getUserId());
-
-		CustomerEntity customerEntity = entity.get();
-
-		customerEntity.setUserId(customerDTO.getUserId());
 	public CustomerDTO updateUser(String username, CustomerDTO customerDTO) {
 		Optional<CustomerEntity> originalEntity = customerRepository.findByUserId(username);
-		
+
 		CustomerEntity customerEntity = originalEntity.get();
-		
+
 		customerEntity.setUserName(customerDTO.getUserName());
 		customerEntity.setPhone(customerDTO.getPhone());
 		customerEntity.setEmail(customerDTO.getEmail());
