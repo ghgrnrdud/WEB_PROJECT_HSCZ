@@ -49,11 +49,11 @@ create table reply_cca
 ( 
     reply_num number primary key, -- 답변번호
     consult_num number references consult_cca(consult_num) ON DELETE CASCADE, -- 상담번호
-    reply_writer varchar2(20), -- 상담 답변자
-    reply_content varchar2(2000), -- 답변 내용
+    reply_writer varchar2(20) not null, -- 상담 답변자
+    reply_content varchar2(2000) not null, -- 답변 내용
     reply_date date default sysdate, -- 상담 답변작성일
     like_count number,  -- 추천여부
-    product_category VARCHAR2(100)
+    product_category VARCHAR2(100) not null
 );
 create sequence cca_seq;
 
@@ -65,11 +65,11 @@ drop sequence consult_seq;
 create table consult_cca 
 (
     consult_num number primary key, -- 상담번호
-    consult_title varchar2(100), -- 상담제목
-    consult_writer varchar2(20), -- 상담 문의자
-    consult_content varchar2(2000), -- 상담 내용
+    consult_title varchar2(100) not null, -- 상담제목
+    consult_writer varchar2(20) not null, -- 상담 문의자
+    consult_content varchar2(2000) not null, -- 상담 내용
     consult_date date default sysdate, -- 상담일
-    product_category VARCHAR2(100)
+    product_category VARCHAR2(100) not null
 ); 
 create sequence consult_seq;
 

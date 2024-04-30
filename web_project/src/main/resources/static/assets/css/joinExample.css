@@ -10,6 +10,11 @@
     justify-content: center;
   } */
 
+/* 페이지 헤더 높이 줄이기 */
+.page-header {
+  min-height: 20vh;
+}
+
 .content {
   display: flex;
   flex-direction: column;
@@ -32,7 +37,6 @@
   margin-top: 72px;
   margin-bottom: 70px;
 }
-
 
 .header {
   width: 466px;
@@ -123,7 +127,6 @@ hr {
   height: 15px;
 }
 
-
 /* .btn {
     display: flex;
     flex-direction: column;
@@ -132,7 +135,6 @@ hr {
     height: 106px;
     border-top: 1px solid #e6e6e6; 
   } */
-
 
 ul.ccaConfirm {
   list-style-type: none;
@@ -160,7 +162,6 @@ ul.ccaConfirm li strong {
 #checkCcaNum {
   margin-left: 120px;
 }
-
 
 #checkLabel {
   display: flex;

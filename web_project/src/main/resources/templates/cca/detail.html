@@ -196,14 +196,17 @@
                             <span class="answerCount" th:text="${#lists.size(replyList)}"></span>개 답변
                         </div>
                         <div class="option">
-                            <select class="dropdownBtn">
+                            <div class="dropdownBtn">추천순</div>
+                            <!-- <select class="dropdownBtn">
                                 <option value="추천순" selected>추천순</option>
                                 <option value="최신순">최신순</option>
-                            </select>
+                            </select> -->
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> <!--answerHeader-->
+
+
             <!-- 각 답변 정보를 담는 테이블 -->
             <div th:each="reply, status : ${replyList}" class="answerList">
                 <div class="answerDetailArea">
@@ -220,7 +223,7 @@
                                     <strong class="name" th:text="${reply.replyWriter}"></strong>
                                 </div>
                                 <div class="companyArea">
-                                    <span class="company">00관세법인</span>
+                                    <span class="company">관세사</span>
                                 </div>
                             </div>
                         </div>
@@ -261,7 +264,7 @@
                     </div>
                 </div> <!--answerDetailArea-->
             </div>
-        </div>
+        </div> <!--answer-area-->
     </div>
 
     <br>
