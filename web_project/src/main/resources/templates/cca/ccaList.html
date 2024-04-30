@@ -106,29 +106,29 @@
             <span class="nav-text">관세사상담</span>
           </a>
         </li>
-        <li sec:authorize="isAnonymous()">                                 
+        <li sec:authorize="isAnonymous()">
           <a th:href="@{/user/login}">
-              <i class="fa fa-regular fa-user fa-lg"></i>
-              <span class="nav-text">로그인</span>
+            <i class="fa fa-regular fa-user fa-lg"></i>
+            <span class="nav-text">로그인</span>
           </a>
         </li>
         <li sec:authorize="isAuthenticated()">
-            <a th:href="@{/user/logout}">
-                <i class="fa fa-user fa-lg"></i>
-                <span class="nav-text">로그아웃</span>
-            </a>
+          <a th:href="@{/user/logout}">
+            <i class="fa fa-user fa-lg"></i>
+            <span class="nav-text">로그아웃</span>
+          </a>
         </li>
-        <li sec:authorize="hasRole('ROLE_USER')">                                 
-            <a th:href="@{/my/userpage}">
-                <i class="fa fa-solid fa-house-user fa-lg"></i>
-                <span class="nav-text">마이페이지</span>
-            </a>
+        <li sec:authorize="hasRole('ROLE_USER')">
+          <a th:href="@{/my/userpage}">
+            <i class="fa fa-solid fa-house-user fa-lg"></i>
+            <span class="nav-text">마이페이지</span>
+          </a>
         </li>
-        <li sec:authorize="hasRole('ROLE_CCA')">>                                 
-            <a th:href="@{/user/logout}">
-                <i class="fa fa-solid fa-house-user fa-lg"></i>
-                <span class="nav-text">마이페이지</span>
-            </a>
+        <li sec:authorize="hasRole('ROLE_CCA')">>
+          <a th:href="@{/user/logout}">
+            <i class="fa fa-solid fa-house-user fa-lg"></i>
+            <span class="nav-text">마이페이지</span>
+          </a>
         </li>
       </ul>
     </div>

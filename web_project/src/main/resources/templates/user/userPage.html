@@ -12,7 +12,6 @@
 
     <link href="/assets/demo/demo.css" rel="stylesheet" />
     <link href="/assets/css/userprofile.css" rel="stylesheet" />
-    <!-- <link  href="/assets/css/joinExample.css" rel="stylesheet"> -->
     <script th:src="@{/script/jquery-3.7.1.min.js}"></script>
     <script>
 
@@ -69,12 +68,13 @@
         <div class="content-center">
             <div class="container">
                 <div class="title-brand">
-                    <h1 class="presentation-title">마이페이지</h1>
+                    <h1 class="presentation-title">페이지 제목</h1>
                 </div>
             </div> <!--div.content-center-->
         </div>
     </div>
     <!-- End page-header -->
+
 
     <!-- side-bar 시작-->
     <nav class="main-menu">
@@ -347,11 +347,11 @@
                                         <div class="row2">
                                             <div class="col-lg-4">
                                                 <div class="form-group focused">
-                                                    <span id="input-address"></span>
-                                                    <!-- class="form-control form-control-alternative form-control-table"> -->
-                                                    <a th:href="@{/cca/detail(consultNum=${entry.key.consultNum})}"
-                                                        th:text="${entry.key.consultTitle}"
-                                                        class="form-control form-control-alternative form-control-table"></a>
+                                                    <span id="input-address">
+                                                        <!-- class="form-control form-control-alternative form-control-table"> -->
+                                                        <a th:href="@{/cca/detail(consultNum=${entry.key.consultNum})}"
+                                                            th:text="${entry.key.consultTitle}"
+                                                            class="form-control form-control-alternative form-control-table"></a>
                                                     </span>
                                                 </div>
                                             </div>

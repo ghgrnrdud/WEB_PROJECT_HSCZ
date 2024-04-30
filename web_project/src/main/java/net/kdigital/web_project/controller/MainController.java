@@ -11,20 +11,18 @@ import lombok.extern.slf4j.Slf4j;
 import net.kdigital.web_project.dto.CustomerDTO;
 import net.kdigital.web_project.service.CustomerService;
 
-
 @Controller
 @RequiredArgsConstructor
 @Slf4j
 public class MainController {
 
 	private final CustomerService customerService;
-	
-	@GetMapping({"/",""})
+
+	@GetMapping({ "/", "" })
 	public String index(
-		Model model
-	){
+			Model model) {
 		List<CustomerDTO> ccaList = customerService.selectTop3CCA();
-		
+
 		log.info("====== ccaList: {}", ccaList);
 		model.addAttribute("ccaList", ccaList);
 
@@ -35,10 +33,10 @@ public class MainController {
 	public String layout() {
 		return "layout";
 	}
-	
+
 	@GetMapping("/exchangeRate")
 	public String exchangeRate() {
 		return "exchangeRate";
 	}
-	
+
 }

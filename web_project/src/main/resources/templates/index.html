@@ -30,17 +30,17 @@
 			<a th:href="@{/cca/boardList}">간편상담</a>
 		</div>
 	</form>
-	
+
 	<span>안녕하쇼</span>
 	<li sec:authorize="isAnonymous()">
-	<a th:href="@{/user/join}">회원가입</a>
+		<a th:href="@{/user/join}">회원가입</a>
 	</li>
 	<li sec:authorize="isAnonymous()">
-	<a th:href="@{/user/login}">로그인</a>
+		<a th:href="@{/user/login}">로그인</a>
 	</li>
 	<li sec:authorize="isAuthenticated()">
-                <a th:href="@{/user/logout}">로그아웃</a>
-            </li>
+		<a th:href="@{/user/logout}">로그아웃</a>
+	</li>
 
 	<li sec:authorize="hasRole('ROLE_USER')">
 		<a th:href="@{/my/userpage}">마이페이지</a>
@@ -60,13 +60,13 @@
 		<li><a th:href="@{/cca/ccaList}">관세사 연락처 게시판</a></li>
 	</ul>
 
-            
-        <!-- ROLE_ADMIN 계정을 가지고 있으면 아래 내용 출력 -->
+
+	<!-- ROLE_ADMIN 계정을 가지고 있으면 아래 내용 출력 -->
 	<h2 sec:authorize="hasRole('ROLE_ADMIN')">관리자</h2>
 
 	<!-- ROLE_USER 계정을 가지고 있으면 아래 내용 출력-->
 	<h2 sec:authorize="hasRole('ROLE_USER')">일반 사용자</h2>
-	
+
 	<!-- ROLE_USER 계정을 가지고 있으면 아래 내용 출력-->
 	<h2 sec:authorize="hasRole('ROLE_CCA')">관세사</h2>
 

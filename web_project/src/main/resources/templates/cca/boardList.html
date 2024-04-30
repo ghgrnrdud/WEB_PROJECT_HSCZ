@@ -144,7 +144,8 @@
 		<div class="head">
 			<!-- 글쓰기 버튼 -->
 			<div>
-				<div class="write" th:if="${#authentication.authorities.![authority].contains('ROLE_USER')}">
+				<div class="write" th:if="${#authentication.authorities.![authority].contains('ROLE_USER') or 
+											#authentication.authorities.![authority].contains('ROLE_ANONYMOUS')}">
 					<a th:href="@{/cca/ccaWrite}" class="btn">상담글 작성하기</a>
 				</div>
 			</div>

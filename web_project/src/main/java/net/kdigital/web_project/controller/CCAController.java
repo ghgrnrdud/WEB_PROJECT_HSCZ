@@ -50,6 +50,16 @@ public class CCAController {
         this.customerService = customerService;
     }
 
+    /**
+     * ]
+     * 상담목록
+     * 
+     * @param pageable
+     * @param searchBy
+     * @param searchItem
+     * @param model
+     * @return
+     */
     @GetMapping("/boardList")
     public String boardList(
             @PageableDefault(page = 1) Pageable pageable,
@@ -154,6 +164,7 @@ public class CCAController {
 
     @GetMapping("/replyWrite")
     public String replyWritePage(Model model, @RequestParam("consultNum") Long consultNum) {
+
         model.addAttribute("consultNum", consultNum);
         return "cca/replyWrite"; // replyWrite.html로 이동
     }
@@ -241,6 +252,15 @@ public class CCAController {
         return replyList;
     }
 
+    /**
+     * 관세사 목록
+     * 
+     * @param pageable
+     * @param searchBy
+     * @param searchItem
+     * @param model
+     * @return
+     */
     @GetMapping("/ccaList")
     public String ccaList(
             @PageableDefault(page = 1) Pageable pageable,
@@ -254,7 +274,7 @@ public class CCAController {
         int totalPages = (int) dtoList.getTotalPages();
         int page = pageable.getPageNumber();
         PageNavigator navi = new PageNavigator(pageLimit, page, totalPages);
-
+        log.info("관세사 리스트 : {}", dtoList);
         model.addAttribute("ccaList", dtoList);
         model.addAttribute("searchItem", searchItem);
         model.addAttribute("navi", navi);

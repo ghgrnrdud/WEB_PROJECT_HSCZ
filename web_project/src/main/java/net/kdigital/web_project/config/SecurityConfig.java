@@ -45,11 +45,23 @@ public class SecurityConfig {
 				, "/predict/**"
 				, "/heading/**"
 				, "/news/**"
-				, "/cca/**"
+				, "/cca/boardList"
+				, "/cca/detail"
+				, "/cca/delete"
+				, "/cca/update"
+				, "/cca/replyWrite"
+				, "/cca/replyUpdate"
+				, "/cca/replyDelete"
+				, "/cca/replyAll"
+				, "/cca/ccaList"
+//				, "/cca/setLike"
+				, "/cca/ccaList"
+				, "/cca/ccaList"
 				, "/exchangeRate"
+
 				).permitAll()
-				.requestMatchers("/admin/**").hasRole("ADMIN")
-				.requestMatchers("/my/**").hasAnyRole("ADMIN", "USER", "CCA") // *********** 이게 맞나????
+//				.requestMatchers("/admin/").hasRole("ADMIN")
+//				.requestMatchers("").hasAnyRole("ADMIN", "USER", "CCA") // *********** 이게 맞나????
 				.anyRequest().authenticated());
 		
 		// Custom Login 설정
