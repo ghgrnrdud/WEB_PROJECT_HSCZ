@@ -107,7 +107,7 @@
                         <span class="nav-text">관세사상담</span>
                     </a>
                 </li>
-                <li sec:authorize="isAnonymous()">                                 
+                <li sec:authorize="isAnonymous()">
                     <a th:href="@{/user/login}">
                         <i class="fa fa-regular fa-user fa-lg"></i>
                         <span class="nav-text">로그인</span>
@@ -119,13 +119,13 @@
                         <span class="nav-text">로그아웃</span>
                     </a>
                 </li>
-                <li sec:authorize="hasRole('ROLE_USER')">                                 
+                <li sec:authorize="hasRole('ROLE_USER')">
                     <a th:href="@{/my/userpage}">
                         <i class="fa fa-solid fa-house-user fa-lg"></i>
                         <span class="nav-text">마이페이지</span>
                     </a>
                 </li>
-				<li sec:authorize="hasRole('ROLE_CCA')">>                                 
+                <li sec:authorize="hasRole('ROLE_CCA')">>
                     <a th:href="@{/user/logout}">
                         <i class="fa fa-solid fa-house-user fa-lg"></i>
                         <span class="nav-text">마이페이지</span>
@@ -139,23 +139,24 @@
     <div class="content">
 
         <div class="hsCode-head">
-            <h5>더 많은 정보가 필요하신가요? &nbsp;</h5>
+            <h5>관세사의 도움이 필요하신가요? &nbsp;</h5>
             <div>
                 <a th:href="@{/cca/ccaList}">
                     <button type="button" class="mybtn-consult" data-tooltip="관세사 목록보기">
                         <i class="fa-regular fa-address-book"></i>
                     </button>
                 </a>
-                <a th:href="@{/cca/boardList}">
+                <!-- <a th:href="@{/cca/boardList}">
                     <button type="button" class="mybtn-consult" data-tooltip="관세사 상담목록보기">
                         <i class="fa-solid fa-list-ul"></i>
                     </button>
-                </a>
-                <a th:href="@{/cca/ccaWrite}">
-                    <button type="button" class="mybtn-consult" data-tooltip="관세사 상담글쓰기">
-                        <i class="fa-solid fa-pen-to-square"></i>
-                    </button>
-                </a>
+                </a> -->
+
+                <button type="button" class="mybtn-consult" data-tooltip="관세사 상담글쓰기"
+                    th:onclick="'window.location.href=\'' + @{/cca/ccaWrite(hsCode=${hsCode})} + '\''">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                </button>
+                <!-- </a> -->
             </div>
         </div>
 

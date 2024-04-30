@@ -20,21 +20,20 @@ public class CCAListDTO {
     private String companyName;
     private String phone;
     private String companyRegion;
- 
-  
 
-//    // 생성자 (페이징을 위한 생성자, ccaList에서 사용할 내용으로 추림)
-//    public CCAListDTO(Long ccaNum, String ccaName,String phone, String companyName,String companyRegion) {
-//    	super();
-//    	this.ccaNum = ccaNum;
-//        this.ccaName = ccaName;
-//        this.companyName = companyName;
-//        this.phone= phone;
-//        this.companyRegion = companyRegion;
-//     
-//    }
+    // // 생성자 (페이징을 위한 생성자, ccaList에서 사용할 내용으로 추림)
+    // public CCAListDTO(Long ccaNum, String ccaName,String phone, String
+    // companyName,String companyRegion) {
+    // super();
+    // this.ccaNum = ccaNum;
+    // this.ccaName = ccaName;
+    // this.companyName = companyName;
+    // this.phone= phone;
+    // this.companyRegion = companyRegion;
+    //
+    // }
 
-    // Entity 받아서 --> DTO 반환 
+    // Entity 받아서 --> DTO 반환
     public static CCAListDTO toDTO(CCAListEntity ccaListEntity) {
         return CCAListDTO.builder()
                 .ccaNum(ccaListEntity.getCcaNum())
@@ -42,8 +41,7 @@ public class CCAListDTO {
                 .companyName(ccaListEntity.getCompanyName())
                 .phone(ccaListEntity.getPhone())
                 .companyRegion(ccaListEntity.getCompanyRegion())
-               
+
                 .build();
     }
 }
-

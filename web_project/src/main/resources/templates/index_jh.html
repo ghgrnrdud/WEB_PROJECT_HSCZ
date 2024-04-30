@@ -112,18 +112,7 @@
             <h4>무역통계</h4>TRADE STATICS
           </div><img class=cardimage th:src="@{/images/static.png}" alt="Avatar">
         </div>
-      </a><a th:href="@{/cca/ccaList}" class="cardtest">
-        <div>
-          <div class style="background-color:white; border-radius: 10px 10px 0 0;">
-            <h4>관세사목록</h4>CCA LIST
-          </div><img class=cardimage th:src="@{/images/custom.jpg}" alt="Avatar">
-        </div>
-      </a><a th:href="@{/cca/ccaWrite}" class="cardtest">
-        <div>
-          <div class style="background-color:white; border-radius: 10px 10px 0 0;">
-            <h4>간편상담</h4>CONSULTING
-          </div><img class=cardimage th:src="@{/images/consulting.jpg}" alt="Avatar">
-        </div>
+      </a>
       </a>
       <!-- 환율 test --><a th:href="@{/exchangeRate}" class="cardtest">
         <div>
@@ -132,94 +121,171 @@
           </div><img class=cardimage th:src="@{/images/exchangeRate.jpg}" alt="Avatar">
         </div>
       </a>
+      <a th:href="@{/cca/ccaList}" class="cardtest">
+        <div>
+          <div class style="background-color:white; border-radius: 10px 10px 0 0;">
+            <h4>관세사목록</h4>CCA LIST
+          </div><img class=cardimage th:src="@{/images/custom.jpg}" alt="Avatar">
+        </div>
+      </a>
+      <a th:href="@{/cca/ccaWrite}" class="cardtest">
+        <div>
+          <div class style="background-color:white; border-radius: 10px 10px 0 0;">
+            <h4>간편상담</h4>CONSULTING
+          </div><img class=cardimage th:src="@{/images/consulting.jpg}" alt="Avatar">
+        </div>
     </div>
   </div>
   <!-- End Services Section -->
   <!-- Services Section -->
+
+
   <div class="client-top">
-    <div class="section-header">
+    <!-- <div class="section-header">
       <h2>Our Clients</h2>
+    </div> -->
+    <div class="clientlist">
+      <a href="https://unipass.customs.go.kr/clip/index.do" class="clientlistindi" target="_blank">
+        <img th:src="@{/images/customs.png}" class="img-fluid" alt="관세청">
+      </a>
+      <a href="https://www.kita.net/" class="clientlistindi" target="_blank">
+        <img th:src="@{/images/kita-logo.png}" class="img-fluid" alt="한국무역협회">
+      </a>
+      <a href="https://www.kotra.or.kr/index.do" class="clientlistindi" target="_blank">
+        <img th:src="@{/images/KOTRA_Logo.jpg}" class="img-fluid" alt="코트라 무역투자24">
+      </a>
+      <a href="https://www.customs.go.kr/ftaportalkor/main.do" class="clientlistindi" target="_blank">
+        <img th:src="@{/images/yesFTA logo.jpg}" class="img-fluid" alt="FTA포털">
+      </a>
+      <a href="https://comtradeplus.un.org/" class="clientlistindi" target="_blank">
+        <img th:src="@{/images/uncomtrade.png}" class="img-fluid" alt="UN COMTRADE">
+      </a>
+      <a href="https://unipass.customs.go.kr/csp/index.do" class="clientlistindi" target="_blank">
+        <img th:src="@{/images/unipass.jpg}" class="img-fluid" alt="유니패스">
+      </a>
+      <a href="https://fta.utradehub.or.kr/fta/origin/common/main/index.do" class="clientlistindi" target="_blank">
+        <img th:src="@{/images/utradehub.png}" class="img-fluid" alt="UTRADEHUB">
+      </a>
+      <a href="http://www.krcaa.or.kr/main.aspx" class="clientlistindi" target="_blank">
+        <img th:src="@{/images/logo_krcaa.png}" class="img-fluid" alt="한국관세사회">
+      </a>
+      <a href="https://fta.kita.net/main" class="clientlistindi" target="_blank">
+        <img th:src="@{/images/fta_total.png}" class="img-fluid" alt="FTA 통합플랫폼">
+      </a>
+      <a href="https://www.yestrade.go.kr/user/main.do?method=main" class="clientlistindi" target="_blank">
+        <img th:src="@{/images/yestrade.png}" class="img-fluid" alt="전략물자관리시스템">
+      </a>
+      <a href="https://www.mofa.go.kr/www/index.do" class="clientlistindi" target="_blank">
+        <img th:src="@{/images/MOFA.png}" class="img-fluid" alt="외교부">
+      </a>
+      <a href="https://www.mss.go.kr/site/smba/main.do" class="clientlistindi" target="_blank">
+        <img th:src="@{/images/MSS.png}" class="img-fluid" alt="중소벤처기업부">
+      </a>
+      <a href="https://www.motie.go.kr/" class="clientlistindi" target="_blank">
+        <img th:src="@{/images/MOTIE.png}" class="img-fluid" alt="산업통상자원부">
+      </a>
+      <a href="https://www.moj.go.kr/moj/index.do" class="clientlistindi" target="_blank">
+        <img th:src="@{/images/MOJ.png}" class="img-fluid" alt="법무부">
+      </a>
+      <a href="https://www.moef.go.kr/" class="clientlistindi" target="_blank">
+        <img th:src="@{/images/MOEF.png}" class="img-fluid" alt="기획재정부">
+      </a>
     </div>
-    <div class="clientlist"><a href="https://unipass.customs.go.kr/clip/index.do" class="clientlistindi"
-        target="_blank"><img th:src="@{/images/customs.png}" class="img-fluid" alt=""></a><a
-        href="https://www.kita.net/" class="clientlistindi" target="_blank"><img th:src="@{/images/kita-logo.png}"
-          class="img-fluid" alt=""></a><a href="https://www.kotra.or.kr/index.do" class="clientlistindi"
-        target="_blank"><img th:src="@{/images/KOTRA_Logo.jpg}" class="img-fluid" alt=""></a><a
-        href="https://www.customs.go.kr/ftaportalkor/main.do" class="clientlistindi" target="_blank"><img
-          th:src="@{/images/yesFTA logo.jpg}" class="img-fluid" alt=""></a><a href="https://comtradeplus.un.org/"
-        class="clientlistindi" target="_blank"><img th:src="@{/images/un-logo.png}" class="img-fluid" alt=""></a></div>
-    <!-- End Services Section -->
+  </div>
 
-    <!-- footer -->
-    <footer class="footer-wave">
-      <div class="waves">
-        <div class="wave" id="wave1"></div>
-        <div class="wave" id="wave2"></div>
-        <div class="wave" id="wave3"></div>
-        <div class="wave" id="wave4"></div>
-      </div>
+  <!-- End Services Section -->
 
-      <ul class="footer-wave-menu">
-        <li class="menu__item"><a class="menu__link" th:href="@{/}">HOME</a></li>
-        <li class="menu__item"><a class="menu__link" th:href="@{/news}">무역뉴스</a></li>
-        <li class="menu__item"><a class="menu__link" th:href="@{/info/infoList}">FTA정보</a></li>
-        <li class="menu__item"><a class="menu__link" th:href="@{/trade/showStat}">무역통계</a></li>
-        <li class="menu__item"><a class="menu__link" th:href="@{/cca/boardList}">관세사상담</a></li>
+  <!-- footer -->
+  <footer class="footer-wave">
+    <div class="waves">
+      <div class="wave" id="wave1"></div>
+      <div class="wave" id="wave2"></div>
+      <div class="wave" id="wave3"></div>
+      <div class="wave" id="wave4"></div>
+    </div>
 
-      </ul>
-      <p>&copy;2024 HScode Zoom | All Rights Reserved</p>
-    </footer>
-    <!-- End footer -->
+    <ul class="footer-wave-menu">
+      <li class="menu__item"><a class="menu__link" th:href="@{/}">HOME</a></li>
+      <li class="menu__item"><a class="menu__link" th:href="@{/news}">무역뉴스</a></li>
+      <li class="menu__item"><a class="menu__link" th:href="@{/info/infoList}">FTA정보</a></li>
+      <li class="menu__item"><a class="menu__link" th:href="@{/trade/showStat}">무역통계</a></li>
+      <li class="menu__item"><a class="menu__link" th:href="@{/cca/boardList}">관세사상담</a></li>
 
-    <!--   Core JS Files   -->
-    <script src="./assets/js/core/jquery.min.js" type="text/javascript"></script>
-    <script src="./assets/js/core/popper.min.js" type="text/javascript"></script>
-    <script src="./assets/js/core/bootstrap.min.js" type="text/javascript"></script>
-    <!-- Plugin for Switches, full documentation here: http:
+    </ul>
+    <p>&copy;2024 HScode Zoom | All Rights Reserved</p>
+  </footer>
+  <!-- End footer -->
+
+  <!--   Core JS Files   -->
+  <script src="./assets/js/core/jquery.min.js" type="text/javascript"></script>
+  <script src="./assets/js/core/popper.min.js" type="text/javascript"></script>
+  <script src="./assets/js/core/bootstrap.min.js" type="text/javascript"></script>
+  <!-- Plugin for Switches, full documentation here: http:
                         //www.jque.re/plugins/version3/bootstrap.switch/ -->
-    <script src="./assets/js/plugins/bootstrap-switch.js"></script>
-    <!-- Plugin for the Sliders, full documentation here: http: //refreshless.com/nouislider/ -->
-    <script src="./assets/js/plugins/nouislider.min.js" type="text/javascript"></script>
-    <!-- Plugin for the DatePicker, full documentation here: https:
+  <script src="./assets/js/plugins/bootstrap-switch.js"></script>
+  <!-- Plugin for the Sliders, full documentation here: http: //refreshless.com/nouislider/ -->
+  <script src="./assets/js/plugins/nouislider.min.js" type="text/javascript"></script>
+  <!-- Plugin for the DatePicker, full documentation here: https:
                             //github.com/uxsolutions/bootstrap-datepicker -->
 
-    <script src="./assets/js/plugins/moment.min.js"></script>
-    <script src="./assets/js/plugins/bootstrap-datepicker.js" type="text/javascript"></script>
-    <!-- Control Center for Paper Kit: parallax effects, scripts for the example pages etc -->
-    <script src="./assets/js/paper-kit.js?v=2.2.0" type="text/javascript"></script>
-    <!-- Google Maps Plugin -->
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
-    <script>$(document).ready(function () {
+  <script src="./assets/js/plugins/moment.min.js"></script>
+  <script src="./assets/js/plugins/bootstrap-datepicker.js" type="text/javascript"></script>
+  <!-- Control Center for Paper Kit: parallax effects, scripts for the example pages etc -->
+  <script src="./assets/js/paper-kit.js?v=2.2.0" type="text/javascript"></script>
+  <!-- Google Maps Plugin -->
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
 
-        if ($("#datetimepicker").length != 0) {
-          $('#datetimepicker').datetimepicker({
-            icons: {
-              time: "fa fa-clock-o",
-              date: "fa fa-calendar",
-              up: "fa fa-chevron-up",
-              down: "fa fa-chevron-down",
-              previous: 'fa fa-chevron-left',
-              next: 'fa fa-chevron-right',
-              today: 'fa fa-screenshot',
-              clear: 'fa fa-trash',
-              close: 'fa fa-remove'
-            }
-          });
-        }
+  <!-- slider -->
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+  <link rel="stylesheet" type="text/css"
+    href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
+  <script th:src="@{/script/jquery-3.7.1.min.js}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
-        function scrollToDownload() {
+  <script>$(document).ready(function () {
 
-          if ($('.section-download').length != 0) {
-            $("html, body").animate({
-              scrollTop: $('.section-download').offset().top
-            }
-
-              , 1000);
+      if ($("#datetimepicker").length != 0) {
+        $('#datetimepicker').datetimepicker({
+          icons: {
+            time: "fa fa-clock-o",
+            date: "fa fa-calendar",
+            up: "fa fa-chevron-up",
+            down: "fa fa-chevron-down",
+            previous: 'fa fa-chevron-left',
+            next: 'fa fa-chevron-right',
+            today: 'fa fa-screenshot',
+            clear: 'fa fa-trash',
+            close: 'fa fa-remove'
           }
-        }
-      });
+        });
+      }
 
-    </script>
+      function scrollToDownload() {
+
+        if ($('.section-download').length != 0) {
+          $("html, body").animate({
+            scrollTop: $('.section-download').offset().top
+          }
+
+            , 1000);
+        }
+      }
+    });
+
+  </script>
+
+  <script>
+    $(document).ready(function () {
+      $('.clientlist').slick({
+        slidesToShow: 8,   // 한 번에 보여줄 슬라이드 수
+        slidesToScroll: 1, // 한 번에 스크롤할 슬라이드 수
+        autoplay: true,    // 자동 재생 여부
+        autoplaySpeed: 800, // 자동 재생 간격
+        arrows: false,      // 좌우 화살표 사용 여부
+        infinite: true
+      });
+    });
+  </script>
 </body>
 
 </html>

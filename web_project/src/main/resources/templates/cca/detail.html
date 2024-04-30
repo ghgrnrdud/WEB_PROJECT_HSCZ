@@ -18,8 +18,8 @@
 </head>
 
 <body>
-	<!-- Ajax 전송 시 필요  -->
-	<input type="hidden" id="consultNum" th:value="${consult.consultNum}">
+    <!-- Ajax 전송 시 필요  -->
+    <input type="hidden" id="consultNum" th:value="${consult.consultNum}">
 
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg fixed-top navbar-transparent " color-on-scroll="300">
@@ -104,7 +104,7 @@
                         <span class="nav-text">관세사상담</span>
                     </a>
                 </li>
-                <li sec:authorize="isAnonymous()">                                 
+                <li sec:authorize="isAnonymous()">
                     <a th:href="@{/user/login}">
                         <i class="fa fa-regular fa-user fa-lg"></i>
                         <span class="nav-text">로그인</span>
@@ -116,13 +116,13 @@
                         <span class="nav-text">로그아웃</span>
                     </a>
                 </li>
-                <li sec:authorize="hasRole('ROLE_USER')">                                 
+                <li sec:authorize="hasRole('ROLE_USER')">
                     <a th:href="@{/my/userpage}">
                         <i class="fa fa-solid fa-house-user fa-lg"></i>
                         <span class="nav-text">마이페이지</span>
                     </a>
                 </li>
-				<li sec:authorize="hasRole('ROLE_CCA')">>                                 
+                <li sec:authorize="hasRole('ROLE_CCA')">>
                     <a th:href="@{/user/logout}">
                         <i class="fa fa-solid fa-house-user fa-lg"></i>
                         <span class="nav-text">마이페이지</span>
@@ -147,17 +147,20 @@
             </div>
             <div class="productCategory">
                 <span>#[[ ${consult.productCategory} ]]</span>
+                <span>#[[ ${consult.productHscode} ]]</span>
             </div>
             <div class="buttonArea">
                 <!-- 글 삭제와 수정은 글쓴 사람과 로그인한 사람과 동일한 경우에만 나타나야 함 -->
-                    <th:block th:if="${consult.consultWriter == #authentication.name}">     
-                        <a th:href="@{/cca/update(consultNum=${consult.consultNum}, searchBy=${searchBy}, searchItem=${searchItem})}" class="qna-button ans-btn">수정하기</a>
-                        <a th:href="@{/cca/delete(consultNum=${consult.consultNum},searchBy=${searchBy}, searchItem=${searchItem})}" class="qna-button ans-btn">삭제하기</a>
-                    </th:block>
-                    <!-- <th:block th:if="${#authentication.authorities.![authority].contains('ROLE_CCA')}">
+                <th:block th:if="${consult.consultWriter == #authentication.name}">
+                    <a th:href="@{/cca/update(consultNum=${consult.consultNum}, searchBy=${searchBy}, searchItem=${searchItem})}"
+                        class="qna-button ans-btn">수정하기</a>
+                    <a th:href="@{/cca/delete(consultNum=${consult.consultNum},searchBy=${searchBy}, searchItem=${searchItem})}"
+                        class="qna-button ans-btn">삭제하기</a>
+                </th:block>
+                <!-- <th:block th:if="${#authentication.authorities.![authority].contains('ROLE_CCA')}">
                         <a th:href="@{/cca/replyWrite(consultNum=${consult.consultNum}, searchBy=${searchBy}, searchItem=${searchItem})}" class="qna-button ans-btn">답변달기</a>
                     </th:block> -->
-                    <!-- <input type="button" value="버튼" class="qna-button ans-btn"> -->
+                <!-- <input type="button" value="버튼" class="qna-button ans-btn"> -->
             </div>
         </div>
 
@@ -167,7 +170,8 @@
                 <div class="editorHeaderInner">
                     <div class="headerThumbnail">
                         <div class="thumbnail">
-                            <img src="https://ssl.pstatic.net/static/kin/09renewal/avatar/200x200_m_gray/profilePlaceholder_191121.png" alt="프로필 사진">
+                            <img src="https://ssl.pstatic.net/static/kin/09renewal/avatar/200x200_m_gray/profilePlaceholder_191121.png"
+                                alt="프로필 사진">
                         </div>
                     </div>
                     <div class="headerDetail">
@@ -175,7 +179,8 @@
                     </div>
                     <div class="headerButton">
                         <th:block th:if="${#authentication.authorities.![authority].contains('ROLE_CCA')}">
-                            <a th:href="@{/cca/replyWrite(consultNum=${consult.consultNum}, searchBy=${searchBy}, searchItem=${searchItem})}" class="qna-button ans-btn">답변달기</a>
+                            <a th:href="@{/cca/replyWrite(consultNum=${consult.consultNum}, searchBy=${searchBy}, searchItem=${searchItem})}"
+                                class="qna-button ans-btn">답변달기</a>
                         </th:block>
                     </div>
                 </div>
@@ -238,7 +243,7 @@
                         </div>
                         <div class="answerBtnRight">
                             <th:block th:if="${#authentication.authorities.![authority].contains('ROLE_USER')}">
-                                
+
                                 <form th:action="@{/cca/increaseLike}" method="POST">
                                     <input type="hidden" name="replyNum" th:value="${reply.replyNum}">
                                     <input type="hidden" name="consultNum" th:value="${consult.consultNum}">
