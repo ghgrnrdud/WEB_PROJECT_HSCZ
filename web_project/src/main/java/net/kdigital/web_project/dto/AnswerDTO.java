@@ -19,7 +19,6 @@ public class AnswerDTO {
     private Long replyNum;
     private Long consultNum;
     private String replyWriter;
- 
     private String replyContent;
     private LocalDateTime replyDate;
     private int likeCount;

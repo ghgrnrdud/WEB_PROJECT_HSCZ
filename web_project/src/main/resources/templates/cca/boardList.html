@@ -5,206 +5,366 @@
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>관세 간편 상담 게시판</title>
+	<!--font-->
+	<link href="//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css" rel="stylesheet" type="text/css" />
+
+	<!--css-->
+	<link href="/assets/css/bootstrap.min.css" rel="stylesheet" />
+	<!-- 테이블 CSS -->
+	<link href="/assets/css/ccalist.css" rel="stylesheet" />
+
 	<script th:src="@{/script/jquery-3.7.1.min.js}"></script>
 	<script th:inline="javascript" th:src="@{/script/detail.js}"></script>
-	<!-- <link rel="stylesheet" th:href="@{/css/list.css}"> -->
 </head>
 
 <body>
-	<div class="container">
-		<div class="logo">
-			<!-- <a th:href="@{/}"><img th:src="@{/images/logo.png}" alt="logo"></a> -->
-			<h2>게시글 목록</h2>
+	<!-- Navbar -->
+	<nav class="navbar navbar-expand-lg fixed-top navbar-transparent " color-on-scroll="300">
+		<div class="container">
+			<div class="navbar-translate">
+				<a class="navbar-brand" th:href="@{/}" rel="tooltip" title="Coded by Creative Tim"
+					data-placement="bottom">
+					<img th:src="@{/images/web-logo9.png}" alt="로고">
+				</a>
+			</div>
+			<div class="collapse navbar-collapse justify-content-end" id="navigation">
+				<ul class="navbar-nav">
+					<li class="nav-item">
+						<a class="nav-link" rel="tooltip" data-placement="bottom" th:href="@{/news}">
+							무역뉴스
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" rel="tooltip" data-placement="bottom" th:href="@{/info/infoList}">
+							FTA정보
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" rel="tooltip" data-placement="bottom" th:href="@{/trade/showStat}">
+							무역통계
+						</a>
+					</li>
+
+					<div class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" data-toggle="dropdown" id="dropdownMenuButton" href="#"
+							role="button" aria-haspopup="true" aria-expanded="false">관세사상담</a>
+						<ul class="dropdown-menu dropdown-info" aria-labelledby="dropdownMenuButton">
+							<a class="dropdown-item" th:href="@{/cca/ccaList}">관세사목록</a>
+							<a class="dropdown-item" th:href="@{/cca/boardList}">상담목록</a>
+							<a class="dropdown-item" th:href="@{/cca/ccaWrite}">상담하기</a>
+						</ul>
+					</div>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<!-- End Navbar -->
+
+	<!-- page-header 시작-->
+	<div class="page-header section-dark" th:style="'background-image: url(\'' + @{/images/cover-img1.jpg} + '\')'">
+		<div class="filter"></div>
+		<div class="content-center">
+			<div class="container">
+				<div class="title-brand">
+					<h1 class="presentation-title">상담글 목록</h1>
+				</div>
+			</div> <!--div.content-center-->
 		</div>
 	</div>
-	<!-- .container 끝 -->
+	<!-- End page-header -->
 
-	<!-- 게시글 전체 목록 출력  -->
+	<!-- side-bar 시작-->
+	<nav class="main-menu">
+		<div class="settings"></div>
+		<div class="scrollbar" id="style-1">
+			<ul>
+				<li class="menu-img">
+					<a href="#">
+						<i class="fa fa-solid fa-bars fa-lg"></i>
+						<span class="nav-text">Menu</span>
+					</a>
+				</li>
+				<li>
+					<a th:href="@{/news}">
+						<i class="fa fa-solid fa-newspaper fa-lg"></i>
+						<span class="nav-text">무역뉴스</span>
+					</a>
+				</li>
+				<li>
+					<a th:href="@{/info/infoList}">
+						<i class="fa fa-solid fa-book fa-lg"></i>
+						<span class="nav-text">FTA정보</span>
+					</a>
+				</li>
+				<li>
+					<a th:href="@{/trade/showStat}">
+						<i class="fa fa-solid fa-chart-simple fa-lg"></i>
+						<span class="nav-text">무역통계</span>
+					</a>
+				</li>
+				<li>
+					<a th:href="@{/cca/boardList}">
+						<i class="fa fa-solid fa-handshake fa-lg"></i>
+						<span class="nav-text">관세사상담</span>
+					</a>
+				</li>
+				<li sec:authorize="isAnonymous()">
+					<a th:href="@{/user/login}">
+						<i class="fa fa-regular fa-user fa-lg"></i>
+						<span class="nav-text">로그인</span>
+					</a>
+				</li>
+				<li sec:authorize="isAuthenticated()">
+					<a th:href="@{/user/logout}">
+						<i class="fa fa-user fa-lg"></i>
+						<span class="nav-text">로그아웃</span>
+					</a>
+				</li>
+				<li sec:authorize="hasRole('ROLE_USER')">
+					<a th:href="@{/my/userpage}">
+						<i class="fa fa-solid fa-house-user fa-lg"></i>
+						<span class="nav-text">마이페이지</span>
+					</a>
+				</li>
+				<li sec:authorize="hasRole('ROLE_CCA')">>
+					<a th:href="@{/user/logout}">
+						<i class="fa fa-solid fa-house-user fa-lg"></i>
+						<span class="nav-text">마이페이지</span>
+					</a>
+				</li>
+			</ul>
+		</div>
+		</div>
+	</nav>
+
+	<!-- 게시글 전체 목록 출력 -->
 	<div class="content">
+		<!-- <h2 class="ccaLIST">상담문의글 목록</h2> -->
 		<p th:if="${#lists.isEmpty(consultList)}">목록이 없습니다.</p>
 		<div class="head">
-			<!-- 전체 글개수 출력 -->
-			<div class="count">
-				<p>총 건수: [[${consultList.totalElements}]]</p>
+			<!-- 글쓰기 버튼 -->
+			<div>
+				<div class="write" th:if="${#authentication.authorities.![authority].contains('ROLE_USER') or 
+											#authentication.authorities.![authority].contains('ROLE_ANONYMOUS')}">
+					<a th:href="@{/cca/ccaWrite}" class="btn">상담글 작성하기</a>
+				</div>
 			</div>
-			<!-- 검색 창 -->
-			<div class="search">
-				<form id="searchForm" th:action="@{/cca/boardList}" method="GET">
-					<input type="hidden" name="page" id="requestPage" th:value="${page}" />
-					<input type="hidden" id="contextPath" th:value="${contextPath}" />
-					<select name="searchBy">
-						<option value="productCategory" th:selected="${searchBy == 'productCategory'}">
-							품목검색
-						</option>
-					</select>
-					<select name="searchItem">
-						<option value="">전체</option>
-						<option value="의류" th:selected="${searchItem == '의류'}">
-							의류
-						</option>
-						<option value="무기류" th:selected="${searchItem == '무기류'}">
-							무기류
-						</option>
-						<option value="농산품" th:selected="${searchItem == '농산품'}">
-							농산품
-						</option>
-						<option value="광물" th:selected="${searchItem == '광물'}">
-							광물
-						</option>
-						<option value="화학품" th:selected="${searchItem == '화학품'}">
-							화학품
-						</option>
-						<option value="완구류" th:selected="${searchItem == '완구류'}">
-							완구류
-						</option>
-						<option value="예술품" th:selected="${searchItem == '예술품'}">
-							예술품
-						</option>
-						<option value="가구류" th:selected="${searchItem == '가구류'}">
-							가구류
-						</option>
-						<option value="악기류" th:selected="${searchItem == '악기류'}">
-							악기류
-						</option>
-						<option value="선박" th:selected="${searchItem == '선박'}">
-							선박
-						</option>
-						<option value="시계" th:selected="${searchItem == '시계'}">
-							시계
-						</option>
-						<option value="항공기" th:selected="${searchItem == '항공기'}">
-							항공기
-						</option>
-						<option value="기계류" th:selected="${searchItem == '기계류'}">
-							기계류
-						</option>
-						<option value="금속류" th:selected="${searchItem == '금속류'}">
-							금속류
-						</option>
-						<option value="비금속류" th:selected="${searchItem == '비금속류'}">
-							비금속류
-						</option>
-						<option value="플라스틱류" th:selected="${searchItem == '플라스틱류'}">
-							플라스틱류
-						</option>
-						<option value="목재류" th:selected="${searchItem == '목재류'}">
-							목재류
-						</option>
-						<option value="의료용품" th:selected="${searchItem == '의료용품'}">
-							의료용품
-						</option>
-						<option value="화장품" th:selected="${searchItem == '화장품'}">
-							화장품
-						</option>
-						<option value="곡물류" th:selected="${searchItem == '곡물류'}">
-							곡물류
-						</option>
-						<option value="화약류" th:selected="${searchItem == '화약류'}">
-							화약류
-						</option>
-						<option value="고무제품류" th:selected="${searchItem == '고무제품류'}">
-							고무제품류
-						</option>
-						<option value="가죽제품류" th:selected="${searchItem == '가죽제품류'}">
-							가죽제품류
-						</option>
-						<option value="인쇄물류" th:selected="${searchItem == '인쇄물류'}">
-							인쇄물류
-						</option>
-						<option value="케이블류" th:selected="${searchItem == '케이블류'}">
-							케이블류
-						</option>
-						<option value="면제품류" th:selected="${searchItem == '면제품류'}">
-							면제품류
-						</option>
-						<option value="견직류" th:selected="${searchItem == '견직류'}">
-							견직류
-						</option>
-						<option value="섬유제품류" th:selected="${searchItem == '섬유제품류'}">
-							섬유제품류
-						</option>
-						<option value="도자기류" th:selected="${searchItem == '도자기류'}">
-							도자기류
-						</option>
-						<option value="식기류" th:selected="${searchItem == '식기류'}">
-							식기류
-						</option>
-						<option value="철도부품" th:selected="${searchItem == '철도부품'}">
-							철도부품
-						</option>
-						<option value="원자로" th:selected="${searchItem == '원자로'}">
-							원자로
-						</option>
-					</select>
-
-					<input type="submit" id="categorySearchBtn" value="검색" class="btn btn-info" />
-				</form>
+			<div class="searh-section">
+				<div class="search">
+					<div id="ccaCount">
+						<p>검색된 총 게시물수: <b>[[${consultList.totalElements}]]</b>건</p>
+					</div>
+					<form id="searchForm" th:action="@{/cca/boardList}" method="GET">
+						<input type="hidden" name="page" id="requestPage" th:value="${page}" />
+						<input type="hidden" id="contextPath" th:value="${contextPath}" />
+						<div id="selectcss">
+							<select name="searchItem">
+								<option value="" selected>품목별 검색</option>
+								<option value="의류" th:selected="${searchItem == '의류'}">
+									의류
+								</option>
+								<option value="식품류" th:selected="${searchItem == '식품류'}">
+									식품류
+								</option>
+								<option value="무기류" th:selected="${searchItem == '무기류'}">
+									무기류
+								</option>
+								<option value="농산품" th:selected="${searchItem == '농산품'}">
+									농산품
+								</option>
+								<option value="광물" th:selected="${searchItem == '광물'}">
+									광물
+								</option>
+								<option value="화학품" th:selected="${searchItem == '화학품'}">
+									화학품
+								</option>
+								<option value="완구류" th:selected="${searchItem == '완구류'}">
+									완구류
+								</option>
+								<option value="예술품" th:selected="${searchItem == '예술품'}">
+									예술품
+								</option>
+								<option value="가구류" th:selected="${searchItem == '가구류'}">
+									가구류
+								</option>
+								<option value="악기류" th:selected="${searchItem == '악기류'}">
+									악기류
+								</option>
+								<option value="선박" th:selected="${searchItem == '선박'}">
+									선박
+								</option>
+								<option value="시계" th:selected="${searchItem == '시계'}">
+									시계
+								</option>
+								<option value="항공기" th:selected="${searchItem == '항공기'}">
+									항공기
+								</option>
+								<option value="기계류" th:selected="${searchItem == '기계류'}">
+									기계류
+								</option>
+								<option value="금속류" th:selected="${searchItem == '금속류'}">
+									금속류
+								</option>
+								<option value="비금속류" th:selected="${searchItem == '비금속류'}">
+									비금속류
+								</option>
+								<option value="플라스틱류" th:selected="${searchItem == '플라스틱류'}">
+									플라스틱류
+								</option>
+								<option value="목재류" th:selected="${searchItem == '목재류'}">
+									목재류
+								</option>
+								<option value="의료용품" th:selected="${searchItem == '의료용품'}">
+									의료용품
+								</option>
+								<option value="화장품" th:selected="${searchItem == '화장품'}">
+									화장품
+								</option>
+								<option value="곡물류" th:selected="${searchItem == '곡물류'}">
+									곡물류
+								</option>
+								<option value="화약류" th:selected="${searchItem == '화약류'}">
+									화약류
+								</option>
+								<option value="고무제품류" th:selected="${searchItem == '고무제품류'}">
+									고무제품류
+								</option>
+								<option value="가죽제품류" th:selected="${searchItem == '가죽제품류'}">
+									가죽제품류
+								</option>
+								<option value="인쇄물류" th:selected="${searchItem == '인쇄물류'}">
+									인쇄물류
+								</option>
+								<option value="케이블류" th:selected="${searchItem == '케이블류'}">
+									케이블류
+								</option>
+								<option value="면제품류" th:selected="${searchItem == '면제품류'}">
+									면제품류
+								</option>
+								<option value="견직류" th:selected="${searchItem == '견직류'}">
+									견직류
+								</option>
+								<option value="섬유제품류" th:selected="${searchItem == '섬유제품류'}">
+									섬유제품류
+								</option>
+								<option value="도자기류" th:selected="${searchItem == '도자기류'}">
+									도자기류
+								</option>
+								<option value="식기류" th:selected="${searchItem == '식기류'}">
+									식기류
+								</option>
+								<option value="철도부품" th:selected="${searchItem == '철도부품'}">
+									철도부품
+								</option>
+								<option value="원자로" th:selected="${searchItem == '원자로'}">
+									원자로
+								</option>
+							</select>
+							<input type="text" name="searchWord" class="searchWord" th:value="${searchWord}">
+							<input type="submit" value="검색" id="ccaSearchBtn" class="btn btn-info" />
+						</div>
+					</form>
+				</div>
 			</div>
 		</div>
-		<!-- 게시글 목록 -->
-		<div>
-			<table border="1">
-				<tr>
-					<th class="no">글번호</th>
-					<th>글제목</th>
-					<th class="consultWriter">작성자</th>
-					<th class="productCategory">품목</th>
-					<th class="consultDate">작성일</th>
-				</tr>
-				<!--  반복 구간  -->
-				<tr th:each="board, status : ${consultList}">
-					<td th:text="${(consultList.number * consultList.size) + status.count}"></td>
-					<td>
-						<a th:href="@{/cca/detail(consultNum=${board.consultNum}, searchBy=${searchBy}, searchItem=${searchItem})}"
-							th:text="${board.consultTitle}">
-							오늘은 화요일.
-						</a>
-					</td>
-					<td th:text="${board.consultWriter}">홍길동</td>
-					<td th:text="${board.productCategory}">22</td>
-					<td th:text="*{#temporals.format(board.consultDate, 'yyyy-MM-dd hh:mm:ss')}">
-						2024-03-12
-					</td>
-				</tr>
-			</table>
+
+		<div class="container">
+			<div class="table-responsive">
+				<table class="table custom-table">
+					<thead>
+						<tr id="tableTr">
+							<th class="ccaName">글번호</th>
+							<th class="companyName">글제목</th>
+							<th class="phone">작성자</th>
+							<th class="companyRegion">품목</th>
+							<th class="ccaEmail">작성일</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="board, status : ${consultList}">
+							<td th:text="${(consultList.number * consultList.size) + status.count}"></td>
+							<td>
+								<a class="boardTitle"
+									th:href="@{/cca/detail(consultNum=${board.consultNum}, searchBy=${searchBy}, searchItem=${searchItem})}"
+									th:text="${board.consultTitle}"></a>
+							</td>
+							<td th:text="${board.consultWriter}"></td>
+							<td th:text="${board.productCategory}"></td>
+							<td th:text="*{#temporals.format(board.consultDate, 'yyyy-MM-dd hh:mm:ss')}"></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+			<!-- 페이징 -->
+			<nav class="pagination">
+				<a th:if="${navi.startPageGroup > 1}"
+					th:href="@{|/cca/boardList?page=${navi.startPageGroup - 10}&searchBy=${searchBy}&searchItem=${searchItem}|}"
+					class="btn">&laquo; Previous</a>
+				<span th:each="count : ${#numbers.sequence(navi.startPageGroup, navi.endPageGroup)}">
+					<span th:if="${count == navi.page}">
+						<b class="page-no current" th:text="${count}"></b>
+					</span>
+					<span th:unless="${count == navi.page}">
+						<a class="page-no"
+							th:href="@{|/cca/boardList?page=${count}&searchBy=${searchBy}&searchItem=${searchItem}|}"
+							th:text="${count}"></a>
+					</span>
+				</span>
+				<a th:if="${navi.endPageGroup < navi.totalPages}"
+					th:href="@{|/cca/boardList?page=${navi.endPageGroup + 1}&searchBy=${searchBy}&searchItem=${searchItem}|}"
+					class="btn">Next &raquo;</a>
+			</nav>
+			<!--페이징 끝-->
 		</div>
-		<!-- .content 끝 -->
+		<!--table-reponsive 끝-->
+	</div> <!--content 끝-->
 
-		<!-- 글쓰기 버튼 -->
-		<!-- <div class="write" th:if="${#authentication.authorities.![authority].contains('ROLE_USER')}"> -->
-		<a th:href="@{/cca/ccaWrite}" class="btn btn-primary">상담글 작성하기</a>
-		<a th:href="@{/cca/ccaTop10}" class="btn btn-primary">우수 답변 관세사 확인하기</a>
-		<!-- </div> -->
+	<!-- footer -->
+	<footer class="footer-wave">
+		<div class="waves">
+			<div class="wave" id="wave1"></div>
+			<div class="wave" id="wave2"></div>
+			<div class="wave" id="wave3"></div>
+			<div class="wave" id="wave4"></div>
+		</div>
 
-		<!-- Page Navigation -->
-		<nav class="pagination">
-			<!-- 이전 10페이지 버튼 -->
-			<a th:if="${navi.startPageGroup > 1}"
-				th:href="@{|/cca/boardList?page=${navi.startPageGroup - 10}&searchBy=${searchBy}&searchItem=${searchItem}|}"
-				class="btn">&laquo; 이전 10페이지</a>
+		<ul class="footer-wave-menu">
+			<li class="menu__item">
+				<a class="menu__link" th:href="@{/}">HOME</a>
+			</li>
+			<li class="menu__item">
+				<a class="menu__link" th:href="@{/news}">무역뉴스</a>
+			</li>
+			<li class="menu__item">
+				<a class="menu__link" th:href="@{/info/infoList}">FTA정보</a>
+			</li>
+			<li class="menu__item">
+				<a class="menu__link" th:href="@{/trade/showStat}">무역통계</a>
+			</li>
+			<li class="menu__item">
+				<a class="menu__link" th:href="@{/cca/boardList}">관세사상담</a>
+			</li>
+		</ul>
+		<p>&copy;2024 HScode Zoom | All Rights Reserved</p>
+	</footer>
+	<!-- End footer -->
 
-			<!-- 페이지 번호 출력 -->
-			<span th:each="count : ${#numbers.sequence(navi.startPageGroup, navi.endPageGroup)}">
-				<!-- 보고있는 페이지가 요청한 페이지와 같을 때는 링크 안 생김 -->
-				<span th:if="${count == navi.page}">
-					<b class="page-no current" th:text="${count}"></b>
-				</span>
+	<!--script-->
+	<script th:src="@{/script/jquery-3.7.1.min.js}" type="text/javascript"></script>
+	<script th:src="@{/assets/js/core/popper.min.js}" type="text/javascript"></script>
+	<script th:src="@{/assets/js/core/bootstrap.min.js}" type="text/javascript"></script>
 
-				<!-- 보고있는 페이지가 요청한 페이지와 다를 때는 링크 생김 -->
-				<span th:unless="${count == navi.page}">
-					<a class="page-no"
-						th:href="@{|/cca/boardList?page=${count}&searchBy=${searchBy}&searchItem=${searchItem}|}"
-						th:text="${count}"></a>
-				</span>
-			</span>
+	<script th:src="@{/assets/js/plugins/bootstrap-switch.js}"></script>
 
-			<!-- 다음 10페이지 버튼 -->
-			<a th:if="${navi.endPageGroup < navi.totalPages}"
-				th:href="@{|/cca/boardList?page=${navi.endPageGroup + 1}&searchBy=${searchBy}&searchItem=${searchItem}|}"
-				class="btn">다음 10페이지 &raquo;</a>
-		</nav>
-	</div>
-	<div></div>
+	<script th:src="@{/assets/js/plugins/nouislider.min.js}" type="text/javascript"></script>
+
+	<script th:src="@{/assets/js/plugins/moment.min.js}"></script>
+	<script th:src="@{/assets/js/plugins/bootstrap-datepicker.js}" type="text/javascript"></script>
+
+	<script th:src="@{/assets/js/paper-kit.min.js?v=2.2.0}" type="text/javascript"></script>
+	<script type="text/javascript"
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTTfWur0PDbZWPr7Pmq8K3jiDp0_xUziI"></script>
 	<script>
 		function pageFormSubmit(page) {
 			document.getElementById("requestPage").value = page;
@@ -212,7 +372,9 @@
 			var searchBy = document.getElementById("searchBy").value;
 			var searchItem = document.getElementById("searchItem").value;
 			document.getElementById("searchBy").setAttribute("name", "searchBy");
-			document.getElementById("searchItem").setAttribute("name", "searchItem");
+			document
+				.getElementById("searchItem")
+				.setAttribute("name", "searchItem");
 			document.getElementById("searchForm").submit();
 		}
 	</script>

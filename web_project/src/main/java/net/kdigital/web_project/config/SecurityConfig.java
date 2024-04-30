@@ -27,6 +27,8 @@ public class SecurityConfig {
 				, "/user/login"
 				, "/user/joinProc"
 				, "/user/loginProc"
+				, "/user/ccaCheck"
+				, "/user/confirmId"
 				, "/trade/showStat"
 				, "/trade/stringChart"
 				, "/trade/pieChart"
@@ -43,7 +45,6 @@ public class SecurityConfig {
 				, "/predict/**"
 				, "/heading/**"
 				, "/news/**"
-//				, "/cca/**"
 				, "/cca/boardList"
 				, "/cca/detail"
 				, "/cca/delete"
@@ -53,9 +54,11 @@ public class SecurityConfig {
 				, "/cca/replyDelete"
 				, "/cca/replyAll"
 				, "/cca/ccaList"
-				, "/cca/setLike"
+//				, "/cca/setLike"
 				, "/cca/ccaList"
 				, "/cca/ccaList"
+				, "/exchangeRate"
+
 				).permitAll()
 //				.requestMatchers("/admin/").hasRole("ADMIN")
 //				.requestMatchers("").hasAnyRole("ADMIN", "USER", "CCA") // *********** 이게 맞나????

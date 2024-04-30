@@ -525,6 +525,9 @@ a.form-control-table:hover {
 .form-control-table {
     text-align: center;
     padding: none;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .form-control-item {

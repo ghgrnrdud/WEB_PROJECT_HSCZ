@@ -158,50 +158,57 @@
           </a>
         </li>
         <li>
-          <a href="#">
+          <a th:href="@{/news}">
             <i class="fa fa-solid fa-newspaper fa-lg"></i>
             <span class="nav-text">무역뉴스</span>
           </a>
         </li>
         <li>
-          <a href="#">
+          <a th:href="@{/info/infoList}">
             <i class="fa fa-solid fa-book fa-lg"></i>
             <span class="nav-text">FTA정보</span>
           </a>
         </li>
         <li>
-          <a href="#">
+          <a th:href="@{/trade/showStat}">
             <i class="fa fa-solid fa-chart-simple fa-lg"></i>
             <span class="nav-text">무역통계</span>
           </a>
         </li>
         <li>
-          <a href="#">
+          <a th:href="@{/cca/boardList}">
             <i class="fa fa-solid fa-handshake fa-lg"></i>
             <span class="nav-text">관세사상담</span>
           </a>
         </li>
-        <li>
-          <a href="#">
+        <li sec:authorize="isAnonymous()">
+          <a th:href="@{/user/login}">
             <i class="fa fa-regular fa-user fa-lg"></i>
             <span class="nav-text">로그인</span>
           </a>
         </li>
-        <li>
-          <a href="#">
+        <li sec:authorize="isAuthenticated()">
+          <a th:href="@{/user/logout}">
             <i class="fa fa-user fa-lg"></i>
             <span class="nav-text">로그아웃</span>
           </a>
         </li>
-        <li>
-          <a href="#">
+        <li sec:authorize="hasRole('ROLE_USER')">
+          <a th:href="@{/my/userpage}">
+            <i class="fa fa-solid fa-house-user fa-lg"></i>
+            <span class="nav-text">마이페이지</span>
+          </a>
+        </li>
+        <li sec:authorize="hasRole('ROLE_CCA')">>
+          <a th:href="@{/user/logout}">
             <i class="fa fa-solid fa-house-user fa-lg"></i>
             <span class="nav-text">마이페이지</span>
           </a>
         </li>
       </ul>
     </div>
-  </nav><!--사이드바 end-->
+    </div>
+  </nav>
 
   <!--무역통계시작-->
 

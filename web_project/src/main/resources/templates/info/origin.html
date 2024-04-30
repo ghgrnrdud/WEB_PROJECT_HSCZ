@@ -22,8 +22,14 @@
 
     <title>원산지결정기준</title>
     <style>
-        * {
+        body {
+            font-size: medium;
             color: black;
+        }
+
+        .content {
+            width: 85%;
+            padding: 15px;
         }
 
         table {
@@ -35,7 +41,6 @@
         th {
             background-color: #0c0726;
             color: white;
-            border: white 1px solid;
         }
     </style>
 </head>
@@ -45,53 +50,39 @@
     <nav class="navbar navbar-expand-lg fixed-top navbar-transparent " color-on-scroll="300">
         <div class="container">
             <div class="navbar-translate">
-                <a class="navbar-brand" th:href="@{/}" rel="tooltip" title="HSCode Zoom" data-placement="bottom"
-                    target="_self">
+                <a class="navbar-brand" th:href="@{/}" rel="tooltip" title="Coded by Creative Tim" data-placement="bottom">
                     <img th:src="@{/images/web-logo9.png}" alt="로고">
                 </a>
-                <button class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse"
-                    data-target="#navigation" aria-controls="navigation-index" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                    <span class="navbar-toggler-bar bar1"></span>
-                    <span class="navbar-toggler-bar bar2"></span>
-                    <span class="navbar-toggler-bar bar3"></span>
-                </button>
             </div>
             <div class="collapse navbar-collapse justify-content-end" id="navigation">
                 <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" rel="tooltip" data-placement="bottom"
-                            href="https://demos.creative-tim.com/paper-kit/index.html" target="_blank">
-                            무역뉴스
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" rel="tooltip" data-placement="bottom"
-                            href="https://demos.creative-tim.com/paper-kit/index.html" target="_blank">
-                            FTA정보
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" rel="tooltip" data-placement="bottom"
-                            href="https://demos.creative-tim.com/paper-kit/index.html" target="_blank">
-                            무역통계
-                        </a>
-                    </li>
+                <li class="nav-item">
+                    <a class="nav-link" rel="tooltip" data-placement="bottom" th:href="@{/news}">
+                    무역뉴스
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" rel="tooltip" data-placement="bottom" th:href="@{/info/infoList}">
+                    FTA정보
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" rel="tooltip" data-placement="bottom" th:href="@{/trade/showStat}">
+                    무역통계
+                    </a>
+                </li>
 
-                    <div class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" id="dropdownMenuButton" href="#pk"
-                            role="button" aria-haspopup="true" aria-expanded="false">관세사상담</a>
-                        <ul class="dropdown-menu dropdown-info" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#pk">관세사목록</a>
-                            <a class="dropdown-item" href="#pk">상담목록</a>
-                            <a class="dropdown-item" href="#pk">상담하기</a>
-                        </ul>
-                    </div>
-
-
+                <div class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" id="dropdownMenuButton" href="#" role="button" aria-haspopup="true" aria-expanded="false">관세사상담</a>
+                    <ul class="dropdown-menu dropdown-info" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" th:href="@{/cca/ccaList}">관세사목록</a>
+                        <a class="dropdown-item" th:href="@{/cca/boardList}">상담목록</a>
+                        <a class="dropdown-item" th:href="@{/cca/ccaWrite}">상담하기</a>
+                    </ul>
+                </div>
                 </ul>
             </div>
-        </div>
+        </div>    
     </nav>
     <!-- End Navbar -->
 
@@ -134,56 +125,63 @@
                         <i class="fa fa-solid fa-bars fa-lg"></i>
                         <span class="nav-text">Menu</span>
                     </a>
-                </li>
-                <li>
-                    <a href="#">
+                </li> 
+                <li>                                 
+                    <a th:href="@{/news}">
                         <i class="fa fa-solid fa-newspaper fa-lg"></i>
                         <span class="nav-text">무역뉴스</span>
                     </a>
                 </li>
-                <li>
-                    <a href="#">
+                <li>                                 
+                    <a th:href="@{/info/infoList}">
                         <i class="fa fa-solid fa-book fa-lg"></i>
                         <span class="nav-text">FTA정보</span>
                     </a>
                 </li>
-                <li>
-                    <a href="#">
+                <li>                                 
+                    <a th:href="@{/trade/showStat}">
                         <i class="fa fa-solid fa-chart-simple fa-lg"></i>
                         <span class="nav-text">무역통계</span>
                     </a>
                 </li>
-                <li>
-                    <a href="#">
+                <li>                                 
+                    <a th:href="@{/cca/boardList}">
                         <i class="fa fa-solid fa-handshake fa-lg"></i>
                         <span class="nav-text">관세사상담</span>
                     </a>
                 </li>
-                <li>
-                    <a href="#">
+                <li sec:authorize="isAnonymous()">                                 
+                    <a th:href="@{/user/login}">
                         <i class="fa fa-regular fa-user fa-lg"></i>
                         <span class="nav-text">로그인</span>
                     </a>
                 </li>
-                <li>
-                    <a href="#">
+                <li sec:authorize="isAuthenticated()">
+                    <a th:href="@{/user/logout}">
                         <i class="fa fa-user fa-lg"></i>
                         <span class="nav-text">로그아웃</span>
                     </a>
                 </li>
-                <li>
-                    <a href="#">
+                <li sec:authorize="hasRole('ROLE_USER')">                                 
+                    <a th:href="@{/my/userpage}">
+                        <i class="fa fa-solid fa-house-user fa-lg"></i>
+                        <span class="nav-text">마이페이지</span>
+                    </a>
+                </li>
+				<li sec:authorize="hasRole('ROLE_CCA')">>                                 
+                    <a th:href="@{/user/logout}">
                         <i class="fa fa-solid fa-house-user fa-lg"></i>
                         <span class="nav-text">마이페이지</span>
                     </a>
                 </li>
             </ul>
+        </div>    
         </div>
     </nav>
 
     <div class="content">
 
-        <h2 class="tit1">원산지결정기준의 종류</h2>
+        <h3 class="tit1">원산지결정기준의 종류</h3>
 
         <div class="scroll_gr">
             <table class="tbl_st" border="1">
@@ -320,7 +318,7 @@
 
         <hr>
 
-        <h2 class="tit1 mgt40">FTA협정문상 원산지 결정기준</h2>
+        <h3 class="tit1 mgt40">FTA협정문상 원산지 결정기준</h3>
 
         <div class="scroll_gr">
             <table class="tbl_st" border="1">
@@ -471,9 +469,12 @@
                 </tbody>
             </table>
         </div>
-
-
     </div>
+    <!-- 위로가기 -->
+    <div class="moveTopBtn">
+        <i class="fa-solid fa-chevron-up"></i>
+    </div>
+
     <!-- footer -->
     <footer class="footer-wave">
         <div class="waves">
@@ -485,10 +486,10 @@
 
         <ul class="footer-wave-menu">
             <li class="menu__item"><a class="menu__link" th:href="@{/}">HOME</a></li>
-            <li class="menu__item"><a class="menu__link" th:href="@{news}">무역뉴스</a></li>
-            <li class="menu__item"><a class="menu__link" th:href="@{info/infoList}">FTA정보</a></li>
-            <li class="menu__item"><a class="menu__link" href="#">무역통계</a></li>
-            <li class="menu__item"><a class="menu__link" href="#">관세사상담</a></li>
+            <li class="menu__item"><a class="menu__link" th:href="@{/news}">무역뉴스</a></li>
+            <li class="menu__item"><a class="menu__link" th:href="@{/info/infoList}">FTA정보</a></li>
+            <li class="menu__item"><a class="menu__link" th:href="@{/trade/showStat}">무역통계</a></li>
+            <li class="menu__item"><a class="menu__link" th:href="@{/cca/boardList}">관세사상담</a></li>
 
         </ul>
         <p>&copy;2024 HScode Zoom | All Rights Reserved</p>
@@ -509,6 +510,14 @@
     <script th:src="@{/assets/js/paper-kit.min.js?v=2.2.0}" type="text/javascript"></script>
     <script type="text/javascript"
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTTfWur0PDbZWPr7Pmq8K3jiDp0_xUziI"></script>
+    <script>
+        const $topBtn = document.querySelector(".moveTopBtn");
+
+        // 버튼 클릭 시 맨 위로 이동
+        $topBtn.onclick = () => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+    </script>
 </body>
 
 </html>

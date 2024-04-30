@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -11,6 +12,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OrderBy;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -61,6 +64,15 @@ public class AnswerEntity {
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="consult_num")
 	private BoardEntity boardEntity;
+
+	/* CusomterLikeEntity와의 관계설정 */
+	@OneToMany(
+		mappedBy = "replyEntity"
+			, cascade = CascadeType.REMOVE
+			, orphanRemoval = true
+			, fetch = FetchType.LAZY 
+	)
+	@OrderBy("user_like_id desc")
 	
 	public static AnswerEntity toEntity(AnswerDTO answerDTO, BoardEntity boardEntity) {
 		return AnswerEntity.builder()

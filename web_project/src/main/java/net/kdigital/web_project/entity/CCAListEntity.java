@@ -39,8 +39,7 @@ public class CCAListEntity {
     @Column(name="company_region", nullable=false)
     private String companyRegion;
     
-    @Column(name="cca_email", nullable=false)
-    private String ccaEmail;
+  
     
     
     public static CCAListEntity toEntity(CCAListDTO ccaListDTO) {
@@ -50,7 +49,6 @@ public class CCAListEntity {
                 .companyName(ccaListDTO.getCompanyName())
                 .phone(ccaListDTO.getPhone())
                 .companyRegion(ccaListDTO.getCompanyRegion())
-                .ccaEmail(ccaListDTO.getCcaEmail())
                 .build();
     }
 }
