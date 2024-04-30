@@ -1,5 +1,7 @@
 package net.kdigital.web_project.service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.domain.Page;
@@ -130,6 +132,15 @@ public class CustomerService {
 		CustomerEntity customerEntity = customerRepository.findById(replyWriter).get();
 
 		customerEntity.setLikeTotal(customerEntity.getLikeTotal() + 1);
+	}
+
+	public List<CustomerDTO> selectTop3CCA() {
+		List<CustomerEntity> entityList = customerRepository.findTop3ByLikeTotal();
+
+		List<CustomerDTO> dtoList = new ArrayList<>();
+		entityList.forEach((entitiy) -> dtoList.add(CustomerDTO.toDTO(entitiy)));
+
+		return dtoList;
 	}
 
 }

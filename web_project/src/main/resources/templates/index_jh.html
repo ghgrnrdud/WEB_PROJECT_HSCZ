@@ -94,7 +94,8 @@
       <h2>Our Services</h2>
     </div>
     <!-- Card Section -->
-    <div class="pcardtest"><a th:href="@{/news}" class="cardtest">
+    <div class="pcardtest">
+      <a th:href="@{/news}" class="cardtest">
         <div>
           <div class style="background-color:white; border-radius: 10px 10px 0 0;">
             <h4>무역뉴스</h4>NEWS
@@ -135,6 +136,36 @@
     </div>
   </div>
   <!-- End Services Section -->
+
+  <!--추천 관세사 -->
+  <div class="top3-cca">
+    <div class="section-header">
+      <h2>추천 관세사</h2>
+    </div>
+    <div class="slick-item">
+      <div class="cca-list" th:each="cca : ${ccaList}">
+        <div class="cca-img">
+          <img th:src="@{/images/user-img1.png}" alt="">
+        </div>
+        <div class="cca-info">
+            <h4>[[ ${cca.userName} ]] 관세사</h4>
+            <div class="cca-company">
+              <p>
+                [[ ${cca.companyName} ]] &nbsp;
+                <span>[[ ${cca.companyRegion} ]]</span>
+              </p>
+            </div>
+            <div class="cca-count">
+              <p>받은 채택 수: &nbsp; <b>[[ ${cca.likeTotal} ]]</b></p>
+            </div>
+            <div>
+              "[[ ${cca.selfInfo} ]]"
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Services Section -->
   <div class="client-top">
     <div class="section-header">
@@ -147,7 +178,9 @@
         target="_blank"><img th:src="@{/images/KOTRA_Logo.jpg}" class="img-fluid" alt=""></a><a
         href="https://www.customs.go.kr/ftaportalkor/main.do" class="clientlistindi" target="_blank"><img
           th:src="@{/images/yesFTA logo.jpg}" class="img-fluid" alt=""></a><a href="https://comtradeplus.un.org/"
-        class="clientlistindi" target="_blank"><img th:src="@{/images/un-logo.png}" class="img-fluid" alt=""></a></div>
+        class="clientlistindi" target="_blank"><img th:src="@{/images/un-logo.png}" class="img-fluid" alt="">
+      </a>
+    </div>
     <!-- End Services Section -->
 
     <!-- footer -->
@@ -172,54 +205,91 @@
     <!-- End footer -->
 
     <!--   Core JS Files   -->
-    <script src="./assets/js/core/jquery.min.js" type="text/javascript"></script>
-    <script src="./assets/js/core/popper.min.js" type="text/javascript"></script>
-    <script src="./assets/js/core/bootstrap.min.js" type="text/javascript"></script>
-    <!-- Plugin for Switches, full documentation here: http:
+  <script src="./assets/js/core/jquery.min.js" type="text/javascript"></script>
+  <script src="./assets/js/core/popper.min.js" type="text/javascript"></script>
+  <script src="./assets/js/core/bootstrap.min.js" type="text/javascript"></script>
+  <!-- Plugin for Switches, full documentation here: http:
                         //www.jque.re/plugins/version3/bootstrap.switch/ -->
-    <script src="./assets/js/plugins/bootstrap-switch.js"></script>
-    <!-- Plugin for the Sliders, full documentation here: http: //refreshless.com/nouislider/ -->
-    <script src="./assets/js/plugins/nouislider.min.js" type="text/javascript"></script>
-    <!-- Plugin for the DatePicker, full documentation here: https:
+  <script src="./assets/js/plugins/bootstrap-switch.js"></script>
+  <!-- Plugin for the Sliders, full documentation here: http: //refreshless.com/nouislider/ -->
+  <script src="./assets/js/plugins/nouislider.min.js" type="text/javascript"></script>
+  <!-- Plugin for the DatePicker, full documentation here: https:
                             //github.com/uxsolutions/bootstrap-datepicker -->
 
-    <script src="./assets/js/plugins/moment.min.js"></script>
-    <script src="./assets/js/plugins/bootstrap-datepicker.js" type="text/javascript"></script>
-    <!-- Control Center for Paper Kit: parallax effects, scripts for the example pages etc -->
-    <script src="./assets/js/paper-kit.js?v=2.2.0" type="text/javascript"></script>
-    <!-- Google Maps Plugin -->
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
-    <script>$(document).ready(function () {
+  <script src="./assets/js/plugins/moment.min.js"></script>
+  <script src="./assets/js/plugins/bootstrap-datepicker.js" type="text/javascript"></script>
+  <!-- Control Center for Paper Kit: parallax effects, scripts for the example pages etc -->
+  <script src="./assets/js/paper-kit.js?v=2.2.0" type="text/javascript"></script>
+  <!-- Google Maps Plugin -->
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
 
-        if ($("#datetimepicker").length != 0) {
-          $('#datetimepicker').datetimepicker({
-            icons: {
-              time: "fa fa-clock-o",
-              date: "fa fa-calendar",
-              up: "fa fa-chevron-up",
-              down: "fa fa-chevron-down",
-              previous: 'fa fa-chevron-left',
-              next: 'fa fa-chevron-right',
-              today: 'fa fa-screenshot',
-              clear: 'fa fa-trash',
-              close: 'fa fa-remove'
-            }
-          });
-        }
+  <!-- slider -->
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+  <link rel="stylesheet" type="text/css"
+    href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
+  <script th:src="@{/script/jquery-3.7.1.min.js}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
-        function scrollToDownload() {
+  <script>$(document).ready(function () {
 
-          if ($('.section-download').length != 0) {
-            $("html, body").animate({
-              scrollTop: $('.section-download').offset().top
-            }
-
-              , 1000);
+      if ($("#datetimepicker").length != 0) {
+        $('#datetimepicker').datetimepicker({
+          icons: {
+            time: "fa fa-clock-o",
+            date: "fa fa-calendar",
+            up: "fa fa-chevron-up",
+            down: "fa fa-chevron-down",
+            previous: 'fa fa-chevron-left',
+            next: 'fa fa-chevron-right',
+            today: 'fa fa-screenshot',
+            clear: 'fa fa-trash',
+            close: 'fa fa-remove'
           }
-        }
-      });
+        });
+      }
 
-    </script>
+      function scrollToDownload() {
+
+        if ($('.section-download').length != 0) {
+          $("html, body").animate({
+            scrollTop: $('.section-download').offset().top
+          }
+
+            , 1000);
+        }
+      }
+    });
+
+  </script>
+
+  <script>
+    $(document).ready(function () {
+      $('.slick-item').slick({
+        slidesToShow: 1,   // 한 번에 보여줄 슬라이드 수
+        slidesToScroll: 1, // 한 번에 스크롤할 슬라이드 수
+        autoplay: true,    // 자동 재생 여부
+        autoplaySpeed: 5000, // 자동 재생 간격
+        arrows: true,      // 좌우 화살표 사용 여부
+        infinite: true,
+        centerMode: true,
+        variableWidth: true
+      });
+    });
+  </script>
+
+  <script>
+    $(document).ready(function () {
+      $('.clientlist').slick({
+        slidesToShow: 9,   // 한 번에 보여줄 슬라이드 수
+        slidesToScroll: 1, // 한 번에 스크롤할 슬라이드 수
+        autoplay: true,    // 자동 재생 여부
+        autoplaySpeed: 800, // 자동 재생 간격
+        arrows: false,      // 좌우 화살표 사용 여부
+        infinite: true
+
+      });
+    });
+  </script>
 </body>
 
 </html>

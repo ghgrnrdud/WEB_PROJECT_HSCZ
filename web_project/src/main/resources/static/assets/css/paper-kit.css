@@ -9045,4 +9045,63 @@ h1 {
   }
 }
 
-/*# sourceMappingURL=kit-free.css.map */
+.top3-cca {
+  position: relative;
+  background-color: #092142;
+  color: white;
+  padding-bottom: 50px;
+}
+.top3-cca h2 {
+  color: white;
+}
+
+.cca-list {
+  display: flex;
+  align-items: center;
+  /* width: 700px; */
+  margin: 0 auto;
+}
+.cca-list .cca-img {
+  display: inline-block;
+}
+.cca-list .cca-img img {
+  height: 250px;
+  margin-right: 30px;
+}
+
+.cca-list .cca-info {
+  display: inline-block;
+}
+.cca-list .cca-info h4 {
+  font-weight: 600;
+  font-size: 30px;
+  padding-top: 12px;
+  margin-bottom: 20px;
+}
+.cca-list .cca-info p {
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+
+.slick-slide {
+  width: 1500px;
+  margin: 0 auto; /* 슬라이드를 가운데 정렬합니다 */
+  text-align: center; /* 내부 텍스트 정렬 */
+}
+
+/* 화살표 색상 변경*/
+.slick-prev:before,
+.slick-next:before {
+  color: white !important;
+  font-size: 40px !important;
+  opacity: 1;
+}
+/* 화살표 위치 변경 */
+.slick-prev {
+  left: 50px !important ;
+  z-index: 9;
+}
+.slick-next {
+  right: 50px !important ;
+  z-index: 9;
+}
