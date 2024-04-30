@@ -166,6 +166,7 @@ public class CCAController {
 
     @GetMapping("/replyWrite")
     public String replyWritePage(Model model, @RequestParam("consultNum") Long consultNum) {
+    	
         model.addAttribute("consultNum", consultNum);
         return "cca/replyWrite"; // replyWrite.html로 이동
     }
