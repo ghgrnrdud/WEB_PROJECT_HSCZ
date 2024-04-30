@@ -240,7 +240,7 @@
       <nav class="pagination">
         <a th:if="${navi.startPageGroup > 1}"
           th:href="@{|/cca/ccaList?page=${navi.startPageGroup - 10}&searchBy=${searchBy}&searchItem=${searchItem}|}"
-          class="btn">&laquo; Previous</a>
+          class="btn prev">&laquo; Previous</a>
         <span th:each="count : ${#numbers.sequence(navi.startPageGroup, navi.endPageGroup)}">
           <span th:if="${count == navi.page}">
             <b class="page-no current" th:text="${count}"></b>

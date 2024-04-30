@@ -94,7 +94,8 @@
       <h2>Our Services</h2>
     </div>
     <!-- Card Section -->
-    <div class="pcardtest"><a th:href="@{/news}" class="cardtest">
+    <div class="pcardtest">
+      <a th:href="@{/news}" class="cardtest">
         <div>
           <div class style="background-color:white; border-radius: 10px 10px 0 0;">
             <h4>무역뉴스</h4>NEWS
@@ -137,6 +138,36 @@
     </div>
   </div>
   <!-- End Services Section -->
+
+  <!--추천 관세사 -->
+  <div class="top3-cca">
+    <div class="section-header">
+      <h2>추천 관세사</h2>
+    </div>
+    <div class="slick-item">
+      <div class="cca-list" th:each="cca : ${ccaList}">
+        <div class="cca-img">
+          <img th:src="@{/images/user-img1.png}" alt="">
+        </div>
+        <div class="cca-info">
+          <h4>[[ ${cca.userName} ]] 관세사</h4>
+          <div class="cca-company">
+            <p>
+              [[ ${cca.companyName} ]] &nbsp;
+              <span>[[ ${cca.companyRegion} ]]</span>
+            </p>
+          </div>
+          <div class="cca-count">
+            <p>받은 채택 수: &nbsp; <b>[[ ${cca.likeTotal} ]]</b></p>
+          </div>
+          <div>
+            "[[ ${cca.selfInfo} ]]"
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Services Section -->
 
 
@@ -276,8 +307,23 @@
 
   <script>
     $(document).ready(function () {
+      $('.slick-item').slick({
+        slidesToShow: 1,   // 한 번에 보여줄 슬라이드 수
+        slidesToScroll: 1, // 한 번에 스크롤할 슬라이드 수
+        autoplay: true,    // 자동 재생 여부
+        autoplaySpeed: 5000, // 자동 재생 간격
+        arrows: true,      // 좌우 화살표 사용 여부
+        infinite: true,
+        centerMode: true,
+        variableWidth: true
+      });
+    });
+  </script>
+
+  <script>
+    $(document).ready(function () {
       $('.clientlist').slick({
-        slidesToShow: 8,   // 한 번에 보여줄 슬라이드 수
+        slidesToShow: 9,   // 한 번에 보여줄 슬라이드 수
         slidesToScroll: 1, // 한 번에 스크롤할 슬라이드 수
         autoplay: true,    // 자동 재생 여부
         autoplaySpeed: 800, // 자동 재생 간격
