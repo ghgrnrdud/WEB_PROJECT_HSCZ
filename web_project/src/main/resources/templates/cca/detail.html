@@ -25,8 +25,7 @@
     <nav class="navbar navbar-expand-lg fixed-top navbar-transparent " color-on-scroll="300">
         <div class="container">
             <div class="navbar-translate">
-                <a class="navbar-brand" th:href="@{/}" rel="tooltip" title="Coded by Creative Tim"
-                    data-placement="bottom">
+                <a class="navbar-brand" th:href="@{/}" rel="tooltip" title="메인화면으로" data-placement="bottom">
                     <img th:src="@{/images/web-logo9.png}" alt="로고">
                 </a>
             </div>
@@ -122,8 +121,8 @@
                         <span class="nav-text">마이페이지</span>
                     </a>
                 </li>
-                <li sec:authorize="hasRole('ROLE_CCA')">>
-                    <a th:href="@{/user/logout}">
+                <li sec:authorize="hasRole('ROLE_CCA')">
+                    <a th:href="@{/my/ccapage}">
                         <i class="fa fa-solid fa-house-user fa-lg"></i>
                         <span class="nav-text">마이페이지</span>
                     </a>
@@ -132,6 +131,7 @@
         </div>
         </div>
     </nav>
+
 
     <!-- 메인내용 -->
     <!-- 상담글 보기 -->
@@ -263,36 +263,6 @@
             </div>
         </div>
     </div>
-
-    <form th:action="@{/cca/increaseLike}" method="POST">
-        <input type="hidden" name="replyNum" th:value="${reply.replyNum}">
-        <input type="hidden" name="consultNum" th:value="${consult.consultNum}">
-        <input type="hidden" name="consultWriter" th:value="${consult.consultWriter}">
-        <input type="hidden" name="replyWriter" th:value="${reply.replyWriter}">
-        <input type="hidden" name="searchBy" th:value="${searchBy}">
-        <input type="hidden" name="searchItem" th:value="${searchItem}">
-        <div class="likeArea">
-            <span class="likeCount">채택수: [[ ${reply.likeCount} ]]</span>
-            <input type="submit" class="thumbsUp" value="">
-        </div>
-    </form>
-    </th:block>
-    </div>
-    </div>
-    </div> <!--answerDetailArea-->
-    </div>
-    </div>
-    </div>
-
-    <a th:href="@{/cca/update(consultNum=${consult.consultNum}, searchBy=${searchBy}, searchItem=${searchItem})}"
-        class="btn btn-primary">상담글 수정</a>
-    <a th:href="@{/cca/delete(consultNum=${consult.consultNum},searchBy=${searchBy}, searchItem=${searchItem})}"
-        class="btn btn-danger">상담글 삭제</a>
-    </th:block>
-    <th:block th:if="${#authentication.authorities.![authority].contains('ROLE_CCA')}">
-        <a th:href="@{/cca/replyWrite(consultNum=${consult.consultNum}, searchBy=${searchBy}, searchItem=${searchItem})}"
-            class="btn btn-danger">답변달기</a>
-    </th:block>
 
     <br>
     <br>

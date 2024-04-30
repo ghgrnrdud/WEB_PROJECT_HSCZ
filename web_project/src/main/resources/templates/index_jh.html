@@ -98,19 +98,19 @@
       <a th:href="@{/news}" class="cardtest">
         <div>
           <div class style="background-color:white; border-radius: 10px 10px 0 0;">
-            <h4>무역뉴스</h4>NEWS
+            <h4>무역뉴스</h4><span class="menu-english">TRADE NEWS</span>
           </div><img class=cardimage th:src="@{/images/trade news.jpg}" alt="Avatar">
         </div>
       </a><a th:href="@{/info/infoList}" class="cardtest">
         <div>
           <div class style="background-color:white; border-radius: 10px 10px 0 0;">
-            <h4>FTA정보</h4>FTA
+            <h4>FTA정보</h4><span class="menu-english">FTA INFORMATION</span>
           </div><img class=cardimage th:src="@{/images/fta.jpg}" alt="Avatar">
         </div>
       </a><a th:href="@{/trade/showStat}" class="cardtest">
         <div>
           <div class style="background-color:white; border-radius: 10px 10px 0 0;">
-            <h4>무역통계</h4>TRADE STATICS
+            <h4>무역통계</h4><span class="menu-english">TRADE STATICS</span>
           </div><img class=cardimage th:src="@{/images/static.png}" alt="Avatar">
         </div>
       </a>
@@ -118,50 +118,54 @@
       <!-- 환율 test --><a th:href="@{/exchangeRate}" class="cardtest">
         <div>
           <div class style="background-color:white; border-radius: 10px 10px 0 0;">
-            <h4>환율</h4>EXCHANGE RATE
+            <h4>환율</h4><span class="menu-english">EXCHANGE RATE</span>
           </div><img class=cardimage th:src="@{/images/exchangeRate.jpg}" alt="Avatar">
         </div>
       </a>
-      <a th:href="@{/cca/ccaList}" class="cardtest">
+      <br>
+      <a th:href="@{/cca/ccaList}" class="cardtest-cca">
         <div>
-          <div class style="background-color:white; border-radius: 10px 10px 0 0;">
-            <h4>관세사목록</h4>CCA LIST
-          </div><img class=cardimage th:src="@{/images/custom.jpg}" alt="Avatar">
+          <div class style="background-color:white; border-radius: 10px;">
+            <h4>관세사목록</h4><span class="menu-english">CCA LIST</span>
+          </div>
         </div>
       </a>
-      <a th:href="@{/cca/ccaWrite}" class="cardtest">
+      <a th:href="@{/cca/ccaWrite}" class="cardtest-cca">
         <div>
-          <div class style="background-color:white; border-radius: 10px 10px 0 0;">
-            <h4>간편상담</h4>CONSULTING
-          </div><img class=cardimage th:src="@{/images/consulting.jpg}" alt="Avatar">
+          <div class style="background-color:white; border-radius: 10px;">
+            <h4>간편상담</h4><span class="menu-english">CONSULTING</span>
+          </div>
         </div>
+      </a>
     </div>
   </div>
   <!-- End Services Section -->
 
   <!--추천 관세사 -->
   <div class="top3-cca">
-    <div class="section-header">
-      <h2>추천 관세사</h2>
-    </div>
-    <div class="slick-item">
-      <div class="cca-list" th:each="cca : ${ccaList}">
-        <div class="cca-img">
-          <img th:src="@{/images/user-img1.png}" alt="">
-        </div>
-        <div class="cca-info">
-          <h4>[[ ${cca.userName} ]] 관세사</h4>
-          <div class="cca-company">
-            <p>
-              [[ ${cca.companyName} ]] &nbsp;
-              <span>[[ ${cca.companyRegion} ]]</span>
-            </p>
+    <div class="top3-cca-list">
+      <div class="section-header">
+        <h2>추천 관세사</h2>
+      </div>
+      <div class="slick-item">
+        <div class="cca-list" th:each="cca : ${ccaList}">
+          <div class="cca-img">
+            <img th:src="@{/images/user-img1.png}" alt="">
           </div>
-          <div class="cca-count">
-            <p>받은 채택 수: &nbsp; <b>[[ ${cca.likeTotal} ]]</b></p>
-          </div>
-          <div>
-            "[[ ${cca.selfInfo} ]]"
+          <div class="cca-info">
+            <h4>[[ ${cca.userName} ]] 관세사</h4>
+            <div class="cca-company">
+              <p>
+                [[ ${cca.companyName} ]] &nbsp;
+                <span>[[ ${cca.companyRegion} ]]</span>
+              </p>
+            </div>
+            <div class="cca-count">
+              <p>받은 채택 수: &nbsp; <b>[[ ${cca.likeTotal} ]]</b></p>
+            </div>
+            <div>
+              "[[ ${cca.selfInfo} ]]"
+            </div>
           </div>
         </div>
       </div>
@@ -323,7 +327,7 @@
   <script>
     $(document).ready(function () {
       $('.clientlist').slick({
-        slidesToShow: 9,   // 한 번에 보여줄 슬라이드 수
+        slidesToShow: 8,   // 한 번에 보여줄 슬라이드 수
         slidesToScroll: 1, // 한 번에 스크롤할 슬라이드 수
         autoplay: true,    // 자동 재생 여부
         autoplaySpeed: 800, // 자동 재생 간격

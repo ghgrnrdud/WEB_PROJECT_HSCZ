@@ -126,8 +126,8 @@
 						<span class="nav-text">마이페이지</span>
 					</a>
 				</li>
-				<li sec:authorize="hasRole('ROLE_CCA')">>
-					<a th:href="@{/user/logout}">
+				<li sec:authorize="hasRole('ROLE_CCA')">
+					<a th:href="@{/my/ccapage}">
 						<i class="fa fa-solid fa-house-user fa-lg"></i>
 						<span class="nav-text">마이페이지</span>
 					</a>

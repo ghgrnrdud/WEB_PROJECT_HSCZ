@@ -206,15 +206,25 @@ body {
   /* Add shadows to create the "card" effect */
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
-  width: 200px;
+  width: 250px;
   margin: 10px;
   transition: transform 0.3s ease;
   border-radius: 10px;
 }
 
+.cardtest-cca {
+  display: inline-block;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  width: 500px;
+  margin: 20px;
+  transition: transform 0.3s ease;
+  border-radius: 10px;
+}
+
 .cardimage {
-  width: 200px;
-  height: 133px;
+  width: 250px;
+  height: 160px;
   border-radius: 0 0 10px 10px;
 }
 
@@ -249,7 +259,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 30px;
+  margin-bottom: 3px;
+  height: 200px;
 }
 
 
@@ -260,12 +271,10 @@ body {
 
 .clientlistindi img {
   width: 150px;
-  /* 원하는 너비 설정 */
   height: 100px;
-  /* 원하는 높이 설정 */
   object-fit: contain;
-  /* 이미지 비율 유지 */
-
+  margin: 30px;
+  padding: 10px;
 }
 
 
@@ -9034,6 +9043,7 @@ h1 {
   background-color: #092142;
   color: white;
   padding-bottom: 50px;
+  width: 100%;
 }
 
 .top3-cca h2 {
