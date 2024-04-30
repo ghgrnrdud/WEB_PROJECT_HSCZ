@@ -155,7 +155,7 @@
                         <textarea class="textFormControl" name="replyContent" id="replyContent" cols="35" rows="10" placeholder="상담글 내용을 작성하세요" required></textarea>
                     </div>
                     <div class="myBtnForm">
-						<input type="submit" value="답변글 등록" class="mySubmitBtn">
+						<input type="submit" value="답변글 등록" class="mySubmitBtn" id="insertReply">
 					</div>
                 </form>
             </div>
@@ -184,6 +184,18 @@
     <!-- End footer -->
 
     <!--script-->
+    <script>
+        let content = document.getElementById('replyContent');
+
+        document.getElementById('insertReply').addEventListener('click', function() {
+            if(content.value.trim().length == 0) {
+                alert('내용을 입력하세요');
+                content.select();
+                return;
+            }
+        })
+    </script>
+
     <script>
         const $topBtn = document.querySelector(".moveTopBtn");
 

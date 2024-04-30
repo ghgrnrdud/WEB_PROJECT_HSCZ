@@ -200,7 +200,7 @@
                     </div>
 
                     <div class="myBtnForm">
-                        <input type="submit" value="상담글 등록" class="mySubmitBtn">
+                        <input type="submit" value="상담글 등록" class="mySubmitBtn" id="insertConsult">
                     </div>
                 </form>
             </div>
@@ -229,6 +229,32 @@
     <!-- End footer -->
 
     <!--script-->
+    <script>
+        let title = document.getElementById('consultTitle');
+        let content = document.getElementById('consultContent');
+        let category = document.getElementById('productCategory');
+
+        document.getElementById('insertConsult').addEventListener('click', function() {
+            if(title.value.trim().length == 0) {
+                alert('제목을 입력하세요');
+                title.select();
+                return;
+            }
+
+            if(content.value.trim().length == 0) {
+                alert('내용을 입력하세요');
+                content.select();
+                return;
+            }
+
+            if(category == '') {
+                alert('품목을 선택하세요');
+                category.select();
+                return;
+            }
+        })
+    </script>
+
     <script>
         const $topBtn = document.querySelector(".moveTopBtn");
 
