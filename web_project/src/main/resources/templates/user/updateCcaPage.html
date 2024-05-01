@@ -570,47 +570,50 @@
 
                                 <div class="pl-lg-4">
                                     <div class="row2">
-                                        <div class="col-lg-4">
+                                        <div class="col-lg-5">
                                             <div class="form-group focused">
                                                 <label class="form-control-label table-title" for="input-country">글
                                                     제목</label>
                                             </div>
                                         </div>
-                                        <div class="col-lg-4">
+                                        <div class="col-lg-5">
                                             <div class="form-group focused">
                                                 <label class="form-control-label table-title"
                                                     for="input-country">댓글</label>
                                             </div>
                                         </div>
-                                        <div class="col-lg-2">
+                                        <div class="col-lg-1">
                                             <div class="form-group focused">
-                                                <label class="form-control-label table-title" for="input-country">좋아요 수
+                                                <label class="form-control-label table-title" for="input-country">추천
                                                 </label>
                                             </div>
                                         </div>
                                     </div>
                                     <div th:each="entry : ${dataMap}">
                                         <div class="row2">
-                                            <div class="col-lg-4">
+                                            <div class="col-lg-5">
                                                 <div class="form-group focused">
                                                     <span id="input-address"
                                                         class="form-control form-control-alternative form-control-table"
+                                                        style="justify-content: center; align-items: center;display: flex;"
                                                         th:text="${entry.value.consultTitle}"> </span>
                                                 </div>
                                             </div>
 
-                                            <div class="col-lg-4">
+                                            <div class="col-lg-5">
                                                 <div class="form-group focused">
                                                     <span id="input-address"
                                                         class="form-control form-control-alternative form-control-table"
+                                                        style="align-items: center;display: flex;"
                                                         th:text="${entry.key.replyContent}"> </span>
                                                 </div>
                                             </div>
 
-                                            <div class="col-lg-2">
+                                            <div class="col-lg-1">
                                                 <div class="form-group focused">
                                                     <span id="input-address"
                                                         class="form-control form-control-alternative form-control-table"
+                                                        style="justify-content: center; align-items: center;display: flex;"
                                                         th:text="${entry.key.likeCount}"> </span>
                                                 </div>
                                             </div>

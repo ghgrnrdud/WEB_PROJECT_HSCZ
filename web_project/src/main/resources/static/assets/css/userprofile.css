@@ -339,7 +339,7 @@ code {
   color: #f3a4b5;
 }
 
-a > code {
+a>code {
   color: inherit;
 }
 
@@ -384,8 +384,8 @@ a > code {
 
 .row2 {
   display: flex;
-  margin-right: -15px;
-  margin-left: -15px;
+  margin-right: -50px;
+  margin-left: -50px;
   flex-wrap: wrap;
   padding-left: 5%;
   padding-left: 5%;
@@ -439,6 +439,11 @@ a > code {
 }
 
 @media (min-width: 992px) {
+  .col-lg-1 {
+    max-width: 10%;
+    flex: 0 0 10%;
+  }
+
   .col-lg-2 {
     max-width: 20%;
     flex: 0 0 20%;
@@ -526,7 +531,7 @@ a.form-control-table:hover {
 
 .form-control-table {
   text-align: center;
-  padding: none;
+  padding: 1px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -882,27 +887,27 @@ textarea.form-control {
   align-items: stretch;
 }
 
-.input-group > .form-control {
+.input-group>.form-control {
   position: relative;
   width: 1%;
   margin-bottom: 0;
   flex: 1 1 auto;
 }
 
-.input-group > .form-control + .form-control {
+.input-group>.form-control+.form-control {
   margin-left: -1px;
 }
 
-.input-group > .form-control:focus {
+.input-group>.form-control:focus {
   z-index: 3;
 }
 
-.input-group > .form-control:not(:last-child) {
+.input-group>.form-control:not(:last-child) {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
 
-.input-group > .form-control:not(:first-child) {
+.input-group>.form-control:not(:first-child) {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }
@@ -916,10 +921,10 @@ textarea.form-control {
   z-index: 2;
 }
 
-.input-group-prepend .btn + .btn,
-.input-group-prepend .btn + .input-group-text,
-.input-group-prepend .input-group-text + .input-group-text,
-.input-group-prepend .input-group-text + .btn {
+.input-group-prepend .btn+.btn,
+.input-group-prepend .btn+.input-group-text,
+.input-group-prepend .input-group-text+.input-group-text,
+.input-group-prepend .input-group-text+.btn {
   margin-left: -1px;
 }
 
@@ -948,18 +953,16 @@ textarea.form-control {
   margin-top: 0;
 }
 
-.input-group > .input-group-prepend > .btn,
-.input-group > .input-group-prepend > .input-group-text {
+.input-group>.input-group-prepend>.btn,
+.input-group>.input-group-prepend>.input-group-text {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
 
-.input-group > .input-group-prepend:not(:first-child) > .btn,
-.input-group > .input-group-prepend:not(:first-child) > .input-group-text,
-.input-group > .input-group-prepend:first-child > .btn:not(:first-child),
-.input-group
-  > .input-group-prepend:first-child
-  > .input-group-text:not(:first-child) {
+.input-group>.input-group-prepend:not(:first-child)>.btn,
+.input-group>.input-group-prepend:not(:first-child)>.input-group-text,
+.input-group>.input-group-prepend:first-child>.btn:not(:first-child),
+.input-group>.input-group-prepend:first-child>.input-group-text:not(:first-child) {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }
@@ -976,7 +979,7 @@ textarea.form-control {
   background-clip: border-box;
 }
 
-.card > hr {
+.card>hr {
   margin-right: 0;
   margin-left: 0;
 }
@@ -1119,7 +1122,7 @@ button.bg-white:focus {
 
 .shadow,
 .card-profile-image img {
-  box-shadow: 0 0 2rem 0 rgba(136, 152, 170, 0.15) !important;
+  box-shadow: 0 0 4rem 0 rgba(136, 152, 170, 0.15) !important;
 }
 
 .m-0 {
@@ -1274,10 +1277,11 @@ a.text-white:focus {
 }
 
 .text-muted {
-  color: #8898aa !important;
+  color: #000000 !important;
 }
 
 @media print {
+
   *,
   *::before,
   *::after {
@@ -1514,24 +1518,24 @@ a.text-white:focus {
   padding: 1rem 0;
 }
 
-.card-profile-stats > div {
+.card-profile-stats>div {
   margin-right: 1rem;
   padding: 0.875rem;
   text-align: center;
 }
 
-.card-profile-stats > div:last-child {
+.card-profile-stats>div:last-child {
   margin-right: 0;
 }
 
-.card-profile-stats > div .heading {
+.card-profile-stats>div .heading {
   color: #12387e;
   font-size: 1.5rem;
   font-weight: bolder;
   display: block;
 }
 
-.card-profile-stats > div .description {
+.card-profile-stats>div .description {
   font-size: 1.1rem;
   color: #26282a;
 }
@@ -1571,7 +1575,7 @@ a.text-white:focus {
   padding: 0.5rem 1rem;
 }
 
-.dropdown-menu .dropdown-item > i {
+.dropdown-menu .dropdown-item>i {
   font-size: 1rem;
   margin-right: 1rem;
   vertical-align: -17%;
@@ -1586,7 +1590,7 @@ a.text-white:focus {
   color: #f6f9fc;
 }
 
-.dropdown-menu a.media > div:first-child {
+.dropdown-menu a.media>div:first-child {
   line-height: 1;
 }
 
@@ -1622,8 +1626,7 @@ a.text-white:focus {
   color: #525f7f;
 }
 
-.table-head {
-}
+.table-head {}
 
 .table-title {
   width: 100%;
