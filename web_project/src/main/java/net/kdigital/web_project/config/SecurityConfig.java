@@ -4,11 +4,13 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import lombok.RequiredArgsConstructor;
 import net.kdigital.web_project.handler.CustomFailureHandler;
+import net.kdigital.web_project.handler.CustomSuccessHandler;
 
 @Configuration	// SecurityConfig 클래스가 설정 클래스임을 나타내는 Annotation
 @EnableWebSecurity	// 웹 보안은 모두 여기서
@@ -16,6 +18,14 @@ import net.kdigital.web_project.handler.CustomFailureHandler;
 public class SecurityConfig {
 
 	private final CustomFailureHandler failureHandler;
+	private final CustomSuccessHandler succeddHandler;
+	
+	// 예외처리할 url 설정
+	@Bean
+    WebSecurityCustomizer webSecurityCustomizer() {
+        return (web) -> web.ignoring().requestMatchers("/favicon.ico", "/error");
+    };
+	
 	
 	@Bean
 	SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -59,8 +69,8 @@ public class SecurityConfig {
 				, "/exchangeRate"
 
 				).permitAll()
-//				.requestMatchers("/admin/").hasRole("ADMIN")
-//				.requestMatchers("").hasAnyRole("ADMIN", "USER", "CCA") // *********** 이게 맞나????
+				.requestMatchers("/cca/ccaWrite").hasRole("USER")
+//				.requestMatchers("/cca/ccaWrite").hasAnyRole("ADMIN", "USER", "CCA") // *********** 이게 맞나????
 				.anyRequest().authenticated());
 		
 		// Custom Login 설정
@@ -68,10 +78,11 @@ public class SecurityConfig {
 		.formLogin((auth) -> auth
 				.loginPage("/user/login")
 				.failureHandler(failureHandler)
+				.successHandler(succeddHandler)
 				.usernameParameter("userId")
 				.passwordParameter("userPwd")
-				.loginProcessingUrl("/user/loginProc")
-				.defaultSuccessUrl("/", true).permitAll());
+				.loginProcessingUrl("/user/loginProc"));
+				// .defaultSuccessUrl("/").permitAll()); // true 설정
 		
 		// 로그아웃 설정
 		http
@@ -81,13 +92,24 @@ public class SecurityConfig {
 				.invalidateHttpSession(true)
 				.deleteCookies("JSESSIONID"));
 		
+		
 		http
 		.csrf((auth) -> auth.disable());
+		
+
 		return http.build();
-	}
+	};
 	
+	
+
 	@Bean
 	BCryptPasswordEncoder bCryptPasswordEncoder () {
 		return new BCryptPasswordEncoder();
 	};
+	
+	
 }
+
+	
+
+
