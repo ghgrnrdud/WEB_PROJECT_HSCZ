@@ -54,7 +54,6 @@ public class SecurityConfig {
 				, "/cca/replyDelete"
 				, "/cca/replyAll"
 				, "/cca/ccaList"
-//				, "/cca/setLike"
 				, "/cca/ccaList"
 				, "/cca/ccaList"
 				, "/exchangeRate"
