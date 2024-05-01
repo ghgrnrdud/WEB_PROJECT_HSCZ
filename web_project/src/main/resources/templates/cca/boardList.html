@@ -126,8 +126,8 @@
 						<span class="nav-text">마이페이지</span>
 					</a>
 				</li>
-				<li sec:authorize="hasRole('ROLE_CCA')">>
-					<a th:href="@{/user/logout}">
+				<li sec:authorize="hasRole('ROLE_CCA')">
+					<a th:href="@{/my/ccapage}">
 						<i class="fa fa-solid fa-house-user fa-lg"></i>
 						<span class="nav-text">마이페이지</span>
 					</a>
@@ -300,7 +300,7 @@
 			<nav class="pagination">
 				<a th:if="${navi.startPageGroup > 1}"
 					th:href="@{|/cca/boardList?page=${navi.startPageGroup - 10}&searchBy=${searchBy}&searchItem=${searchItem}|}"
-					class="btn">&laquo; Previous</a>
+					class="btn prev">&laquo; Previous</a>
 				<span th:each="count : ${#numbers.sequence(navi.startPageGroup, navi.endPageGroup)}">
 					<span th:if="${count == navi.page}">
 						<b class="page-no current" th:text="${count}"></b>
@@ -313,7 +313,7 @@
 				</span>
 				<a th:if="${navi.endPageGroup < navi.totalPages}"
 					th:href="@{|/cca/boardList?page=${navi.endPageGroup + 1}&searchBy=${searchBy}&searchItem=${searchItem}|}"
-					class="btn">Next &raquo;</a>
+					class="btn next10">Next &raquo;</a>
 			</nav>
 			<!--페이징 끝-->
 		</div>

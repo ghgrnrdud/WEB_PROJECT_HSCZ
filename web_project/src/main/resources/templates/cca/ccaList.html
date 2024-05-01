@@ -124,8 +124,8 @@
             <span class="nav-text">마이페이지</span>
           </a>
         </li>
-        <li sec:authorize="hasRole('ROLE_CCA')">>
-          <a th:href="@{/user/logout}">
+        <li sec:authorize="hasRole('ROLE_CCA')">
+          <a th:href="@{/my/ccapage}">
             <i class="fa fa-solid fa-house-user fa-lg"></i>
             <span class="nav-text">마이페이지</span>
           </a>
@@ -134,6 +134,7 @@
     </div>
     </div>
   </nav>
+
 
   <!-- 관세사 테이블 시작 -->
   <!-- 검색상태 저장하기 위한 값들 -->
@@ -240,7 +241,7 @@
       <nav class="pagination">
         <a th:if="${navi.startPageGroup > 1}"
           th:href="@{|/cca/ccaList?page=${navi.startPageGroup - 10}&searchBy=${searchBy}&searchItem=${searchItem}|}"
-          class="btn">&laquo; Previous</a>
+          class="btn prev">&laquo; Previous</a>
         <span th:each="count : ${#numbers.sequence(navi.startPageGroup, navi.endPageGroup)}">
           <span th:if="${count == navi.page}">
             <b class="page-no current" th:text="${count}"></b>

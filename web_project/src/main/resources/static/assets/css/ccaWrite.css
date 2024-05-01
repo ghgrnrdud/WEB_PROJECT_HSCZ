@@ -24,6 +24,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 15px;
 }
 
 .content-write h3 {
@@ -38,6 +39,7 @@
   width: 235px;
   height: 63px;
 }
+
 .myInputForm .inputFormControl {
   height: 47px;
   border: 1px solid rgba(0, 0, 0, 0.1);
@@ -46,24 +48,28 @@
   padding: 6px 12px;
 }
 
-.myRow > div {
+.myRow>div {
   display: inline-block;
 }
+
 .nameForm {
   width: 205px;
   height: 47px;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  /* border: 1px solid rgba(0, 0, 0, 0.1); */
+  border: none;
   font-size: 15px;
   color: #000;
   padding: 6px 12px;
+  text-align: right;
 }
+
 .myInputForm .titleForm {
   width: 600px;
 }
 
 .myTextForm .textFormControl {
   width: 600px;
-  height: 300px;
+  height: 250px;
   border: 1px solid rgba(0, 0, 0, 0.1);
   font-size: 15px;
   color: #000;
@@ -77,6 +83,12 @@ textarea {
 }
 
 .mySelectForm span {
+  font-size: 17px;
+  color: #000;
+  margin-right: 13px;
+}
+
+.recommendCode span {
   font-size: 17px;
   color: #000;
   margin-right: 13px;
@@ -112,4 +124,8 @@ textarea {
 .mySubmitBtn:hover {
   background: #2765d0 !important;
   border-color: #2765d0 !important;
+}
+
+#contactForm {
+  margin: 10px auto;
 }

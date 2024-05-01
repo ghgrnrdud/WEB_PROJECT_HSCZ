@@ -85,14 +85,17 @@ public class CCAController {
     }
 
     @GetMapping("/ccaWrite")
-    public String ccaWrite() {
+    public String ccaWrite(@RequestParam(name="hsCode", defaultValue = "") String hsCode, Model model) {
         log.info("글쓰기 화면 요청");
+        
+        model.addAttribute("hsCode", hsCode);
 
         return "/cca/ccaWrite";
     }
 
     @PostMapping("/ccaWrite")
     public String ccaWrite(@ModelAttribute BoardDTO boardDTO) {
+    	log.info("+++++++++++{}", boardDTO);
         ccaService.insertConsult(boardDTO);
         return "redirect:/cca/boardList";
     }

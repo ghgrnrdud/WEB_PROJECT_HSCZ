@@ -62,6 +62,9 @@ public class BoardEntity {
 	
 	@Column(name="product_category")
 	private String productCategory;
+	
+	@Column(name="product_hscode")
+	private String productHscode;
 	/*
 	 * 댓글과의 관계설정
 	 * mappedBy: one에 해당하는 테이블 엔티티
@@ -85,6 +88,7 @@ public class BoardEntity {
 				.consultContent(boardDTO.getConsultContent())
 				.consultDate(boardDTO.getConsultDate())
 				.productCategory(boardDTO.getProductCategory())
+				.productHscode(boardDTO.getProductHscode())
 				.build();
 	}
 }

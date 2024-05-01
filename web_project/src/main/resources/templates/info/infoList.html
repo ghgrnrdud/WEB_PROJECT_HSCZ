@@ -107,39 +107,41 @@
     <nav class="navbar navbar-expand-lg fixed-top navbar-transparent " color-on-scroll="300">
         <div class="container">
             <div class="navbar-translate">
-                <a class="navbar-brand" th:href="@{/}" rel="tooltip" title="Coded by Creative Tim" data-placement="bottom">
+                <a class="navbar-brand" th:href="@{/}" rel="tooltip" title="Coded by Creative Tim"
+                    data-placement="bottom">
                     <img th:src="@{/images/web-logo9.png}" alt="로고">
                 </a>
             </div>
             <div class="collapse navbar-collapse justify-content-end" id="navigation">
                 <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" rel="tooltip" data-placement="bottom" th:href="@{/news}">
-                    무역뉴스
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" rel="tooltip" data-placement="bottom" th:href="@{/info/infoList}">
-                    FTA정보
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" rel="tooltip" data-placement="bottom" th:href="@{/trade/showStat}">
-                    무역통계
-                    </a>
-                </li>
+                    <li class="nav-item">
+                        <a class="nav-link" rel="tooltip" data-placement="bottom" th:href="@{/news}">
+                            무역뉴스
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" rel="tooltip" data-placement="bottom" th:href="@{/info/infoList}">
+                            FTA정보
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" rel="tooltip" data-placement="bottom" th:href="@{/trade/showStat}">
+                            무역통계
+                        </a>
+                    </li>
 
-                <div class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" id="dropdownMenuButton" href="#" role="button" aria-haspopup="true" aria-expanded="false">관세사상담</a>
-                    <ul class="dropdown-menu dropdown-info" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" th:href="@{/cca/ccaList}">관세사목록</a>
-                        <a class="dropdown-item" th:href="@{/cca/boardList}">상담목록</a>
-                        <a class="dropdown-item" th:href="@{/cca/ccaWrite}">상담하기</a>
-                    </ul>
-                </div>
+                    <div class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" id="dropdownMenuButton" href="#"
+                            role="button" aria-haspopup="true" aria-expanded="false">관세사상담</a>
+                        <ul class="dropdown-menu dropdown-info" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" th:href="@{/cca/ccaList}">관세사목록</a>
+                            <a class="dropdown-item" th:href="@{/cca/boardList}">상담목록</a>
+                            <a class="dropdown-item" th:href="@{/cca/ccaWrite}">상담하기</a>
+                        </ul>
+                    </div>
                 </ul>
             </div>
-        </div>    
+        </div>
     </nav>
     <!-- End Navbar -->
 
@@ -167,32 +169,32 @@
                         <i class="fa fa-solid fa-bars fa-lg"></i>
                         <span class="nav-text">Menu</span>
                     </a>
-                </li> 
-                <li>                                 
+                </li>
+                <li>
                     <a th:href="@{/news}">
                         <i class="fa fa-solid fa-newspaper fa-lg"></i>
                         <span class="nav-text">무역뉴스</span>
                     </a>
                 </li>
-                <li>                                 
+                <li>
                     <a th:href="@{/info/infoList}">
                         <i class="fa fa-solid fa-book fa-lg"></i>
                         <span class="nav-text">FTA정보</span>
                     </a>
                 </li>
-                <li>                                 
+                <li>
                     <a th:href="@{/trade/showStat}">
                         <i class="fa fa-solid fa-chart-simple fa-lg"></i>
                         <span class="nav-text">무역통계</span>
                     </a>
                 </li>
-                <li>                                 
+                <li>
                     <a th:href="@{/cca/boardList}">
                         <i class="fa fa-solid fa-handshake fa-lg"></i>
                         <span class="nav-text">관세사상담</span>
                     </a>
                 </li>
-                <li sec:authorize="isAnonymous()">                                 
+                <li sec:authorize="isAnonymous()">
                     <a th:href="@{/user/login}">
                         <i class="fa fa-regular fa-user fa-lg"></i>
                         <span class="nav-text">로그인</span>
@@ -204,22 +206,22 @@
                         <span class="nav-text">로그아웃</span>
                     </a>
                 </li>
-                <li sec:authorize="hasRole('ROLE_USER')">                                 
+                <li sec:authorize="hasRole('ROLE_USER')">
                     <a th:href="@{/my/userpage}">
                         <i class="fa fa-solid fa-house-user fa-lg"></i>
                         <span class="nav-text">마이페이지</span>
                     </a>
                 </li>
-				<li sec:authorize="hasRole('ROLE_CCA')">>                                 
-                    <a th:href="@{/user/logout}">
+                <li sec:authorize="hasRole('ROLE_CCA')">
+                    <a th:href="@{/my/ccapage}">
                         <i class="fa fa-solid fa-house-user fa-lg"></i>
                         <span class="nav-text">마이페이지</span>
                     </a>
                 </li>
             </ul>
-        </div>    
         </div>
     </nav>
+
 
     <!-- End side-bar -->
 
