@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.kdigital.web_project.api.OpenApiManager;
@@ -46,9 +47,17 @@ public class UserController {
 	// 로그인 화면 요청
 	@GetMapping("/user/login")
 	public String login(
+			HttpServletRequest request,
+			Model model,
 			@RequestParam(value = "error", required = false) String error,
-			@RequestParam(value = "errMessage", required = false) String errMessage, Model model) {
+			@RequestParam(value = "errMessage", required = false) String errMessage) {
 
+		// 이전 URL 정보 가져오기
+		String preURL = request.getHeader("Referer");
+		if (preURL != null && preURL.contains("/login")) {
+			request.getSession().setAttribute("preURL", preURL);
+		}
+		
 		model.addAttribute("error", error);
 		model.addAttribute("errMessage", errMessage);
 
