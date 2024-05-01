@@ -19,7 +19,7 @@
   padding-bottom: 15px;
 }
 
-#selectcss select {
+.selectcss select {
   border: none;
 }
 
@@ -33,9 +33,13 @@
   font-size: 17px;
 }
 
-#selectcss .searchWord {
+.selectcss .searchWord {
   border-radius: 10px;
   border-color: #dad8d8a6;
+  padding: 3px;
+}
+.selectcss .searchWord:focus {
+  outline: none;
 }
 
 .custom-table {
@@ -180,7 +184,8 @@
 }
 
 #tableTr {
-  background-color: rgb(199, 223, 238, 0.5);
+  background-color: #10538a;
+  color: white;
 }
 
 tbody tr td:first-child {
@@ -195,56 +200,65 @@ tbody tr td .boardTitle {
 
 tbody tr td .boardTitle:hover {
   font-weight: 700;
+  color: #d81e5b;
 }
 
 /***************    
     select들 div로 묶어서 css
 ****************/
-#selectcss {
+.selectcss {
   color: black;
   font-size: 15px;
   height: 45px;
-  width: 350px;
+  width: 320px;
   padding: 7px 15px;
-  border: 1.8px solid rgb(114, 183, 225);
-  border-radius: 15px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
+.item-select {
+  width: 350px;
+}
 
-#selectcss:hover {
-  border: 2.3px solid rgb(114, 183, 225);
-  box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2);
+.selectcss:hover {
   cursor: pointer;
 }
 
-#searchItem {
-  width: 65px;
-  border: 0px solid #eeee;
+.selectcss select {
+  border: 2.3px solid #10538a;
+  padding: 2px;
+  border-radius: 10px;
 }
 
 /***************    
     조회버튼 css
 ****************/
-#ccaSearchBtn {
+/* #ccaSearchBtn {
   background-color: white;
   color: black;
   border: 0px;
-  /* padding: 8px 10px; */
   padding: 0px;
 }
 
 #ccaSearchBtn:hover {
   font-weight: bold;
+} */
+
+.searchBtn {
+  padding: 2px 12px;
 }
 
 .btn {
   font-size: 15px;
   font-weight: 350;
-  background-color: #007bff;
+  background-color: #10538a;
   border: none;
   font-weight: 500;
+  border-radius: 10px;
+}
+.btn:hover {
+  background-color: #10538a;
+  box-shadow: 3px 4px 11px 0px #00000040;
 }
 
 /* 페이징 css */
@@ -261,12 +275,12 @@ tbody tr td .boardTitle:hover {
   margin: 0 5px;
   padding: 5px 10px;
   text-decoration: none;
-  color: #007bff;
+  color: #10538a;
 }
 
 .pagination a:hover,
 .pagination .current {
-  background-color: #007bff;
+  background-color: #10538a;
   color: white;
   border-radius: 5px;
 }

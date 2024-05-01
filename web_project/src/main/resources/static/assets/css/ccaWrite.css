@@ -1,10 +1,5 @@
 @import "without-sidebar.css";
 
-/* 페이지 헤더 높이 줄이기 */
-.page-header {
-  min-height: 20vh;
-}
-
 .contact-wrap {
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
   width: 700px;
@@ -33,6 +28,7 @@
   color: #000;
   font-size: 35px;
   font-weight: 500;
+  margin-bottom: 20px;
 }
 
 .myInputForm {
@@ -48,7 +44,7 @@
   padding: 6px 12px;
 }
 
-.myRow>div {
+.myRow > div {
   display: inline-block;
 }
 
@@ -104,8 +100,8 @@ textarea {
 
 /* 버튼설정 */
 .mySubmitBtn {
-  background: #1089ff !important;
-  border-color: #1089ff !important;
+  background: #10538a !important;
+  border-color: #10538a !important;
   color: #fff;
   padding: 12px 16px;
   border-width: 1px;
@@ -122,10 +118,21 @@ textarea {
 }
 
 .mySubmitBtn:hover {
-  background: #2765d0 !important;
-  border-color: #2765d0 !important;
+  background: #0d4878 !important;
+  border-color: #0d4878 !important;
+  box-shadow: 3px 4px 11px 0px #00000040;
+}
+
+.checkBtn {
+  padding: 5px 15px;
 }
 
 #contactForm {
   margin: 10px auto;
+}
+
+.recommendCode {
+  display: flex;
+  align-items: center;
+  height: 70px;
 }
