@@ -55,6 +55,7 @@ public class MypageController {
 		// 로그인한 유저가 작성한 글 가져오기
 		List<BoardEntity> boardEntityList = ccaService.findAllConsultsbyuserId(username);
 
+		
 		log.info("{}", boardEntityList);
 
 		Map<BoardDTO, Integer> dataMap = new HashMap<>();
@@ -65,8 +66,7 @@ public class MypageController {
 			// 작성한 글에 해당하는 댓글 가져오기
 			List<AnswerDTO> replyDTOList = replyService.selectAllReplys(temp.getConsultNum());
 
-			log.info("{}", replyDTOList.size());
-
+			
 			dataMap.put(BoardDTO.toDTO(temp), replyDTOList.size());
 			// for(AnswerDTO temp2 : replyDTOList) {
 			// totalReplyDTOList.add(temp2);
