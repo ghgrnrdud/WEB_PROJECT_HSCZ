@@ -64,7 +64,7 @@
   /* 투명도 0 (완전 투명) */
   transition: visibility 0s, opacity 0.5s linear;
   top: 57%;
-  left: 14%;
+  left: 17%;
 }
 
 .show-tooltip {
@@ -124,14 +124,13 @@
   /* 투명도 0 (완전 투명) */
   transition: visibility 0s, opacity 0.5s linear;
   top: 57%;
-  right: 11%;
+  right: 23%;
 }
 
 .show-tooltip {
   visibility: visible;
   opacity: 1;
 }
-
 
 /* chart3 제목 */
 #title3 {
@@ -181,8 +180,8 @@
   z-index: 1;
   opacity: 0;
   transition: visibility 0s, opacity 0.5s linear;
-  top: 1500px;
-  left: 10%;
+  top: 1705px;
+  left: 15%;
 }
 
 .show-tooltip {
@@ -238,8 +237,8 @@
   z-index: 1;
   opacity: 0;
   transition: visibility 0s, opacity 0.5s linear;
-  top: 1500px;
-  right: 15%;
+  top: 1705px;
+  right: 25%;
 }
 
 .show-tooltip {
@@ -304,8 +303,8 @@
   opacity: 0;
   /* 투명도 0 (완전 투명) */
   transition: visibility 0s, opacity 0.5s linear;
-  top: 1950px;
-  left: 9%;
+  top: 2163px;
+  left: 18%;
 }
 
 .show-tooltip {
@@ -363,7 +362,7 @@
   z-index: 1;
   opacity: 0;
   transition: visibility 0s, opacity 0.5s linear;
-  top: 1950px;
+  top: 2163px;
   left: 59%;
 }
 

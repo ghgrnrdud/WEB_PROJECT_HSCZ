@@ -39,6 +39,7 @@
 .question-area .questionDetail p {
   font-size: 18px;
   color: black;
+  white-space: pre-line;
 }
 
 .question-area .productCategory {
@@ -278,6 +279,7 @@
 .answerDetailArea .answerDetail p {
   font-size: 18px;
   color: black;
+  white-space: pre-line;
 }
 
 .answerDetailArea .answerInfo {
