@@ -54,14 +54,11 @@ public class SecurityConfig {
 				, "/cca/replyDelete"
 				, "/cca/replyAll"
 				, "/cca/ccaList"
-//				, "/cca/setLike"
 				, "/cca/ccaList"
 				, "/cca/ccaList"
 				, "/exchangeRate"
 
 				).permitAll()
-//				.requestMatchers("/admin/").hasRole("ADMIN")
-//				.requestMatchers("").hasAnyRole("ADMIN", "USER", "CCA") // *********** 이게 맞나????
 				.anyRequest().authenticated());
 		
 		// Custom Login 설정

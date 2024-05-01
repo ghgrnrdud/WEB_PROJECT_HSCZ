@@ -95,12 +95,17 @@
         </h1>
       </div>
       <form th:action="@{/predict}" method="post" class="searchForm">
-        <div class="search" id="mySearch" data-tooltip="수출입 하고자 하는 제품의 상세 설명을 입력해주세요" style="display:flex;">
+        <div class="search" id="mySearch" 
+            data-tooltip="수출입 하고자 하는 제품의 상세 설명을 입력해주세요:
+                      -제품의 재료
+                      -제품의 공정과정
+                      -제품의 용도 등" 
+            style="display:flex; white-space: pre-wrap;">
           <input type="text" class="form-control" id="description" name="description"
             style="width: 890px; height: 66px;">
           <img class="searchimg2" th:src="@{/images/searchbox-logo.png}" alt="찾기아이콘">
           <input type="submit" id=searchbtn class="btn btn-info" style="width: 95px; height: 65px; border:0px;"
-            value="찾기">
+            value="검색">
         </div>
       </form>
     </div>
