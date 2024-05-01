@@ -165,7 +165,7 @@
   </div>
   <!-- End Services Section -->
 
-  <!--추천 관세사 -->
+  <!-- 추천 관세사  -->
   <div class="top3-cca">
     <div class="top3-cca-list">
       <div class="section-header">
@@ -175,6 +175,7 @@
         <div class="cca-list" th:each="cca : ${ccaList}">
           <div class="cca-img">
             <img th:src="@{/images/user-img1.png}" alt="">
+            <img th:src="@{/images/cca-rank.png}" alt="" style="height: 30px; margin: 10px auto;">
           </div>
           <div class="cca-info">
             <h4>[[ ${cca.userName} ]] 관세사</h4>
@@ -196,6 +197,7 @@
       </div>
     </div>
   </div>
+
 
   <!-- Services Section -->
 

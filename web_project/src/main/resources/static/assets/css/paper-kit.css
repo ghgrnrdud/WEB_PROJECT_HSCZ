@@ -9052,17 +9052,22 @@ h1 {
   margin: 0 auto;
 }
 
+.cca-list>div {
+  display: flex;
+  align-items: center;
+}
+
 .cca-list .cca-img {
   display: inline-block;
 }
 
 .cca-list .cca-img img {
-  height: 250px;
-  margin-right: 30px;
+  height: 180px;
 }
 
 .cca-list .cca-info {
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
 }
 
 .cca-list .cca-info h4 {

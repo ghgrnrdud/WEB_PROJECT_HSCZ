@@ -85,7 +85,7 @@
   <!-- End Navbar -->
 
   <!-- page-header 시작-->
-  <div class="page-header section-dark" th:style="'background-image: url(\'' + @{/images/cover-img1.jpg} + '\')'">
+  <div class="page-header section-dark" th:style="'background-image: url(\'' + @{/images/fta-header.jpg} + '\')'">
     <div class="filter"></div>
     <div class="content-center">
       <div class="container">
@@ -273,6 +273,9 @@
     <div class="box" id="box-4">
       <h3 class="tit1">Ⅳ. 증빙서류 준비하기</h3>
       <hr />
+      <div class="modal-click">
+        <button type="button" class="mybtn mybtn-info modal-btn">원산지증명서 발급절차</button>
+      </div>
 
       <ul class="list_st1">
         <li>
@@ -599,30 +602,23 @@
           </li>
           <li>발효이후 5년간(2016.7.31까지) 기관발급 허용</li>
         </ol>
-        <div>
-          <input type="button" class="goBtn" id="modal-open" value="원산지증명서 발급절차" />
-        </div>
+
       </div>
 
       <br />
 
-      <div class="modal-content">
-        <div id="modal1" class="modal">
-          <!-- Modal Header -->
-          <div class="modal-header">
-            <h3 class="modal-title">원산지 증명서 발급</h3>
-            <button type="button" id="modal-close" data-dismiss="modal">
-              &times;
-            </button>
-          </div>
+      <div class="modal">
+        <div class="modal-popup">
+          <h3>원산지 증명서 발급</h3>
           <div class="modal-text">
-            <a class="btn_bl ico_w" href="https://unipass.customs.go.kr/csp/index.do" target="_blank"
-              title="새창열림"><input type="button" class="goBtn" value="관세청 원산지증명서 발급신청" /><span class="glan"> </span>
-            </a>
-            <a class="btn_blL ico_g" href="http://cert.korcham.net/base/index.htm" target="_blank" title="새창열림">
-              <input type="button" class="goBtn" value="대한상공회의소 원산지증명서 발급신청" />
-              <span class="glan"> </span>
-            </a>
+            <div class="goBtn-part">
+              <a class="btn_bl ico_w" href="https://unipass.customs.go.kr/csp/index.do" target="_blank"
+                title="새창열림"><input type="button" class="goBtn" value="관세청 원산지증명서 발급신청" /> </span>
+              </a>
+              <a class="btn_blL ico_g" href="http://cert.korcham.net/base/index.htm" target="_blank" title="새창열림">
+                <input type="button" class="goBtn" value="대한상공회의소 원산지증명서 발급신청" />
+              </a>
+            </div>
 
             <div class="line_dot"></div>
 
@@ -631,7 +627,7 @@
             <h4 class="tit2">자율 발급</h4>
 
             <ol class="num_list_w w40 mgt10 nL_h2 cmgl30">
-              <img th:src="@{/images/자율발급.png}" alt="자율발급" />
+              <img class="modal-image" th:src="@{/images/자율발급.png}" alt="자율발급" />
             </ol>
             <hr />
             <h4 class="tit2 mgt30">기관발급</h4>
@@ -639,7 +635,7 @@
             <h5 class="tit3">세관 발급</h5>
             <div class="box_st1 cmgl30">
               <ol class="num_list_w2">
-                <img th:src="@{/images/기관발급.png}" alt="기관발급" />
+                <img class="modal-img" th:src="@{/images/기관발급.png}" alt="기관발급" />
               </ol>
             </div>
 
@@ -647,10 +643,13 @@
 
             <div class="box_st1 cmgl30">
               <ol class="num_list_w2">
-                <img th:src="@{/images/대한상공회의소발급.png}" alt="대한상공회의소발급" />
+                <img class="modal-img" th:src="@{/images/대한상공회의소발급.png}" alt="대한상공회의소발급" />
               </ol>
             </div>
           </div>
+          <button type="button" class="close-btn">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
         </div>
       </div>
     </div>
@@ -1100,28 +1099,23 @@
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTTfWur0PDbZWPr7Pmq8K3jiDp0_xUziI"></script>
 
   <script>
-    // 모달을 여는 버튼에 클릭 이벤트 핸들러 추가
-    document
-      .getElementById("modal-open")
-      .addEventListener("click", function () {
-        // 모달 오버레이 요소 생성 및 추가
-        var overlay = document.createElement("div");
-        overlay.className = "modal-overlay"; // 클래스 추가
-        document.body.appendChild(overlay); // body에 추가
-        overlay.style.display = "block";
 
-        // 모달 창 표시
-        var modal = document.getElementById("modal1");
-        modal.style.display = "block"; // 모달을 보이도록 변경
+    let modal = document.querySelector('.modal');
+    let modalOpen = document.querySelector('.modal-btn');
+    let modalClose = document.querySelector('.close-btn');
 
-        // 모달을 닫는 버튼에 클릭 이벤트 핸들러 추가
-        document
-          .getElementById("modal-close")
-          .addEventListener("click", function () {
-            modal.style.display = "none"; // 모달을 숨기도록 변경
-            overlay.style.display = "none"; // 모달 오버레이도 숨기도록 변경
-          });
-      });
+    //열기 버튼을 눌렀을 때 모달팝업이 열림
+    modalOpen.addEventListener('click', function () {
+      //display 속성을 block로 변경
+      modal.style.display = 'block';
+    });
+    //닫기 버튼을 눌렀을 때 모달팝업이 닫힘
+    modalClose.addEventListener('click', function () {
+      //display 속성을 none으로 변경
+      modal.style.display = 'none';
+    });
+  </script>
+  <script>
 
     const $topBtn = document.querySelector(".moveTopBtn");
 
