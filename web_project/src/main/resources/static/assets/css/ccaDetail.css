@@ -2,6 +2,7 @@
 @import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css);
 
 /* 페이지 헤더 높이 줄이기 */
+
 .page-header {
   min-height: 20vh;
 }
@@ -9,8 +10,8 @@
 /* 상담글 섹션 설정 */
 .question-area {
   width: 900px;
-  /* border: 1px solid #e5e5e5; */
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  /* border: 1px solid darkgrey; */
+  box-shadow: 0 20px 30px rgba(0, 0, 0, 0.19), 0 15px 15px rgba(0, 0, 0, 0.23);
   padding: 30px;
   margin: 0 auto;
   border-radius: 20px;
@@ -66,29 +67,17 @@
   margin-top: 10px;
   align-items: center;
 }
-/* .question-area .buttonArea .qna-button {
-  color: #666;
-  font-size: 15px;
-  line-height: 15px;
-  letter-spacing: -0.3px;
-  vertical-align: top;
-  font-variant-numeric: tabular-nums;
-  padding: 14px 24px;
-  border-radius: 100px;
-  border: 1px solid #e9e9ec;
-  margin-right: 9px;
-  background: transparent;
-} */
 
 /* 답변달기 섹션 */
 .editorHeader {
   height: 80px;
   width: 900px;
   margin: 0 auto;
+  margin-bottom: 30px;
 }
 .editorHeader .editorHeaderArea {
   /* border: 1px solid #e5e5e5; */
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  box-shadow: 0 20px 30px rgba(0, 0, 0, 0.19), 0 15px 15px rgba(0, 0, 0, 0.23);
   border-radius: 20px;
   margin-top: 100px;
 }
@@ -132,26 +121,27 @@
 .ans-btn {
   padding: 10px 17px;
   color: #fff;
-  background-color: #1089ff;
+  background-color: #10538a;
   border-radius: 20px;
   font-size: 16px;
   line-height: 18px;
   letter-spacing: -0.3px;
   vertical-align: top;
   border: none;
-  transition: 0.3s;
+  transition: 0.2s;
   margin-right: 10px;
 }
 .ans-btn:hover {
   color: #fff;
   padding: 12px 20px;
   box-shadow: 0px 10px 20px -6px rgba(0, 0, 0, 0.12);
+  font-weight: 500;
 }
 
 /* 답변 섹션 설정 */
 .answer-area {
   width: 900px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  box-shadow: 0 20px 30px rgba(0, 0, 0, 0.19), 0 15px 15px rgba(0, 0, 0, 0.23);
   padding: 30px;
   margin: 0 auto;
   border-radius: 20px;

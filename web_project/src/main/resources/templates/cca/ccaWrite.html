@@ -144,7 +144,7 @@
                             <!-- hsCode가 null이 아닐 때 hsCode 값을 표시 -->
                             <span th:if="${hsCode != null}" th:text="${hsCode}"></span>
                             <!-- hsCode가 null일 때 링크 표시 -->
-                            <a th:if="${hsCode == ''}" th:href="@{/}"><input type="button" value="추천세번 확인하기"></a>
+                            <a th:if="${hsCode == ''}" th:href="@{/}"><input type="button" value="추천세번 확인하기" class="mySubmitBtn checkBtn"></a>
                             <!-- Hidden input은 hsCode가 null이 아닐 때만 표시 -->
                             <input type="hidden" name="productHscode" th:value="${hsCode}" th:if="${hsCode != null}" />
                         </div>

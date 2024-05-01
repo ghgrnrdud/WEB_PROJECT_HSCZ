@@ -157,9 +157,9 @@
 					<form id="searchForm" th:action="@{/cca/boardList}" method="GET">
 						<input type="hidden" name="page" id="requestPage" th:value="${page}" />
 						<input type="hidden" id="contextPath" th:value="${contextPath}" />
-						<div id="selectcss">
+						<div class="selectcss item-select">
 							<select name="searchItem">
-								<option value="" selected>품목별 검색</option>
+								<option value="" selected>품목별</option>
 								<option value="의류" th:selected="${searchItem == '의류'}">
 									의류
 								</option>
@@ -261,7 +261,7 @@
 								</option>
 							</select>
 							<input type="text" name="searchWord" class="searchWord" th:value="${searchWord}">
-							<input type="submit" value="검색" id="ccaSearchBtn" class="btn btn-info" />
+							<input type="submit" value="검색" id="ccaSearchBtn" class="btn searchBtn" />
 						</div>
 					</form>
 				</div>
