@@ -212,6 +212,10 @@ body {
   transition: transform 0.3s ease;
   border-radius: 10px;
 }
+.cardtest:hover {
+  color: #d81e5b;
+  font-weight: 400;
+}
 
 .cardtest-cca {
   display: inline-block;
@@ -221,6 +225,10 @@ body {
   margin: 20px;
   transition: transform 0.3s ease;
   border-radius: 10px;
+}
+.cardtest-cca:hover {
+  color: #d81e5b;
+  font-weight: 400;
 }
 
 .cardimage {
@@ -9084,17 +9092,22 @@ h1 {
   margin: 0 auto;
 }
 
+.cca-list>div {
+  display: flex;
+  align-items: center;
+}
+
 .cca-list .cca-img {
   display: inline-block;
 }
 
 .cca-list .cca-img img {
-  height: 250px;
-  margin-right: 30px;
+  height: 180px;
 }
 
 .cca-list .cca-info {
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
 }
 
 .cca-list .cca-info h4 {

@@ -148,14 +148,16 @@
                     <th:block th:if="${error}">
                         <div th:text="${errMessage}"></div>
                     </th:block>
-
-                    <!-- <div class="btn"> -->
+                    <!-- 
+                    <div class="btn"> -->
                     <input type="submit" id="submitBtn" class="button" value="로그인">
-                    <input type="reset" id="resetBtn" class="button" value="초기화">
-                    <!-- </div> -->
+                    <a th:href="@{/user/join}">
+                        <input type="button" id="joinBtn" class="button" value="회원가입">
+                    </a>
                 </div>
-            </form>
         </div>
+        </form>
+        <!-- </div> -->
     </div>
 
     <!-- footer -->

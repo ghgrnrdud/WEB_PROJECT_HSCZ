@@ -99,6 +99,11 @@
         .col5 a {
             color: #00b4d8;
         }
+
+        .fta-map-title {
+            margin: 20px 10px 0 180px;
+            font-weight: bold;
+        }
     </style>
 </head>
 
@@ -146,7 +151,7 @@
     <!-- End Navbar -->
 
     <!-- page-header 시작-->
-    <div class="page-header section-dark" th:style="'background-image: url(\'' + @{/images/cover-img1.jpg} + '\')'">
+    <div class="page-header section-dark" th:style="'background-image: url(\'' + @{/images/fta-header.jpg} + '\')'">
         <div class="filter"></div>
         <div class="content-center">
             <div class="container">
@@ -226,7 +231,7 @@
     <!-- End side-bar -->
 
     <div class="content">
-        <h3>FTA 체결 현황 지도</h3>
+        <h3 class="fta-map-title">FTA 체결 현황 지도</h3>
         <div id="worldMap">
             <div id="changeBtns">
                 <input type="button" value="발효국가" class="countryBtn countryBtn1"
@@ -243,7 +248,7 @@
             </div>
 
         </div>
-        <hr>
+        <hr style="height: 10px;">
 
         <div class="container text-center" style="width: 75%;">
             <div class="row align-items-center">

@@ -105,9 +105,11 @@ public class CCAController {
 
     @PostMapping("/ccaWrite")
     public String ccaWrite(@ModelAttribute BoardDTO boardDTO) {
-    	log.info("+++++++++++{}", boardDTO);
-        ccaService.insertConsult(boardDTO);
-        return "redirect:/cca/boardList";
+        log.info("+++++++++++{}", boardDTO);
+        
+        Long consultNum = ccaService.insertConsult(boardDTO);
+
+        return "redirect:/cca/detail?consultNum=" + consultNum;
     }
 
     @GetMapping("/detail")

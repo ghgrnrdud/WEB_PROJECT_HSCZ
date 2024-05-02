@@ -59,7 +59,7 @@
   <!-- End Navbar -->
 
   <!-- page-header 시작-->
-  <div class="page-header section-dark" th:style="'background-image: url(\'' + @{/images/cover-img1.jpg} + '\')'">
+  <div class="page-header section-dark" th:style="'background-image: url(\'' + @{/images/cca-header.jpg} + '\')'">
     <div class="filter"></div>
     <div class="content-center">
       <div class="container">
@@ -154,9 +154,9 @@
         <form id="searchForm" th:action="@{/cca/ccaList}" method="GET">
           <input type="hidden" name="page" id="requestPage" th:value="${page}" />
 
-          <div id="selectcss">
+          <div class="selectcss">
             <select id="searchItem" name="searchItem">
-              <option value="" selected>지역별 검색</option>
+              <option value="" selected>지역별</option>
               <option value="서울" th:selected="${searchItem == '서울'}">
                 서울
               </option>
@@ -210,7 +210,7 @@
               </option>
             </select>
             <input type="text" name="searchWord" class="searchWord" th:value="${searchWord}">
-            <input type="submit" value="검색" id="ccaSearchBtn" class="btn btn-info" />
+            <input type="submit" value="검색" id="ccaSearchBtn" class="btn searchBtn" />
           </div>
         </form>
       </div>
