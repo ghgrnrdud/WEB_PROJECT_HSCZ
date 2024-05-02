@@ -177,24 +177,29 @@
         <h2>Find Experts</h2>
       </div>
       <div class="slick-item">
-        <div class="cca-list" th:each="cca : ${ccaList}">
+        <div class="cca-list" th:each="ccainfo : ${ccaInfoMap}">
           <div class="cca-img">
             <img th:src="@{/images/user-img1.png}" alt="">
             <img th:src="@{/images/cca-rank.png}" alt="" style="height: 30px; margin: 10px auto;">
           </div>
           <div class="cca-info">
-            <h4>[[ ${cca.userName} ]] 관세사</h4>
+            <h4>[[ ${ccainfo.key.userName} ]] 관세사</h4>
+            <div class="cca-items" style="display: inline-block;">
+              <span>#[[ ${ccainfo.value.firstItem} ]]</span>
+              <span>#[[ ${ccainfo.value.secondItem} ]]</span>
+              <span>#[[ ${ccainfo.value.thirdItem} ]]</span>
+            </div>
             <div class="cca-company">
               <p>
-                [[ ${cca.companyName} ]] &nbsp;
-                <span>[[ ${cca.companyRegion} ]]</span>
+                [[ ${ccainfo.key.companyName} ]] &nbsp;
+                <span>[[ ${ccainfo.key.companyRegion} ]]</span>
               </p>
             </div>
             <div class="cca-count">
-              <p>받은 채택 수: &nbsp; <b>[[ ${cca.likeTotal} ]]</b></p>
+              <p>받은 채택 수: &nbsp; <b>[[ ${ccainfo.key.likeTotal} ]]</b></p>
             </div>
             <div>
-              "[[ ${cca.selfInfo} ]]"
+              "[[ ${ccainfo.key.selfInfo} ]]"
             </div>
           </div>
         </div>
