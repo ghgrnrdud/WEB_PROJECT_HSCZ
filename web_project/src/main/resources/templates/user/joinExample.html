@@ -24,11 +24,13 @@
 
                 // 'ROLE_CCA'가 선택되었는지 확인합니다.
                 if ($("input[type='radio'][value='ROLE_CCA']").is(":checked")) {
+                    $("#ccaNum2").attr("name", "");
                     // 선택되었다면 관련 요소를 표시합니다.
                     $("#apearCcaNum").css("display", "block");
                     $("#ccaChecktext").css("display", "block");
                     $(".content").css("height", "1500px");
                 } else {
+                    $("#ccaNum2").attr("name", "ccaNum");
                     $("#apearCcaNum").css("display", "none");
                     $("#ccaNum1").val("");
                     $("#checkCcaNum").html("");
@@ -182,6 +184,7 @@
             });
 
             $("#submitBtn").on("click", function () {
+                alert($("#ccaNum").val());
                 if ($("#userId").val() == "") {
                     alert("아이디를 입력해주세요.");
                     $("#userId").focus();
@@ -431,12 +434,16 @@
                     <!-- <input type="radio" name="userRole" value="ROLE_ADMIN" id="ROLE_ADMIN" class="radio"> 관리자 <br> -->
                     <hr class="main nec" />
 
+                    <!-- 일반 사용자 ccaNum 디폴트값 0으로 설정-->
+                    <input type="hidden" id="ccaNum2" value="0" name="ccaNum">
+
                     <div id="apearCcaNum" style="display: none">
                         <div id="checkLabel">
                             <span id="checkTag">* 관세사부호</span>
                             <span id="checkCcaNum" style="color: darkblue"></span><br />
                         </div>
-                        <input type="text" name="ccaNum" id="ccaNum1" class="ccanum" placeholder="5자리 관세사부호 입력" />
+                        <input type="text" name="ccaNum" id="ccaNum1" class="ccanum" placeholder="5자리 관세사부호 입력"
+                            value=0 />
                         <hr class="main nec" />
 
                         <input type="button" name="ccaCheckBtn" id="ccaCheckBtn" class="button" value="조회" />
@@ -447,7 +454,7 @@
                     <input type="text" name="companyName" id="companyName" class="main" />
 
                     지역<br />
-                    <select id="companyRegion">
+                    <select name="companyRegion">
                         <option value="서울">서울</option>
                         <option value="경기">경기</option>
                         <option value="대전">대전</option>
