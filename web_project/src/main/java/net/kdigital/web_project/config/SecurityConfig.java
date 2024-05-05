@@ -31,7 +31,7 @@ public class SecurityConfig {
 		// 웹 요청에 대한 접근권한 설정
 		http
 				.authorizeHttpRequests((auth) -> auth.requestMatchers(
-						"/" // ************************ 다시 설정 필요
+						"/"
 						, "/user/join", "/user/login", "/user/joinProc", "/user/loginProc", "/user/ccaCheck",
 						"/user/confirmId", "/trade/showStat", "/trade/stringChart", "/trade/pieChart",
 						"/trade/xyCluster", "/trade/StackCluster", "/trade/Exbarchart", "/trade/Ixbarchart",
