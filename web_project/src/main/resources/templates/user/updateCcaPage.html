@@ -18,6 +18,8 @@
         $(function () {
 
             $("#saveBtn").on('click', function () {
+                // saveBtn을 클릭하면 찐 수정버튼(sendUpdateDDA)을 submit 해줌.
+                // css form형식 때문에 어쩔수 없이 따로 분리 
                 let sendUpdateDDA = $("#sendUpdateDDA");
 
                 console.log($("#phone").val().length);
@@ -47,8 +49,7 @@
     <nav class="navbar navbar-expand-lg fixed-top navbar-transparent " color-on-scroll="300">
         <div class="container">
             <div class="navbar-translate">
-                <a class="navbar-brand" th:href="@{/}" rel="tooltip" title="Coded by Creative Tim"
-                    data-placement="bottom">
+                <a class="navbar-brand" th:href="@{/}" rel="tooltip" data-placement="bottom">
                     <img th:src="@{/images/web-logo9.png}" alt="로고">
                 </a>
             </div>
@@ -300,8 +301,8 @@
                                         <div class="form-group focused">
                                             <label class="form-control-label ta" for="input-username">지역</label><br>
                                             <span class="form-control form-control-alternative">
-                                                <input type="hidden" id="defaultCompanyRegion"
-                                                    th:value="${customerDTO.companyRegion}">
+                                                <!-- <input type="hidden" id="defaultCompanyRegion"
+                                                    th:value="${customerDTO.companyRegion}"> -->
                                                 <select id="companyRegion" name="companyRegion" class="selectBox">
                                                     <option value="서울">서울</option>
                                                     <option value="경기">경기</option>
@@ -332,8 +333,8 @@
 
                                             <label class="form-control-label" for="input-city">관심 품목1</label>
                                             <span class="form-control form-control-alternative">
-                                                <input type="hidden" id="defaultFirstItem"
-                                                    th:value="${customerItemDTO.firstItem}">
+                                                <!-- <input type="hidden" id="defaultFirstItem"
+                                                    th:value="${customerItemDTO.firstItem}"> -->
                                                 <select name="firstItem" id="firstItem" class="selectBox">
                                                     <option value="">전체</option>
                                                     <option value="동물 및 동물성 제품"
@@ -441,8 +442,8 @@
 
                                             <label class="form-control-label" for="input-country">관심 품목2</label>
                                             <span class="form-control form-control-alternative">
-                                                <input type="hidden" id="defaultSecondItem"
-                                                    th:value="${customerItemDTO.secondItem}">
+                                                <!-- <input type="hidden" id="defaultSecondItem"
+                                                    th:value="${customerItemDTO.secondItem}"> -->
                                                 <select name="secondItem" id="secondItem" class="selectBox">
                                                     <option value="">전체</option>
                                                     <option value="동물 및 동물성 제품"
@@ -550,8 +551,8 @@
 
                                             <label class="form-control-label" for="input-country">관심 품목3</label>
                                             <span class="form-control form-control-alternative">
-                                                <input type="hidden" id="defaultThirdItem"
-                                                    th:value="${customerItemDTO.thirdItem}">
+                                                <!-- <input type="hidden" id="defaultThirdItem"
+                                                    th:value="${customerItemDTO.thirdItem}"> -->
                                                 <select name="thirdItem" id="thirdItem" class="selectBox">
                                                     <option value="">전체</option>
                                                     <option value="동물 및 동물성 제품"
@@ -672,7 +673,7 @@
 
 
                             <hr class="my-4">
-                            <!-- Address -->
+                            <!-- 이하는 수정 불가 -->
                             <div style="margin: 10px; padding: 10px; background-color: aliceblue;">
                                 <h6 class="heading-small text-muted mb-4">내가 쓴 댓글</h6>
 
@@ -697,6 +698,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <!--자신이 작성한 댓글과 해당하는 상담글 정보가 담긴 Map-->
                                     <div th:each="entry : ${dataMap}">
                                         <div class="row2">
                                             <div class="col-lg-5">

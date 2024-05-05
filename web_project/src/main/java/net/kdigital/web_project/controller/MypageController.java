@@ -41,6 +41,7 @@ public class MypageController {
 
 	@GetMapping("/userpage")
 	public String userpage(Model model) {
+		// 로그인한 유저가 쓴 글 갯수 counting
 		boardCount = 0;
 		// 로그인한 유저 정보 가져오기
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -52,26 +53,19 @@ public class MypageController {
 		// 유저 아이템 정보 가져오기
 		CustomerItemDTO customerItemDTO = customerItemService.findItem(username);
 
-		// 로그인한 유저가 작성한 글 가져오기
+		// 로그인한 유저가 작성한 글 리스트로 가져오기
 		List<BoardEntity> boardEntityList = ccaService.findAllConsultsbyuserId(username);
 
-		
-		log.info("{}", boardEntityList);
-
+		// 상담글과 해당 글에 해당하는 댓글 갯수 map에 저장
 		Map<BoardDTO, Integer> dataMap = new HashMap<>();
 
-		// List<BoardDTO> totalBoardDTOList = new ArrayList<>();
-		// List<AnswerDTO> totalReplyDTOList = new ArrayList<>();
 		for (BoardEntity temp : boardEntityList) {
 			// 작성한 글에 해당하는 댓글 가져오기
 			List<AnswerDTO> replyDTOList = replyService.selectAllReplys(temp.getConsultNum());
 
 			
 			dataMap.put(BoardDTO.toDTO(temp), replyDTOList.size());
-			// for(AnswerDTO temp2 : replyDTOList) {
-			// totalReplyDTOList.add(temp2);
-			// }
-			// totalBoardDTOList.add(BoardDTO.toDTO(temp));
+
 			boardCount += 1;
 		}
 
@@ -80,8 +74,6 @@ public class MypageController {
 		model.addAttribute("customerDTO", customerDTO);
 		model.addAttribute("customerItemDTO", customerItemDTO);
 		model.addAttribute("dataMap", dataMap);
-		// model.addAttribute("totalBoardDTOList",totalBoardDTOList);
-		// model.addAttribute("totalReplyDTOList", totalReplyDTOList);
 		model.addAttribute("boardCount", boardCount);
 		return "/user/userPage";
 	}
@@ -102,6 +94,7 @@ public class MypageController {
 		// 유저가 쓴 댓글 정보 가져오기
 		List<AnswerDTO> replyDTOList = replyService.selectAllReplysByUsername(username);
 
+		// 댓글과 그 댓글에 해당하는 상담글 정보 map에 저장
 		Map<AnswerDTO, BoardDTO> dataMap = new HashMap<>();
 
 		for (AnswerDTO answerDTO : replyDTOList) {
@@ -120,8 +113,6 @@ public class MypageController {
 		model.addAttribute("customerDTO", customerDTO);
 		model.addAttribute("customerItemDTO", customerItemDTO);
 		model.addAttribute("dataMap", dataMap);
-		// model.addAttribute("totalBoardDTOList",totalBoardDTOList);
-		// model.addAttribute("totalReplyDTOList", totalReplyDTOList);
 		model.addAttribute("replyCount", replyCount);
 		return "/user/ccaPage";
 	}
@@ -146,8 +137,6 @@ public class MypageController {
 
 		Map<BoardDTO, Integer> dataMap = new HashMap<>();
 
-		// List<BoardDTO> totalBoardDTOList = new ArrayList<>();
-		// List<AnswerDTO> totalReplyDTOList = new ArrayList<>();
 		for (BoardEntity temp : boardEntityList) {
 			// 작성한 글에 해당하는 댓글 가져오기
 			List<AnswerDTO> replyDTOList = replyService.selectAllReplys(temp.getConsultNum());
@@ -155,10 +144,6 @@ public class MypageController {
 			log.info("{}", replyDTOList.size());
 
 			dataMap.put(BoardDTO.toDTO(temp), replyDTOList.size());
-			// for(AnswerDTO temp2 : replyDTOList) {
-			// totalReplyDTOList.add(temp2);
-			// }
-			// totalBoardDTOList.add(BoardDTO.toDTO(temp));
 			boardCount += 1;
 		}
 
@@ -213,8 +198,6 @@ public class MypageController {
 
 	@PostMapping("/updateUser")
 	public String updateUser(@ModelAttribute CustomerDTO customerDTO, @ModelAttribute CustomerItemDTO customerItemDTO) {
-		log.info("{}", customerDTO);
-		log.info("{}", customerItemDTO);
 
 		// 로그인한 유저 정보 가져오기
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -226,9 +209,6 @@ public class MypageController {
 
 		// 유저 아이템 업데이트
 		CustomerDTO updatedCustomerDTO = customerService.updateUser(username, customerDTO);
-
-		log.info("{}", updatedCustomerDTO);
-		log.info("{}", updatedCustomerItemDTO);
 
 		return "redirect:/my/userpage";
 	}

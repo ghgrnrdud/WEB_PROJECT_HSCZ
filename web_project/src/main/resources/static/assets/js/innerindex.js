@@ -4,7 +4,9 @@ function init(id, div) {
   // Create root element
   // https://www.amcharts.com/docs/v5/getting-started/#Root_element
 
+  // 지도 그릴 영역 root 생성
   var root = am5.Root.new("chartdiv");
+
 
   // Set themes
   // https://www.amcharts.com/docs/v5/concepts/themes/
@@ -36,12 +38,12 @@ function init(id, div) {
     , templateField: "polygonSettings"
   });
 
-  // polygonSeries.mapPolygons.template.events.on("click", function(ev) {
-  //   console.log("Clicked on", ev.target.dataItem.get("id"));
-  // });
 
+
+  // 특정 국가 click event 설정
   polygonSeries.mapPolygons.template.events.on(
     "click",
+
     function (ev, id, div, type) {
       var url = ev.target.dataItem.dataContext.url;
       var country = ev.target.dataItem.get("id");

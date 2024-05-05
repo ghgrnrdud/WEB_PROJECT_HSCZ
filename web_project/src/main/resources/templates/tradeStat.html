@@ -4,66 +4,83 @@
 <head>
   <title>무역통계</title>
   <!--font-->
-  <link href='//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css' rel='stylesheet' type='text/css'>
+  <link href="//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css" rel="stylesheet" type="text/css" />
 
   <!--css-->
   <link href="/assets/css/bootstrap.min.css" rel="stylesheet" />
   <link href="/assets/css/without-sidebar.css" rel="stylesheet" />
 
   <link href="/assets/demo/demo.css" rel="stylesheet" />
-  <link href="/assets/css/trade.css" rel="stylesheet">
+  <link href="/assets/css/trade.css" rel="stylesheet" />
   <script th:src="@{/script/jquery-3.7.1.min.js}"></script>
 
   <!--===============Graph Code====================-->
   <link rel="stylesheet" href="/assets/css/index.css" />
 
-  <div id="countryName" style="display:none">CN</div>
+  <div id="countryName" style="display: none">CN</div>
   <!--jquery-->
   <script th:inline="javascript">
     $(function () {
-      console.log("function number1 start")
+      console.log("function number1 start");
+
+      // 지도 위아래로 생성할 그래프 영역 구분용 id(div태그 id로 쓰임)
       var id = 0;
+
+      // 지도 그리는 영역(chartdiv) 가져옴
       const div = document.getElementById("chartdiv");
+      // 지도 그리기
       init(id, div);
 
+
+      // 한국 수출입 금액 string chart 그리기
       id++;
       createBullet(id, div); //1
+
+      // 한국 top5 품목 cluster chart 그리기
       id++;
       createxycluster(id, div, 2019, "수입"); //2
+
+      // 국가별 수출입 품목 증감율 stack chart 그리기
       id++;
-      createStackCluster(id, div, "US");//3
+      createStackCluster(id, div, "US"); //3
+
+      // 국가별 top5 품목 bar chart로 그리기
       id++;
-      createBar(id, div, "US", 2019, "export");//4. 가장 첫 화면
+      createBar(id, div, "US", 2019, "export"); //4. 가장 첫 화면
+
+      // 국가별 수출입 금액 string chart 그리기
       id++;
-      createString(id, div, "US");//5
+      createString(id, div, "US"); //5
+
+      // 국가별 수입시장 점유율 pie chart 그리기
       id++;
-      createPie(id, div, "US", 2019);//6
+      createPie(id, div, "US", 2019); //6
 
       //createxycluster 수출/수입 연도 선택 버튼
-      $("#replyBtn").on('click', function (id, div) {
+      $("#replyBtn").on("click", function (id, div) {
         let selectedyear = $("#dropdown").val();
         let selectedport = $("#importdd").val();
         createxycluster(id, div, selectedyear, selectedport);
-      });//end replyBtn
+      }); //end replyBtn
 
       // createBar 수출/수입 연도 선택 버튼
-      $("#replyBtnbar").on('click', function (id, div) {
+      $("#replyBtnbar").on("click", function (id, div) {
         let country = $("#countryName").text();
         let year = $("#dropdownbar").val();
         let type = $("#importbar").val();
         console.log(country);
         createBar(id, div, country, year, type);
-      });//end replyBtn  
+      }); //end replyBtn
 
       // createPie 수출/수입 연도 선택 버튼
-      $("#replyBtnpie").on('click', function (id, div) {
+      $("#replyBtnpie").on("click", function (id, div) {
         let country = $("#countryName").text();
         let year = $("#dropdownpie").val();
         console.log(country);
         console.log(year);
         createPie(id, div, country, year);
-      });//end replyBtn  
-    })//end function
+      }); //end replyBtn
+    }); //end function
   </script>
   <!-- =======================================================
   * Template Name: Logis
@@ -75,13 +92,12 @@
 </head>
 
 <body>
-
   <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg fixed-top navbar-transparent " color-on-scroll="300">
+  <nav class="navbar navbar-expand-lg fixed-top navbar-transparent" color-on-scroll="300">
     <div class="container">
       <div class="navbar-translate">
         <a class="navbar-brand" th:href="@{/}" rel="tooltip" title="메인화면으로" data-placement="bottom">
-          <img th:src="@{/images/web-logo9.png}" alt="로고">
+          <img th:src="@{/images/web-logo9.png}" alt="로고" />
         </a>
       </div>
       <div class="collapse navbar-collapse justify-content-end" id="navigation">
@@ -125,7 +141,8 @@
         <div class="title-brand">
           <h1 class="presentation-title">무역통계</h1>
         </div>
-      </div> <!--div.content-center-->
+      </div>
+      <!--div.content-center-->
     </div>
   </div>
   <!-- End page-header -->
@@ -197,12 +214,10 @@
 
   <section class="sample-page">
     <div class="content" data-aos="fade-up">
-      <p id="koreatitle">
-        한국 수출입 현황
-      </p>
+      <p id="koreatitle">한국 수출입 현황</p>
       <!-- <div class="temp" style="width: 1200px; margin: 0 auto;"> -->
-      <div class="temp" style="width: 1200px;">
-        <div id="chartdiv" style="margin-bottom: 20px;"></div>
+      <div class="temp" style="width: 1200px">
+        <div id="chartdiv" style="margin-bottom: 20px"></div>
 
         <!-- <div class="temp" style="width: 1000px; margin: 0 auto;">
           <div id="chartdiv" style="width: 1000px;"></div>
@@ -220,6 +235,11 @@
     </div>
   </section>
 
+  <!-- 위로가기 -->
+  <div class="moveTopBtn">
+    <i class="fa-solid fa-chevron-up"></i>
+  </div>
+
   <!-- footer -->
   <footer class="footer-wave">
     <div class="waves">
@@ -234,8 +254,9 @@
       <li class="menu__item"><a class="menu__link" href="#">무역뉴스</a></li>
       <li class="menu__item"><a class="menu__link" href="#">FTA정보</a></li>
       <li class="menu__item"><a class="menu__link" href="#">무역통계</a></li>
-      <li class="menu__item"><a class="menu__link" href="#">관세사상담</a></li>
-
+      <li class="menu__item">
+        <a class="menu__link" href="#">관세사상담</a>
+      </li>
     </ul>
     <p>&copy;2024 HScode Zoom | All Rights Reserved</p>
   </footer>
@@ -256,6 +277,14 @@
   <script th:src="@{/assets/js/paper-kit.min.js?v=2.2.0}" type="text/javascript"></script>
   <script type="text/javascript"
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTTfWur0PDbZWPr7Pmq8K3jiDp0_xUziI"></script>
+  <script>
+    const $topBtn = document.querySelector(".moveTopBtn");
+
+    // 버튼 클릭 시 맨 위로 이동
+    $topBtn.onclick = () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    };
+  </script>
 </body>
 
 </html>
