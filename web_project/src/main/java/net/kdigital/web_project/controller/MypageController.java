@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.kdigital.web_project.dto.AnswerDTO;
@@ -55,7 +53,6 @@ public class MypageController {
 		// 로그인한 유저가 작성한 글 가져오기
 		List<BoardEntity> boardEntityList = ccaService.findAllConsultsbyuserId(username);
 
-		
 		log.info("{}", boardEntityList);
 
 		Map<BoardDTO, Integer> dataMap = new HashMap<>();
@@ -66,7 +63,6 @@ public class MypageController {
 			// 작성한 글에 해당하는 댓글 가져오기
 			List<AnswerDTO> replyDTOList = replyService.selectAllReplys(temp.getConsultNum());
 
-			
 			dataMap.put(BoardDTO.toDTO(temp), replyDTOList.size());
 			// for(AnswerDTO temp2 : replyDTOList) {
 			// totalReplyDTOList.add(temp2);
