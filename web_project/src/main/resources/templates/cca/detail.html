@@ -169,6 +169,7 @@
         </div>
 
         <!-- 답변 버튼 섹션-->
+
         <div class="editorHeader">
             <div class="editorHeaderArea">
                 <div class="editorHeaderInner">
@@ -212,7 +213,8 @@
 
 
             <!-- 각 답변 정보를 담는 테이블 -->
-            <div th:each="reply, status : ${replyList}" class="answerList">
+            <div th:each="entry : ${dataMap}" class="answerList">
+                <!-- <div th:each="reply, status : ${replyList}" > -->
                 <div class="answerDetailArea">
                     <div class="profileCard">
                         <div class="cardInfo">
@@ -224,27 +226,38 @@
                             </div>
                             <div class="profileInfo">
                                 <div class="nameArea">
-                                    <strong class="name" th:text="${reply.replyWriter}"></strong>
+                                    <strong class="name" th:text="${entry.key.replyWriter}"></strong>
                                 </div>
                                 <div class="companyArea">
                                     <span class="company">관세사</span>
                                 </div>
+                                <div class="CCAproductCategory">
+                                    <span class="company">#[[ ${entry.value.firstItem} ]]</span>
+                                </div>
+                                <div class="CCAproductCategory">
+                                    <span class="company">#[[ ${entry.value.secondItem} ]]</span>
+                                </div>
+                                <div class="CCAproductCategory">
+                                    <span class="company">#[[ ${entry.value.thirdItem} ]]</span>
+                                </div>
+
+
                             </div>
                         </div>
                     </div>
                     <div class="answerDetail">
-                        <p th:text="${reply.replyContent}"></p>
+                        <p th:text="${entry.key.replyContent}"></p>
                     </div>
                     <div class="answerInfo">
-                        <p class="answerDate" th:text="${#temporals.format(reply.replyDate, 'yyyy-MM-dd')}"></p>
+                        <p class="answerDate" th:text="${#temporals.format(entry.key.replyDate, 'yyyy-MM-dd')}"></p>
                     </div>
                     <div class="answerBtnArea">
                         <div class="answerBtnLeft">
                             <!-- 답변 수정 버튼 -->
-                            <th:block th:if="${reply.replyWriter == #authentication.name}">
-                                <a th:href="@{/cca/replyUpdate(replyNum=${reply.replyNum},consultNum=${consult.consultNum}, searchBy=${searchBy}, searchItem=${searchItem})}"
+                            <th:block th:if="${entry.key.replyWriter == #authentication.name}">
+                                <a th:href="@{/cca/replyUpdate(replyNum=${entry.key.replyNum},consultNum=${consult.consultNum}, searchBy=${searchBy}, searchItem=${searchItem})}"
                                     class="qna-button ans-btn">수정하기</a>
-                                <a th:href="@{/cca/replyDelete(replyNum=${reply.replyNum},consultNum=${consult.consultNum},searchBy=${searchBy},searchItem=${searchItem})}"
+                                <a th:href="@{/cca/replyDelete(replyNum=${entry.key.replyNum},consultNum=${consult.consultNum},searchBy=${searchBy},searchItem=${searchItem})}"
                                     class="qna-button ans-btn">삭제하기</a>
                             </th:block>
                         </div>
@@ -252,14 +265,14 @@
                             <th:block th:if="${#authentication.authorities.![authority].contains('ROLE_USER')}">
 
                                 <form th:action="@{/cca/increaseLike}" method="POST">
-                                    <input type="hidden" name="replyNum" th:value="${reply.replyNum}">
+                                    <input type="hidden" name="replyNum" th:value="${entry.key.replyNum}">
                                     <input type="hidden" name="consultNum" th:value="${consult.consultNum}">
                                     <input type="hidden" name="consultWriter" th:value="${consult.consultWriter}">
-                                    <input type="hidden" name="replyWriter" th:value="${reply.replyWriter}">
+                                    <input type="hidden" name="replyWriter" th:value="${entry.key.replyWriter}">
                                     <input type="hidden" name="searchBy" th:value="${searchBy}">
                                     <input type="hidden" name="searchItem" th:value="${searchItem}">
                                     <div class="likeArea">
-                                        <span class="likeCount">채택수: [[ ${reply.likeCount} ]]</span>
+                                        <span class="likeCount">채택수: [[ ${entry.key.likeCount} ]]</span>
                                         <input type="submit" class="thumbsUp" value="">
                                     </div>
                                 </form>
@@ -267,8 +280,9 @@
                         </div>
                     </div>
                 </div> <!--answerDetailArea-->
-            </div>
-        </div> <!--answer-area-->
+                <!-- </div> -->
+            </div> <!--answer-area-->
+        </div>
     </div>
 
     <br>

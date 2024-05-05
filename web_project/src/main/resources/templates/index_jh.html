@@ -27,7 +27,7 @@
   <nav class="navbar navbar-expand-lg fixed-top navbar-transparent " color-on-scroll="300">
     <div class="container">
       <div class="navbar-translate">
-        <a class="navbar-brand" th:href="@{/}" rel="tooltip" title="Coded by Creative Tim" data-placement="bottom">
+        <a class="navbar-brand" th:href="@{/}" rel="tooltip" data-placement="bottom">
           <img th:src="@{/images/web-logo9.png}" alt="로고" style="vertical-align: bottom;">
         </a>
         <button class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
@@ -175,24 +175,29 @@
         <h2>Find Experts</h2>
       </div>
       <div class="slick-item">
-        <div class="cca-list" th:each="cca : ${ccaList}">
+        <div class="cca-list" th:each="ccainfo : ${ccaInfoMap}">
           <div class="cca-img">
             <img th:src="@{/images/user-img1.png}" alt="">
             <img th:src="@{/images/cca-rank.png}" alt="" style="height: 30px; margin: 10px auto;">
           </div>
           <div class="cca-info">
-            <h4>[[ ${cca.userName} ]] 관세사</h4>
+            <h4>[[ ${ccainfo.key.userName} ]] 관세사</h4>
+            <div class="cca-items" style="display: inline-block;">
+              <span>#[[ ${ccainfo.value.firstItem} ]]</span>
+              <span>#[[ ${ccainfo.value.secondItem} ]]</span>
+              <span>#[[ ${ccainfo.value.thirdItem} ]]</span>
+            </div>
             <div class="cca-company">
               <p>
-                [[ ${cca.companyName} ]] &nbsp;
-                <span>[[ ${cca.companyRegion} ]]</span>
+                [[ ${ccainfo.key.companyName} ]] &nbsp;
+                <span>[[ ${ccainfo.key.companyRegion} ]]</span>
               </p>
             </div>
             <div class="cca-count">
-              <p>받은 채택 수: &nbsp; <b>[[ ${cca.likeTotal} ]]</b></p>
+              <p>받은 채택 수: &nbsp; <b>[[ ${ccainfo.key.likeTotal} ]]</b></p>
             </div>
             <div>
-              "[[ ${cca.selfInfo} ]]"
+              "[[ ${ccainfo.key.selfInfo} ]]"
             </div>
           </div>
         </div>
@@ -259,6 +264,11 @@
   </div>
 
   <!-- End Services Section -->
+
+  <!-- 위로가기 -->
+  <div class="moveTopBtn">
+    <i class="fa-solid fa-chevron-up"></i>
+  </div>
 
   <!-- footer -->
   <footer class="footer-wave">
@@ -345,12 +355,13 @@
         slidesToShow: 1,   // 한 번에 보여줄 슬라이드 수
         slidesToScroll: 1, // 한 번에 스크롤할 슬라이드 수
         autoplay: true,    // 자동 재생 여부
+
         autoplaySpeed: 5000, // 자동 재생 간격
+
         autoplaySpeed: 4000, // 자동 재생 간격
         arrows: true,      // 좌우 화살표 사용 여부
         infinite: true,
         centerMode: true,
-        variableWidth: true
         variableWidth: true,
         pauseOnHover: false
       });
@@ -366,12 +377,21 @@
         autoplaySpeed: 800, // 자동 재생 간격
         autoplaySpeed: 700, // 자동 재생 간격
         arrows: false,      // 좌우 화살표 사용 여부
-        infinite: true
         infinite: true,
         pauseOnHover: false
       });
     });
   </script>
+
+  <script>
+    const $topBtn = document.querySelector(".moveTopBtn");
+
+    // 버튼 클릭 시 맨 위로 이동
+    $topBtn.onclick = () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    };
+  </script>
+
 </body>
 
 </html>

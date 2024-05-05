@@ -81,7 +81,7 @@ create table customer_like
 (
     user_like_id number primary key
     , user_id varchar2(20)
-    , reply_num number references reply_cca(reply_num)
+    , reply_num number references reply_cca(reply_num) on delete cascade
     , like_date date default sysdate
 );
 create sequence customer_like_seq;

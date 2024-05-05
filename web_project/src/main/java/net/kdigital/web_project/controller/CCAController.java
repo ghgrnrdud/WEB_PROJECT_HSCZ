@@ -1,6 +1,8 @@
 package net.kdigital.web_project.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
@@ -24,8 +26,12 @@ import net.kdigital.web_project.dto.AnswerDTO;
 import net.kdigital.web_project.dto.BoardDTO;
 import net.kdigital.web_project.dto.CCAListDTO;
 import net.kdigital.web_project.dto.CustomerDTO;
+import net.kdigital.web_project.dto.CustomerItemDTO;
+import net.kdigital.web_project.entity.CustomerEntity;
+import net.kdigital.web_project.entity.CustomerItemEntity;
 import net.kdigital.web_project.service.CCAListService;
 import net.kdigital.web_project.service.CCAService;
+import net.kdigital.web_project.service.CustomerItemService;
 import net.kdigital.web_project.service.CustomerService;
 import net.kdigital.web_project.service.ReplyService;
 import net.kdigital.web_project.util.PageNavigator;
@@ -39,15 +45,19 @@ public class CCAController {
     private final int pageLimit; // 한 페이지에 보여줄 글의 개수
     private final CCAListService ccaListService;
     private final CustomerService customerService;
+    private final CustomerItemService customerItemService;
+
 
     public CCAController(CCAService ccaService, ReplyService replyService,
             @Value("${user.board.pageLimit}") int pageLimit, CCAListService ccaListService,
-            CustomerService customerService) {
+            CustomerService customerService, CustomerItemService customerItemService) {
         this.ccaService = ccaService;
         this.replyService = replyService;
         this.pageLimit = pageLimit;
         this.ccaListService = ccaListService;
         this.customerService = customerService;
+        this.customerItemService = customerItemService;
+
     }
 
     /**
@@ -95,9 +105,11 @@ public class CCAController {
 
     @PostMapping("/ccaWrite")
     public String ccaWrite(@ModelAttribute BoardDTO boardDTO) {
-    	log.info("+++++++++++{}", boardDTO);
-        ccaService.insertConsult(boardDTO);
-        return "redirect:/cca/boardList";
+        log.info("+++++++++++{}", boardDTO);
+        
+        Long consultNum = ccaService.insertConsult(boardDTO);
+
+        return "redirect:/cca/detail?consultNum=" + consultNum;
     }
 
     @GetMapping("/detail")
@@ -111,9 +123,16 @@ public class CCAController {
         BoardDTO boardDTO = ccaService.selectOneConsult(consultNum);
         List<AnswerDTO> replyList = replyService.selectAllReplys(consultNum); // 예시일 뿐, 해당 메서드가 실제로 존재한다고 가정
 
+        Map<AnswerDTO, CustomerItemDTO> dataMap = new HashMap<>();
+        for(AnswerDTO temp : replyList) {
+        	CustomerItemDTO customerItemDTO = customerItemService.findItem(temp.getReplyWriter());
+        	dataMap.put(temp, customerItemDTO);
+        }
+        
         model.addAttribute("consult", boardDTO);
         model.addAttribute("searchItem", searchItem);
         model.addAttribute("searchBy", searchBy);
+        model.addAttribute("dataMap",dataMap);
         model.addAttribute("replyList", replyList); // 답변 DTO도 Model에 추가
 
         return "cca/detail";

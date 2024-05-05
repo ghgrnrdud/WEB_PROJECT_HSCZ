@@ -17,7 +17,7 @@
   border-radius: 20px;
 }
 
-.question-area > h3 {
+.question-area>h3 {
   font-size: 30px;
   font-weight: 500;
   color: black;
@@ -28,23 +28,26 @@
   height: 30px;
   margin-bottom: 25px;
 }
+
 .question-area .userInfo .infoItem {
   font-size: 15px;
   color: #979393;
   margin-right: 15px;
 }
 
-.question-area .questionDetail {
-}
+.question-area .questionDetail {}
+
 .question-area .questionDetail p {
   font-size: 18px;
   color: black;
+  white-space: pre-line;
 }
 
 .question-area .productCategory {
   height: 40px;
   margin-top: 30px;
 }
+
 .question-area .productCategory span {
   overflow: hidden;
   text-overflow: ellipsis;
@@ -75,12 +78,14 @@
   margin: 0 auto;
   margin-bottom: 30px;
 }
+
 .editorHeader .editorHeaderArea {
   /* border: 1px solid #e5e5e5; */
   box-shadow: 0 20px 30px rgba(0, 0, 0, 0.19), 0 15px 15px rgba(0, 0, 0, 0.23);
   border-radius: 20px;
   margin-top: 100px;
 }
+
 .editorHeader .editorHeaderInner {
   display: -ms-flexbox;
   display: flex;
@@ -90,6 +95,7 @@
   align-items: center;
   box-sizing: border-box;
 }
+
 .editorHeader .editorHeaderInner .thumbnail {
   position: relative;
   width: 42px;
@@ -98,6 +104,7 @@
   background-color: #d3d3d3;
   overflow: hidden;
 }
+
 .editorHeader .editorHeaderInner .thumbnail img {
   position: absolute;
   top: 50%;
@@ -107,10 +114,12 @@
   border-radius: 50%;
   transform: translate(-50%, -50%);
 }
+
 .editorHeader .editorHeaderInner .headerDetail {
   flex: 1;
   margin-left: 10px;
 }
+
 .editorHeader .editorHeaderInner .headerText {
   margin-top: 4px;
   font-size: 16px;
@@ -118,6 +127,7 @@
   line-height: 19px;
   letter-spacing: -0.3px;
 }
+
 .ans-btn {
   padding: 10px 17px;
   color: #fff;
@@ -131,6 +141,7 @@
   transition: 0.2s;
   margin-right: 10px;
 }
+
 .ans-btn:hover {
   color: #fff;
   padding: 12px 20px;
@@ -151,21 +162,25 @@
 .answer-area .answerHeader {
   border-bottom: 1px solid rgba(233, 233, 236, 0.5);
 }
+
 .answerHeader .titleSection .titleArea {
   display: flex;
   width: 100%;
   align-items: center;
   height: 57px;
 }
+
 .answerHeader .titleSection .titleArea .title {
   font-size: 18px;
   font-weight: 500;
 }
+
 .answerHeader .titleSection .titleArea .option {
   flex-shrink: 0;
   margin-left: auto;
   padding-left: 9px;
 }
+
 .dropdownBtn {
   position: relative;
   display: inline-block;
@@ -179,15 +194,18 @@
 .answerList {
   margin-bottom: 150px;
 }
+
 .answerList:last-child {
   margin-bottom: 10px;
 }
+
 .answerDetailArea .profileCard {
   background-color: #e7f3fc;
   border-radius: 20px;
   padding: 10px;
   margin-top: 20px;
 }
+
 .answerDetailArea .profileCard .cardInfo {
   position: relative;
   display: table;
@@ -196,6 +214,7 @@
   table-layout: fixed;
   box-sizing: border-box;
 }
+
 .cardInfo .thumbnailArea {
   position: absolute;
   top: 50%;
@@ -208,6 +227,7 @@
   justify-content: center;
   align-items: center;
 }
+
 .cardInfo .thumbnailArea .thumbnail {
   position: relative;
   width: 60px;
@@ -217,6 +237,7 @@
   overflow: hidden;
   z-index: 5;
 }
+
 .cardInfo .thumbnailArea .thumbnail img {
   position: absolute;
   top: 50%;
@@ -233,10 +254,12 @@
   padding: 0 12px 0 80px;
   vertical-align: middle;
 }
+
 .profileInfo .nameArea {
   margin: 0;
   padding: 0;
 }
+
 .profileInfo .nameArea .name {
   overflow: hidden;
   text-overflow: ellipsis;
@@ -248,10 +271,18 @@
   letter-spacing: -0.3px;
   font-weight: bold;
 }
+
 .profileInfo .companyArea {
   margin-top: 5px;
 }
-.profileInfo .companyArea .company {
+
+.profileInfo .companyArea,
+.profileInfo .CCAproductCategory {
+  display: inline-block;
+}
+
+.profileInfo .companyArea .company,
+.profileInfo .CCAproductCategory .company {
   position: relative;
   display: inline-block;
   padding: 3px 6px;
@@ -275,14 +306,17 @@
   word-break: break-all;
   word-wrap: break-word;
 }
+
 .answerDetailArea .answerDetail p {
   font-size: 18px;
   color: black;
+  white-space: pre-line;
 }
 
 .answerDetailArea .answerInfo {
   margin-top: 26px;
 }
+
 .answerDate {
   color: #939396;
   font-size: 15px;
@@ -302,6 +336,7 @@
   display: flex;
   align-items: flex-end;
 }
+
 .answerDetailArea .answerBtnArea .thumbsUp {
   background: url(../../images/thumbs-up1.png);
   background-repeat: no-repeat;
@@ -310,6 +345,7 @@
   border: 0;
   margin: 10px;
 }
+
 .answerBtnArea .likeCount {
   padding: 10px;
   color: #000;

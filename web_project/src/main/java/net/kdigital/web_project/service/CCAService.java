@@ -54,10 +54,13 @@ public class CCAService {
     }
 
     @Transactional
-    public void insertConsult(BoardDTO boardDTO) {
+    public Long insertConsult(BoardDTO boardDTO) {
         BoardEntity boardEntity = BoardEntity.toEntity(boardDTO);
 
         ccaRepository.save(boardEntity);
+
+        return boardEntity.getConsultNum();
+
     }
 
     public BoardDTO selectOneConsult(Long consultNum) {
