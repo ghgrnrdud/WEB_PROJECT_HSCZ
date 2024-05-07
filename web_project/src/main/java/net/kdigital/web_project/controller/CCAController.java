@@ -57,12 +57,10 @@ public class CCAController {
     }
 
     /**
-     * 
-     * 상담목록
-     * 
+     * 상담 목록 불러오기
      * @param pageable
-     * @param searchBy
      * @param searchItem
+     * @param searchWord
      * @param model
      * @return
      */
@@ -90,6 +88,12 @@ public class CCAController {
         return "/cca/boardList";
     }
 
+    /**
+     * 글쓰기 화면 요청하기
+     * @param hsCode
+     * @param model
+     * @return
+     */
     @GetMapping("/ccaWrite")
     public String ccaWrite(@RequestParam(name = "hsCode", defaultValue = "") String hsCode, Model model) {
         log.info("글쓰기 화면 요청");
@@ -99,6 +103,11 @@ public class CCAController {
         return "/cca/ccaWrite";
     }
 
+    /**
+     * 새 상담글 등록하기
+     * @param boardDTO
+     * @return
+     */
     @PostMapping("/ccaWrite")
     public String ccaWrite(@ModelAttribute BoardDTO boardDTO) {
         log.info("+++++++++++{}", boardDTO);
@@ -108,6 +117,15 @@ public class CCAController {
         return "redirect:/cca/detail?consultNum=" + consultNum;
     }
 
+    /**
+     * 상담글 상세 화면 요청하기
+     * @param consultNum
+     * @param searchBy
+     * @param searchItem
+     * @param request
+     * @param model
+     * @return
+     */
     @GetMapping("/detail")
     public String ccaDetail(
             @RequestParam(name = "consultNum") Long consultNum,
@@ -134,6 +152,14 @@ public class CCAController {
         return "cca/detail";
     }
 
+    /**
+     * 상담글 삭제 처리하기
+     * @param consultNum
+     * @param searchBy
+     * @param searchItem
+     * @param rttr
+     * @return
+     */
     @GetMapping("/delete")
     public String boardDelete(
             @RequestParam(name = "consultNum") Long consultNum,
@@ -148,6 +174,14 @@ public class CCAController {
         return "redirect:/cca/boardList";
     }
 
+    /**
+     * 상담글 수정화면 요청하기
+     * @param consultNum
+     * @param searchBy
+     * @param searchItem
+     * @param model
+     * @return
+     */
     @GetMapping("/update")
     public String boardUpdate(
             @RequestParam(name = "consultNum") Long consultNum,
@@ -163,6 +197,14 @@ public class CCAController {
         return "cca/update";
     }
 
+    /**
+     * 상담글 수정 처리
+     * @param boardDTO
+     * @param searchBy
+     * @param searchItem
+     * @param rttr
+     * @return
+     */
     @PostMapping("/update")
     public String boardUpdate(
             @ModelAttribute BoardDTO boardDTO,
@@ -177,6 +219,12 @@ public class CCAController {
         return "redirect:/cca/detail";
     }
 
+    /**
+     * 답변 작성 화면 요청
+     * @param model
+     * @param consultNum
+     * @return
+     */
     @GetMapping("/replyWrite")
     public String replyWritePage(Model model, @RequestParam("consultNum") Long consultNum) {
 
@@ -184,6 +232,14 @@ public class CCAController {
         return "cca/replyWrite"; // replyWrite.html로 이동
     }
 
+    /**
+     * 답변 작성 처리
+     * @param answerDTO
+     * @param consultNum
+     * @param searchBy
+     * @param searchItem
+     * @return
+     */
     @PostMapping("/replyWrite")
     public String replyWrite(
             @ModelAttribute AnswerDTO answerDTO, @RequestParam("consultNum") Long consultNum,
@@ -199,6 +255,15 @@ public class CCAController {
         return "redirect:/cca/detail?consultNum=" + consultNum + "&searchBy=" + searchBy + "&searchItem=" + searchItem;
     }
 
+    /**
+     * 답변 수정화면 요청
+     * @param consultNum
+     * @param replyNum
+     * @param searchBy
+     * @param searchItem
+     * @param model
+     * @return
+     */
     @GetMapping("/replyUpdate")
     public String replyUpdate(
             @RequestParam(name = "consultNum") Long consultNum,
@@ -219,6 +284,16 @@ public class CCAController {
         return "cca/replyUpdate";
     }
 
+    /**
+     * 답변 수정처리
+     * @param answerDTO
+     * @param replyNum
+     * @param consultNum
+     * @param searchBy
+     * @param searchItem
+     * @param rttr
+     * @return
+     */
     @PostMapping("/replyUpdate")
     public String replyUpdate(
             @ModelAttribute AnswerDTO answerDTO,
@@ -240,6 +315,15 @@ public class CCAController {
         return "redirect:/cca/detail?consultNum=" + consultNum + "&searchBy=" + searchBy + "&searchItem=" + searchItem;
     }
 
+    /**
+     * 답변 삭제 처리
+     * @param replyNum
+     * @param consultNum
+     * @param searchBy
+     * @param searchItem
+     * @param rttr
+     * @return
+     */
     @GetMapping("/replyDelete")
     public String replyDelete(
             @RequestParam(name = "replyNum") Long replyNum,
@@ -255,6 +339,11 @@ public class CCAController {
         return "redirect:/cca/detail?consultNum=" + consultNum + "&searchBy=" + searchBy + "&searchItem=" + searchItem;
     }
 
+    /**
+     * 답변 불러오기
+     * @param replyNum
+     * @return
+     */
     @GetMapping("/replyAll")
     @ResponseBody
     public List<AnswerDTO> replyAll(
@@ -297,6 +386,15 @@ public class CCAController {
         return "cca/ccaList";
     }
 
+    /**
+     * 답변 채택 처리
+     * @param replyNum
+     * @param consultNum
+     * @param replyWriter
+     * @param searchBy
+     * @param searchItem
+     * @return
+     */
     @PostMapping("/increaseLike")
     public String increaseLike(
             @RequestParam("replyNum") Long replyNum,

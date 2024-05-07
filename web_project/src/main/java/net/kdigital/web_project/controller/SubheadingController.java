@@ -24,6 +24,12 @@ public class SubheadingController {
     public final SubheadingService subheadingService;
     private final OpenApiManager openApiManager;
 
+    /**
+     * 10자리 정보 화면 출력하기
+     * @param hs4digit
+     * @param model
+     * @return
+     */
     @GetMapping("/detail")
     public String subheadDetail(
             @RequestParam(name = "hs4digit") String hs4digit, Model model) {
@@ -39,6 +45,13 @@ public class SubheadingController {
         return "subhead/detail";
     }
 
+    /**
+     * 10자리 세율 정보 출력하기
+     * @param hsAll
+     * @param hs4digit
+     * @param model
+     * @return
+     */
     @GetMapping("/info")
     public String subheadInfo(
             @RequestParam(name = "hsAll") String hsAll, @RequestParam(name = "hs4digit") String hs4digit, Model model) {
@@ -65,8 +78,4 @@ public class SubheadingController {
         return "subhead/info";
     }
 
-    @GetMapping("/popup")
-    public String makePopup() {
-        return "subhead/popup";
-    }
 }

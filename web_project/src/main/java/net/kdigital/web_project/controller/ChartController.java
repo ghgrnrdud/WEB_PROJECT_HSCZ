@@ -22,6 +22,11 @@ public class ChartController {
 
     private final ChartService chartService;
 
+    /**
+     * 품목별 그래프 화면 출력 - 5년간 수출입액 꺾은선 그래프
+     * @param hs4digit
+     * @return
+     */
     @GetMapping("/imexXYChart")
     @ResponseBody
     public List<YearChartDTO> imexXYChart(
@@ -33,6 +38,11 @@ public class ChartController {
         return yearImexList;
     }
 
+    /**
+     * 품목별 그래프 화면 출력 - 수출 상위 5개국 원그래프
+     * @param hs4digit
+     * @return
+     */
     @GetMapping("/exPieChart")
     @ResponseBody
     public List<CountryChartDTO> pieChartExport(
@@ -44,6 +54,11 @@ public class ChartController {
         return exportRankingList;
     }
 
+    /**
+     * 품목별 그래프 화면 출력 - 수입 상위 5개국 원그래프
+     * @param hs4digit
+     * @return
+     */
     @GetMapping("/imPieChart")
     @ResponseBody
     public List<CountryChartDTO> pieChartImport(
