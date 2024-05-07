@@ -42,7 +42,6 @@ public class MypageController {
 		boardCount = 0;
 		// 로그인한 유저 정보 가져오기
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		UserDetails userDetails = (UserDetails) principal;
 		String username = ((UserDetails) principal).getUsername();
 
 		CustomerDTO customerDTO = CustomerDTO.toDTO(customerService.findCustomerByUserId(username));
@@ -87,7 +86,6 @@ public class MypageController {
 		replyCount = 0;
 		// 로그인한 유저 정보 가져오기
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		UserDetails userDetails = (UserDetails) principal;
 		String username = ((UserDetails) principal).getUsername();
 
 		CustomerDTO customerDTO = CustomerDTO.toDTO(customerService.findCustomerByUserId(username));
@@ -127,7 +125,6 @@ public class MypageController {
 		boardCount = 0;
 		// 로그인한 유저 정보 가져오기
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		UserDetails userDetails = (UserDetails) principal;
 		String username = ((UserDetails) principal).getUsername();
 
 		CustomerDTO customerDTO = CustomerDTO.toDTO(customerService.findCustomerByUserId(username));
@@ -173,7 +170,6 @@ public class MypageController {
 		replyCount = 0;
 		// 로그인한 유저 정보 가져오기
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		UserDetails userDetails = (UserDetails) principal;
 		String username = ((UserDetails) principal).getUsername();
 
 		CustomerDTO customerDTO = CustomerDTO.toDTO(customerService.findCustomerByUserId(username));
@@ -214,7 +210,6 @@ public class MypageController {
 
 		// 로그인한 유저 정보 가져오기
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		UserDetails userDetails = (UserDetails) principal;
 		String username = ((UserDetails) principal).getUsername();
 
 		// 유저 정보 업데이트
@@ -233,7 +228,6 @@ public class MypageController {
 	public String updateCCA(@ModelAttribute CustomerDTO customerDTO, @ModelAttribute CustomerItemDTO customerItemDTO) {
 		// 로그인한 유저 정보 가져오기
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		UserDetails userDetails = (UserDetails) principal;
 		String username = ((UserDetails) principal).getUsername();
 
 		// 유저 정보 업데이트

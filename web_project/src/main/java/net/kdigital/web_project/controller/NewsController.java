@@ -17,56 +17,55 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import lombok.extern.slf4j.Slf4j;
 import net.kdigital.web_project.dto.NewsDTO;
 
 @Controller
-@Slf4j
 public class NewsController {
-	
+
 	@GetMapping("/news")
-	public String news(Model model){
-		
-	    URI uri = UriComponentsBuilder
-	            .fromUriString("https://openapi.naver.com")
-	            .path("/v1/search/news.json")
-	            .queryParam("query","무역")
-	            .queryParam("query","무역규제")
-	            .queryParam("query","무역수지")
-	            .queryParam("query","무역거래")
-	            .queryParam("query","무역협정")
-	            .queryParam("query","수출입")
-	            .queryParam("display",10)
-	            .queryParam("start",1)
-	            .queryParam("sort", "date")
-	            .encode(Charset.forName("UTF-8"))
-	            .build()
-	            .toUri();
+	public String news(Model model) {
 
-	    RestTemplate restTemplate = new RestTemplate();
+		URI uri = UriComponentsBuilder
+				.fromUriString("https://openapi.naver.com")
+				.path("/v1/search/news.json")
+				.queryParam("query", "무역")
+				.queryParam("query", "무역규제")
+				.queryParam("query", "무역수지")
+				.queryParam("query", "무역거래")
+				.queryParam("query", "무역협정")
+				.queryParam("query", "수출입")
+				.queryParam("display", 10)
+				.queryParam("start", 1)
+				.queryParam("sort", "date")
+				.encode(Charset.forName("UTF-8"))
+				.build()
+				.toUri();
 
-	    RequestEntity<Void> req = RequestEntity
-	            .get(uri)
-	            .header("X-Naver-Client-Id", "g0AqMX9OmgWDK3sg56fF")
-	            .header("X-Naver-Client-Secret" , "ETSdVZr8aE")
-	            .build();
+		RestTemplate restTemplate = new RestTemplate();
 
-	    ResponseEntity<String> result = restTemplate.exchange(req, String.class);
+		RequestEntity<Void> req = RequestEntity
+				.get(uri)
+				.header("X-Naver-Client-Id", "g0AqMX9OmgWDK3sg56fF")
+				.header("X-Naver-Client-Secret", "ETSdVZr8aE")
+				.build();
 
-	    // API 호출 결과를 DTO로 변환
-	    ObjectMapper objectMapper = new ObjectMapper();
-	    List<NewsDTO> dtoList;
-	    try {
-	        JsonNode rootNode = objectMapper.readTree(result.getBody());
-	        JsonNode itemsNode = rootNode.path("items");
-	        dtoList = objectMapper.convertValue(itemsNode, new TypeReference<List<NewsDTO>>() {});
-	    } catch (JsonProcessingException e) {
-	    	
-	        return "";
-	    }
-	     
-	    model.addAttribute("list",dtoList);
-	    return "/news";
+		ResponseEntity<String> result = restTemplate.exchange(req, String.class);
+
+		// API 호출 결과를 DTO로 변환
+		ObjectMapper objectMapper = new ObjectMapper();
+		List<NewsDTO> dtoList;
+		try {
+			JsonNode rootNode = objectMapper.readTree(result.getBody());
+			JsonNode itemsNode = rootNode.path("items");
+			dtoList = objectMapper.convertValue(itemsNode, new TypeReference<List<NewsDTO>>() {
+			});
+		} catch (JsonProcessingException e) {
+
+			return "";
+		}
+
+		model.addAttribute("list", dtoList);
+		return "/news";
 	}
 
 }

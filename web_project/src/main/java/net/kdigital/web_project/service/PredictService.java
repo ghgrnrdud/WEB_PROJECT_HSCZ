@@ -19,12 +19,12 @@ import net.kdigital.web_project.dto.PredictDTO;
 @RequiredArgsConstructor
 @Slf4j
 public class PredictService {
-	
-	@Value("${hscode.predict.server}")                        
+
+	@Value("${hscode.predict.server}")
 	String url;
-	
+
 	private final RestTemplate restTemplate;
-	
+
 	public Map<String, String> predictRest(PredictDTO predictDTO) {
 		Map<String, String> error = new HashMap<>();
 		Map<String, String> result = new HashMap<>();
@@ -33,23 +33,20 @@ public class PredictService {
 			HttpHeaders headers = new HttpHeaders();
 			headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
 			headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
-			
+
 			ResponseEntity<Map> response = restTemplate.postForEntity(url, predictDTO, Map.class);
 			result = response.getBody();
-//			log.info("{}", result);
-			
-			
-		} catch(Exception e) {
+			// log.info("{}", result);
+
+		} catch (Exception e) {
 			error.put("statusCode", "450");
 			error.put("body", "오류남");
-			
+
 			return error;
 		}
-		
+
 		return result;
-		
+
 	}
-	
-	
-	
+
 }

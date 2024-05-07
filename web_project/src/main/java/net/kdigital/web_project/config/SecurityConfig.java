@@ -7,7 +7,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import lombok.RequiredArgsConstructor;
 import net.kdigital.web_project.handler.CustomFailureHandler;
 import net.kdigital.web_project.handler.CustomSuccessHandler;

@@ -25,7 +25,6 @@ import lombok.extern.slf4j.Slf4j;
 import net.kdigital.web_project.dto.AnswerDTO;
 import net.kdigital.web_project.dto.BoardDTO;
 import net.kdigital.web_project.dto.CCAListDTO;
-import net.kdigital.web_project.dto.CustomerDTO;
 import net.kdigital.web_project.dto.CustomerItemDTO;
 import net.kdigital.web_project.service.CCAListService;
 import net.kdigital.web_project.service.CCAService;
@@ -58,7 +57,7 @@ public class CCAController {
     }
 
     /**
-     * ]
+     * 
      * 상담목록
      * 
      * @param pageable
@@ -331,25 +330,6 @@ public class CCAController {
         }
 
         return "redirect:/cca/detail?consultNum=" + consultNum;
-    }
-
-    @GetMapping("/ccaTop10")
-    public String ccaTop10(
-            @PageableDefault(page = 0) Pageable pageable,
-            Model model) {
-
-        Page<CustomerDTO> dtoList;
-
-        dtoList = customerService.findAllUserCCA(pageable);
-
-        int totalPages = (int) dtoList.getTotalPages();
-        int page = pageable.getPageNumber();
-        PageNavigator navi = new PageNavigator(pageLimit, page, totalPages);
-
-        model.addAttribute("CustomerCCAList", dtoList);
-        model.addAttribute("navi", navi);
-
-        return "cca/ccaTop10";
     }
 
 }

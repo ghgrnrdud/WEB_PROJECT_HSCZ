@@ -3,7 +3,6 @@ package net.kdigital.web_project.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
@@ -23,11 +22,11 @@ public class BycounImMarketService {
 		List<BycounImMarketEntity> entityList = repository.findAllByCountryOrderBySeq5Desc(country);
 		log.info("========= (서비스) piechart : {}", entityList);
 		List<BycounImMarketDTO> dtoList = new ArrayList<>();
-//		for(BycounImMarketEntity temp : entityList) {
-//			if(temp.getDateYear()==2019) {
-//			dtoList.add(BycounImMarketDTO.toDTO(temp));
-//			}
-//		} 
+		// for(BycounImMarketEntity temp : entityList) {
+		// if(temp.getDateYear()==2019) {
+		// dtoList.add(BycounImMarketDTO.toDTO(temp));
+		// }
+		// }
 		entityList.forEach((entity) -> dtoList.add(BycounImMarketDTO.toDTO(entity)));
 		return dtoList;
 	}

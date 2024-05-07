@@ -6,7 +6,6 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import net.kdigital.web_project.dto.CountryChartDTO;
 import net.kdigital.web_project.dto.YearChartDTO;
 import net.kdigital.web_project.entity.CountryChartEntity;
@@ -15,7 +14,7 @@ import net.kdigital.web_project.repository.CountryChartRepository;
 import net.kdigital.web_project.repository.YearChartRepository;
 
 @Service
-@Slf4j
+
 @RequiredArgsConstructor
 public class ChartService {
 
@@ -32,7 +31,6 @@ public class ChartService {
         return dtoList;
     }
 
-    
     public List<CountryChartDTO> selectImportRanking(String hs4digit) {
 
         List<CountryChartDTO> dtoList = new ArrayList<>();
@@ -43,16 +41,13 @@ public class ChartService {
         return dtoList;
     }
 
-
     public List<YearChartDTO> selectYearImex(String hs4digit) {
         List<YearChartDTO> dtoList = new ArrayList<>();
         List<YearChartEntity> entityList = yearChartRepository.findAllByHs4digit(hs4digit);
 
         entityList.forEach((item) -> dtoList.add(YearChartDTO.toDTO(item)));
-        
+
         return dtoList;
     }
-    
-
 
 }
