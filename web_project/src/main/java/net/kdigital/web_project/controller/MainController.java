@@ -41,17 +41,8 @@ public class MainController {
 		model.addAttribute("ccaList", ccaList);
 		model.addAttribute("ccaInfoMap", ccaInfoMap);
 
-		return "index_jh";
+		return "main";
 	}
 
-	@GetMapping("/layout")
-	public String layout() {
-		return "layout";
-	}
-
-	@GetMapping("/exchangeRate")
-	public String exchangeRate() {
-		return "exchangeRate";
-	}
 
 }

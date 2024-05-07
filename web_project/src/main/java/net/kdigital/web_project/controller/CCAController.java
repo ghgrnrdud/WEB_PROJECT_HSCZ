@@ -25,10 +25,7 @@ import lombok.extern.slf4j.Slf4j;
 import net.kdigital.web_project.dto.AnswerDTO;
 import net.kdigital.web_project.dto.BoardDTO;
 import net.kdigital.web_project.dto.CCAListDTO;
-import net.kdigital.web_project.dto.CustomerDTO;
 import net.kdigital.web_project.dto.CustomerItemDTO;
-import net.kdigital.web_project.entity.CustomerEntity;
-import net.kdigital.web_project.entity.CustomerItemEntity;
 import net.kdigital.web_project.service.CCAListService;
 import net.kdigital.web_project.service.CCAService;
 import net.kdigital.web_project.service.CustomerItemService;
@@ -47,7 +44,6 @@ public class CCAController {
     private final CustomerService customerService;
     private final CustomerItemService customerItemService;
 
-
     public CCAController(CCAService ccaService, ReplyService replyService,
             @Value("${user.board.pageLimit}") int pageLimit, CCAListService ccaListService,
             CustomerService customerService, CustomerItemService customerItemService) {
@@ -61,7 +57,7 @@ public class CCAController {
     }
 
     /**
-     * ]
+     * 
      * 상담목록
      * 
      * @param pageable
@@ -95,9 +91,9 @@ public class CCAController {
     }
 
     @GetMapping("/ccaWrite")
-    public String ccaWrite(@RequestParam(name="hsCode", defaultValue = "") String hsCode, Model model) {
+    public String ccaWrite(@RequestParam(name = "hsCode", defaultValue = "") String hsCode, Model model) {
         log.info("글쓰기 화면 요청");
-        
+
         model.addAttribute("hsCode", hsCode);
 
         return "/cca/ccaWrite";
@@ -106,7 +102,7 @@ public class CCAController {
     @PostMapping("/ccaWrite")
     public String ccaWrite(@ModelAttribute BoardDTO boardDTO) {
         log.info("+++++++++++{}", boardDTO);
-        
+
         Long consultNum = ccaService.insertConsult(boardDTO);
 
         return "redirect:/cca/detail?consultNum=" + consultNum;
@@ -124,15 +120,15 @@ public class CCAController {
         List<AnswerDTO> replyList = replyService.selectAllReplys(consultNum); // 예시일 뿐, 해당 메서드가 실제로 존재한다고 가정
 
         Map<AnswerDTO, CustomerItemDTO> dataMap = new HashMap<>();
-        for(AnswerDTO temp : replyList) {
-        	CustomerItemDTO customerItemDTO = customerItemService.findItem(temp.getReplyWriter());
-        	dataMap.put(temp, customerItemDTO);
+        for (AnswerDTO temp : replyList) {
+            CustomerItemDTO customerItemDTO = customerItemService.findItem(temp.getReplyWriter());
+            dataMap.put(temp, customerItemDTO);
         }
-        
+
         model.addAttribute("consult", boardDTO);
         model.addAttribute("searchItem", searchItem);
         model.addAttribute("searchBy", searchBy);
-        model.addAttribute("dataMap",dataMap);
+        model.addAttribute("dataMap", dataMap);
         model.addAttribute("replyList", replyList); // 답변 DTO도 Model에 추가
 
         return "cca/detail";
@@ -334,25 +330,6 @@ public class CCAController {
         }
 
         return "redirect:/cca/detail?consultNum=" + consultNum;
-    }
-
-    @GetMapping("/ccaTop10")
-    public String ccaTop10(
-            @PageableDefault(page = 0) Pageable pageable,
-            Model model) {
-
-        Page<CustomerDTO> dtoList;
-
-        dtoList = customerService.findAllUserCCA(pageable);
-
-        int totalPages = (int) dtoList.getTotalPages();
-        int page = pageable.getPageNumber();
-        PageNavigator navi = new PageNavigator(pageLimit, page, totalPages);
-
-        model.addAttribute("CustomerCCAList", dtoList);
-        model.addAttribute("navi", navi);
-
-        return "cca/ccaTop10";
     }
 
 }

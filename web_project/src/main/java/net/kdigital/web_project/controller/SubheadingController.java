@@ -1,9 +1,7 @@
 package net.kdigital.web_project.controller;
 
-import java.io.UnsupportedEncodingException;
 import java.util.List;
 
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,21 +20,19 @@ import net.kdigital.web_project.service.SubheadingService;
 @RequiredArgsConstructor
 @Slf4j
 public class SubheadingController {
-    
+
     public final SubheadingService subheadingService;
     private final OpenApiManager openApiManager;
 
     @GetMapping("/detail")
     public String subheadDetail(
-        @RequestParam(name = "hs4digit") String hs4digit
-        , Model model
-    ) {
+            @RequestParam(name = "hs4digit") String hs4digit, Model model) {
         log.info("======hscode: {}", hs4digit);
 
         List<SubheadingDTO> subheadingList = subheadingService.selectDetail(hs4digit);
 
         log.info("======subheading list: {}", subheadingList);
-        
+
         model.addAttribute("hs4digit", hs4digit);
         model.addAttribute("list", subheadingList);
 
@@ -45,10 +41,7 @@ public class SubheadingController {
 
     @GetMapping("/info")
     public String subheadInfo(
-        @RequestParam(name = "hsAll") String hsAll
-        , @RequestParam(name = "hs4digit") String hs4digit
-        , Model model
-    ) {
+            @RequestParam(name = "hsAll") String hsAll, @RequestParam(name = "hs4digit") String hs4digit, Model model) {
         log.info("=============subheadInfo");
         List<TaxDTO> dtoList = openApiManager.taxOpenApi(hsAll);
         String refundsWon = openApiManager.refundsOpenApi(hsAll);

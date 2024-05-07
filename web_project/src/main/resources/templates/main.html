@@ -95,12 +95,10 @@
         </h1>
       </div>
       <form th:action="@{/predict}" method="post" class="searchForm">
-        <div class="search" id="mySearch" 
-            data-tooltip="수출입 하고자 하는 제품의 상세 설명을 입력해주세요:
+        <div class="search" id="mySearch" data-tooltip="수출입 하고자 하는 제품의 상세 설명을 입력해주세요:
                       -제품의 재료
                       -제품의 공정과정
-                      -제품의 용도 등" 
-            style="display:flex; white-space: pre-wrap;">
+                      -제품의 용도 등" style="display:flex; white-space: pre-wrap;">
           <input type="text" class="form-control" id="description" name="description"
             style="width: 890px; height: 66px;">
           <img class="searchimg2" th:src="@{/images/searchbox-logo.png}" alt="찾기아이콘">
@@ -357,6 +355,9 @@
         slidesToShow: 1,   // 한 번에 보여줄 슬라이드 수
         slidesToScroll: 1, // 한 번에 스크롤할 슬라이드 수
         autoplay: true,    // 자동 재생 여부
+
+        autoplaySpeed: 5000, // 자동 재생 간격
+
         autoplaySpeed: 4000, // 자동 재생 간격
         arrows: true,      // 좌우 화살표 사용 여부
         infinite: true,
@@ -374,6 +375,7 @@
         slidesToScroll: 1, // 한 번에 스크롤할 슬라이드 수
         autoplay: true,    // 자동 재생 여부
         autoplaySpeed: 800, // 자동 재생 간격
+        autoplaySpeed: 700, // 자동 재생 간격
         arrows: false,      // 좌우 화살표 사용 여부
         infinite: true,
         pauseOnHover: false
@@ -382,14 +384,14 @@
   </script>
 
   <script>
-      const $topBtn = document.querySelector(".moveTopBtn");
+    const $topBtn = document.querySelector(".moveTopBtn");
 
-      // 버튼 클릭 시 맨 위로 이동
-      $topBtn.onclick = () => {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      };
+    // 버튼 클릭 시 맨 위로 이동
+    $topBtn.onclick = () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    };
   </script>
-    
+
 </body>
 
 </html>

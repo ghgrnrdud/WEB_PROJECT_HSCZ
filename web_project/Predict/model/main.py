@@ -13,6 +13,8 @@ import googletrans
 from googletrans import Translator
 # pip install googletrans==4.0.0rc1 로 install
 
+# cd '현재경로\Predict\model'로 터미널에서 변경해야 실행됨
+
 
 # NLTK 리소스 다운로드
 nltk.download('punkt')

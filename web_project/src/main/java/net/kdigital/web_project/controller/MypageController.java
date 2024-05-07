@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.kdigital.web_project.dto.AnswerDTO;
@@ -45,7 +43,6 @@ public class MypageController {
 		boardCount = 0;
 		// 로그인한 유저 정보 가져오기
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		UserDetails userDetails = (UserDetails) principal;
 		String username = ((UserDetails) principal).getUsername();
 
 		CustomerDTO customerDTO = CustomerDTO.toDTO(customerService.findCustomerByUserId(username));
@@ -63,7 +60,6 @@ public class MypageController {
 			// 작성한 글에 해당하는 댓글 가져오기
 			List<AnswerDTO> replyDTOList = replyService.selectAllReplys(temp.getConsultNum());
 
-			
 			dataMap.put(BoardDTO.toDTO(temp), replyDTOList.size());
 
 			boardCount += 1;
@@ -83,7 +79,6 @@ public class MypageController {
 		replyCount = 0;
 		// 로그인한 유저 정보 가져오기
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		UserDetails userDetails = (UserDetails) principal;
 		String username = ((UserDetails) principal).getUsername();
 
 		CustomerDTO customerDTO = CustomerDTO.toDTO(customerService.findCustomerByUserId(username));
@@ -122,7 +117,6 @@ public class MypageController {
 		boardCount = 0;
 		// 로그인한 유저 정보 가져오기
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		UserDetails userDetails = (UserDetails) principal;
 		String username = ((UserDetails) principal).getUsername();
 
 		CustomerDTO customerDTO = CustomerDTO.toDTO(customerService.findCustomerByUserId(username));
@@ -162,7 +156,6 @@ public class MypageController {
 		replyCount = 0;
 		// 로그인한 유저 정보 가져오기
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		UserDetails userDetails = (UserDetails) principal;
 		String username = ((UserDetails) principal).getUsername();
 
 		CustomerDTO customerDTO = CustomerDTO.toDTO(customerService.findCustomerByUserId(username));
@@ -201,7 +194,6 @@ public class MypageController {
 
 		// 로그인한 유저 정보 가져오기
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		UserDetails userDetails = (UserDetails) principal;
 		String username = ((UserDetails) principal).getUsername();
 
 		// 유저 정보 업데이트
@@ -217,7 +209,6 @@ public class MypageController {
 	public String updateCCA(@ModelAttribute CustomerDTO customerDTO, @ModelAttribute CustomerItemDTO customerItemDTO) {
 		// 로그인한 유저 정보 가져오기
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		UserDetails userDetails = (UserDetails) principal;
 		String username = ((UserDetails) principal).getUsername();
 
 		// 유저 정보 업데이트

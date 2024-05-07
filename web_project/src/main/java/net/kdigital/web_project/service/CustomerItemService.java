@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import net.kdigital.web_project.dto.CustomerItemDTO;
 import net.kdigital.web_project.entity.CustomerEntity;
 import net.kdigital.web_project.entity.CustomerItemEntity;
@@ -14,7 +13,7 @@ import net.kdigital.web_project.repository.CustomerItemRepository;
 import net.kdigital.web_project.repository.CustomerRepository;
 
 @Service
-@Slf4j
+
 @RequiredArgsConstructor
 public class CustomerItemService {
 	private final CustomerRepository customerRepository;
