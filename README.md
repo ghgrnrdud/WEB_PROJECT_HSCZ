@@ -34,5 +34,10 @@
     <img src="https://github.com/ghgrnrdud/WEB_PROJECT_HSCZ/assets/153475197/54d29397-81e1-4d4c-83c8-fc970445b6d6" width="300" height="300">
 </p>
 
+# System Architecture
+<p> 
+    <img src="https://github.com/ghgrnrdud/WEB_PROJECT_HSCZ/assets/153475197/a1938539-cac8-4d45-9bfb-c517e711fac5" width="500" height="500">
+</p>
+
 
 
