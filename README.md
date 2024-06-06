@@ -1,5 +1,7 @@
 # 🛳️HSCZ 웹 프로젝트👩‍💻
 <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=Python&logoColor=white">
+<img src="https://img.shields.io/badge/Oracle-F80000?style=for-the-badge&logo=Python&logoColor=white">
+
 # 메인페이지(hs code 매칭기능) 제작
 
 ## 2024.04.11 전하늘
