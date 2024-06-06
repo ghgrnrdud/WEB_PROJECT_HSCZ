@@ -27,7 +27,7 @@
 
 # DEMO
 <p>
-    <img src="https://github.com/ghgrnrdud/WEB_PROJECT_HSCZ/assets/153475197/892f4e25-301a-4a54-be71-249c23726ef6" width="500" height="300">
+    <img src="https://github.com/ghgrnrdud/WEB_PROJECT_HSCZ/assets/153475197/892f4e25-301a-4a54-be71-249c23726ef6" width="300" height="200">
 
 </p>
 
