@@ -14,5 +14,6 @@
 <br>
 
 > 수출입에 필요한 모든 정보를 한 곳에 담은 무역정보 전문 웹 플랫폼입니다.
+![image](https://github.com/ghgrnrdud/WEB_PROJECT_HSCZ/assets/153475197/f8c8fbf1-cc60-490e-a388-fee822b5330e)
 
 
