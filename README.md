@@ -4,8 +4,11 @@
         display: inline-block;
     }
 </style>
-<img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=Python&logoColor=white">
-<img src="https://img.shields.io/badge/Oracle-F80000?style=for-the-badge&logo=Python&logoColor=white">
+<div class="inline-images">
+    <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=Python&logoColor=white">
+    <img src="https://img.shields.io/badge/Oracle-F80000?style=for-the-badge&logo=Python&logoColor=white">
+</div>
+
 
 # 메인페이지(hs code 매칭기능) 제작
 
