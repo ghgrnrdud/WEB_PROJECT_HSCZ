@@ -8,7 +8,7 @@
     <img src="https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=Python&logoColor=white">
     <img src="https://img.shields.io/badge/Bootstrap-7952B3?style=for-the-badge&logo=Python&logoColor=white">
     <img src="https://img.shields.io/badge/Spring Boot-6DB33F?style=for-the-badge&logo=Python&logoColor=white">
-    <img src="https://img.shields.io/badge/JAVA-6DB33F?style=for-the-badge&logo=Python&logoColor=white">
+    <img src="https://img.shields.io/badge/JAVA-7952B3?style=for-the-badge&logo=Python&logoColor=white">
 </div>
 
 
