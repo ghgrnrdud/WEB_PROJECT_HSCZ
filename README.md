@@ -36,7 +36,7 @@
 
 # System Architecture
 <p> 
-    <img src="https://github.com/ghgrnrdud/WEB_PROJECT_HSCZ/assets/153475197/a1938539-cac8-4d45-9bfb-c517e711fac5" width="500" height="500">
+    <img src="https://github.com/ghgrnrdud/WEB_PROJECT_HSCZ/assets/153475197/a1938539-cac8-4d45-9bfb-c517e711fac5" width="600" height="450">
 </p>
 
 
