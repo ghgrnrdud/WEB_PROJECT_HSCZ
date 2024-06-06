@@ -28,7 +28,10 @@
 # DEMO
 <p>
     <img src="https://github.com/ghgrnrdud/WEB_PROJECT_HSCZ/assets/153475197/892f4e25-301a-4a54-be71-249c23726ef6" width="300" height="300">
-
+    <img src="https://github.com/ghgrnrdud/WEB_PROJECT_HSCZ/assets/153475197/a504e8ee-e233-41be-8440-fd223dcad790" width="300" height="300">
+    <img src="https://github.com/ghgrnrdud/WEB_PROJECT_HSCZ/assets/153475197/ac64a423-a23f-48f4-b0b5-461226963b61" width="300" height="300">
+    <img src="https://github.com/ghgrnrdud/WEB_PROJECT_HSCZ/assets/153475197/3d362dff-68bb-4585-98fb-a1d15e199563" width="300" height="300">
+    <img src="https://github.com/ghgrnrdud/WEB_PROJECT_HSCZ/assets/153475197/54d29397-81e1-4d4c-83c8-fc970445b6d6" width="300" height="300">
 </p>
 
 
