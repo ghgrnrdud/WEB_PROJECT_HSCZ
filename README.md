@@ -1,9 +1,5 @@
 # 🛳️HSCZ 웹 프로젝트👩‍💻
-<style>
-    .inline-images img {
-        display: inline-block;
-    }
-</style>
+
 <div class="inline-images">
     <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=Python&logoColor=white">
     <img src="https://img.shields.io/badge/Oracle-F80000?style=for-the-badge&logo=Python&logoColor=white">
