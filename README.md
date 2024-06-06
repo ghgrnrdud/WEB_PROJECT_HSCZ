@@ -8,7 +8,6 @@
     <img src="https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=Python&logoColor=white">
     <img src="https://img.shields.io/badge/Bootstrap-7952B3?style=for-the-badge&logo=Python&logoColor=white">
     <img src="https://img.shields.io/badge/Spring Boot-6DB33F?style=for-the-badge&logo=Python&logoColor=white">
-    <img src="https://img.shields.io/badge/JAVA-7952B3?style=for-the-badge&logo=Python&logoColor=white">
 </div>
 <br>
 <br>
@@ -25,7 +24,7 @@
 - 관세사 목록 제공 및 간편 상담 기능을 통한 사용자 편리성 강화
 - 국가별 무역 통계, 무역 뉴스, FTA 정보 등 무역과 관련된 다양한 서비스 제공
 
-# DEMO
+# 🖥️DEMO
 <p>
     <img src="https://github.com/ghgrnrdud/WEB_PROJECT_HSCZ/assets/153475197/892f4e25-301a-4a54-be71-249c23726ef6" width="300" height="300">
     <img src="https://github.com/ghgrnrdud/WEB_PROJECT_HSCZ/assets/153475197/a504e8ee-e233-41be-8440-fd223dcad790" width="300" height="300">
@@ -40,7 +39,12 @@
 </p>
 
 # 🌟Main Feature
-## HSCODE 추천 기능
+### HSCODE 추천 기능
+- HSCODE 추천 모델을 PYTHON을 통해 개발. FastAPI를 이용하여 웹 서버와 연동
+- 사용자가 제품에 대한 설명 입력 시 HSCODE 추천 모델을 통해 설명과 가장 유사한 HSCODE TOP 3 추천
+- 사용자가 상세 HSCODE 선택 시 5년간 수출입금액 추이, 수출입 상위 5개국 등의 무역 통계 그래프, 세율, 수출입요건, 전략물자 등 수출입에 필요한 다양한 정보 제공
+
+### 관세사 상담 기능
 
 
 
